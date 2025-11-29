@@ -6,14 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.ikr_application.R
 
-class ScreensAdapter : ListAdapter<Screens, ScreenViewHolder>(ScreenItemCallback()) {
+class ScreensAdapter(
+    private val listener: Listener,
+) : ListAdapter<Screens, ScreenViewHolder>(ScreenItemCallback()) {
+    interface Listener : ScreenViewHolder.ClickListener
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ScreenViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_screen, parent, false)
-        val holder = ScreenViewHolder(view)
+        val holder = ScreenViewHolder(view, listener)
 
         return holder
     }
@@ -31,7 +35,7 @@ class ScreensAdapter : ListAdapter<Screens, ScreenViewHolder>(ScreenItemCallback
             oldItem: Screens,
             newItem: Screens
         ): Boolean {
-            return oldItem.ordinal == newItem.ordinal
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(

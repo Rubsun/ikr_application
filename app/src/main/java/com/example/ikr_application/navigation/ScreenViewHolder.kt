@@ -6,18 +6,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ikr_application.R
 
 class ScreenViewHolder(
-    view: View
+    view: View,
+    private val clickListener: ClickListener
 ) : RecyclerView.ViewHolder(view) {
-    private val title by lazy { itemView.findViewById<TextView>(R.id.button) }
+    interface ClickListener {
+        fun onClicked(item: Screens)
+    }
 
-    private var item: Screens? = null
+    private val button by lazy { itemView.findViewById<TextView>(R.id.button) }
 
     fun bind(item: Screens?) {
-        this.item = item
-
         when {
-            item == null -> title.text = null
-            else -> title.setText(item.title)
+            item == null -> button.apply {
+                text = null
+                setOnClickListener(null)
+            }
+
+            else -> button.apply {
+                setText(item.title)
+                setOnClickListener { clickListener.onClicked(item) }
+            }
         }
     }
 }
