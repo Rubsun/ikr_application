@@ -24,4 +24,5 @@
 ## Полезные ссылки
 - **Presentation Domain Data Layering** - https://martinfowler.com/bliki/PresentationDomainDataLayering.html
 
-<div align="center"><img src="subo.gif" width="360"></div>
+<!-- <div align="center"><img src="subo.gif" width="360"></div> -->
+<img src="https://tenor.com/uoi9uKeVgGF.gif">
