@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
 
-class NamesFragment : Fragment() {
+class ViktoriaFragment : Fragment() {
     private val viewModel by viewModels<NamesViewModel>()
 
     override fun onCreateView(
