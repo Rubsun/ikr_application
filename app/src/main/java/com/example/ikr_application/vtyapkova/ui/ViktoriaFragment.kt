@@ -26,7 +26,6 @@ class ViktoriaFragment : Fragment() {
         val randomViktoriaView = view.findViewById<TextView>(R.id.random_name)
         val ViktoriaListContainer = view.findViewById<ViewGroup>(R.id.names_list)
 
-        // Отображаем случайное имя
         val randomViktoria = viewModel.getRandomViktoria()
         randomViktoriaView.text = getString(
             R.string.text_random_name_pattern,
@@ -34,7 +33,6 @@ class ViktoriaFragment : Fragment() {
             randomViktoria.initials
         )
 
-        // Отображаем список имен
         val names = viewModel.getMultipleViktoria(5)
         names.forEach { ViktoriaModel ->
             val ViktoriaView = layoutInflater.inflate(
