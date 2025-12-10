@@ -10,6 +10,7 @@ import com.example.ikr_application.spl3g.ui.Spl3gFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
 import com.example.ikr_application.artemkaa.ui.ArtemkaaFragment
 import com.example.ikr_application.antohaot.ui.AntohaotFragment
+import com.example.ikr_application.alexcode69.ui.Alexcode69Fragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.example.ikr_application.n0tsSzzz.ui.MyFragment as N0tsSzzzFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
@@ -35,6 +36,7 @@ enum class Screens(
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
     ARTEMKAA(R.string.title_artemkaa, ArtemkaaFragment::class.java),
     ANTOHAOT(R.string.title_antohaot, AntohaotFragment::class.java),
+    ALEXCODE69(R.string.title_alexcode69, Alexcode69Fragment::class.java),
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, N0tsSzzzFragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
