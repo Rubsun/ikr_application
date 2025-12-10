@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
 import com.example.ikr_application.rin2396.domain.TimePrecisions
 
-class MyFragment : Fragment() {
+class RinFragment : Fragment() {
     private val viewModel by viewModels<MyViewModel>()
 
     override fun onCreateView(

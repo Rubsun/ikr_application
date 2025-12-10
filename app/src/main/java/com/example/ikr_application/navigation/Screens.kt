@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.ikr_application.R
 import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.Spl3gFragment
-import com.example.ikr_application.rin2396.ui.MyFragment
+import com.example.ikr_application.rin2396.ui.RinFragment
 
 enum class Screens(
     @StringRes val title: Int,
@@ -18,4 +18,5 @@ enum class Screens(
     ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
+    RIN2396(R.string.title_rin2396, RinFragment::class.java),
 }

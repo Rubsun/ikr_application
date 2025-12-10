@@ -5,7 +5,7 @@ import com.example.ikr_application.rin2396.domain.CurrentDateUseCase
 import com.example.ikr_application.rin2396.domain.ElapsedTimeUseCase
 import com.example.ikr_application.rin2396.domain.TimePrecisions
 
-class MyViewModel : ViewModel() {
+class RinViewModel : ViewModel() {
     private val currentDateUseCase = CurrentDateUseCase()
     private val elapsedTimeUseCase = ElapsedTimeUseCase()
 
