@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
 import com.example.ikr_application.spl3g.domain.TimePrecisions
 
-class MyFragment : Fragment() {
+class Spl3gFragment : Fragment() {
     private val viewModel by viewModels<MyViewModel>()
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class MyFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.text).apply {
             val date = viewModel.date()
-            text = getString(R.string.text_time_pattern, date)
+            text = getString(R.string.spl3g_text_time_pattern, date)
         }
 
         val elapsed = view.findViewById<TextView>(R.id.elapsed)
@@ -46,6 +46,6 @@ class MyFragment : Fragment() {
 
     private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
         val time = viewModel.elapsedTime(item)
-        elapsed.text = getString(R.string.text_time_from_reboot_pattern, time)
+        elapsed.text = getString(R.string.spl3g_text_time_from_reboot_pattern, time)
     }
 }
