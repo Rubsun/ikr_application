@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
 
 class ViktoriaFragment : Fragment() {
-    private val viewModel by viewModels<NamesViewModel>()
+    private val viewModel by viewModels<ViktoriaViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,31 +23,31 @@ class ViktoriaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val randomNameView = view.findViewById<TextView>(R.id.random_name)
-        val namesListContainer = view.findViewById<ViewGroup>(R.id.names_list)
+        val randomViktoriaView = view.findViewById<TextView>(R.id.random_name)
+        val ViktoriaListContainer = view.findViewById<ViewGroup>(R.id.names_list)
 
         // Отображаем случайное имя
-        val randomName = viewModel.getRandomName()
-        randomNameView.text = getString(
+        val randomViktoria = viewModel.getRandomViktoria()
+        randomViktoriaView.text = getString(
             R.string.text_random_name_pattern,
-            randomName.displayName,
-            randomName.initials
+            randomViktoria.displayViktoria,
+            randomViktoria.initials
         )
 
         // Отображаем список имен
-        val names = viewModel.getMultipleNames(5)
-        names.forEach { nameModel ->
-            val nameView = layoutInflater.inflate(
+        val names = viewModel.getMultipleViktoria(5)
+        names.forEach { ViktoriaModel ->
+            val ViktoriaView = layoutInflater.inflate(
                 R.layout.item_vtyapkova_name,
-                namesListContainer,
+                ViktoriaListContainer,
                 false
             ) as TextView
-            nameView.text = getString(
+            ViktoriaView.text = getString(
                 R.string.text_name_item_pattern,
-                nameModel.displayName,
-                nameModel.shortName
+                ViktoriaModel.displayViktoria,
+                ViktoriaModel.shortViktoria
             )
-            namesListContainer.addView(nameView)
+            ViktoriaListContainer.addView(ViktoriaView)
         }
     }
 }

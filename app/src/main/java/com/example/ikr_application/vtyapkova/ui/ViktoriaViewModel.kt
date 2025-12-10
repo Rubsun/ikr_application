@@ -1,20 +1,20 @@
 package com.example.ikr_application.vtyapkova.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.ikr_application.vtyapkova.domain.GetMultipleNamesUseCase
-import com.example.ikr_application.vtyapkova.domain.GetRandomNameUseCase
-import com.example.ikr_application.vtyapkova.domain.models.NameDisplayModel
+import com.example.ikr_application.vtyapkova.domain.GetMultipleViktoriaUseCase
+import com.example.ikr_application.vtyapkova.domain.GetRandomViktoriaUseCase
+import com.example.ikr_application.vtyapkova.domain.models.ViktoriaDisplayModel
 
 class ViktoriaViewModel : ViewModel() {
-    private val getRandomNameUseCase = GetRandomNameUseCase()
-    private val getMultipleNamesUseCase = GetMultipleNamesUseCase()
+    private val getRandomViktoriaUseCase = GetRandomViktoriaUseCase()
+    private val getMultipleViktoriaUseCase = GetMultipleViktoriaUseCase()
 
-    fun getRandomName(): NameDisplayModel {
-        return getRandomNameUseCase.execute()
+    fun getRandomViktoria(): ViktoriaDisplayModel {
+        return getRandomViktoriaUseCase.execute()
     }
 
-    fun getMultipleNames(count: Int = 5): List<NameDisplayModel> {
-        return getMultipleNamesUseCase.execute(count)
+    fun getMultipleViktoria(count: Int = 5): List<ViktoriaDisplayModel> {
+        return getMultipleViktoriaUseCase.execute(count)
     }
 }
 

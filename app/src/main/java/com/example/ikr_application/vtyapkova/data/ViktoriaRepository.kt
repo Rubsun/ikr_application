@@ -1,8 +1,8 @@
 package com.example.ikr_application.vtyapkova.data
 
-import com.example.ikr_application.vtyapkova.data.models.NameData
+import com.example.ikr_application.vtyapkova.data.models.ViktoriaData
 
-class NameRepository {
+class ViktoriaRepository {
     private val firstNames = listOf(
         "Александр", "Дмитрий", "Максим", "Сергей", "Андрей",
         "Алексей", "Артем", "Илья", "Кирилл", "Михаил",
@@ -18,13 +18,13 @@ class NameRepository {
         "Павлов", "Семенов", "Голубев", "Виноградов", "Богданов"
     )
 
-    fun generateRandomName(): NameData {
+    fun generateRandomViktoria(): ViktoriaData {
         val firstName = firstNames.random()
         val lastName = lastNames.random()
         val fullName = "$firstName $lastName"
         val initials = "${firstName.first()}.${lastName.first()}."
 
-        return NameData(
+        return ViktoriaData(
             firstName = firstName,
             lastName = lastName,
             fullName = fullName,
@@ -32,13 +32,13 @@ class NameRepository {
         )
     }
 
-    fun generateMultipleNames(count: Int): List<NameData> {
-        return (1..count).map { generateRandomName() }
+    fun generateMultipleViktoria(count: Int): List<ViktoriaData> {
+        return (1..count).map { generateRandomViktoria() }
     }
 
     companion object {
         @androidx.annotation.Discouraged("Only for example")
-        val INSTANCE = NameRepository()
+        val INSTANCE = ViktoriaRepository()
     }
 }
 
