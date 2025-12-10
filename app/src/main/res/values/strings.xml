@@ -2,4 +2,5 @@
     <string name="app_name">ikr_application</string>
 
     <string name="title_sample">Sample Screen</string>
+    <string name="title_dem_module">DEM Module</string>
 </resources>
