@@ -15,6 +15,7 @@ import com.example.ikr_application.alexcode69.ui.Alexcode69Fragment
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.example.ikr_application.n0tsSzzz.ui.MyFragment as N0tsSzzzFragment
+import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
 import com.example.ikr_application.grigoran.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
@@ -28,6 +29,7 @@ enum class Screens(
     val type: Class<out Fragment>,
 ) {
     SAMPLE(R.string.title_sample, MyFragment::class.java),
+    TIRE(R.string.title_tire, TiReFragment::class.java),
     STUPISHIN(
         R.string.title_stupishin,
         com.example.ikr_application.stupishin.ui.MyFragment::class.java
