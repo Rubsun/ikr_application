@@ -1,6 +1,5 @@
-<resources>
+﻿<resources>
     <string name="app_name">ikr_application</string>
-
 	<string name="dog">Dog</string>
     <string name="title_sample">Sample Screen</string>
 	<string name="title_spl3g">Spl3g Screen</string>
@@ -13,4 +12,5 @@
     <string name="akiko23_mode_draw">Рисовать</string>
     <string name="akiko23_mode_erase">Стирать</string>
     <string name="akiko23_clear">Очистить холст</string>
+    <string name="title_stupishin">Stupishin Screen</string>
 </resources>
