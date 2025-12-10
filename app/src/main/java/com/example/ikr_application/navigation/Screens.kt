@@ -33,6 +33,6 @@ enum class Screens(
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, N0tsSzzzFragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
-    GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java)
+    GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
 }
