@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_rubsun">Rubsun Screen</string>
+    <string name="rubsun_title_numbers_list">Список чисел:</string>
+    <string name="rubsun_text_random_number_pattern">Случайное число: %1$d (%2$s), квадрат: %3$d</string>
+    <string name="rubsun_text_number_item_pattern">%1$d - %2$s (квадрат: %3$d)</string>
+</resources>
