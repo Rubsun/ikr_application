@@ -8,6 +8,7 @@ import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.Spl3gFragment
 import com.example.ikr_application.artemkaa.ui.ArtemkaaFragment
+import com.example.ikr_application.n0tsSzzz.ui.MyFragment as N0tsSzzzFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
@@ -26,7 +27,8 @@ enum class Screens(
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
-    ARTEMKAA(R.string.title_artemkaa, com.example.ikr_application.artemkaa.ui.ArtemkaaFragment::class.java),
-    DRAIN678(R.string.title_drain678, com.example.ikr_application.drain678.ui.Drain678Fragment::class.java),
+    ARTEMKAA(R.string.title_artemkaa, ArtemkaaFragment::class.java),
+    N0TSSZZZ(R.string.title_n0tsSzzz, N0tsSzzzFragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
+    DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
 }
