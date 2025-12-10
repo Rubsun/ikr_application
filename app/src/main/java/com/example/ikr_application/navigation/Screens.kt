@@ -1,4 +1,4 @@
-package com.example.ikr_application.navigation
+﻿package com.example.ikr_application.navigation
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
@@ -11,6 +11,10 @@ enum class Screens(
     val type: Class<out Fragment>,
 ) {
     SAMPLE(R.string.title_sample, MyFragment::class.java),
+    STUPISHIN(
+        R.string.title_stupishin,
+        com.example.ikr_application.stupishin.ui.MyFragment::class.java
+    ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
 }
