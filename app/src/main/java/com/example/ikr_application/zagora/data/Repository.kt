@@ -1,4 +1,4 @@
-package dog.dohodyaga.gaf.data
+package com.example.ikr_application.zagora.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

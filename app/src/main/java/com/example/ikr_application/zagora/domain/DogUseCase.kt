@@ -1,6 +1,6 @@
-package dog.dohodyaga.gaf.domain
+package com.example.ikr_application.zagora.domain
 
-import dog.dohodyaga.gaf.data.Repository
+import com.example.ikr_application.zagora.data.Repository
 
 
 data class DogImageModel(

@@ -1,4 +1,4 @@
-package dog.dohodyaga.gaf.ui
+package com.example.ikr_application.zagora.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import dog.dohodyaga.gaf.databinding.FragmentDogBinding
-import dog.dohodyaga.gaf.domain.DogImageModel
+import com.example.ikr_application.zagora.domain.DogImageModel
 
 class FragmentDog : Fragment() {
 

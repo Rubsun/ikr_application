@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.ikr_application.zagora.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
 
         <activity-alias
             android:name="DeeplinkHandler"
-            android:targetActivity=".MainActivity"
+            android:targetActivity="com.example.ikr_application.zagora.MainActivity"
             android:exported="true"
             >
             <intent-filter>

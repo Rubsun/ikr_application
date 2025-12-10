@@ -1,12 +1,12 @@
-package dog.dohodyaga.gaf.ui
+package com.example.ikr_application.zagora.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dog.dohodyaga.gaf.data.Repository
-import dog.dohodyaga.gaf.domain.DogImageModel
-import dog.dohodyaga.gaf.domain.GetDogImageUseCase
+import com.example.ikr_application.zagora.data.Repository
+import com.example.ikr_application.zagora.domain.DogImageModel
+import com.example.ikr_application.zagora.domain.GetDogImageUseCase
 import kotlinx.coroutines.launch
 
 class MyViewModel(
