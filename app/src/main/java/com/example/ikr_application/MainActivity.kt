@@ -1,13 +1,11 @@
 package com.example.ikr_application
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.ikr_application.navigation.ScreensFragment
-import com.example.ikr_application.navigation.ScreensFragment.Companion.extractScreen
+import com.example.ikr_application.kristevt.ui.MyFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,25 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ScreensFragment())
-                .commitAllowingStateLoss()
-        }
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-
-        val screen = intent.extractScreen()
-        if (screen != null) {
-            supportFragmentManager.beginTransaction()
-                .setCustomAnimations(
-                    android.R.anim.slide_in_left,
-                    android.R.anim.fade_out,
-                    android.R.anim.fade_in,
-                    android.R.anim.slide_out_right
-                )
-                .replace(R.id.container, screen.type, null)
-                .addToBackStack(null)
+                .replace(R.id.container, MyFragment())
                 .commitAllowingStateLoss()
         }
     }

@@ -1,8 +1,8 @@
-package com.example.ikr_application.nfirex.data
+package com.example.ikr_application.kristevt.data
 
 import android.os.SystemClock
 import androidx.annotation.Discouraged
-import com.example.ikr_application.nfirex.data.models.DeviceInfo
+import com.example.ikr_application.kristevt.data.models.DeviceInfo
 
 class DeviceRepository {
     fun deviceInfo(): DeviceInfo {
