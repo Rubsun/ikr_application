@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ikr_application</string>
-    <string name="dog">Dog</string>
     <string name="title_sample">Sample Screen</string>
     <string name="title_spl3g">Spl3g Screen</string>
     <string name="title_akiko23">Akiko23</string>
@@ -24,4 +23,5 @@
     <string name="title_drain678">drain678 Screen</string>
     <string name="title_michaelnoskov">Страшный квадрат от Гойды</string>
     <string name="title_egorik4">Egorik4 Screen</string>
+    <string name="title_zagora">Ann Zagora Screen</string>
 </resources>
