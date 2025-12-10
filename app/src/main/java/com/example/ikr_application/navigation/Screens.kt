@@ -26,7 +26,7 @@ enum class Screens(
     ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
-	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
+    SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
     ARTEMKAA(R.string.title_artemkaa, com.example.ikr_application.artemkaa.ui.ArtemkaaFragment::class.java),
@@ -35,4 +35,5 @@ enum class Screens(
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
     GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
+    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
 }
