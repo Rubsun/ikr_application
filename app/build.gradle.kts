@@ -45,10 +45,10 @@ dependencies {
 	implementation(libs.material)
 	implementation(libs.androidx.activity)
 	implementation(libs.androidx.constraintlayout)
-	testImplementation(libs.junit)
+    implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-
 	implementation("androidx.activity:activity-ktx:1.12.0")
 	implementation("androidx.fragment:fragment-ktx:1.8.9")
 	implementation("androidx.recyclerview:recyclerview:1.4.0")

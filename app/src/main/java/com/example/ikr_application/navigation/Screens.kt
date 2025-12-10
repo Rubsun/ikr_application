@@ -44,6 +44,8 @@ enum class Screens(
     GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
+    NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
+
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java)
 }
