@@ -1,8 +1,9 @@
-<resources>
+﻿<resources>
     <string name="app_name">ikr_application</string>
 
 	<string name="dog">Dog</string>
     <string name="title_sample">Sample Screen</string>
 	<string name="title_spl3g">Spl3g Screen</string>
 	<string name="title_quovadis">Quo Vadis Screen</string>
+    <string name="title_stupishin">Stupishin Screen</string>
 </resources>
