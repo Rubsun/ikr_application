@@ -8,6 +8,7 @@ import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.Spl3gFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
+import com.example.ikr_application.zagora.ui.FragmentDog
 import com.example.ikr_application.dimmension.ui.NamesFragment
 
 enum class Screens(
@@ -24,4 +25,6 @@ enum class Screens(
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java)
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
+    GAF(R.string.dog, FragmentDog::class.java)
+
 }
