@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_denisova">Denisova Screen</string>
+    <string name="denisova_student_name_pattern">Name: %s</string>
+    <string name="denisova_student_grade_pattern">Grade: %s</string>
+    <string name="denisova_text_average_pattern">Average grade: %s</string>
+</resources>
