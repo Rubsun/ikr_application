@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.ikr_application.R
 import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.Spl3gFragment
+import com.example.ikr_application.dimmension.ui.NamesFragment
 
 enum class Screens(
     @StringRes val title: Int,
