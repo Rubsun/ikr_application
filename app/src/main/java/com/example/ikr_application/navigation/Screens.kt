@@ -2,6 +2,7 @@
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import com.example.ikr_application.MomusWinner.ui.MomusWinnerFragment
 import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
@@ -48,5 +49,6 @@ enum class Screens(
     NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
-    ZAGORA(R.string.title_zagora, FragmentDog::class.java)
+    ZAGORA(R.string.title_zagora, FragmentDog::class.java),
+    AREG(R.string.title_areg, MomusWinnerFragment::class.java),
 }
