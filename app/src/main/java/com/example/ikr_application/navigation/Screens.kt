@@ -18,6 +18,7 @@ import com.example.ikr_application.grigoran.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment
+import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
 
 enum class Screens(
@@ -28,10 +29,6 @@ enum class Screens(
     STUPISHIN(
         R.string.title_stupishin,
         com.example.ikr_application.stupishin.ui.MyFragment::class.java
-    ),
-    VTYAPKOVA(
-        R.string.title_vtyapkova_screen,
-        NamesFragment::class.java
     ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
@@ -49,7 +46,7 @@ enum class Screens(
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
     NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
-
+    VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java)
 }
