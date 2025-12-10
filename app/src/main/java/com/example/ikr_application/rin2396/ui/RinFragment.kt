@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
-import com.example.ikr_application.rin2396.domain.TimePrecisions
+import com.example.ikr_application.rin2396.domain.RinTimePrecisions
 
 class RinFragment : Fragment() {
     private val viewModel by viewModels<MyViewModel>()
@@ -44,7 +44,7 @@ class RinFragment : Fragment() {
         }
     }
 
-    private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
+    private fun applyPrecision(elapsed: TextView, item: RinTimePrecisions) {
         val time = viewModel.elapsedTime(item)
         elapsed.text = getString(R.string.text_time_from_reboot_pattern, time)
     }

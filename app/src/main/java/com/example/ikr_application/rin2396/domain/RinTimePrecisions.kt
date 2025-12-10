@@ -6,7 +6,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-enum class TimePrecisions(
+enum class RinTimePrecisions(
     val divider: Duration,
     val typeName: String,
 ) {
