@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ikr_application</string>
-
-    <string name="title_sample">Sample Screen</string>
+    <string name="app_name">My Application</string>
+    <string name="dog">Dog</string>
 </resources>
