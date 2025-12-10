@@ -12,11 +12,6 @@ enum class Screens(
     val type: Class<out Fragment>,
 ) {
     SAMPLE(R.string.title_sample, MyFragment::class.java),
-    STUPISHIN(
-        R.string.title_stupishin,
-        com.example.ikr_application.stupishin.ui.MyFragment::class.java
-    ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),,
-    DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java)
 }

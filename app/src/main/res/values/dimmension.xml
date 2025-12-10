@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="text_random_name_pattern">Случайное имя: %1$s (%2$s)</string>
-    <string name="text_name_item_pattern">%1$s (%2$s)</string>
-    <string name="title_names_list">Список случайных имен:</string>
-    <string name="title_dimmension_screen">Случайные имена</string>
-</resources>
-
