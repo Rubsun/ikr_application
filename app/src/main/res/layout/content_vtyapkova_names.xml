@@ -27,7 +27,7 @@
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textAlignment="center"
             android:padding="20dp"
-            android:contentDescription="@string/random_name_description" />
+            android:contentDescription="" />
 
     </com.google.android.material.card.MaterialCardView>
 
