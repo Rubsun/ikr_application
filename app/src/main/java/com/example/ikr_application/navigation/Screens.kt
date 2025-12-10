@@ -14,6 +14,7 @@ import com.example.ikr_application.drain678.ui.Drain678Fragment
 import com.example.ikr_application.grigoran.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
+import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 
 enum class Screens(
     @StringRes val title: Int,
@@ -36,4 +37,5 @@ enum class Screens(
     GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
+    EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
 }
