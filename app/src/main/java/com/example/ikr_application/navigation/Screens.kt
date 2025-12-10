@@ -14,4 +14,5 @@ enum class Screens(
     SAMPLE(R.string.title_sample, MyFragment::class.java),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),,
+    FAT_CAPYBARA(R.string.title_fat_capybara, MyFragment::class.java)
 }
