@@ -19,4 +19,5 @@ enum class Screens(
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
+    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
 }
