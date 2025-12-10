@@ -5,7 +5,7 @@ import com.example.ikr_application.vtyapkova.domain.GetMultipleNamesUseCase
 import com.example.ikr_application.vtyapkova.domain.GetRandomNameUseCase
 import com.example.ikr_application.vtyapkova.domain.models.NameDisplayModel
 
-class NamesViewModel : ViewModel() {
+class ViktoriaViewModel : ViewModel() {
     private val getRandomNameUseCase = GetRandomNameUseCase()
     private val getMultipleNamesUseCase = GetMultipleNamesUseCase()
 
