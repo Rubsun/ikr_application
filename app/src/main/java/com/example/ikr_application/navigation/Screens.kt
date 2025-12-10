@@ -28,7 +28,7 @@ enum class Screens(
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
     ARTEMKAA(R.string.title_artemkaa, com.example.ikr_application.artemkaa.ui.ArtemkaaFragment::class.java),
-    KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java)
+    KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     DRAIN678(R.string.title_drain678, com.example.ikr_application.drain678.ui.Drain678Fragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
 }
