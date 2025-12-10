@@ -15,6 +15,10 @@ enum class Screens(
         R.string.title_stupishin,
         com.example.ikr_application.stupishin.ui.MyFragment::class.java
     ),
+    VTYAPKOVA(
+        R.string.title_vtyapkova_screen,
+        NamesFragment::class.java
+    ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
 }
