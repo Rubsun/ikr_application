@@ -8,6 +8,7 @@ import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.Spl3gFragment
 import com.example.ikr_application.artemkaa.ui.ArtemkaaFragment
+import com.example.ikr_application.drain678.ui.Drain678Fragment
 
 enum class Screens(
     @StringRes val title: Int,
@@ -23,4 +24,5 @@ enum class Screens(
 	SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
     ARTEMKAA(R.string.title_artemkaa, com.example.ikr_application.artemkaa.ui.ArtemkaaFragment::class.java),
+    DRAIN678(R.string.title_drain678, com.example.ikr_application.drain678.ui.Drain678Fragment::class.java),
 }
