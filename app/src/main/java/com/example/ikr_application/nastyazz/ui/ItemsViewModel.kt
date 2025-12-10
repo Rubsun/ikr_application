@@ -1,11 +1,11 @@
 package com.example.ikr_application.nastyazz.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.ikr_application.nastyazz.domain.GetItemByIdUseCase
 import com.example.ikr_application.nastyazz.domain.GetItemsUseCase
 import com.example.ikr_application.nastyazz.domain.Item
-
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +24,9 @@ class ItemsViewModel(
     private val _state = MutableStateFlow<UiState>(UiState.Loading)
     val state: StateFlow<UiState> = _state
 
-    init { loadItems() }
+    init {
+        loadItems()
+    }
 
     private fun loadItems() {
         viewModelScope.launch {
@@ -36,5 +38,19 @@ class ItemsViewModel(
                 _state.value = UiState.Error(e.localizedMessage ?: "Unknown error")
             }
         }
+    }
+}
+
+
+class ItemsViewModelFactory(
+    private val getItemsUseCase: GetItemsUseCase,
+    private val getItemByIdUseCase: GetItemByIdUseCase
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ItemsViewModel::class.java)) {
+            return ItemsViewModel(getItemsUseCase, getItemByIdUseCase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class: $modelClass")
     }
 }

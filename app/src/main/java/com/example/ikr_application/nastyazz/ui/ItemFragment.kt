@@ -8,13 +8,21 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ikr_application.R
 import com.example.ikr_application.databinding.FragmentNastyazzBinding
+import com.example.ikr_application.nastyazz.data.FakeItemRepository
+import com.example.ikr_application.nastyazz.domain.GetItemByIdUseCase
+import com.example.ikr_application.nastyazz.domain.GetItemsUseCase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ItemsFragment : Fragment(R.layout.fragment_nastyazz) {
 
     private var vb: FragmentNastyazzBinding? = null
-    private val viewModel: ItemsViewModel by viewModels()
+    private val viewModel: ItemsViewModel by viewModels {
+        ItemsViewModelFactory(
+            GetItemsUseCase(FakeItemRepository()),
+            GetItemByIdUseCase(FakeItemRepository())
+        )
+    }
 
     private lateinit var adapter: ItemsAdapter
 
