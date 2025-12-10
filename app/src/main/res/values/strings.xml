@@ -3,6 +3,7 @@
 	<string name="dog">Dog</string>
     <string name="title_sample">Sample Screen</string>
 	<string name="title_spl3g">Spl3g Screen</string>
+	<string name="title_quovadis">Quo Vadis Screen</string>
     <string name="title_akiko23">Akiko23</string>
     <string name="akiko23_text_time_pattern">Current date: %s</string>
     <string name="akiko23_text_time_from_reboot_pattern">Time from start: %s</string>
