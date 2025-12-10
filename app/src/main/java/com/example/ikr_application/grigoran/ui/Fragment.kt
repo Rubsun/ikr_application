@@ -15,13 +15,10 @@ import kotlinx.coroutines.launch
 
 class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
 
-    // ViewBinding хранится в приватной переменной
     private var vb: FragmentGrigoranBinding? = null
 
-    // Получаем ViewModel (автоматически создаётся)
     private val viewModel: ExampleViewModel by viewModels()
 
-    // Наш RecyclerView адаптер:
     private lateinit var adapter: ExampleAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,24 +26,22 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
 
         Log.d("ExampleFragment", "onViewCreated called")
 
-        // Привязка XML -> Kotlin
+
         val binding = FragmentGrigoranBinding.bind(view)
         vb = binding
 
-        // Инициализация адаптера
         adapter = ExampleAdapter()
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         binding.recycler.adapter = adapter
 
-        // Подписываемся на состояние UI из ViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collectLatest { state ->
 
-                // Показываем/прячем прогресс
                 binding.progress.visibility =
                     if (state.isLoading) View.VISIBLE else View.GONE
 
-                // Показываем ошибку, если есть
+
+
                 if (state.error != null) {
                     binding.errorText.visibility = View.VISIBLE
                     binding.errorText.text = state.error
@@ -54,7 +49,6 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
                     binding.errorText.visibility = View.GONE
                 }
 
-                // Передаём список элементов в адаптер
                 adapter.submitList(state.items)
             }
         }
@@ -62,6 +56,6 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        vb = null      // предотвращаем утечки памяти
+        vb = null
     }
 }
