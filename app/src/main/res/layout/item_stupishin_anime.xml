@@ -8,6 +8,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/stu_spacing_m">
 
@@ -18,27 +19,15 @@
             android:contentDescription="@string/stu_anime_poster_cd"
             android:scaleType="centerCrop" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <TextView
+            android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/stu_spacing_m"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.Stupishin.Title" />
-
-            <TextView
-                android:id="@+id/meta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/stu_spacing_s"
-                android:textAppearance="@style/TextAppearance.Stupishin.Subtitle" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Stupishin.Title" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

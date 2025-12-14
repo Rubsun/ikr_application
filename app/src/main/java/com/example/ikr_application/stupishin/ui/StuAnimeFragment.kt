@@ -35,15 +35,19 @@ class StuAnimeFragment : Fragment(R.layout.content_stupishin_anime) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
-                binding.stuProgress.visibility = if (state.isLoading) View.VISIBLE else View.GONE
-
-                binding.stuError.visibility = if (state.error != null) View.VISIBLE else View.GONE
+                binding.stuLoadingContainer.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+                binding.stuErrorContainer.visibility = if (state.error != null) View.VISIBLE else View.GONE
                 binding.stuError.text = state.error
-
-                binding.stuRetry.visibility = if (state.error != null) View.VISIBLE else View.GONE
 
                 binding.stuEmpty.visibility =
                     if (!state.isLoading && state.error == null && state.items.isEmpty()) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
+
+                binding.stuRecycler.visibility =
+                    if (!state.isLoading && state.error == null && state.items.isNotEmpty()) {
                         View.VISIBLE
                     } else {
                         View.GONE

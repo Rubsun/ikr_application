@@ -11,12 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class StuAnimeViewModel : ViewModel() {
     private val topUseCase = GetTopAnimeUseCase()
     private val searchUseCase = SearchAnimeUseCase()
 
-    private val _state = MutableStateFlow(StuAnimeState())
+    private val _state = MutableStateFlow(StuAnimeState(isLoading = true))
     val state: StateFlow<StuAnimeState> = _state.asStateFlow()
 
     private var loadJob: Job? = null
@@ -65,7 +66,13 @@ class StuAnimeViewModel : ViewModel() {
             val items = topUseCase.execute(page = 1)
             _state.update { it.copy(isLoading = false, items = items, error = null) }
         } catch (e: Exception) {
-            _state.update { it.copy(isLoading = false, error = e.message ?: "Unknown error") }
+            val message = if (e is IOException) {
+                "Не удалось загрузить данные. Проверь интернет и VPN."
+            } else {
+                e.message ?: "Не удалось загрузить данные."
+            }
+
+            _state.update { it.copy(isLoading = false, error = message) }
         }
     }
 
@@ -76,7 +83,13 @@ class StuAnimeViewModel : ViewModel() {
             val items = searchUseCase.execute(query = query)
             _state.update { it.copy(isLoading = false, items = items, error = null) }
         } catch (e: Exception) {
-            _state.update { it.copy(isLoading = false, error = e.message ?: "Unknown error") }
+            val message = if (e is IOException) {
+                "Не удалось загрузить данные. Проверь интернет и VPN."
+            } else {
+                e.message ?: "Не удалось загрузить данные."
+            }
+
+            _state.update { it.copy(isLoading = false, error = message) }
         }
     }
 }

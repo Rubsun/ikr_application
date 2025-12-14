@@ -12,9 +12,6 @@ internal class SearchAnimeUseCase(
                 id = dto.id,
                 title = dto.titleEnglish?.takeIf { it.isNotBlank() } ?: dto.title,
                 imageUrl = dto.images?.jpg?.imageUrl,
-                score = dto.score,
-                episodes = dto.episodes,
-                year = dto.year,
             )
         }
     }
