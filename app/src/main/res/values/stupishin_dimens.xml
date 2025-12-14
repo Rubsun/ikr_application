@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="stu_screen_padding">16dp</dimen>
+    <dimen name="stu_spacing_s">8dp</dimen>
+    <dimen name="stu_spacing_m">12dp</dimen>
+
+    <dimen name="stu_anime_poster_size">72dp</dimen>
+
+    <dimen name="stu_button_min_height">40dp</dimen>
+    <dimen name="stu_button_padding_h">16dp</dimen>
+</resources>

@@ -21,6 +21,4 @@
     <style name="Widget.EmojiCard.Value" parent="Widget.AppCompat.TextView">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Display1</item>
     </style>
-
-    Widget.MaterialComponents.TextView
 </resources>
