@@ -4,8 +4,10 @@ import com.example.ikr_application.stupishin.data.DeviceRepository
 import java.util.Date
 
 class CurrentDateUseCase() {
+    private val repo = DeviceRepository()
+
     fun date(): Date {
-        val timestamp = DeviceRepository.INSTANCE.deviceInfo().currentTime
+        val timestamp = repo.deviceInfo().currentTime
         val date = Date(timestamp)
 
         return date

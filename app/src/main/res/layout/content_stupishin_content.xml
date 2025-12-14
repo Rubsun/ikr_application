@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/stu_screen_padding">
+
+    <TextView
+        android:id="@+id/stu_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Stupishin.Body"/>
+
+    <TextView
+        android:id="@+id/stu_elapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/stu_spacing_s"
+        android:textAppearance="@style/TextAppearance.Stupishin.Body"/>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/stu_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/stu_spacing_m"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

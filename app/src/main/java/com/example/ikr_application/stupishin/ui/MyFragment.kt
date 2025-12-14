@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
 import com.example.ikr_application.stupishin.domain.TimePrecisions
+import com.google.android.material.button.MaterialButton
+import android.view.ContextThemeWrapper
 
 class MyFragment : Fragment() {
     private val viewModel by viewModels<MyViewModel>()
@@ -18,43 +20,34 @@ class MyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.content_nfirex_content, container, false)
+        return inflater.inflate(R.layout.content_stupishin_content, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<TextView>(R.id.text).apply {
+        view.findViewById<TextView>(R.id.stu_text).apply {
             val date = viewModel.date()
-            text = getString(R.string.text_time_pattern, date)
+            text = getString(R.string.stu_text_time_pattern, date)
         }
 
-        val elapsed = view.findViewById<TextView>(R.id.elapsed)
-        view.findViewById<ViewGroup>(R.id.buttons).apply {
-            (layoutInflater.inflate(R.layout.item_nfirex_precision, this, false) as TextView).apply {
-                text = "Start"
-                setOnClickListener { SimpleService.start(requireContext()) }
-            }.also { addView(it) }
-            (layoutInflater.inflate(R.layout.item_nfirex_precision, this, false) as TextView).apply {
-                text = "Stop"
-                setOnClickListener { SimpleService.stop(requireContext()) }
-            }.also { addView(it) }
-
-            viewModel.timePrecisions()
-                .map { item ->
-                    layoutInflater
-                        .inflate(R.layout.item_nfirex_precision, this, false)
-                        .apply {
-                            (this as? TextView)?.text = item.typeName
-                            setOnClickListener { applyPrecision(elapsed, item) }
-                        }
+        val elapsed = view.findViewById<TextView>(R.id.stu_elapsed)
+        view.findViewById<ViewGroup>(R.id.stu_buttons).apply {
+            val themed = ContextThemeWrapper(requireContext(), R.style.Widget_Stupishin_Button)
+            viewModel.timePrecisions().forEach { item ->
+                val b = MaterialButton(themed).apply {
+                    text = item.typeName
+                    setOnClickListener { applyPrecision(elapsed, item) }
                 }
-                .forEach { view -> addView(view) }
+                addView(b)
+            }
         }
+
+        applyPrecision(elapsed, TimePrecisions.S)
     }
 
     private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
         val time = viewModel.elapsedTime(item)
-        elapsed.text = getString(R.string.text_time_from_reboot_pattern, time)
+        elapsed.text = getString(R.string.stu_text_time_from_reboot_pattern, time)
     }
 }

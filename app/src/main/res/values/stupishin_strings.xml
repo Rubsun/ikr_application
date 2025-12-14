@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stu_text_time_pattern">Date now: %s</string>
+    <string name="stu_text_time_from_reboot_pattern">From boot: %s</string>
+</resources>
