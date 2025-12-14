@@ -32,7 +32,7 @@ enum class Screens(
     TIRE(R.string.title_tire, TiReFragment::class.java),
     STUPISHIN(
         R.string.title_stupishin,
-        com.example.ikr_application.stupishin.ui.MyFragment::class.java
+        com.example.ikr_application.stupishin.ui.StuAnimeFragment::class.java
     ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),

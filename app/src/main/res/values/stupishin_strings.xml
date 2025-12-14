@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stu_text_time_pattern">Date now: %s</string>
-    <string name="stu_text_time_from_reboot_pattern">From boot: %s</string>
+    <string name="stu_anime_search_hint">Search anime…</string>
+    <string name="stu_anime_retry">Try again</string>
+    <string name="stu_anime_empty">Nothing found</string>
+    <string name="stu_anime_poster_cd">Anime poster</string>
+
+    <string name="stu_anime_score_pattern">Score: %.1f</string>
+    <string name="stu_anime_year_pattern">Year: %d</string>
+    <string name="stu_anime_episodes_pattern">Episodes: %d</string>
 </resources>

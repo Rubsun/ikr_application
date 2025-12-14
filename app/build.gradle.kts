@@ -48,6 +48,9 @@ dependencies {
 	implementation(libs.androidx.recyclerview)
 	implementation(libs.androidx.constraintlayout)
 
+	implementation(libs.coil)
+	implementation(libs.coil.network.okhttp)
+
 	implementation(libs.androidx.lifecycle.viewmodel.ktx)
 	implementation(libs.kotlinx.serialization.json)
 	implementation(libs.okhttp.logging.interceptor)
