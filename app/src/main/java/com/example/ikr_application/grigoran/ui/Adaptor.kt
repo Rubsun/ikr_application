@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.ikr_application.databinding.ItemGrigoranBinding
 
 class ExampleAdapter : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
@@ -22,6 +23,7 @@ class ExampleAdapter : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
         fun bind(item: ItemUi) {
             b.title.text = item.displayTitle
             b.price.text = item.displayPrice
+            b.image.load(item.imageUrt)
         }
     }
 

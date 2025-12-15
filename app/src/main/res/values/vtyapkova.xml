@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_random_name_pattern_viktoria">Случайное имя: %1$s (%2$s)</string>
+    <string name="text_name_item_pattern_viktoria">%1$s (%2$s)</string>
+    <string name="title_names_list_viktoria">Список случайных имен:</string>
+    <string name="title_vtyapkova_screen">Случайные имена</string>
+    <string name="title_viktoria">VIKTORIA SCREEN</string>
+</resources>

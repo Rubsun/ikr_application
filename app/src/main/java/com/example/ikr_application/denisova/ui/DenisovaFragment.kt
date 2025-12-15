@@ -4,23 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.core.widget.doOnTextChanged
 import com.example.ikr_application.R
+import kotlinx.coroutines.launch
 
 class DenisovaFragment : Fragment() {
     private val viewModel by viewModels<DenisovaViewModel>()
-    private val adapter by lazy { StudentAdapter() }
+    private val adapter by lazy { WeatherLocationAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.content_denisova_students, container, false)
+        return inflater.inflate(R.layout.content_denisova_weather, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,10 +37,33 @@ class DenisovaFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = this@DenisovaFragment.adapter
         }
-        adapter.submitList(viewModel.students())
+        val statusText = view.findViewById<TextView>(R.id.status)
 
-        val averageText = view.findViewById<TextView>(R.id.average)
-        val avg = viewModel.averageGrade()
-        averageText.text = getString(R.string.denisova_text_average_pattern, avg)
+        val search = view.findViewById<EditText>(R.id.search)
+        search.doOnTextChanged { text, _, _, _ ->
+            viewModel.onQueryChanged(text?.toString().orEmpty())
+        }
+
+        val cityInput = view.findViewById<EditText>(R.id.cityInput)
+        view.findViewById<Button>(R.id.addButton).setOnClickListener {
+            val cityName = cityInput.text?.toString().orEmpty()
+            if (cityName.isNotBlank()) {
+                viewModel.onAddCity(cityName = cityName)
+                cityInput.text?.clear()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    adapter.submitList(state.locations)
+                    statusText.text = when {
+                        state.isLoading -> getString(R.string.denisova_status_loading)
+                        state.error != null -> getString(R.string.denisova_status_error_pattern, state.error)
+                        else -> getString(R.string.denisova_status_count_pattern, state.locations.size)
+                    }
+                }
+            }
+        }
     }
 }

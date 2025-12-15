@@ -11,7 +11,7 @@ import com.example.ikr_application.R
 import com.example.ikr_application.rin2396.domain.RinTimePrecisions
 
 class RinFragment : Fragment() {
-    private val viewModel by viewModels<MyViewModel>()
+    private val viewModel by viewModels<RinViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

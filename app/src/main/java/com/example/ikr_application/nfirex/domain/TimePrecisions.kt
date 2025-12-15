@@ -6,6 +6,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
+@Deprecated("Use your own classes:)")
 enum class TimePrecisions(
     val divider: Duration,
     val typeName: String,

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="antohaot_text_time_pattern">Current date: %s</string>
+    <string name="antohaot_text_time_from_reboot_pattern">Time from start: %s</string>
+</resources>

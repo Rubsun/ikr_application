@@ -23,6 +23,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+
+    <EditText
+        android:id="@+id/inputTitle"
+        android:hint="Название"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/inputPrice"
+        android:hint="Цена (в копейках)"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:text="Добавить"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/inputMinPrice"
+        android:hint="Минимальная цена"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_marginTop="16dp"
