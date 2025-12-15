@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import coil3.load
 import com.example.ikr_application.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -56,12 +58,21 @@ class NamesFragment : Fragment() {
                         R.layout.item_dimmension_name,
                         namesListContainer,
                         false
-                    ) as TextView
-                    nameView.text = getString(
+                    )
+                    val nameText = nameView.findViewById<TextView>(R.id.name_text)
+                    val avatarImage = nameView.findViewById<AppCompatImageView>(R.id.avatar_image)
+                    
+                    nameText.text = getString(
                         R.string.text_name_item_pattern,
                         nameModel.displayName,
                         nameModel.shortName
                     )
+                    
+                    // Использование Coil для загрузки аватарки из UI Avatars API
+                    avatarImage.load(nameModel.avatarUrl) {
+                        // Placeholder и error можно настроить при необходимости
+                    }
+                    
                     namesListContainer.addView(nameView)
                 }
             }
