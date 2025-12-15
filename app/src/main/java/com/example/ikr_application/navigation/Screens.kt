@@ -21,6 +21,7 @@ import com.example.ikr_application.grigoran.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment
+import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
 
@@ -55,4 +56,5 @@ enum class Screens(
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java),
     AREG(R.string.title_areg, MomusWinnerFragment::class.java),
+    EREMIN(R.string.title_eremin, CapybaraFragment::class.java)
 }

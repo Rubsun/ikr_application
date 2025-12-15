@@ -28,4 +28,8 @@
     <string name="title_areg">Krdyan Areg Screen</string>
     <string name="title_tire">Старый советский метод чтобы увеличить...</string>
     <string name="title_demyanenko">Demyanenko F1 Car collection</string>
+    <string name="title_eremin">Eremin</string>
+    <string name="capybara_outline_desc">Capybara outline</string>
+    <string name="title_fat_capybara">Fat Capybara</string>
+    <string name="two_columns">Two Columns</string>
 </resources>
