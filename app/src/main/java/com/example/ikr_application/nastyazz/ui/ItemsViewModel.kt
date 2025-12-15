@@ -1,56 +1,36 @@
 package com.example.ikr_application.nastyazz.ui
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.nastyazz.domain.GetItemByIdUseCase
-import com.example.ikr_application.nastyazz.domain.GetItemsUseCase
-import com.example.ikr_application.nastyazz.domain.Item
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-
-sealed class UiState {
-    object Loading : UiState()
-    data class Success(val items: List<Item>) : UiState()
-    data class Error(val message: String) : UiState()
-}
-
 class ItemsViewModel(
-    private val getItemsUseCase: GetItemsUseCase,
-    private val getItemByIdUseCase: GetItemByIdUseCase
+    observeItemsUseCase: ObserveItemsUseCase,
+    private val addItemUseCase: AddItemUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<UiState>(UiState.Loading)
-    val state: StateFlow<UiState> = _state
+    private val query = MutableStateFlow("")
 
-    init {
-        loadItems()
+    val state: StateFlow<ItemsState> =
+        combine(
+            observeItemsUseCase(),
+            query
+        ) { items, q ->
+            ItemsState(
+                items = items.filter {
+                    it.title.contains(q, ignoreCase = true)
+                },
+                query = q
+            )
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            ItemsState(isLoading = true)
+        )
+
+    fun onSearch(text: String) {
+        query.value = text
     }
 
-    private fun loadItems() {
+    fun onAddClicked(title: String) {
         viewModelScope.launch {
-            try {
-                _state.value = UiState.Loading
-                val items = getItemsUseCase()
-                _state.value = UiState.Success(items)
-            } catch (e: Exception) {
-                _state.value = UiState.Error(e.localizedMessage ?: "Unknown error")
-            }
+            addItemUseCase(title)
         }
-    }
-}
-
-
-class ItemsViewModelFactory(
-    private val getItemsUseCase: GetItemsUseCase,
-    private val getItemByIdUseCase: GetItemByIdUseCase
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ItemsViewModel::class.java)) {
-            return ItemsViewModel(getItemsUseCase, getItemByIdUseCase) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class: $modelClass")
     }
 }

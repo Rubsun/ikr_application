@@ -22,6 +22,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
             b.itemId.text = "ID: ${item.id}"
             b.itemTitle.text = item.title
             b.itemDescription.text = item.description
+            b.itemImage.load(item.imageUrl)
         }
     }
 

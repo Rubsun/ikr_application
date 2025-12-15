@@ -1,24 +1,28 @@
-package com.example.ikr_application.nastyazz.data
-
-import kotlinx.coroutines.delay
-
 class FakeItemRepository : ItemRepository {
 
-    private val items = List(10) { index ->
-        ItemDto(
-            id = index + 1,
-            title = "Item #${index + 1}",
-            description = "Описание элемента №${index + 1}"
+    private val items = mutableListOf<ItemDto>()
+    private val itemsFlow = MutableStateFlow<List<ItemDto>>(emptyList())
+
+    init {
+        items.addAll(
+            List(10) { index ->
+                ItemDto(
+                    id = index + 1,
+                    title = "Item #${index + 1}",
+                    description = "Описание элемента №${index + 1}",
+                    imageUrl = "https://picsum.photos/200?random=$index"
+                )
+            }
         )
+        itemsFlow.value = items
     }
 
-    override suspend fun fetchItems(): List<ItemDto> {
-        delay(300)
-        return items
-    }
+    override fun observeItems(): StateFlow<List<ItemDto>> = itemsFlow
 
-    override suspend fun fetchItemById(id: Int): ItemDto? {
-        delay(150)
-        return items.firstOrNull { it.id == id }
+    override suspend fun addItem(item: ItemDto) {
+        withContext(Dispatchers.IO) {
+            items.add(item)
+            itemsFlow.value = items.toList()
+        }
     }
 }
