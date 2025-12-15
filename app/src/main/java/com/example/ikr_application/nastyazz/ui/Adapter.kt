@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ikr_application.databinding.ItemNastyazzBinding
 import com.example.ikr_application.nastyazz.domain.Item
+import coil.load
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
 
@@ -22,7 +23,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
             b.itemId.text = "ID: ${item.id}"
             b.itemTitle.text = item.title
             b.itemDescription.text = item.description
-            b.itemImage.load(item.imageUrl)
+            b.image.load(item.imageUrl)
         }
     }
 

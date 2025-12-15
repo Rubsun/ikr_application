@@ -1,5 +1,16 @@
 package com.example.ikr_application.nastyazz.ui
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.ikr_application.nastyazz.domain.AddItemUseCase
+import com.example.ikr_application.nastyazz.domain.ObserveItemsUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+
 class ItemsViewModel(
     observeItemsUseCase: ObserveItemsUseCase,
     private val addItemUseCase: AddItemUseCase
@@ -31,6 +42,7 @@ class ItemsViewModel(
     fun onAddClicked(title: String) {
         viewModelScope.launch {
             addItemUseCase(title)
+            query.value = ""
         }
     }
 }
