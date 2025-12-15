@@ -7,7 +7,7 @@ import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.nfirex.ui.MyFragment
-import com.example.ikr_application.spl3g.ui.Spl3gFragment
+import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
 import com.example.ikr_application.artemkaa.ui.ArtemkaaFragment
 import com.example.ikr_application.antohaot.ui.AntohaotFragment
@@ -36,7 +36,7 @@ enum class Screens(
         com.example.ikr_application.stupishin.ui.StuAnimeFragment::class.java
     ),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
-    SPL3G(R.string.title_spl3g, Spl3gFragment::class.java),
+    SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, RinFragment::class.java),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
