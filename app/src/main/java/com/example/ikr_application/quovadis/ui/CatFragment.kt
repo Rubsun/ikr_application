@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ikr_application.databinding.RoganovCatFragmentBinding
 import com.example.ikr_application.quovadis.domain.GetCatUseCase
-import quo.vadis.sirius.data.CatRepository
+import com.example.ikr_application.quovadis.data.CatRepository
 
 class CatFragment : Fragment() {
     private lateinit var viewModel: CatViewModel

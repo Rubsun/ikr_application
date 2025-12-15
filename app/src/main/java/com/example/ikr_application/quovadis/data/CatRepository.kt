@@ -1,6 +1,4 @@
-package quo.vadis.sirius.data
-
-import com.example.ikr_application.quovadis.data.Cat
+package com.example.ikr_application.quovadis.data
 
 class CatRepository {
     private val catNames = listOf(
