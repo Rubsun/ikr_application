@@ -15,4 +15,3 @@ enum class MarkoTimePrecisions(
     M(1.minutes, "m"),
     H(1.hours, "h"),
 }
-
