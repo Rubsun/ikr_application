@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ikr_application.databinding.ItemNastyazzBinding
 import com.example.ikr_application.nastyazz.domain.Item
-import coil.load
+import coil3.load
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
 

@@ -5,18 +5,18 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ikr_application"
-    compileSdk = 36
+	namespace = "com.example.ikr_application"
+	compileSdk = 36
 
-    defaultConfig {
-        applicationId = "com.example.ikr_application"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+	defaultConfig {
+		applicationId = "com.example.ikr_application"
+		minSdk = 24
+		targetSdk = 36
+		versionCode = 1
+		versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+	}
 
 	buildTypes {
 		release {
@@ -70,4 +70,6 @@ dependencies {
 	implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.coil)
+
+	implementation(libs.mpandroidchart)
 }
