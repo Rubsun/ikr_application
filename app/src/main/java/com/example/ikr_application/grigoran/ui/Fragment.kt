@@ -29,6 +29,7 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
         Log.d("ExampleFragment", "onViewCreated called")
 
 
+
         val binding = FragmentGrigoranBinding.bind(view)
         vb = binding
 
@@ -53,6 +54,8 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
 
                 binding.progress.visibility =
                     if (state.isLoading) View.VISIBLE else View.GONE
+
+
 
                 if (state.error != null) {
                     binding.errorText.visibility = View.VISIBLE

@@ -1,8 +1,7 @@
 ﻿<resources>
     <string name="app_name">ikr_application</string>
-	<string name="dog">Dog</string>
     <string name="title_sample">Sample Screen</string>
-	<string name="title_spl3g">Spl3g Screen</string>
+    <string name="title_spl3g">Spl3g Screen</string>
     <string name="title_akiko23">Akiko23</string>
     <string name="akiko23_text_time_pattern">Current date: %s</string>
     <string name="akiko23_text_time_from_reboot_pattern">Time from start: %s</string>
@@ -12,8 +11,21 @@
     <string name="akiko23_mode_draw">Рисовать</string>
     <string name="akiko23_mode_erase">Стирать</string>
     <string name="akiko23_clear">Очистить холст</string>
-    <string name="title_stupishin">Stupishin Screen</string>
-	<string name="title_quovadis">Quo Vadis Screen</string>
+    <string name="title_stupishin">Stupishin Anime</string>
+    <string name="title_rin2396">rin2396 Screen</string>
+    <string name="title_quovadis">Quo Vadis Screen</string>
     <string name="title_artemkaa">Artemkaa Screen</string>
+    <string name="title_antohaot">Antohaot Screen</string>
+    <string name="title_alexcode69">Alexcode69 Screen</string>
     <string name="title_grigoran">Grigoran Screen</string>
+    <string name="title_kristevt">KristevT Screen</string>
+    <string name="title_n0tsSzzz">N0tsSzzz Screen</string>
+    <string name="title_drain678">drain678 Screen</string>
+    <string name="title_michaelnoskov">Страшный квадрат от Гойды</string>
+    <string name="title_nastyazz">Nastyazz Screem</string>
+    <string name="title_egorik4">Egorik4 Screen</string>
+    <string name="title_zagora">Ann Zagora Screen</string>
+    <string name="title_areg">Krdyan Areg Screen</string>
+    <string name="title_tire">Старый советский метод чтобы увеличить...</string>
+    <string name="title_demyanenko">Demyanenko F1 Car collection</string>
 </resources>

@@ -5,6 +5,7 @@ import com.example.ikr_application.nfirex.domain.CurrentDateUseCase
 import com.example.ikr_application.nfirex.domain.ElapsedTimeUseCase
 import com.example.ikr_application.nfirex.domain.TimePrecisions
 
+@Deprecated("Use your own classes:)")
 class MyViewModel : ViewModel() {
     private val currentDateUseCase = CurrentDateUseCase()
     private val elapsedTimeUseCase = ElapsedTimeUseCase()
