@@ -34,8 +34,11 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 	}
-	kotlinOptions {
-		jvmTarget = "11"
+}
+
+kotlin {
+	compilerOptions {
+		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
 	}
 }
 
@@ -52,6 +55,7 @@ dependencies {
 	implementation(libs.coil.network.okhttp)
 
 	implementation(libs.androidx.lifecycle.viewmodel.ktx)
+	implementation(libs.androidx.lifecycle.runtime.ktx)
 	implementation(libs.kotlinx.serialization.json)
 	implementation(libs.okhttp.logging.interceptor)
 	implementation(libs.retrofit.kotlinx.serialization.converter)
