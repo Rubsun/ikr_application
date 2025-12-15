@@ -34,6 +34,11 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 	}
+	packaging {
+		resources {
+			pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+		}
+	}
 }
 
 kotlin {

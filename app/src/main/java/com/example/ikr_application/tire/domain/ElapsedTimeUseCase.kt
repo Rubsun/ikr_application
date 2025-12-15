@@ -1,14 +1,15 @@
 package com.example.ikr_application.tire.domain
 
-import android.annotation.SuppressLint
 import com.example.ikr_application.tire.data.DeviceRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class ElapsedTimeUseCase() {
-    @SuppressLint("DiscouragedApi")
-    fun value(precisions: TimePrecisions): Long {
-        val elapsedTime = DeviceRepository.INSTANCE.deviceInfo().elapsedTime
-
-        return elapsedTime / precisions.divider.inWholeMilliseconds
+class ElapsedTimeUseCase(
+    private val repository: DeviceRepository = DeviceRepository.INSTANCE
+) {
+    suspend operator fun invoke(precision: TimePrecisions): Long = withContext(Dispatchers.IO) {
+        val elapsedTime = repository.deviceInfo().elapsedTime
+        elapsedTime / precision.divider.inWholeMilliseconds
     }
 }
 
