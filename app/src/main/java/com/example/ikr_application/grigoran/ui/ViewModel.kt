@@ -1,25 +1,37 @@
 package com.example.ikr_application.grigoran.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ikr_application.grigoran.domain.AddItemUseCase
+import com.example.ikr_application.grigoran.domain.ItemUseCases
 import com.example.ikr_application.grigoran.data.Repository
 import com.example.ikr_application.grigoran.domain.FilterItemsUseCase
-import com.example.ikr_application.grigoran.domain.ItemUseCases
 import com.example.ikr_application.grigoran.domain.SortItemsUseCase
-
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
+data class ExampleUiState(
+    val items: List<ItemUi> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null,
+    val minPriceFilter: Double = 0.0
+)
 
 class ExampleViewModel : ViewModel() {
 
-    private val repository = Repository()
-    private val getItemsUseCase = ItemUseCases(repository)
-    private val filterItemsUseCase = FilterItemsUseCase()
-    private val sortItemsUseCase = SortItemsUseCase()
+    private val repo = Repository()
+    private val getItems = ItemUseCases(repo)
+    private val addItem = AddItemUseCase(repo)
+    private val filterItem = FilterItemsUseCase()
+    private val sortedItem = SortItemsUseCase()
 
-    private val _uiState = MutableStateFlow(UiState(isLoading = true))
-    val uiState: StateFlow<UiState> = _uiState
+    private val _uiState = MutableStateFlow(ExampleUiState())
+    private val minPriceFilter = MutableStateFlow(0.0)
+    val uiState: StateFlow<ExampleUiState> = _uiState
 
     init {
         loadItems()
@@ -27,16 +39,35 @@ class ExampleViewModel : ViewModel() {
 
     private fun loadItems() {
         viewModelScope.launch {
-            try {
-                _uiState.value = UiState(isLoading = true)
-                var domainItems = getItemsUseCase()
-                domainItems = filterItemsUseCase(items = domainItems, minPrice = 2.0)
-                domainItems = sortItemsUseCase(items = domainItems, ascending = true)
-                val uiItems = domainItems.map { it.toUi() }
-                _uiState.value = UiState(isLoading = false, items = uiItems)
-            } catch (e: Exception) {
-                _uiState.value = UiState(isLoading = false, items = emptyList(), error = e.message)
+            combine(
+                getItems(),
+                minPriceFilter
+            ) { domainItems, minPrice ->
+
+                val sorted = sortedItem(domainItems)
+                val filtered = filterItem(sorted, minPrice)
+
+                filtered.map { d ->
+                    ItemUi(
+                        id = d.id,
+                        displayTitle = d.title,
+                        displayPrice = "${d.price} $",
+                        imageUrt = "https://picsum.photos/200?random=${d.id}"
+                    )
+                }
+            }.collect { uiItems ->
+                _uiState.update {
+                    it.copy(items = uiItems)
+                }
             }
         }
+    }
+
+    fun onAddClicked(title: String, price: Int) {
+        addItem(title, price)
+    }
+
+    fun onMinPriceChanged(price: Double) {
+        minPriceFilter.value = price
     }
 }

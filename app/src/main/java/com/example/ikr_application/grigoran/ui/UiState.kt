@@ -13,14 +13,9 @@ data class UiState(
 data class ItemUi(
     var id: Int,
     val displayTitle: String,
-    var displayPrice: String
+    var displayPrice: String,
+    val imageUrt: String
 )
 
 
-fun ItemDomain.toUi(): ItemUi {
-    return ItemUi(
-        id = this.id,
-        displayTitle = this.title,
-        displayPrice = "$${this.price}"
-    )
-}
+
