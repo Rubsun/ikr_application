@@ -10,5 +10,12 @@
         <item name="emojiCard">@style/Widget.EmojiCard</item>
         <item name="emojiCardName">@style/Widget.EmojiCard.Name</item>
         <item name="emojiCardValue">@style/Widget.EmojiCard.Value</item>
+
+        <item name="songCard">@style/Widget.SongCard</item>
+        <item name="songCardTitle">@style/Widget.SongCard.Title</item>
+        <item name="songCardInfo">@style/Widget.SongCard.Info</item>
+        <item name="songCardButton">@style/Widget.SongCard.Button</item>
+        <item name="songSortButton">@style/Widget.SongSortButton</item>
+        <item name="songLyrics">@style/Widget.SongLyrics</item>
     </style>
 </resources>
