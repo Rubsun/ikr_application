@@ -1,7 +1,7 @@
 package com.example.ikr_application.quovadis.domain
 
 import com.example.ikr_application.quovadis.data.Cat
-import quo.vadis.sirius.data.CatRepository
+import com.example.ikr_application.quovadis.data.CatRepository
 
 class GetCatUseCase(
     private val repository: CatRepository
