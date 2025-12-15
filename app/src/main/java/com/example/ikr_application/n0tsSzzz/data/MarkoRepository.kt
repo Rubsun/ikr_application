@@ -2,19 +2,19 @@ package com.example.ikr_application.n0tsSzzz.data
 
 import android.os.SystemClock
 import androidx.annotation.Discouraged
-import com.example.ikr_application.n0tsSzzz.data.models.DeviceInfo
+import com.example.ikr_application.n0tsSzzz.data.models.MarkoInfo
 
-class DeviceRepository {
-    fun deviceInfo(): DeviceInfo {
-        return DeviceInfo(
+class MarkoRepository {
+    fun deviceInfo(): MarkoInfo {
+        return MarkoInfo(
             currentTime = System.currentTimeMillis(),
             elapsedTime = SystemClock.elapsedRealtime(),
         )
     }
 
     companion object {
-        @Discouraged("Only for example")
-        val INSTANCE = DeviceRepository()
+        @Discouraged("Only for marko")
+        val INSTANCE = MarkoRepository()
     }
 }
 
