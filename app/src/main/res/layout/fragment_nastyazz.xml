@@ -18,6 +18,14 @@
         android:textColor="#ff0000"
         android:visibility="gone"/>
 
+    <EditText
+        android:id="@+id/searchEditText"
+        android:hint="Text"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRecycler"
         android:layout_width="match_parent"

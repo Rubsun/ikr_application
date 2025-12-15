@@ -5,18 +5,18 @@ plugins {
 }
 
 android {
-	namespace = "com.example.ikr_application"
-	compileSdk = 36
+    namespace = "com.example.ikr_application"
+    compileSdk = 36
 
-	defaultConfig {
-		applicationId = "com.example.ikr_application"
-		minSdk = 24
-		targetSdk = 36
-		versionCode = 1
-		versionName = "1.0"
+    defaultConfig {
+        applicationId = "com.example.ikr_application"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
 
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 
 	buildTypes {
 		release {
