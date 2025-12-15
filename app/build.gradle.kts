@@ -59,4 +59,5 @@ dependencies {
 	implementation(libs.kotlinx.serialization.json)
 	implementation(libs.okhttp.logging.interceptor)
 	implementation(libs.retrofit.kotlinx.serialization.converter)
+	implementation(libs.mpandroidchart)
 }
