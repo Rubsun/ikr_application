@@ -9,11 +9,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
-import com.example.ikr_application.n0tsSzzz.domain.TimePrecisions
+import com.example.ikr_application.n0tsSzzz.domain.MarkoTimePrecisions
 import com.google.android.material.button.MaterialButton
 
-class MyFragment : Fragment() {
-    private val viewModel by viewModels<MyViewModel>()
+class MarkoFragment : Fragment() {
+    private val viewModel by viewModels<MarkoViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +49,7 @@ class MyFragment : Fragment() {
         }
     }
 
-    private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
+    private fun applyPrecision(elapsed: TextView, item: MarkoTimePrecisions) {
         val time = viewModel.elapsedTime(item)
         elapsed.text = getString(R.string.n0tsszzz_text_time_from_reboot_pattern, time)
     }
