@@ -1,14 +1,23 @@
 package com.example.ikr_application.grigoran.domain
 
 import com.example.ikr_application.grigoran.data.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 class ItemUseCases (
     private val repository: Repository
 ) {
-    operator fun invoke(): List<ItemDomain> {
-        val dtos = repository.fetchItem()
-        return  dtos.map { dto -> ItemDomain(id = dto.id, title = dto.title, price = dto.price / 100.0) }
+    operator fun invoke() = repository.observeItems().map { dtos ->
+        dtos.map { dto ->
+            ItemDomain(
+                id = dto.id,
+                title = dto.title,
+                price = dto.price / 100.0
+            )
+        }
     }
+        .flowOn(Dispatchers.Default)
 }
 
 class FilterItemsUseCase {
@@ -25,5 +34,13 @@ class SortItemsUseCase {
         } else {
             items.sortedByDescending { it.price }
         }
+    }
+}
+
+class AddItemUseCase(
+    private val repository: Repository
+) {
+    operator fun invoke(title: String, price: Int) {
+        repository.addItem(title, price)
     }
 }
