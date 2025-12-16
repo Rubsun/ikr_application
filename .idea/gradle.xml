@@ -11,6 +11,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/nfirex" />
+            <option value="$PROJECT_DIR$/features/nfirex/api" />
+            <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/injector" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,4 +1,4 @@
-package com.example.ikr_application.nfirex.ui
+package com.nfirex.impl.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,12 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ikr_application.R
-import com.example.ikr_application.nfirex.ui.adapters.EmojiAdapter
+import com.nfirex.impl.R
+import com.nfirex.impl.ui.adapters.EmojiAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class MyFragment : Fragment() {
+internal class EmojiListFragment : Fragment() {
     private val emojiViewModel by viewModels<EmojiViewModel>()
     private val emojiAdapter = EmojiAdapter()
 
@@ -26,7 +26,7 @@ class MyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.content_nfirex_emoji_content, container, false)
+        return inflater.inflate(R.layout.content_nfirex_emoji_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -55,7 +55,7 @@ class Alexcode69Fragment : Fragment() {
                     Timber.d("UI State updated: entries=${state.timeEntries.size}, query='${state.searchQuery}'")
                     
                     // Update date
-                    textView.text = getString(R.string.text_time_pattern, state.currentDate)
+                    textView.text = getString(R.string.alexcode69_text_time_pattern, state.currentDate)
 
                     // Update entry list info
                     elapsed.text = "Entries found: ${state.timeEntries.size}"

@@ -6,7 +6,6 @@ import com.example.ikr_application.MomusWinner.ui.GraphFragment
 import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
-import com.example.ikr_application.nfirex.ui.MyFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
 import com.example.ikr_application.artemkaa.ui.ArtemkaaFragment
@@ -25,12 +24,15 @@ import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
 import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
+import com.nfirex.api.Constants
+import com.nfirex.impl.R as nfirexRes
 
 enum class Screens(
     @StringRes val title: Int,
-    val type: Class<out Fragment>,
+    val type: Class<out Fragment>? = null,
+    val qualifier: String? = null,
 ) {
-    SAMPLE(R.string.title_sample, MyFragment::class.java),
+    SAMPLE(nfirexRes.string.title_sample, qualifier = Constants.NFIREX_SCREEN),
     TIRE(R.string.title_tire, TiReFragment::class.java),
     STUPISHIN(
         R.string.title_stupishin,

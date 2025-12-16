@@ -26,7 +26,7 @@ class Drain678Fragment : Fragment() {
 
         view.findViewById<TextView>(R.id.text).apply {
             val date = viewModel.date()
-            text = getString(R.string.text_time_pattern, date)
+            text = getString(R.string.drain678_text_time_pattern, date)
         }
 
         val elapsed = view.findViewById<TextView>(R.id.elapsed)
@@ -46,6 +46,6 @@ class Drain678Fragment : Fragment() {
 
     private fun applyPrecision(elapsed: TextView, item: Drain678TimePrecisions) {
         val time = viewModel.elapsedTime(item)
-        elapsed.text = getString(R.string.text_time_from_reboot_pattern, time)
+        elapsed.text = getString(R.string.drain678_text_time_from_reboot_pattern, time)
     }
 }

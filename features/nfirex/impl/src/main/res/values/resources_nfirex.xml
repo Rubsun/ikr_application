@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_sample">Sample Screen</string>
+
     <string name="text_time_pattern">Current date: %s</string>
     <string name="text_time_from_reboot_pattern">Time from start: %s</string>
+
     <string name="caption_search_emoji_hint">Type emoji name…</string>
 
     <attr name="emojiSearch" />

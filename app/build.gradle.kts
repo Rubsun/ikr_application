@@ -74,5 +74,6 @@ dependencies {
 	implementation(libs.mpandroidchart)
 	implementation(libs.joda.time)
 
-
+	implementation(project(":features:nfirex:impl"))
+	implementation(project(":libs:injector"))
 }

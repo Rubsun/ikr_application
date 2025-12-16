@@ -1,13 +1,13 @@
-package com.example.ikr_application.nfirex.ui.adapters
+package com.nfirex.impl.ui.adapters
 
 import android.view.View
 import android.widget.TextView
 import androidx.core.text.parseAsHtml
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ikr_application.R
-import com.example.ikr_application.nfirex.domain.models.Emoji
+import com.nfirex.api.domain.models.Emoji
+import com.nfirex.impl.R
 
-class EmojiViewHolder(
+internal class EmojiViewHolder(
     view: View
 ) : RecyclerView.ViewHolder(view) {
     private val emoji by lazy { view.findViewById<TextView>(R.id.emoji) }

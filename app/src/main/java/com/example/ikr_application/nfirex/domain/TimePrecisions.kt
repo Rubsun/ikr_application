@@ -14,5 +14,9 @@ enum class TimePrecisions(
     MS(1.milliseconds, "ms"),
     S(1.seconds, "s"),
     M(1.minutes, "m"),
-    H(1.hours, "h"),
+    H(1.hours, "h");
+
+    init {
+        throw IllegalStateException("Removed class")
+    }
 }

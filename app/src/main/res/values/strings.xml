@@ -1,6 +1,5 @@
 ﻿<resources>
     <string name="app_name">ikr_application</string>
-    <string name="title_sample">Sample Screen</string>
     <string name="title_spl3g">spl3g\'s not so great apple</string>
     <string name="title_akiko23">Akiko23</string>
     <string name="akiko23_text_time_pattern">Current date: %s</string>

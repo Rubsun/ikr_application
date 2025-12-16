@@ -1,16 +1,16 @@
 package com.example.ikr_application.nfirex.data
 
-import android.os.SystemClock
 import androidx.annotation.Discouraged
 import com.example.ikr_application.nfirex.data.models.DeviceInfo
 
 @Deprecated("Use your own classes:)")
 class DeviceRepository {
+    init {
+        throw IllegalStateException("Removed class")
+    }
+
     fun deviceInfo(): DeviceInfo {
-        return DeviceInfo(
-            currentTime = System.currentTimeMillis(),
-            elapsedTime = SystemClock.elapsedRealtime(),
-        )
+        throw IllegalStateException("Removed class")
     }
 
     companion object {

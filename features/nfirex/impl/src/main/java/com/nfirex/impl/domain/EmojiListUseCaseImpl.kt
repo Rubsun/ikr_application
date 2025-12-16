@@ -1,16 +1,17 @@
-package com.example.ikr_application.nfirex.domain
+package com.nfirex.impl.domain
 
-import com.example.ikr_application.nfirex.data.EmojiRepository
-import com.example.ikr_application.nfirex.data.models.EmojiDto
-import com.example.ikr_application.nfirex.domain.models.Emoji
+import com.nfirex.impl.data.EmojiRepository
+import com.nfirex.impl.data.models.EmojiDto
+import com.nfirex.api.domain.models.Emoji
+import com.nfirex.api.domain.usecases.EmojiListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.Result.Companion.success
 
-internal class EmojiListUseCase(
-    private val repository: EmojiRepository = EmojiRepository.INSTANCE
-) {
-    suspend operator fun invoke(query: String): Result<List<Emoji>> = withContext(Dispatchers.IO) {
+internal class EmojiListUseCaseImpl(
+    private val repository: EmojiRepository
+) : EmojiListUseCase {
+    override suspend fun invoke(query: String): Result<List<Emoji>> = withContext(Dispatchers.IO) {
         if (query.isBlank()) {
             return@withContext success(emptyList())
         }
