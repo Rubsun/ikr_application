@@ -24,6 +24,7 @@ import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
+import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
 
 enum class Screens(
     @StringRes val title: Int,
@@ -56,5 +57,6 @@ enum class Screens(
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java),
     AREG(R.string.title_areg, GraphFragment::class.java),
-    EREMIN(R.string.title_eremin, CapybaraFragment::class.java)
+    EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
+    DYATLOVA(R.string.title_dyatlova, DyatlovaFragment::class.java)
 }
