@@ -1,10 +1,13 @@
 package com.example.ikr_application.egorik4.data.models
 
-data class BookDto(
-    val title: String,
-    val author: String,
-    val year: Int,
-    val rating: Double,
-    val genre: String,
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data class BookDto(
+    val title: String? = null,
+    val author_name: List<String>? = null,
+    val first_publish_year: Int? = null,
+    val cover_i: Long? = null,
+    val key: String? = null
 )
 

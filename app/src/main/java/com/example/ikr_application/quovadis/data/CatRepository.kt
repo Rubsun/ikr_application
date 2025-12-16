@@ -1,6 +1,4 @@
-package quo.vadis.sirius.data
-
-import com.example.ikr_application.quovadis.data.Cat
+package com.example.ikr_application.quovadis.data
 
 class CatRepository {
     private val catNames = listOf(
@@ -16,7 +14,7 @@ class CatRepository {
         "Whiskers"
     )
 
-    fun getCat(text: String?): Cat {
-        return Cat(name = catNames.random(), phrase = text)
+    fun getCat(phrase: String?): Cat {
+        return Cat(name = catNames.random(), phrase = phrase, imageUrl = null)
     }
 }
