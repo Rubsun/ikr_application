@@ -44,3 +44,9 @@
 
 <div align="center"><img src="subo.gif" width="360"></div>
 <div align="center"><img src="oooo_fernando_alooooonsoo.gif" width="360"></div>
+
+## Экран Dyatlova
+- Новый пакет `dyatlova` содержит слои `data/domain/ui` с фейковым репозиторием, UseCase-ами и фрагментом.
+- Фрагмент использует `Flow`/`StateFlow` для загрузки и отображения состояния, без LiveData.
+- Вёрстка включает поиск по списку направлений и форму добавления нового элемента — изменения идут через ViewModel и UseCase-ы.
+- Картинки загружаются через внешнюю библиотеку Coil, подключённую через gradle catalog (`libs.coil`).
