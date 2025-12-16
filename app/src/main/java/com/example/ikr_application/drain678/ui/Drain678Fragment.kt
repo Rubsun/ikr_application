@@ -30,7 +30,7 @@ class Drain678Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.content_artemkaa_content, container, false)
+        return inflater.inflate(R.layout.content_drain678_content, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class Drain678Fragment : Fragment() {
         viewModel.timePrecisions()
             .map { item ->
                 layoutInflater
-                    .inflate(R.layout.item_artemkaa_precision, buttonsGroup, false)
+                    .inflate(R.layout.item_drain678_precision, buttonsGroup, false)
                     .apply {
                         (this as? MaterialButton)?.apply {
                             text = item.typeName
