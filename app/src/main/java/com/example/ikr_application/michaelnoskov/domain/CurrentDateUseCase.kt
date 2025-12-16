@@ -1,6 +1,6 @@
 package com.example.ikr_application.michaelnoskov.domain
 
-import com.example.ikr_application.nfirex.data.DeviceRepository
+import com.example.ikr_application.michaelnoskov.data.DeviceRepository
 import java.util.Date
 
 class CurrentDateUseCase() {

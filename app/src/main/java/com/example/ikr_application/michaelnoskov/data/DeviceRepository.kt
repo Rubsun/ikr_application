@@ -2,7 +2,7 @@ package com.example.ikr_application.michaelnoskov.data
 
 import android.os.SystemClock
 import androidx.annotation.Discouraged
-import com.example.ikr_application.nfirex.data.models.DeviceInfo
+import com.example.ikr_application.michaelnoskov.data.models.DeviceInfo
 
 class DeviceRepository {
     fun deviceInfo(): DeviceInfo {
