@@ -1,12 +1,12 @@
-package com.example.ikr_application.grigoran.ui
+package com.grigoran.impl.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.ikr_application.databinding.ItemGrigoranBinding
+import coil3.load
+import com.grigoran.impl.databinding.ItemGrigoranBinding
 
 class ExampleAdapter : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
 

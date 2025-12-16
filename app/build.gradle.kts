@@ -18,6 +18,12 @@ android {
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
 
+	packaging {
+		resources {
+			excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+		}
+	}
+
 	buildTypes {
 		release {
 			isMinifyEnabled = false
@@ -27,9 +33,11 @@ android {
 			)
 		}
 	}
+
 	buildFeatures {
 		viewBinding = true
 	}
+
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
@@ -62,6 +70,7 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+	implementation(libs.mpandroidchart)
 
 	implementation("androidx.activity:activity-ktx:1.12.0")
 	implementation("androidx.fragment:fragment-ktx:1.8.9")
@@ -70,4 +79,5 @@ dependencies {
 	implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.coil)
+    implementation(project(":feature:grigoran:impl"))
 }

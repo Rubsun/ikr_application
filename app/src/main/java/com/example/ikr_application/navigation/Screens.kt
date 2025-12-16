@@ -17,7 +17,7 @@ import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.example.ikr_application.n0tsSzzz.ui.MyFragment as N0tsSzzzFragment
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
-import com.example.ikr_application.grigoran.ui.GrigoranFragment
+import com.grigoran.impl.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment

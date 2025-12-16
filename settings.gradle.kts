@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ikr_application"
 include(":app")
+include(":feature:grigoran:api")
+include(":feature:grigoran:impl")

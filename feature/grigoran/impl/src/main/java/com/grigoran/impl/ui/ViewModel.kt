@@ -1,13 +1,12 @@
-package com.example.ikr_application.grigoran.ui
+package com.grigoran.impl.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.grigoran.domain.AddItemUseCase
-import com.example.ikr_application.grigoran.domain.ItemUseCases
-import com.example.ikr_application.grigoran.data.Repository
-import com.example.ikr_application.grigoran.domain.FilterItemsUseCase
-import com.example.ikr_application.grigoran.domain.SortItemsUseCase
+import com.grigoran.impl.domain.AddItemUseCase
+import com.grigoran.impl.domain.ItemUseCases
+import com.grigoran.impl.data.Repository
+import com.grigoran.impl.domain.FilterItemsUseCase
+import com.grigoran.impl.domain.SortItemsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine

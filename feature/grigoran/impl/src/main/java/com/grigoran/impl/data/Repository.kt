@@ -1,4 +1,4 @@
-package com.example.ikr_application.grigoran.data
+package com.grigoran.impl.data
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
