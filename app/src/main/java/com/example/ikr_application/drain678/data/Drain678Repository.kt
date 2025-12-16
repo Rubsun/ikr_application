@@ -2,18 +2,18 @@ package com.example.ikr_application.drain678.data
 
 import android.os.SystemClock
 import androidx.annotation.Discouraged
-import com.example.ikr_application.nfirex.data.models.DeviceInfo
+import com.example.ikr_application.drain678.data.model.Drain678Info
 
-class DeviceRepository {
-    fun deviceInfo(): DeviceInfo {
-        return DeviceInfo(
+class Drain678Repository {
+    fun drain678Info(): Drain678Info {
+        return Drain678Info(
             currentTime = System.currentTimeMillis(),
             elapsedTime = SystemClock.elapsedRealtime(),
         )
     }
 
     companion object {
-        @Discouraged("Only for example")
-        val INSTANCE = DeviceRepository()
+        @Discouraged("Drain678")
+        val INSTANCE = Drain678Repository()
     }
 }
