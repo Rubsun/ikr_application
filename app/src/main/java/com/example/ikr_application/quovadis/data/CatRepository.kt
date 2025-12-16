@@ -14,7 +14,7 @@ class CatRepository {
         "Whiskers"
     )
 
-    fun getCat(text: String?): Cat {
-        return Cat(name = catNames.random(), phrase = text)
+    fun getCat(phrase: String?): Cat {
+        return Cat(name = catNames.random(), phrase = phrase, imageUrl = null)
     }
 }
