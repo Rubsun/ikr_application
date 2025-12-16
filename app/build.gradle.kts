@@ -72,9 +72,5 @@ dependencies {
 	androidTestImplementation(libs.androidx.espresso.core)
 	implementation(libs.mpandroidchart)
 
-//	implementation(libs.coil.kt.coil)
-//	implementation(libs.retrofit2.retrofit)
-//	implementation(libs.retrofit2.converter.gson)
-//	implementation(libs.philjay.mpandroidchart)
-//	implementation(libs.gson)
+
 }
