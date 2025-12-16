@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
-import com.example.ikr_application.akiko23.domain.TimePrecisions
+import com.example.ikr_application.akiko23.domain.Akiko23TimePrecision
 import com.example.ikr_application.akiko23.ui.Akiko23CanvasFragment
 
 class Akiko23Fragment : Fragment() {
-    private val viewModel by viewModels<MyViewModel>()
+    private val viewModel by viewModels<Akiko23TimeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +49,7 @@ class Akiko23Fragment : Fragment() {
         }
     }
 
-    private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
+    private fun applyPrecision(elapsed: TextView, item: Akiko23TimePrecision) {
         val time = viewModel.elapsedTime(item)
         elapsed.text = getString(R.string.akiko23_text_time_from_reboot_pattern, time)
     }
