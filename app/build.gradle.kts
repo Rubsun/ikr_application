@@ -18,6 +18,12 @@ android {
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
 
+	packaging {
+		resources {
+			excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+		}
+	}
+
 	buildTypes {
 		release {
 			isMinifyEnabled = false
@@ -27,9 +33,11 @@ android {
 			)
 		}
 	}
+
 	buildFeatures {
 		viewBinding = true
 	}
+
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
@@ -63,4 +71,10 @@ dependencies {
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 	implementation(libs.mpandroidchart)
+
+//	implementation(libs.coil.kt.coil)
+//	implementation(libs.retrofit2.retrofit)
+//	implementation(libs.retrofit2.converter.gson)
+//	implementation(libs.philjay.mpandroidchart)
+//	implementation(libs.gson)
 }
