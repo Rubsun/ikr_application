@@ -23,6 +23,7 @@ lifecycleRuntimeKtx = "2.10.0"
 material3 = "1.4.0"
 
 mpandroidchart = "3.1.0"
+timber = "4.7.1"
 
 [libraries]
 coil-kt-coil = { module = "io.coil-kt:coil" }
@@ -57,6 +58,7 @@ coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version
 mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
 retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson" }
 retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [bundles]
 ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",
