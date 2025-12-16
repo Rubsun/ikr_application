@@ -9,17 +9,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.ikr_application.R
-import com.example.ikr_application.nfirex.domain.TimePrecisions
+import com.example.ikr_application.artemkaa.domain.ArtemkaaTimePrecisions
 
 class ArtemkaaFragment : Fragment() {
-    private val viewModel by viewModels<MyViewModel>()
+    private val viewModel by viewModels<ArtemkaaViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.content_nfirex_content, container, false)
+        return inflater.inflate(R.layout.content_artemkaa_content, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class ArtemkaaFragment : Fragment() {
             viewModel.timePrecisions()
                 .map { item ->
                     layoutInflater
-                        .inflate(R.layout.item_nfirex_precision, this, false)
+                        .inflate(R.layout.item_artemkaa_precision, this, false)
                         .apply {
                             (this as? TextView)?.text = item.typeName
                             setOnClickListener { applyPrecision(elapsed, item) }
@@ -45,7 +45,7 @@ class ArtemkaaFragment : Fragment() {
         }
     }
 
-    private fun applyPrecision(elapsed: TextView, item: TimePrecisions) {
+    private fun applyPrecision(elapsed: TextView, item: ArtemkaaTimePrecisions) {
         val time = viewModel.elapsedTime(item)
         elapsed.text = getString(R.string.text_time_from_reboot_pattern, time)
     }
