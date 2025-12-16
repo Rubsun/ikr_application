@@ -1,6 +1,4 @@
-package com.example.ikr_application.grigoran.ui
-
-import com.example.ikr_application.grigoran.domain.ItemDomain
+package com.grigoran.impl.ui
 
 
 data class UiState(

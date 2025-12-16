@@ -1,4 +1,4 @@
-package com.example.ikr_application.grigoran.ui
+package com.grigoran.impl.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ikr_application.R
-import com.example.ikr_application.databinding.FragmentGrigoranBinding
+
+import com.grigoran.impl.databinding.FragmentGrigoranBinding
+import com.grigoran.impl.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -1,6 +1,6 @@
-package com.example.ikr_application.grigoran.domain
+package com.grigoran.impl.domain
 
-import com.example.ikr_application.grigoran.data.Repository
+import com.grigoran.impl.data.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
