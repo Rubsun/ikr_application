@@ -1,8 +1,9 @@
-package com.example.ikr_application.nfirex.ui
+package com.nfirex.impl.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.ikr_application.nfirex.domain.EmojiListUseCase
-import com.example.ikr_application.nfirex.domain.models.Emoji
+import com.example.injector.inject
+import com.nfirex.api.domain.models.Emoji
+import com.nfirex.api.domain.usecases.EmojiListUseCase
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,8 +13,9 @@ import kotlinx.coroutines.flow.map
 import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(FlowPreview::class)
-class EmojiViewModel : ViewModel() {
-    private val emojiListUseCase = EmojiListUseCase()
+internal class EmojiViewModel : ViewModel() {
+    private val emojiListUseCase: EmojiListUseCase by inject()
+
     private val queryFlow = MutableStateFlow("")
     private val state = queryFlow
         .debounce(600.milliseconds)

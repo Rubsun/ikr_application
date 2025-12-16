@@ -1,6 +1,6 @@
-package com.example.ikr_application.nfirex.data
+package com.nfirex.impl.data
 
-import com.example.ikr_application.nfirex.data.models.EmojiDto
+import com.nfirex.impl.data.models.EmojiDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

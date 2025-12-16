@@ -1,4 +1,4 @@
-package com.example.ikr_application.nfirex.data.models
+package com.nfirex.impl.data.models
 
 import kotlinx.serialization.Serializable
 

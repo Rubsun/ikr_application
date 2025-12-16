@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "ikr_application"
 include(":app")
+include(":features:nfirex:api")
+include(":features:nfirex:impl")
+include(":libs:injector")

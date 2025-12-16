@@ -1,11 +1,11 @@
-package com.example.ikr_application.nfirex.ui.adapters
+package com.nfirex.impl.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.ikr_application.R
-import com.example.ikr_application.nfirex.domain.models.Emoji
+import com.nfirex.impl.R
+import com.nfirex.api.domain.models.Emoji
 
 internal class EmojiAdapter : ListAdapter<Emoji, EmojiViewHolder>(EmojiCallback()) {
     override fun onCreateViewHolder(

@@ -71,4 +71,7 @@ dependencies {
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 	implementation(libs.mpandroidchart)
+
+	implementation(project(":features:nfirex:impl"))
+	implementation(project(":libs:injector"))
 }

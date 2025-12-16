@@ -21,8 +21,10 @@ okhttp-logging = "5.3.2"
 coil = "3.3.0"
 lifecycleRuntimeKtx = "2.10.0"
 material3 = "1.4.0"
-
 mpandroidchart = "3.1.0"
+jetbrainsKotlinJvm = "2.2.20"
+startup = "1.2.0"
+koin = "4.1.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -53,15 +55,23 @@ coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
 
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
+
 [bundles]
 ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",
     "androidx-lifecycle-viewmodel-ktx",
     "androidx-appcompat", "material", "androidx-activity",
 ]
 network = ["retrofit", "converter-gson", "retrofit-kotlinx-serialization-converter", "okhttp-logging-interceptor"]
+koin = ["koin-core", "koin-android", "androidx-startup"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
