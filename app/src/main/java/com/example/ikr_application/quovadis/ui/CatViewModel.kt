@@ -2,7 +2,6 @@ package com.example.ikr_application.quovadis.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.quovadis.data.Cat
 import com.example.ikr_application.quovadis.domain.GetCatUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
