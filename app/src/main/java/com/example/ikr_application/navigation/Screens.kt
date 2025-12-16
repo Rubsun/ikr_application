@@ -16,7 +16,6 @@ import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.example.ikr_application.n0tsSzzz.ui.MarkoFragment as N0tsSzzzFragment
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
-import com.example.ikr_application.grigoran.ui.GrigoranFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment
@@ -51,7 +50,6 @@ enum class Screens(
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, N0tsSzzzFragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
-    GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
     NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),

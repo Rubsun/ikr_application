@@ -1,4 +1,4 @@
-package com.example.ikr_application.grigoran.domain
+package com.grigoran.impl.domain
 
 data class ItemDomain(
     val id: Int,
