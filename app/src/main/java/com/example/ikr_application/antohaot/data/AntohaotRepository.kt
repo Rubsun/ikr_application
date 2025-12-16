@@ -2,18 +2,18 @@ package com.example.ikr_application.antohaot.data
 
 import android.os.SystemClock
 import androidx.annotation.Discouraged
-import com.example.ikr_application.nfirex.data.models.DeviceInfo
+import com.example.ikr_application.antohaot.data.models.AntohaotInfo
 
-class DeviceRepository {
-    fun deviceInfo(): DeviceInfo {
-        return DeviceInfo(
+class AntohaotRepository {
+    fun antohaotInfo(): AntohaotInfo {
+        return AntohaotInfo(
             currentTime = System.currentTimeMillis(),
             elapsedTime = SystemClock.elapsedRealtime(),
         )
     }
 
     companion object {
-        @Discouraged("Only for example")
-        val INSTANCE = DeviceRepository()
+        @Discouraged("Antohaot")
+        val INSTANCE = AntohaotRepository()
     }
 }

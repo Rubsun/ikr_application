@@ -1,6 +1,6 @@
 package com.example.ikr_application.antohaot.data.models
 
-class DeviceInfo(
+class AntohaotInfo(
     val currentTime: Long,
     val elapsedTime: Long,
 )
