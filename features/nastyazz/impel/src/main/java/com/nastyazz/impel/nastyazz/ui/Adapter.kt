@@ -1,12 +1,12 @@
-package com.example.ikr_application.nastyazz.ui
+package com.nastyazz.impel.nastyazz.ui
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ikr_application.databinding.ItemNastyazzBinding
-import com.example.ikr_application.nastyazz.domain.Item
-import coil.load
+import com.nastyazz.impel.databinding.ItemNastyazzBinding
+import com.nastyazz.impel.nastyazz.domain.Item
+import coil3.load
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
 

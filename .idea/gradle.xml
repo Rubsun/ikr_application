@@ -11,6 +11,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/nastyazz" />
+            <option value="$PROJECT_DIR$/features/nastyazz/api" />
+            <option value="$PROJECT_DIR$/features/nastyazz/impel" />
           </set>
         </option>
       </GradleProjectSettings>

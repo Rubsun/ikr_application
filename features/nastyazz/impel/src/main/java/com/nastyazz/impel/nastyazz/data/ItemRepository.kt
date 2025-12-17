@@ -1,4 +1,4 @@
-package com.example.ikr_application.nastyazz.data
+package com.nastyazz.impel.nastyazz.data
 import kotlinx.coroutines.flow.StateFlow
 
 interface ItemRepository {

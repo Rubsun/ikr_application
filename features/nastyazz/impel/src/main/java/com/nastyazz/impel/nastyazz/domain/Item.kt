@@ -1,4 +1,4 @@
-package com.example.ikr_application.nastyazz.domain
+package com.nastyazz.impel.nastyazz.domain
 
 data class Item(
     val id: Int,

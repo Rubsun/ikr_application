@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ikr_application"
 include(":app")
+include(":features:nastyazz:api")
+include(":features:nastyazz:impel")

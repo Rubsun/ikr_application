@@ -23,6 +23,7 @@ import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
+import com.nastyazz.impel.nastyazz.ui.ItemsFragment
 
 enum class Screens(
     @StringRes val title: Int,
@@ -50,7 +51,7 @@ enum class Screens(
     GRIGORAN(R.string.title_grigoran, GrigoranFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
-    NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
+    NASTYAZZ(R.string.title_nastyazz, ItemsFragment::class.java),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java),

@@ -1,7 +1,7 @@
-package com.example.ikr_application.nastyazz.domain
+package com.nastyazz.impel.nastyazz.domain
 
-import com.example.ikr_application.nastyazz.data.ItemDto
-import com.example.ikr_application.nastyazz.data.ItemRepository
+import com.nastyazz.impel.nastyazz.data.ItemDto
+import com.nastyazz.impel.nastyazz.data.ItemRepository
 import kotlin.random.Random
 
 

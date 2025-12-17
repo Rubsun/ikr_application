@@ -1,10 +1,10 @@
-package com.example.ikr_application.nastyazz.ui
+package com.nastyazz.impel.nastyazz.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.ikr_application.nastyazz.data.FakeItemRepository
-import com.example.ikr_application.nastyazz.domain.AddItemUseCase
-import com.example.ikr_application.nastyazz.domain.ObserveItemsUseCase
+import com.nastyazz.impel.nastyazz.data.FakeItemRepository
+import com.nastyazz.impel.nastyazz.domain.AddItemUseCase
+import com.nastyazz.impel.nastyazz.domain.ObserveItemsUseCase
 
 class ItemsViewModelFactory : ViewModelProvider.Factory {
 

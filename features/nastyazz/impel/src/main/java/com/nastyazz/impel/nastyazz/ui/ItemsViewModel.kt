@@ -1,9 +1,9 @@
-package com.example.ikr_application.nastyazz.ui
+package com.nastyazz.impel.nastyazz.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.nastyazz.domain.AddItemUseCase
-import com.example.ikr_application.nastyazz.domain.ObserveItemsUseCase
+import com.nastyazz.impel.nastyazz.domain.AddItemUseCase
+import com.nastyazz.impel.nastyazz.domain.ObserveItemsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

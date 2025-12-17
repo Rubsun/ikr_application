@@ -1,4 +1,4 @@
-package com.example.ikr_application.nastyazz.data
+package com.nastyazz.impel.nastyazz.data
 
 data class ItemDto(
     val id: Int,
