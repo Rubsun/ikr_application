@@ -5,10 +5,7 @@ plugins {
 
 android {
     namespace = "com.grigoran.impl"
-    compileSdk {
-        version = release(36)
-    }
-
+    compileSdk = 36
     defaultConfig {
         minSdk = 24
 
