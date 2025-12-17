@@ -1,0 +1,19 @@
+com.nfirex.impl
+attr emojiCard
+attr emojiCardName
+attr emojiCardValue
+attr emojiSearch
+id emoji
+id name
+id recycler
+id search
+layout content_nfirex_emoji_list
+layout item_nfirex_emoji
+string caption_search_emoji_hint
+string text_time_from_reboot_pattern
+string text_time_pattern
+string title_sample
+style Widget_EmojiCard
+style Widget_EmojiCard_Name
+style Widget_EmojiCard_Value
+style Widget_EmojiSearch

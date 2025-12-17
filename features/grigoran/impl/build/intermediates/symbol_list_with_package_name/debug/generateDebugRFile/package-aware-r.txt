@@ -1,0 +1,14 @@
+com.grigoran.impl
+id btnAdd
+id errorText
+id image
+id inputMinPrice
+id inputPrice
+id inputTitle
+id price
+id progress
+id recycler
+id root
+id title
+layout fragment_grigoran
+layout item_grigoran
