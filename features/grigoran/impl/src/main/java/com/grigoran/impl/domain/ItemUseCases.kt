@@ -1,16 +1,21 @@
 package com.grigoran.impl.domain
 
+import com.grigoran.api.domain.AddItemUseCase
+import com.grigoran.api.domain.FilterItemUseCase
+import com.grigoran.api.domain.GetItemUseCase
+import com.grigoran.api.domain.SortItemUseCase
+import com.grigoran.api.models.Item
 import com.grigoran.impl.data.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class ItemUseCases (
+internal class ItemUseCases (
     private val repository: Repository
-) {
-    operator fun invoke() = repository.observeItems().map { dtos ->
+) : GetItemUseCase {
+    override fun invoke() = repository.observeItems().map { dtos ->
         dtos.map { dto ->
-            ItemDomain(
+            Item(
                 id = dto.id,
                 title = dto.title,
                 price = dto.price / 100.0
@@ -20,15 +25,15 @@ class ItemUseCases (
         .flowOn(Dispatchers.Default)
 }
 
-class FilterItemsUseCase {
-    operator fun invoke(items: List<ItemDomain>, minPrice: Double): List<ItemDomain> {
+internal class FilterItemsUseCaseImpl : FilterItemUseCase {
+    override fun invoke(items: List<Item>, minPrice: Double): List<Item> {
         return items.filter { it.price >= minPrice }
     }
 }
 
 
-class SortItemsUseCase {
-    operator fun invoke(items: List<ItemDomain>, ascending: Boolean = true): List<ItemDomain> {
+class SortItemsUseCase: SortItemUseCase {
+    override fun invoke(items: List<Item>, ascending: Boolean): List<Item> {
         return if (ascending) {
             items.sortedBy { it.price }
         } else {
@@ -37,10 +42,10 @@ class SortItemsUseCase {
     }
 }
 
-class AddItemUseCase(
+internal class AddItemUseCaseImpl(
     private val repository: Repository
-) {
-    operator fun invoke(title: String, price: Int) {
+) : AddItemUseCase {
+    override fun invoke(title: String, price: Int) {
         repository.addItem(title, price)
     }
 }
