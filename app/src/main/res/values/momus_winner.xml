@@ -2,4 +2,49 @@
 <resources>
     <string name="areg_text_time_pattern">Current date: %s</string>
     <string name="areg_text_time_from_reboot_pattern">Time from start: %s</string>
+
+    <string name="areg_chart_description">График точек</string>
+    <string name="areg_chart_points_label">Точки графика</string>
+    <string name="areg_chart_loading">Загрузка...</string>
+    <string name="areg_chart_no_points">Точек: %d</string>
+    <string name="areg_chart_empty_points">Нет точек</string>
+    <string name="areg_chart_draw_graph">Нарисовать график</string>
+    <string name="areg_chart_update_graph_format">Обновить (%d точек)</string>
+    <string name="areg_chart_point_format">(%1$.1f, %2$.1f)</string>
+    <string name="areg_chart_more_points_format">... (+%d)</string>
+
+    <string name="areg_toast_enter_xy">Введите X и Y</string>
+    <string name="areg_toast_invalid_numbers">Неверные числа</string>
+    <string name="areg_toast_no_points_to_draw">Нет точек</string>
+    <string name="areg_toast_chart_updated">График обновлен</string>
+
+    <string name="areg_button_add_point">Добавить точку</string>
+    <string name="areg_button_clear_points">Очистить</string>
+    <string name="areg_button_draw_graph">График</string>
+
+    <string name="areg_hint_coordinate_x">X</string>
+    <string name="areg_hint_coordinate_y">Y</string>
+
+    <color name="areg_color_primary">#FF6200EE</color>
+    <color name="areg_color_accent">#FF03DAC5</color>
+    <color name="areg_color_background">#FFFFFFFF</color>
+    <color name="areg_color_text">#FF000000</color>
+    <color name="areg_color_grid">#FFCCCCCC</color>
+    <color name="areg_color_highlight">#FFFF0000</color>
+
+    <dimen name="areg_text_size_normal">16sp</dimen>
+    <dimen name="areg_text_size_small">14sp</dimen>
+    <dimen name="areg_text_size_tiny">12sp</dimen>
+
+    <dimen name="areg_padding_medium">16dp</dimen>
+    <dimen name="areg_padding_small">8dp</dimen>
+    <dimen name="areg_padding_tiny">4dp</dimen>
+
+    <dimen name="areg_chart_height">400dp</dimen>
+    <dimen name="areg_button_height">48dp</dimen>
+    <dimen name="areg_edittext_height">56dp</dimen>
+
+    <dimen name="areg_chart_point_size">2dp</dimen>
+    <dimen name="areg_chart_line_width">1dp</dimen>
+    <dimen name="areg_chart_grid_width">0.5dp</dimen>
 </resources>

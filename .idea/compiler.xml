@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="ikr_application.features.grigoran.impl" target="21" />
+      <module name="ikr_application.features.nfirex.impl" target="21" />
+      <module name="ikr_application.libs.injector" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

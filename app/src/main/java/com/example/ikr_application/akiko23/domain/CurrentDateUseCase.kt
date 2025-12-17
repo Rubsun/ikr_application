@@ -1,11 +1,15 @@
 package com.example.ikr_application.akiko23.domain
 
-import com.example.ikr_application.akiko23.data.DeviceRepository
+import com.example.ikr_application.akiko23.data.Akiko23DeviceRepository
 import java.util.Date
 
-class CurrentDateUseCase() {
+/**
+ * Возвращает текущее время в виде Date
+ * специально для экрана akiko23.
+ */
+class Akiko23CurrentDateUseCase {
     fun date(): Date {
-        val timestamp = DeviceRepository.INSTANCE.deviceInfo().currentTime
+        val timestamp = Akiko23DeviceRepository.INSTANCE.deviceInfo().currentTime
         val date = Date(timestamp)
 
         return date

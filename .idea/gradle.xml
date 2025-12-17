@@ -12,9 +12,17 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/grigoran" />
+            <option value="$PROJECT_DIR$/features/grigoran/api" />
+            <option value="$PROJECT_DIR$/features/grigoran/impl" />
             <option value="$PROJECT_DIR$/features/nastyazz" />
             <option value="$PROJECT_DIR$/features/nastyazz/api" />
             <option value="$PROJECT_DIR$/features/nastyazz/impel" />
+            <option value="$PROJECT_DIR$/features/nfirex" />
+            <option value="$PROJECT_DIR$/features/nfirex/api" />
+            <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/injector" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -4,4 +4,9 @@
     <string name="rubsun_title_numbers_list">Список чисел:</string>
     <string name="rubsun_text_random_number_pattern">Случайное число: %1$d (%2$s), квадрат: %3$d</string>
     <string name="rubsun_text_number_item_pattern">%1$d - %2$s (квадрат: %3$d)</string>
+    <string name="rubsun_search_hint">Поиск по числам</string>
+    <string name="rubsun_value_hint">Значение</string>
+    <string name="rubsun_label_hint">Название</string>
+    <string name="rubsun_add_button">Добавить</string>
+    <string name="rubsun_loading">Загрузка...</string>
 </resources>

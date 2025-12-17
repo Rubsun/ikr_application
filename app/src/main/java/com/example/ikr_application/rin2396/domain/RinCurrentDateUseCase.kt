@@ -1,13 +1,15 @@
 package com.example.ikr_application.rin2396.domain
 
 import com.example.ikr_application.rin2396.data.RinRepository
-import java.util.Date
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 
 class RinCurrentDateUseCase() {
-    fun date(): Date {
-        val timestamp = RinRepository.INSTANCE.rinInfo().currentTime
-        val date = Date(timestamp)
+    private val dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")
 
-        return date
+    suspend fun date(): String {
+        val timestamp = RinRepository.INSTANCE.rinInfo().currentTime
+        val dateTime = DateTime(timestamp)
+        return dateTimeFormatter.print(dateTime)
     }
 }

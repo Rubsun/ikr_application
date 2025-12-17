@@ -1,17 +1,22 @@
 package com.example.ikr_application.zagora.ui
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import coil3.load
+import coil3.request.crossfade
 import com.example.ikr_application.databinding.FragmentDogBinding
-import com.example.ikr_application.zagora.domain.DogImageModel
-import java.util.concurrent.Executors
+import com.example.ikr_application.zagora.domain.ZagoraUiState
+import kotlinx.coroutines.launch
 
 class FragmentDog : Fragment() {
 
@@ -32,29 +37,49 @@ class FragmentDog : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.dogImage.observe(viewLifecycleOwner) { dogImage ->
-            dogImage?.let {
-                showDogImage(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    updateUi(uiState)
+                }
             }
         }
 
-        viewModel.loadDogImage()
+        binding.breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                viewModel.uiState.value.breeds.getOrNull(position)?.let { viewModel.selectBreed(it) }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        binding.regenerateButton.setOnClickListener {
+            viewModel.regenerateImage()
+        }
     }
 
-    private fun showDogImage(dogImage: DogImageModel) {
-        val executor = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
+    private fun updateUi(uiState: ZagoraUiState) {
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, uiState.breeds)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.breedSpinner.adapter = adapter
 
-        executor.execute {
-            try {
-                val inputStream = java.net.URL(dogImage.imageUrl).openStream()
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                handler.post {
-                    binding.dogImageView.setImageBitmap(bitmap)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+        uiState.selectedBreed?.let {
+            val position = uiState.breeds.indexOf(it)
+            if (position != binding.breedSpinner.selectedItemPosition) {
+                binding.breedSpinner.setSelection(position)
             }
+        }
+
+        binding.loadingSpinner.isVisible = uiState.isLoading
+        binding.dogImageView.isVisible = !uiState.isLoading && uiState.dogImage != null
+        binding.regenerateButton.isVisible = uiState.dogImage != null
+
+        uiState.dogImage?.let {
+            binding.dogImageView.load(it.imageUrl) {
+                crossfade(true)
+            }
+        } ?: run {
+            binding.dogImageView.setImageDrawable(null)
         }
     }
 

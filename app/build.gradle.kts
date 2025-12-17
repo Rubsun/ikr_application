@@ -71,4 +71,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.coil)
     implementation(project(":features:nastyazz:impel"))
+
+    implementation(project(":features:nfirex:impl"))
+    implementation(project(":features:grigoran:impl"))
+    implementation(project(":libs:injector"))
 }

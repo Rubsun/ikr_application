@@ -1,7 +1,7 @@
 package com.example.ikr_application.alexcode69.domain
 
-import com.example.ikr_application.nfirex.domain.TimePrecisions
-import com.example.ikr_application.nfirex.data.DeviceRepository
+import com.example.ikr_application.alexcode69.domain.TimePrecisions
+import com.example.ikr_application.alexcode69.data.DeviceRepository
 
 class ElapsedTimeUseCase() {
     fun value(precisions: TimePrecisions): Long {
