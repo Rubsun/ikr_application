@@ -1,4 +1,4 @@
-package com.example.ikr_application.zagora.ui
+package com.zagora.impl.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,22 +8,22 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil3.load
 import coil3.request.crossfade
-import com.example.ikr_application.databinding.FragmentDogBinding
-import com.example.ikr_application.zagora.domain.ZagoraUiState
+import com.zagora.api.ZagoraUiState
+import com.zagora.impl.databinding.FragmentDogBinding
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class FragmentDog : Fragment() {
+internal class FragmentDog : Fragment() {
 
     private var _binding: FragmentDogBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MyViewModel by viewModels()
+    private val viewModel: MyViewModel by lazy { getViewModel() }
 
     override fun onCreateView(
         inflater: LayoutInflater,

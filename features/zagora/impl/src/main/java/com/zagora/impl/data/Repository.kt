@@ -1,19 +1,11 @@
-package com.example.ikr_application.zagora.data
+package com.zagora.impl.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class Repository {
-
-    private val dogApiService = Retrofit.Builder()
-        .baseUrl("https://dog.ceo/api/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(DogApiService::class.java)
+internal class Repository(private val dogApiService: DogApiService) {
 
     fun fetchDogImageForBreed(breed: String): Flow<DogImageDto> = flow {
         emit(dogApiService.getDogImageForBreed(breed))

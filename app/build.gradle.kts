@@ -73,6 +73,7 @@ dependencies {
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":features:artemkaa:impl"))
+	implementation(project(":features:zagora:impl"))
     implementation(project(":features:denisova:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

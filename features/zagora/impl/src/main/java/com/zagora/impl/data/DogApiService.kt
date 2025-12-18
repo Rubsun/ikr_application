@@ -1,9 +1,9 @@
-package com.example.ikr_application.zagora.data
+package com.zagora.impl.data
 
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface DogApiService {
+internal interface DogApiService {
     @GET("breeds/list/all")
     suspend fun getBreeds(): BreedListDto
 
@@ -11,12 +11,12 @@ interface DogApiService {
     suspend fun getDogImageForBreed(@Path("breed") breed: String): DogImageDto
 }
 
-data class BreedListDto(
+internal data class BreedListDto(
     val message: Map<String, List<String>>,
     val status: String
 )
 
-data class DogImageDto(
+internal data class DogImageDto(
     val message: String,
     val status: String
 )

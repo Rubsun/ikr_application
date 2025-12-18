@@ -23,6 +23,7 @@ import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
+import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
 import com.nfirex.api.Constants
 import com.denisova.api.Constants as DenisovaConstants
@@ -32,6 +33,7 @@ import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
 import com.denisova.impl.R as denisovaRes
+import com.zagora.api.Constants as ZagoraConstants
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -60,7 +62,7 @@ enum class Screens(
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
-    ZAGORA(R.string.title_zagora, FragmentDog::class.java),
+    ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(R.string.title_areg, GraphFragment::class.java),
     EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
     DYATLOVA(dyatlovaRes.string.dyatlova_title, qualifier = DyatlovaConstants.DYATLOVA_SCREEN)
