@@ -52,7 +52,7 @@ enum class Screens(
     N0TSSZZZ(R.string.title_n0tsSzzz, N0tsSzzzFragment::class.java),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
-    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.MyFragment::class.java),
+    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
     NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
