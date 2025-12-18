@@ -25,7 +25,7 @@ import com.example.ikr_application.zagora.ui.FragmentDog
 import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
 import com.nfirex.api.Constants
 import com.nfirex.impl.R as nfirexRes
-
+import com.nastyazz.api.Constants as NastyazzConstants
 enum class Screens(
     @StringRes val title: Int,
     val type: Class<out Fragment>? = null,
@@ -52,7 +52,7 @@ enum class Screens(
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
     DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
-    NASTYAZZ(R.string.title_nastyazz, com.example.ikr_application.nastyazz.ui.ItemsFragment::class.java),
+    NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, FragmentDog::class.java),

@@ -1,9 +1,7 @@
-package com.example.ikr_application.nastyazz.data
+package com.nastyazz.impel.nastyazz.data
 import kotlinx.coroutines.flow.StateFlow
 
-interface ItemRepository {
-
+internal interface ItemRepository {
     fun observeItems(): StateFlow<List<ItemDto>>
-
     suspend fun addItem(item: ItemDto)
 }

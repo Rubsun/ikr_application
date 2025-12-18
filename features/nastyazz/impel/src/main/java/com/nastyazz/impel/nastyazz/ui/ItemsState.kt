@@ -1,6 +1,6 @@
-package com.example.ikr_application.nastyazz.ui
+package com.nastyazz.impel.nastyazz.ui
 
-import com.example.ikr_application.nastyazz.domain.Item
+import com.nastyazz.api.domain.models.Item
 
 data class ItemsState(
     val items: List<Item> = emptyList(),
