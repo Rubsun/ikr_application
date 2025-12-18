@@ -46,4 +46,5 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(project(":libs:injector"))
 }

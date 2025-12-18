@@ -13,14 +13,11 @@ import com.nastyazz.impel.databinding.FragmentNastyazzBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ItemsFragment : Fragment(R.layout.fragment_nastyazz) {
-
+internal class ItemsFragment : Fragment(R.layout.fragment_nastyazz) {
     private var _binding: FragmentNastyazzBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ItemsViewModel by viewModels {
-        ItemsViewModelFactory()
-    }
+    private val viewModel: ItemsViewModel by viewModels ()
 
     private val adapter = ItemsAdapter()
 

@@ -2,27 +2,20 @@ package com.nastyazz.impel.nastyazz.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastyazz.impel.nastyazz.domain.AddItemUseCase
-import com.nastyazz.impel.nastyazz.domain.ObserveItemsUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import com.example.injector.inject
+import com.nastyazz.api.domain.usecases.AddItemUseCase
+import com.nastyazz.api.domain.usecases.ObserveItemsUseCase
+import kotlinx.coroutines.flow.*
 
-class ItemsViewModel(
-    observeItemsUseCase: ObserveItemsUseCase,
-    private val addItemUseCase: AddItemUseCase
-) : ViewModel() {
+internal class ItemsViewModel : ViewModel() {
+
+    private val observeItemsUseCase: ObserveItemsUseCase by inject()
+    private val addItemUseCase: AddItemUseCase by inject()
 
     private val query = MutableStateFlow("")
 
     val state: StateFlow<ItemsState> =
-        combine(
-            observeItemsUseCase(),
-            query
-        ) { items, q ->
+        combine(observeItemsUseCase(), query) { items, q ->
             ItemsState(
                 items = items.filter {
                     it.title.contains(q, ignoreCase = true)

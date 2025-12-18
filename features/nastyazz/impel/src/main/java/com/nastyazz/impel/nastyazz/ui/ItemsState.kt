@@ -1,6 +1,6 @@
 package com.nastyazz.impel.nastyazz.ui
 
-import com.nastyazz.impel.nastyazz.domain.Item
+import com.nastyazz.api.domain.models.Item
 
 data class ItemsState(
     val items: List<Item> = emptyList(),

@@ -1,4 +1,5 @@
-package com.nastyazz.impel.nastyazz.domain
+package com.nastyazz.api.domain.models
+
 data class Item(
     val id: Int,
     val title: String,

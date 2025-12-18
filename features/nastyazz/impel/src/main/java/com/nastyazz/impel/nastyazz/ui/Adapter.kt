@@ -1,13 +1,12 @@
-
 package com.nastyazz.impel.nastyazz.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nastyazz.impel.databinding.ItemNastyazzBinding
-import com.nastyazz.impel.nastyazz.domain.Item
 import coil3.load
+import com.nastyazz.api.domain.models.Item
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
+internal class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
 
     private val data = mutableListOf<Item>()
 
