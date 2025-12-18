@@ -1,6 +1,6 @@
-package com.example.ikr_application.nastyazz.data
+package com.nastyazz.api.domain.models
 
-data class ItemDto(
+data class Item(
     val id: Int,
     val title: String,
     val description: String,
