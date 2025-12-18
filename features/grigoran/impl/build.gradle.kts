@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.grigoran.impl"
     compileSdk = 36
+    
     defaultConfig {
         minSdk = 24
 
@@ -44,5 +45,8 @@ dependencies {
     api(project(":features:grigoran:api"))
     implementation(libs.coil)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(project(":libs:injector"))
+
 
 }
