@@ -1,7 +1,7 @@
 plugins {
-	alias(libs.plugins.android.application)
-	alias(libs.plugins.kotlin.android)
-	alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -18,58 +18,54 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-	buildTypes {
-		release {
-			isMinifyEnabled = false
-			proguardFiles(
-				getDefaultProguardFile("proguard-android-optimize.txt"),
-				"proguard-rules.pro"
-			)
-		}
-	}
-	buildFeatures {
-		viewBinding = true
-	}
-	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_11
-		targetCompatibility = JavaVersion.VERSION_11
-	}
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }
 
 kotlin {
-	compilerOptions {
-		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-	}
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
 }
 
 dependencies {
-	implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.ktx)
 
-	implementation(libs.bundles.ui.core)
-	implementation(libs.bundles.network)
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
 
-	implementation(libs.androidx.recyclerview)
-	implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
 
-	implementation(libs.coil)
-	implementation(libs.coil.network.okhttp)
-
-	implementation(libs.androidx.lifecycle.viewmodel.ktx)
-	implementation(libs.androidx.lifecycle.runtime.ktx)
-	implementation(libs.kotlinx.serialization.json)
-	implementation(libs.okhttp.logging.interceptor)
-	implementation(libs.retrofit.kotlinx.serialization.converter)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-
-	implementation("androidx.activity:activity-ktx:1.12.0")
-	implementation("androidx.fragment:fragment-ktx:1.8.9")
-	implementation("androidx.recyclerview:recyclerview:1.4.0")
-	implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
-	implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.timber)
+    implementation(libs.mpandroidchart)
+    implementation(libs.joda.time)
     implementation(project(":features:nastyazz:impel"))
 
     implementation(project(":features:nfirex:impl"))

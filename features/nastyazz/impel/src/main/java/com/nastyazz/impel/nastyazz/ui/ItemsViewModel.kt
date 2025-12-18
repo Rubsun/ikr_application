@@ -6,6 +6,7 @@ import com.example.injector.inject
 import com.nastyazz.api.domain.usecases.AddItemUseCase
 import com.nastyazz.api.domain.usecases.ObserveItemsUseCase
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 internal class ItemsViewModel : ViewModel() {
 
