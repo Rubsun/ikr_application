@@ -73,4 +73,5 @@ dependencies {
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:data"))
 }

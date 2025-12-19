@@ -6,6 +6,7 @@
     <string name="text_time_from_reboot_pattern">Time from start: %s</string>
 
     <string name="caption_search_emoji_hint">Type emoji name…</string>
+    <string name="caption_search_emoji_none">none</string>
 
     <attr name="emojiSearch" />
     <attr name="emojiCard" />

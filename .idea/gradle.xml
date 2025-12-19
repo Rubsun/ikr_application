@@ -29,6 +29,9 @@
             <option value="$PROJECT_DIR$/features/stupishin/impl" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/injector" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage/api" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage/data" />
           </set>
         </option>
       </GradleProjectSettings>

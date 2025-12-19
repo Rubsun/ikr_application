@@ -6,9 +6,11 @@ import com.example.injector.AbstractInitializer
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.nfirex.api.Constants
 import com.nfirex.api.domain.usecases.EmojiListUseCase
+import com.nfirex.api.domain.usecases.EmojiSuggestUseCase
 import com.nfirex.impl.data.EmojiRepository
 import com.nfirex.impl.data.EmojiService
 import com.nfirex.impl.domain.EmojiListUseCaseImpl
+import com.nfirex.impl.domain.EmojiSuggestUseCaseImpl
 import com.nfirex.impl.ui.EmojiListFragment
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,11 +37,12 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 factory { createService(BASE_URL) }
 
                 // single правило - создаем инстанс один раз и всегда его отдаем
-                single { EmojiRepository(get()) }
+                single { EmojiRepository(get(), get()) }
 
                 // жесткое проставление типа.
                 // Нужно когда все работают с интерфейсом, а нам надо вметсо него поставить имплементацию
                 factory<EmojiListUseCase> { EmojiListUseCaseImpl(get()) }
+                factory<EmojiSuggestUseCase> { EmojiSuggestUseCaseImpl(get()) }
 
                 // named - квалифаер зависимости
                 // Если у нас етсь много поставщиков одного типа, и мы хотим их как-то разделить

@@ -7,7 +7,7 @@ coreKtx = "1.17.0"
 junit = "4.13.2"
 
 junitVersion = "1.3.0"
-espressoCore = "3.6.1"
+espressoCore = "3.7.1"
 appcompat = "1.7.1"
 lifecycleViewmodelKtx = "2.10.0"
 material = "1.13.0"
@@ -29,6 +29,8 @@ koin = "4.1.1"
 jetbrainsKotlinJvm = "2.0.21"
 
 coroutines = "1.8.1"
+datastore = "1.2.0"
+kotlinx-coroutines = "1.8.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -37,6 +39,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 coil-kt-coil = { module = "io.coil-kt:coil" }
 gson = { module = "com.google.code.gson:gson" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.8.1" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -70,6 +73,7 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
 androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
 
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 
 [bundles]
 ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",
