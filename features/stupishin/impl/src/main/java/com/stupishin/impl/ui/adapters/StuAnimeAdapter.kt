@@ -1,11 +1,11 @@
-package com.example.ikr_application.stupishin.ui.adapters
+package com.stupishin.impl.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.ikr_application.R
-import com.example.ikr_application.stupishin.domain.models.Anime
+import com.stupishin.api.domain.models.Anime
+import com.stupishin.impl.R
 
 internal class StuAnimeAdapter : ListAdapter<Anime, StuAnimeViewHolder>(Diff) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StuAnimeViewHolder {

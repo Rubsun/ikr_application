@@ -1,4 +1,4 @@
-package com.example.ikr_application.stupishin.data.models
+package com.stupishin.impl.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

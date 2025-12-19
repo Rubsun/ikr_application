@@ -1,6 +1,6 @@
-package com.example.ikr_application.stupishin.data
+package com.stupishin.impl.data
 
-import com.example.ikr_application.stupishin.data.models.AnimeListResponseDto
+import com.stupishin.impl.data.models.AnimeListResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
