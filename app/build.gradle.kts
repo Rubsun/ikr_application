@@ -72,6 +72,7 @@ dependencies {
     implementation(project(":features:grigoran:impl"))
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
+    implementation(project(":features:artemkaa:impl"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
 }
