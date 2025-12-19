@@ -26,20 +26,22 @@ timber = "4.7.1"
 joda-time = "2.13.0"
 startup = "1.2.0"
 koin = "4.1.1"
+jetbrainsKotlinJvm = "2.0.21"
+
+coroutines = "1.8.1"
 datastore = "1.2.0"
 kotlinx-coroutines = "1.8.0"
 
 [libraries]
-coil-kt-coil = { module = "io.coil-kt:coil" }
-gson = { module = "com.google.code.gson:gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-
+coil-kt-coil = { module = "io.coil-kt:coil" }
+gson = { module = "com.google.code.gson:gson" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-
+kotlinx-coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.8.1" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
@@ -81,11 +83,10 @@ ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",
 ]
 network = ["retrofit", "converter-gson", "retrofit-kotlinx-serialization-converter", "okhttp-logging-interceptor"]
 koin = ["koin-core", "koin-android", "androidx-startup"]
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 

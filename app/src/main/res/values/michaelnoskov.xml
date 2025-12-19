@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings -->
+    <string name="michaelnoskov_title">Michael Noskov - Разноцветный квадрат</string>
+    <string name="michaelnoskov_button_change_color">Сменить цвет</string>
+    <string name="michaelnoskov_button_rotate">Повернуть</string>
+    <string name="michaelnoskov_button_resize">Изменить размер</string>
+    <string name="michaelnoskov_hint_search">Поиск элементов...</string>
+    <string name="michaelnoskov_hint_new_item">Новый элемент</string>
+    <string name="michaelnoskov_button_add_item">Добавить</string>
+    <string name="michaelnoskov_items_count_default">Элементов: 0</string>
+    <string name="michaelnoskov_title_items_list">Список элементов</string>
+    <string name="michaelnoskov_title_chart">Статистика цветов</string>
+    <string name="michaelnoskov_error_empty_text">Текст не может быть пустым</string>
+    <string name="michaelnoskov_square_size_small">Маленький</string>
+    <string name="michaelnoskov_square_size_medium">Средний</string>
+    <string name="michaelnoskov_square_size_large">Большой</string>
+    <string name="michaelnoskov_square_size_xlarge">Очень большой</string>
+
+    <!-- Для графика -->
+    <string name="michaelnoskov_chart_label_red">Красный</string>
+    <string name="michaelnoskov_chart_label_green">Зеленый</string>
+    <string name="michaelnoskov_chart_label_blue">Синий</string>
+    <string name="michaelnoskov_chart_label_yellow">Желтый</string>
+    <string name="michaelnoskov_chart_label_purple">Фиолетовый</string>
+
+    <!-- Dimens -->
+    <dimen name="michaelnoskov_margin_small">4dp</dimen>
+    <dimen name="michaelnoskov_margin_medium">8dp</dimen>
+    <dimen name="michaelnoskov_margin_large">16dp</dimen>
+    <dimen name="michaelnoskov_margin_xlarge">24dp</dimen>
+
+    <dimen name="michaelnoskov_padding_small">8dp</dimen>
+    <dimen name="michaelnoskov_padding_medium">12dp</dimen>
+    <dimen name="michaelnoskov_padding_large">16dp</dimen>
+
+    <dimen name="michaelnoskov_square_size_small">150dp</dimen>
+    <dimen name="michaelnoskov_square_size_medium">200dp</dimen>
+    <dimen name="michaelnoskov_square_size_large">250dp</dimen>
+    <dimen name="michaelnoskov_square_size_xlarge">300dp</dimen>
+
+    <dimen name="michaelnoskov_button_corner_radius">8dp</dimen>
+    <dimen name="michaelnoskov_card_corner_radius">12dp</dimen>
+    <dimen name="michaelnoskov_chart_height">280dp</dimen>
+    <dimen name="michaelnoskov_elevation_low">2dp</dimen>
+    <dimen name="michaelnoskov_elevation_medium">4dp</dimen>
+    <dimen name="michaelnoskov_elevation_high">8dp</dimen>
+
+    <!-- Для RecyclerView -->
+    <dimen name="michaelnoskov_list_item_height">56dp</dimen>
+    <dimen name="michaelnoskov_divider_height">1dp</dimen>
+</resources>
