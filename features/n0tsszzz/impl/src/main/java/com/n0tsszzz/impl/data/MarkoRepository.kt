@@ -39,6 +39,11 @@ internal class MarkoRepository(
         return timeRecords
     }
 
+    fun clearAllRecords() {
+        _timeRecords.value = emptyList()
+        saveRecords(emptyList())
+    }
+
     private fun loadRecordsSync(): List<MarkoInfo> {
         val recordsJson = sharedPreferences.getString(RECORDS_KEY, null) ?: return emptyList()
         return try {
@@ -51,7 +56,7 @@ internal class MarkoRepository(
     private fun saveRecords(records: List<MarkoInfo>) {
         try {
             val recordsJson = json.encodeToString(records)
-            sharedPreferences.edit().putString(RECORDS_KEY, recordsJson).apply()
+            sharedPreferences.edit().putString(RECORDS_KEY, recordsJson).commit()
         } catch (e: Exception) {
         }
     }

@@ -61,6 +61,13 @@
             android:layout_marginTop="16dp"
             android:text="@string/n0tsszzz_add_time_record" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clear_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/n0tsszzz_clear_records" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"

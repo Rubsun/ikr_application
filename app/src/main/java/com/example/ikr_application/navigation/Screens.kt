@@ -31,7 +31,7 @@ import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
 
 enum class Screens(
-    @StringRes val title: Int,
+    @param:StringRes val title: Int,
     val type: Class<out Fragment>? = null,
     val qualifier: String? = null,
 ) {

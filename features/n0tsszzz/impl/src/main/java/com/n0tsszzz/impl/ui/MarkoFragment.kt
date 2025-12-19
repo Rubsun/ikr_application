@@ -52,6 +52,7 @@ internal class MarkoFragment : Fragment() {
         val buttonsGroup = view.findViewById<ViewGroup>(R.id.buttons)
         val searchEditText = view.findViewById<TextInputEditText>(R.id.search)
         val addButton = view.findViewById<Button>(R.id.add_button)
+        val clearButton = view.findViewById<Button>(R.id.clear_button)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler)
         val chart = view.findViewById<LineChart>(R.id.chart)
 
@@ -69,6 +70,14 @@ internal class MarkoFragment : Fragment() {
             backgroundTintList = ColorStateList.valueOf(buttonColor)
             setOnClickListener {
                 viewModel.addTimeRecord()
+            }
+        }
+
+        clearButton.apply {
+            val buttonColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_button_color)
+            backgroundTintList = ColorStateList.valueOf(buttonColor)
+            setOnClickListener {
+                viewModel.clearRecords()
             }
         }
 

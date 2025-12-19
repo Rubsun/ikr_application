@@ -8,6 +8,7 @@ import com.n0tsszzz.api.domain.usecases.AddTimeRecordUseCase
 import com.n0tsszzz.api.domain.usecases.GetTimeRecordsUseCase
 import com.n0tsszzz.api.domain.usecases.MarkoCurrentDateUseCase
 import com.n0tsszzz.api.domain.usecases.MarkoElapsedTimeUseCase
+import com.n0tsszzz.impl.data.MarkoRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,7 @@ internal class MarkoViewModel : ViewModel() {
     private val elapsedTimeUseCase: MarkoElapsedTimeUseCase by com.example.injector.inject()
     private val getTimeRecordsUseCase: GetTimeRecordsUseCase by com.example.injector.inject()
     private val addTimeRecordUseCase: AddTimeRecordUseCase by com.example.injector.inject()
+    private val repository: MarkoRepository by com.example.injector.inject()
     private val queryFlow = MutableStateFlow("")
     private val selectedPrecisionFlow = MutableStateFlow<MarkoTimePrecisions?>(null)
     private val errorFlow = MutableStateFlow<Throwable?>(null)
@@ -94,6 +96,10 @@ internal class MarkoViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun clearRecords() {
+        repository.clearAllRecords()
     }
     
     data class State(
