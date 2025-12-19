@@ -1,8 +1,8 @@
-package com.example.ikr_application.stupishin.ui
+package com.stupishin.impl.ui
 
-import com.example.ikr_application.stupishin.domain.models.Anime
+import com.stupishin.api.domain.models.Anime
 
-data class StuAnimeState(
+internal data class StuAnimeState(
     val query: String = "",
     val isLoading: Boolean = false,
     val items: List<Anime> = emptyList(),

@@ -1,9 +1,10 @@
-package com.example.ikr_application.stupishin.ui
+package com.stupishin.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.stupishin.domain.GetTopAnimeUseCase
-import com.example.ikr_application.stupishin.domain.SearchAnimeUseCase
+import com.example.injector.inject
+import com.stupishin.api.domain.usecases.GetTopAnimeUseCase
+import com.stupishin.api.domain.usecases.SearchAnimeUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,9 +14,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class StuAnimeViewModel : ViewModel() {
-    private val topUseCase = GetTopAnimeUseCase()
-    private val searchUseCase = SearchAnimeUseCase()
+internal class StuAnimeViewModel : ViewModel() {
+
+    private val topUseCase: GetTopAnimeUseCase by inject()
+    private val searchUseCase: SearchAnimeUseCase by inject()
 
     private val _state = MutableStateFlow(StuAnimeState(isLoading = true))
     val state: StateFlow<StuAnimeState> = _state.asStateFlow()
@@ -62,34 +64,34 @@ class StuAnimeViewModel : ViewModel() {
     private suspend fun loadTopInternal() {
         _state.update { it.copy(isLoading = true, error = null) }
 
-        try {
-            val items = topUseCase.execute(page = 1)
-            _state.update { it.copy(isLoading = false, items = items, error = null) }
-        } catch (e: Exception) {
-            val message = if (e is IOException) {
-                "Не удалось загрузить данные. Проверь интернет и VPN."
-            } else {
-                e.message ?: "Не удалось загрузить данные."
+        val result = topUseCase()
+        result
+            .onSuccess { items ->
+                _state.update { it.copy(isLoading = false, items = items, error = null) }
             }
-
-            _state.update { it.copy(isLoading = false, error = message) }
-        }
+            .onFailure { e ->
+                _state.update { it.copy(isLoading = false, error = e.toUiMessage()) }
+            }
     }
 
     private suspend fun searchInternal(query: String) {
         _state.update { it.copy(isLoading = true, error = null) }
 
-        try {
-            val items = searchUseCase.execute(query = query)
-            _state.update { it.copy(isLoading = false, items = items, error = null) }
-        } catch (e: Exception) {
-            val message = if (e is IOException) {
-                "Не удалось загрузить данные. Проверь интернет и VPN."
-            } else {
-                e.message ?: "Не удалось загрузить данные."
+        val result = searchUseCase(query)
+        result
+            .onSuccess { items ->
+                _state.update { it.copy(isLoading = false, items = items, error = null) }
             }
+            .onFailure { e ->
+                _state.update { it.copy(isLoading = false, error = e.toUiMessage()) }
+            }
+    }
 
-            _state.update { it.copy(isLoading = false, error = message) }
+    private fun Throwable.toUiMessage(): String {
+        return if (this is IOException) {
+            "Не удалось загрузить данные. Проверь интернет и VPN."
+        } else {
+            message ?: "Не удалось загрузить данные."
         }
     }
 }

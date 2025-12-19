@@ -70,5 +70,6 @@ dependencies {
 
     implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
+    implementation(project(":features:stupishin:impl"))
     implementation(project(":libs:injector"))
 }

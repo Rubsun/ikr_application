@@ -27,6 +27,9 @@ import com.grigoran.api.Constants.GRIGORAN_SCREEN
 import com.nfirex.api.Constants
 import com.nfirex.impl.R as nfirexRes
 import com.nastyazz.api.Constants as NastyazzConstants
+import com.stupishin.api.Constants as StupishinConstants
+import com.stupishin.impl.R as stupishinRes
+
 enum class Screens(
     @StringRes val title: Int,
     val type: Class<out Fragment>? = null,
@@ -34,10 +37,7 @@ enum class Screens(
 ) {
     SAMPLE(nfirexRes.string.title_sample, qualifier = Constants.NFIREX_SCREEN),
     TIRE(R.string.title_tire, TiReFragment::class.java),
-    STUPISHIN(
-        R.string.title_stupishin,
-        com.example.ikr_application.stupishin.ui.StuAnimeFragment::class.java
-    ),
+    STUPISHIN(stupishinRes.string.title_stupishin, qualifier = StupishinConstants.STUPISHIN_SCREEN),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, RinFragment::class.java),

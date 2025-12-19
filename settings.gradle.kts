@@ -29,3 +29,6 @@ include(":features:nfirex:impl")
 include(":libs:injector")
 include(":features:grigoran:api")
 include(":features:grigoran:impl")
+
+include(":features:stupishin:api")
+include(":features:stupishin:impl")

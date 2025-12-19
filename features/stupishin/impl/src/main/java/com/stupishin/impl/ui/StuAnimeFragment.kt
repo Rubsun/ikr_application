@@ -1,4 +1,4 @@
-package com.example.ikr_application.stupishin.ui
+package com.stupishin.impl.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ikr_application.R
-import com.example.ikr_application.databinding.ContentStupishinAnimeBinding
-import com.example.ikr_application.stupishin.ui.adapters.StuAnimeAdapter
+import com.stupishin.impl.R
+import com.stupishin.impl.databinding.ContentStupishinAnimeBinding
+import com.stupishin.impl.ui.adapters.StuAnimeAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class StuAnimeFragment : Fragment(R.layout.content_stupishin_anime) {
+internal class StuAnimeFragment : Fragment(R.layout.content_stupishin_anime) {
     private val viewModel by viewModels<StuAnimeViewModel>()
     private val adapter = StuAnimeAdapter()
 
