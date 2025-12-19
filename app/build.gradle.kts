@@ -76,4 +76,5 @@ dependencies {
 
 	implementation(project(":features:nfirex:impl"))
 	implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:data"))
 }

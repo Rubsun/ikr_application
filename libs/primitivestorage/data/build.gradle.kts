@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.nfirex.impl"
-    compileSdk = 36
+    namespace = "com.example.primitivestorage"
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         minSdk = 24
@@ -34,13 +35,9 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.datastore)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-
-    api(project(":features:nfirex:api"))
+    api(project(":libs:primitivestorage:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
 }

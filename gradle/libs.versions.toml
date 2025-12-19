@@ -26,6 +26,8 @@ timber = "4.7.1"
 joda-time = "2.13.0"
 startup = "1.2.0"
 koin = "4.1.1"
+datastore = "1.2.0"
+kotlinx-coroutines = "1.8.0"
 
 [libraries]
 coil-kt-coil = { module = "io.coil-kt:coil" }
@@ -35,6 +37,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -67,6 +70,9 @@ koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
 androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
+
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
 [bundles]
 ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",
