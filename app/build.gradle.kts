@@ -43,6 +43,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(platform(libs.koin.bom))
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.bundles.ui.core)
@@ -67,9 +68,9 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
     implementation(project(":features:nastyazz:impel"))
-
     implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
     implementation(project(":features:stupishin:impl"))
+    implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":libs:injector"))
 }

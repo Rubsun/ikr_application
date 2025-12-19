@@ -6,7 +6,7 @@ import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
 import org.koin.mp.KoinPlatformTools
 
-internal object Injector : KoinComponent
+object Injector : KoinComponent
 
 inline fun <reified T : Any> get(
     qualifier: Qualifier? = null,
