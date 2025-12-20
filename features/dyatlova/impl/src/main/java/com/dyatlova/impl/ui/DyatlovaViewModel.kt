@@ -1,15 +1,11 @@
-package com.example.ikr_application.dyatlova.ui
+package com.dyatlova.impl.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.ikr_application.dyatlova.data.DestinationRepository
-import com.example.ikr_application.dyatlova.domain.AddDestinationUseCase
-import com.example.ikr_application.dyatlova.domain.Destination
-import com.example.ikr_application.dyatlova.domain.FilterDestinationsUseCase
-import com.example.ikr_application.dyatlova.domain.ObserveDestinationsUseCase
+import com.dyatlova.api.domain.models.Destination
+import com.dyatlova.api.domain.usecases.AddDestinationUseCase
+import com.dyatlova.api.domain.usecases.FilterDestinationsUseCase
+import com.dyatlova.api.domain.usecases.ObserveDestinationsUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +18,7 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 import java.util.UUID
 
-class DyatlovaViewModel(
+internal class DyatlovaViewModel(
     observeDestinationsUseCase: ObserveDestinationsUseCase,
     private val addDestinationUseCase: AddDestinationUseCase,
     private val filterDestinationsUseCase: FilterDestinationsUseCase,
@@ -106,17 +102,6 @@ class DyatlovaViewModel(
     companion object {
         private const val FALLBACK_IMAGE =
             "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
-
-        fun factory(): ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val repository = DestinationRepository()
-                DyatlovaViewModel(
-                    observeDestinationsUseCase = ObserveDestinationsUseCase(repository),
-                    addDestinationUseCase = AddDestinationUseCase(repository),
-                    filterDestinationsUseCase = FilterDestinationsUseCase(),
-                )
-            }
-        }
     }
 }
 

@@ -1,24 +1,57 @@
-package com.example.ikr_application.dyatlova.data
+package com.dyatlova.impl.data
 
+import com.dyatlova.api.domain.models.Destination
+import com.dyatlova.impl.data.models.DestinationData
+import com.dyatlova.impl.data.models.DestinationsStorage
+import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class DestinationRepository(
+private const val STORAGE_NAME = "dyatlova_destinations.json"
+
+internal class DestinationRepository(
+    private val storageFactory: PrimitiveStorage.Factory,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
-    private val destinations = MutableStateFlow(createFakeDestinations())
+    private val storage by lazy {
+        storageFactory.create(STORAGE_NAME, DestinationsStorage.serializer())
+    }
+
+    private val destinations = MutableStateFlow<List<DestinationData>>(emptyList())
+
+    init {
+        loadFromStorage()
+    }
 
     fun observeDestinations(): Flow<List<DestinationData>> = destinations
 
     suspend fun addDestination(destination: DestinationData) {
         withContext(dispatcher) {
             destinations.update { current -> listOf(destination) + current }
+            saveToStorage()
         }
+    }
+
+    private suspend fun loadFromStorage() {
+        val stored = storage.get().first()
+        if (stored != null && stored.destinations.isNotEmpty()) {
+            destinations.value = stored.destinations
+        } else {
+            destinations.value = createFakeDestinations()
+            saveToStorage()
+        }
+    }
+
+    private suspend fun saveToStorage() {
+        val current = destinations.value
+        storage.put(DestinationsStorage(destinations = current))
     }
 
     private fun createFakeDestinations(): List<DestinationData> = listOf(
@@ -52,4 +85,20 @@ class DestinationRepository(
         ),
     )
 }
+
+internal fun DestinationData.toDomain(): Destination = Destination(
+    id = id,
+    title = title,
+    country = country,
+    imageUrl = imageUrl,
+    tags = tags,
+)
+
+internal fun Destination.toData(): DestinationData = DestinationData(
+    id = id,
+    title = title,
+    country = country,
+    imageUrl = imageUrl,
+    tags = tags,
+)
 

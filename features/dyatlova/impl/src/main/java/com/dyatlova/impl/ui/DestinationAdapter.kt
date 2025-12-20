@@ -1,4 +1,4 @@
-package com.example.ikr_application.dyatlova.ui
+package com.dyatlova.impl.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import coil3.request.crossfade
-import com.example.ikr_application.databinding.ItemDyatlovaDestinationBinding
+import com.dyatlova.impl.databinding.ItemDyatlovaDestinationBinding
 
-class DestinationAdapter :
+internal class DestinationAdapter :
     ListAdapter<DestinationUi, DestinationAdapter.DestinationViewHolder>(DestinationDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DestinationViewHolder {
