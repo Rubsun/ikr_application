@@ -1,9 +1,8 @@
-package com.example.ikr_application.egorik4.ui.models
+package com.egorik4.api.ui.models
 
 data class BookDisplayModel(
     val displayTitle: String,
     val displayAuthor: String,
-    val displayInfo: String, // год
+    val displayInfo: String,
     val coverImageUrl: String?
 )
-

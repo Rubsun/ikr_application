@@ -1,4 +1,4 @@
-package com.example.ikr_application.egorik4.data.models
+package com.egorik4.impl.data.models
 
 import kotlinx.serialization.Serializable
 
@@ -6,4 +6,3 @@ import kotlinx.serialization.Serializable
 internal data class OpenLibraryResponse(
     val docs: List<BookDto>
 )
-

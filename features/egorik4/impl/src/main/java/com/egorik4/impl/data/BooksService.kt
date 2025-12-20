@@ -1,6 +1,6 @@
-package com.example.ikr_application.egorik4.data
+package com.egorik4.impl.data
 
-import com.example.ikr_application.egorik4.data.models.OpenLibraryResponse
+import com.egorik4.impl.data.models.OpenLibraryResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -11,4 +11,3 @@ internal interface BooksService {
         @Query("limit") limit: Int = 20
     ): OpenLibraryResponse
 }
-

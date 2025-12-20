@@ -1,4 +1,4 @@
-package com.example.ikr_application.egorik4.ui
+package com.egorik4.impl.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,16 +10,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ikr_application.R
+import com.egorik4.impl.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class Egorik4Fragment : Fragment() {
-    private val viewModel by viewModels<Egorik4ViewModel>()
+internal class Egorik4Fragment : Fragment() {
+    private val viewModel: Egorik4ViewModel by viewModel()
     private val adapter by lazy { BookAdapter() }
 
     override fun onCreateView(
@@ -68,4 +68,3 @@ class Egorik4Fragment : Fragment() {
         }
     }
 }
-

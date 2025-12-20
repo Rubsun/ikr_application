@@ -1,4 +1,4 @@
-package com.example.ikr_application.egorik4.data.models
+package com.egorik4.impl.data.models
 
 import kotlinx.serialization.Serializable
 
@@ -10,4 +10,3 @@ internal data class BookDto(
     val cover_i: Long? = null,
     val key: String? = null
 )
-

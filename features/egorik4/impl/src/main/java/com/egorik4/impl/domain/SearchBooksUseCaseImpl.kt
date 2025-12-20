@@ -1,16 +1,17 @@
-package com.example.ikr_application.egorik4.domain
+package com.egorik4.impl.domain
 
-import com.example.ikr_application.egorik4.data.BooksRepository
-import com.example.ikr_application.egorik4.data.models.BookDto
-import com.example.ikr_application.egorik4.domain.models.Book
+import com.egorik4.api.domain.models.Book
+import com.egorik4.api.domain.usecases.SearchBooksUseCase
+import com.egorik4.impl.data.BooksRepository
+import com.egorik4.impl.data.models.BookDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.Result.Companion.success
 
-internal class SearchBooksUseCase(
-    private val repository: BooksRepository = BooksRepository.INSTANCE
-) {
-    suspend operator fun invoke(query: String): Result<List<Book>> = withContext(Dispatchers.IO) {
+internal class SearchBooksUseCaseImpl(
+    private val repository: BooksRepository
+) : SearchBooksUseCase {
+    override suspend fun invoke(query: String): Result<List<Book>> = withContext(Dispatchers.IO) {
         if (query.isBlank()) {
             return@withContext success(emptyList())
         }
@@ -38,4 +39,3 @@ internal class SearchBooksUseCase(
         )
     }
 }
-

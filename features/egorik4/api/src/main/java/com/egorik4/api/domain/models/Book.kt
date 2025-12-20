@@ -1,4 +1,4 @@
-package com.example.ikr_application.egorik4.domain.models
+package com.egorik4.api.domain.models
 
 data class Book(
     val title: String,
@@ -6,4 +6,3 @@ data class Book(
     val year: Int?,
     val coverImageUrl: String?
 )
-
