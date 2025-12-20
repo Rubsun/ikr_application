@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.example.injector"
+    namespace = "com.denisova.impl"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -34,7 +34,18 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.serialization.json)
 
-    api(platform(libs.koin.bom))
-    api(libs.bundles.koin)
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
+
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    api(project(":features:denisova:api"))
+    implementation(project(":libs:injector"))
 }
