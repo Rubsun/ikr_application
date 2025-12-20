@@ -24,11 +24,13 @@ import com.example.ikr_application.zagora.ui.FragmentDog
 import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
 import com.nfirex.api.Constants
+import com.denisova.api.Constants as DenisovaConstants
 import com.nfirex.impl.R as nfirexRes
 import com.nastyazz.api.Constants as NastyazzConstants
 import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
+import com.denisova.impl.R as denisovaRes
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -44,7 +46,7 @@ enum class Screens(
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
-    DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
+    DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
     ANTOHAOT(R.string.title_antohaot, AntohaotFragment::class.java),
     ALEXCODE69(R.string.title_alexcode69, Alexcode69Fragment::class.java),
