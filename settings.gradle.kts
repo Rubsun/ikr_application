@@ -22,6 +22,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "ikr_application"
 include(":app")
+include(":features:dyatlova:api")
+include(":features:dyatlova:impl")
 include(":features:nastyazz:api")
 include(":features:nastyazz:impel")
 include(":features:nfirex:api")

@@ -1,6 +1,6 @@
-package com.example.ikr_application.dyatlova.data
+package com.dyatlova.api.domain.models
 
-data class DestinationData(
+data class Destination(
     val id: String,
     val title: String,
     val country: String,

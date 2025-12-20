@@ -1,5 +1,4 @@
 <resources>
-    <string name="title_dyatlova">Dyatlova Destinations</string>
     <string name="dyatlova_title">Weekend directions to try</string>
     <string name="dyatlova_subtitle">Фейковые данные, которые можно фильтровать и дополнять</string>
     <string name="dyatlova_search_hint">Поиск по стране, тегу или названию</string>

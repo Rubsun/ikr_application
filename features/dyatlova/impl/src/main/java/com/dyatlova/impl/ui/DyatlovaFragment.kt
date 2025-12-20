@@ -1,27 +1,27 @@
-package com.example.ikr_application.dyatlova.ui
+package com.dyatlova.impl.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ikr_application.R
-import com.example.ikr_application.databinding.ContentDyatlovaFragmentBinding
+import com.dyatlova.impl.R
+import com.dyatlova.impl.databinding.ContentDyatlovaFragmentBinding
+import com.example.injector.inject
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
-class DyatlovaFragment : Fragment(R.layout.content_dyatlova_fragment) {
+internal class DyatlovaFragment : Fragment(R.layout.content_dyatlova_fragment) {
 
     private var _binding: ContentDyatlovaFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val adapter = DestinationAdapter()
-    private val viewModel: DyatlovaViewModel by viewModels { DyatlovaViewModel.factory() }
+    private val viewModel: DyatlovaViewModel by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
