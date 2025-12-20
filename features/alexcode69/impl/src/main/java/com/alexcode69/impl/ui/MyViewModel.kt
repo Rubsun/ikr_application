@@ -1,25 +1,25 @@
-package com.example.ikr_application.alexcode69.ui
+package com.alexcode69.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.alexcode69.domain.AddTimeEntryUseCase
-import com.example.ikr_application.alexcode69.domain.CurrentDateUseCase
-import com.example.ikr_application.alexcode69.domain.SearchTimeEntriesUseCase
+import com.alexcode69.api.domain.models.TimePrecisions
+import com.alexcode69.api.domain.usecases.AddTimeEntryUseCase
+import com.alexcode69.api.domain.usecases.CurrentDateUseCase
+import com.alexcode69.api.domain.usecases.SearchTimeEntriesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MyViewModel : ViewModel() {
-    private val currentDateUseCase = CurrentDateUseCase()
-    private val searchTimeEntriesUseCase = SearchTimeEntriesUseCase()
-    private val addTimeEntryUseCase = AddTimeEntryUseCase()
-
+internal class MyViewModel(
+    private val currentDateUseCase: CurrentDateUseCase,
+    private val searchTimeEntriesUseCase: SearchTimeEntriesUseCase,
+    private val addTimeEntryUseCase: AddTimeEntryUseCase
+) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
-    
     private val _isLoading = MutableStateFlow(false)
 
     val uiState: StateFlow<TimerUiState> = _searchQuery
@@ -32,7 +32,7 @@ class MyViewModel : ViewModel() {
             started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000),
             initialValue = emptyList()
         ).let { entriesStateFlow ->
-            kotlinx.coroutines.flow.combine(
+            combine(
                 entriesStateFlow,
                 _searchQuery,
                 _isLoading
@@ -68,8 +68,8 @@ class MyViewModel : ViewModel() {
         }
     }
 
-    fun timePrecisions(): List<com.example.ikr_application.alexcode69.domain.TimePrecisions> {
-        return com.example.ikr_application.alexcode69.domain.TimePrecisions.entries
+    fun timePrecisions(): List<TimePrecisions> {
+        return TimePrecisions.entries
     }
 }
 

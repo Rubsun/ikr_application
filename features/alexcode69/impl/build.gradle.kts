@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.egorik4.impl"
+    namespace = "com.alexcode69.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -35,20 +35,17 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.serialization.json)
-
     implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-
-    api(project(":features:egorik4:api"))
-    implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.timber)
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
+
+    api(project(":features:alexcode69:api"))
+    implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:data"))
 }
+

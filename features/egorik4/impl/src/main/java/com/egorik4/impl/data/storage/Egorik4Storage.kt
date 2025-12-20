@@ -13,7 +13,7 @@ internal data class CachedBooks(
 )
 
 @Serializable
-private data class CachedBook(
+internal data class CachedBook(
     val title: String,
     val author: String,
     val year: Int?,

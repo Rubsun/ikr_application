@@ -1,6 +1,5 @@
-package com.example.ikr_application.alexcode69.ui
+package com.alexcode69.impl.ui
 
-import com.example.ikr_application.alexcode69.ui.MyViewModel
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,16 +9,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.ikr_application.R
+import com.alexcode69.impl.R
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class Alexcode69Fragment : Fragment() {
-    private val viewModel by viewModels<MyViewModel>()
+internal class Alexcode69Fragment : Fragment() {
+    private val viewModel: MyViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -79,3 +78,4 @@ class Alexcode69Fragment : Fragment() {
         }
     }
 }
+

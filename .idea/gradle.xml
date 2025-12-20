@@ -12,6 +12,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/MomusWinner" />
+            <option value="$PROJECT_DIR$/features/MomusWinner/api" />
+            <option value="$PROJECT_DIR$/features/MomusWinner/impl" />
+            <option value="$PROJECT_DIR$/features/alexcode69" />
+            <option value="$PROJECT_DIR$/features/alexcode69/api" />
+            <option value="$PROJECT_DIR$/features/alexcode69/impl" />
             <option value="$PROJECT_DIR$/features/antohaot" />
             <option value="$PROJECT_DIR$/features/antohaot/api" />
             <option value="$PROJECT_DIR$/features/antohaot/impl" />
@@ -27,6 +33,9 @@
             <option value="$PROJECT_DIR$/features/dyatlova" />
             <option value="$PROJECT_DIR$/features/dyatlova/api" />
             <option value="$PROJECT_DIR$/features/dyatlova/impl" />
+            <option value="$PROJECT_DIR$/features/egorik4" />
+            <option value="$PROJECT_DIR$/features/egorik4/api" />
+            <option value="$PROJECT_DIR$/features/egorik4/impl" />
             <option value="$PROJECT_DIR$/features/grigoran" />
             <option value="$PROJECT_DIR$/features/grigoran/api" />
             <option value="$PROJECT_DIR$/features/grigoran/impl" />
