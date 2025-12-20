@@ -1,11 +1,11 @@
-package com.example.ikr_application.zagora.ui
+package com.zagora.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.zagora.data.Repository
-import com.example.ikr_application.zagora.domain.GetDogBreedsUseCase
-import com.example.ikr_application.zagora.domain.GetDogImageUseCase
-import com.example.ikr_application.zagora.domain.ZagoraUiState
+import com.zagora.api.ZagoraUiState
+import com.zagora.impl.data.ZagoraStateHolder
+import com.zagora.impl.domain.GetDogBreedsUseCase
+import com.zagora.impl.domain.GetDogImageUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,10 +14,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 
-class MyViewModel : ViewModel() {
-
-    private val getDogBreedsUseCase: GetDogBreedsUseCase
-    private val getDogImageUseCase: GetDogImageUseCase
+internal class MyViewModel(
+    private val getDogBreedsUseCase: GetDogBreedsUseCase,
+    private val getDogImageUseCase: GetDogImageUseCase,
+    private val stateHolder: ZagoraStateHolder
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ZagoraUiState())
     val uiState: StateFlow<ZagoraUiState> = _uiState.asStateFlow()
@@ -25,9 +26,6 @@ class MyViewModel : ViewModel() {
     private val placeholder = "Select breed"
 
     init {
-        val repository = Repository()
-        getDogBreedsUseCase = GetDogBreedsUseCase(repository)
-        getDogImageUseCase = GetDogImageUseCase(repository)
         loadBreeds()
     }
 
@@ -35,7 +33,11 @@ class MyViewModel : ViewModel() {
         getDogBreedsUseCase.execute()
             .onEach { breeds ->
                 val breedsWithPlaceholder = listOf(placeholder) + breeds
-                _uiState.update { it.copy(breeds = breedsWithPlaceholder, selectedBreed = placeholder) }
+                val selectedBreed = stateHolder.getSelectedBreed(placeholder)
+                _uiState.update { it.copy(breeds = breedsWithPlaceholder, selectedBreed = selectedBreed) }
+                if (selectedBreed != placeholder) {
+                    loadImageForBreed(selectedBreed)
+                }
             }
             .catch { e -> e.printStackTrace() }
             .launchIn(viewModelScope)
@@ -44,6 +46,7 @@ class MyViewModel : ViewModel() {
     fun selectBreed(breed: String) {
         if (breed == _uiState.value.selectedBreed) return
 
+        stateHolder.saveSelectedBreed(breed)
         _uiState.update { it.copy(selectedBreed = breed) }
 
         if (breed != placeholder) {
