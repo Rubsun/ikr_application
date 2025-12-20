@@ -7,21 +7,42 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import quo.vadis.api.usecases.ApiBaseUrl
 import quo.vadis.api.usecases.AssembleImageUrlUseCase
 import quo.vadis.api.usecases.GetCatNameUseCase
 import quo.vadis.impl.data.CatDto
+import quo.vadis.impl.data.CatRepositoryImpl
 import kotlin.collections.plus
 
 
 internal class CatViewModel : ViewModel() {
     private val getRandomCatUseCase: GetCatNameUseCase by inject()
     private val assembleImageUrlUseCase: AssembleImageUrlUseCase by inject()
+    private val repository: CatRepositoryImpl by inject()
 
     private val _uiState = MutableStateFlow(CatUiState())
     val uiState: StateFlow<CatUiState> = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            repository.getAllCatsFlow()
+                .map { entities ->
+                    entities.map { entity ->
+                        CatDto(
+                            name = entity.name,
+                            phrase = entity.phrase,
+                            imageUrl = entity.imageUrl
+                        )
+                    }
+                }
+                .collect { cats ->
+                    _uiState.value = _uiState.value.copy(cats = cats)
+                }
+        }
+    }
 
     fun loadRandomCat(phraseInput: String?) {
         val phrase = phraseInput?.takeIf { it.isNotBlank() }
@@ -40,6 +61,14 @@ internal class CatViewModel : ViewModel() {
 
             val catWithImage = cat.copy(imageUrl = imageUrl)
 
+            withContext(Dispatchers.IO) {
+                repository.insertCat(
+                    name = catWithImage.name,
+                    phrase = catWithImage.phrase,
+                    imageUrl = catWithImage.imageUrl
+                )
+            }
+
             _uiState.value = _uiState.value.copy(
                 isLoading = false,
                 cats = _uiState.value.cats + catWithImage
@@ -53,5 +82,13 @@ internal class CatViewModel : ViewModel() {
 
     fun onApiChanged(newApi: ApiBaseUrl) {
         _uiState.value = _uiState.value.copy(api = newApi)
+    }
+
+    fun deleteCat(catId: Long) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.deleteCat(catId)
+            }
+        }
     }
 }
