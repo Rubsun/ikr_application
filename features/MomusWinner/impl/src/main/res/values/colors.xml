@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="areg_color_primary">#FF6200EE</color>
+    <color name="areg_color_accent">#FF03DAC5</color>
+    <color name="areg_color_background">#FFFFFFFF</color>
+    <color name="areg_color_text">#FF000000</color>
+    <color name="areg_color_grid">#FFCCCCCC</color>
+    <color name="areg_color_highlight">#FFFF0000</color>
+</resources>

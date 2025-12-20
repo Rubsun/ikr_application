@@ -1,4 +1,5 @@
-package com.example.ikr_application.MomusWinner.data.models
+package com.momuswinner.api.domain.models
+
 sealed interface PointsState {
     data object Loading : PointsState
     data object Empty : PointsState

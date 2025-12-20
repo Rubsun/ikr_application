@@ -2,7 +2,6 @@
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.example.ikr_application.MomusWinner.ui.GraphFragment
 import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
@@ -33,6 +32,8 @@ import com.artemkaa.api.Constants as ArtemkaaConstants
 import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
+import com.momuswinner.api.Constants as MomusWinnerConstants
+import com.momuswinner.impl.R as MomusWinnerRes
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -62,7 +63,7 @@ enum class Screens(
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
     EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
-    AREG(R.string.title_areg, GraphFragment::class.java),
+    AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),
     EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
     DYATLOVA(dyatlovaRes.string.dyatlova_title, qualifier = DyatlovaConstants.DYATLOVA_SCREEN)
 }
