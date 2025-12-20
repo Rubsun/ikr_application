@@ -105,3 +105,5 @@ internal class DyatlovaViewModel(
     }
 }
 
+
+

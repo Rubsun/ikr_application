@@ -21,3 +21,5 @@ internal data class DyatlovaUiState(
     val isEmpty: Boolean = false,
 )
 
+
+

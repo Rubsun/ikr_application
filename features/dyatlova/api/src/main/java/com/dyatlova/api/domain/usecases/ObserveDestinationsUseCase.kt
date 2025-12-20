@@ -7,3 +7,5 @@ interface ObserveDestinationsUseCase {
     operator fun invoke(): Flow<List<Destination>>
 }
 
+
+
