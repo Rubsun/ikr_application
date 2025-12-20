@@ -7,16 +7,13 @@ import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
-import com.example.ikr_application.antohaot.ui.AntohaotFragment
 import com.example.ikr_application.alexcode69.ui.Alexcode69Fragment
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
-import com.example.ikr_application.drain678.ui.Drain678Fragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
-import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
@@ -29,11 +26,14 @@ import com.nastyazz.api.Constants as NastyazzConstants
 import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
+import com.antohaot.api.Constants as AntohaotConstants
 import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
 import com.momuswinner.api.Constants as MomusWinnerConstants
 import com.momuswinner.impl.R as MomusWinnerRes
+import com.egorik4.api.Constants as Egorik4Constants
+import com.egorik4.impl.R as egorik4Res
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -51,8 +51,8 @@ enum class Screens(
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
+    ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),
     DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
-    ANTOHAOT(R.string.title_antohaot, AntohaotFragment::class.java),
     ALEXCODE69(R.string.title_alexcode69, Alexcode69Fragment::class.java),
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
@@ -61,7 +61,7 @@ enum class Screens(
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
-    EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
+    EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),
     EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
