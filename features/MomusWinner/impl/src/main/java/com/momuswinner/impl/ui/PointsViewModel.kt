@@ -1,21 +1,17 @@
-package com.example.ikr_application.MomusWinner.ui
+package com.momuswinner.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.MomusWinner.data.models.Point
-import com.example.ikr_application.MomusWinner.data.models.PointsState
-import com.example.ikr_application.MomusWinner.domain.AddPointUseCaseImpl
-import com.example.pointsgraph.data.repository.PointsRepositoryImpl
+import com.momuswinner.api.domain.AddPointUseCase
+import com.momuswinner.api.domain.models.Point
+import com.momuswinner.api.domain.models.PointsState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class PointsViewModel : ViewModel() {
-
-    private val repository = PointsRepositoryImpl()
-    private val addPointUseCase = AddPointUseCaseImpl(repository)
+internal class PointsViewModel(private val addPointUseCase: AddPointUseCase) : ViewModel() {
 
     val pointsState: StateFlow<PointsState> = addPointUseCase.getPoints()
         .map { points ->

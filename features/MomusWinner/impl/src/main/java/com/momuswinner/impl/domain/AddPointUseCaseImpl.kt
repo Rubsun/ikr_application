@@ -1,17 +1,11 @@
-package com.example.ikr_application.MomusWinner.domain
+package com.momuswinner.impl.domain
 
-import com.example.ikr_application.MomusWinner.data.models.Point
-import com.example.pointsgraph.data.repository.PointsRepository
+import com.momuswinner.api.data.PointsRepository
+import com.momuswinner.api.domain.AddPointUseCase
+import com.momuswinner.api.domain.models.Point
 import kotlinx.coroutines.flow.Flow
 
-
-interface AddPointUseCase {
-    suspend fun execute(point: Point)
-    fun getPoints(): Flow<List<Point>>
-    suspend fun clearPoints()
-}
-
-class AddPointUseCaseImpl(
+internal class AddPointUseCaseImpl(
     private val repository: PointsRepository
 ) : AddPointUseCase {
     override suspend fun execute(point: Point) {

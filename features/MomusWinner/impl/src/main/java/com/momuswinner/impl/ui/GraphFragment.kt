@@ -1,18 +1,18 @@
-package com.example.ikr_application.MomusWinner.ui
+package com.momuswinner.impl.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.ikr_application.MomusWinner.data.models.Point
-import com.example.ikr_application.MomusWinner.data.models.PointsState
-import com.example.ikr_application.R
-import com.example.ikr_application.databinding.MomusWinnerFragmentGraphBinding
+import com.github.mikephil.charting.charts.LineChart
+import com.momuswinner.api.domain.models.Point
+import com.momuswinner.api.domain.models.PointsState
+import com.momuswinner.impl.R
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -20,31 +20,38 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class GraphFragment : Fragment() {
-    private var _binding: MomusWinnerFragmentGraphBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var viewModel: PointsViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = MomusWinnerFragmentGraphBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
+    private val viewModel: PointsViewModel by viewModel()
+    private lateinit var chart: LineChart
+    private lateinit var textPointCount: TextView
+    private lateinit var textPointsList: TextView
+    private lateinit var buttonDrawGraph: Button
+    private lateinit var editTextX: EditText
+    private lateinit var editTextY: EditText
+    private lateinit var buttonAddPoint: Button
+    private lateinit var buttonClearPoints: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[PointsViewModel::class.java]
+        
+        chart = view.findViewById(R.id.chart)
+        textPointCount = view.findViewById(R.id.textPointCount)
+        textPointsList = view.findViewById(R.id.textPointsList)
+        buttonDrawGraph = view.findViewById(R.id.buttonDrawGraph)
+        editTextX = view.findViewById(R.id.editTextX)
+        editTextY = view.findViewById(R.id.editTextY)
+        buttonAddPoint = view.findViewById(R.id.buttonAddPoint)
+        buttonClearPoints = view.findViewById(R.id.buttonClearPoints)
+        
         setupChart()
         setupButtons()
         observePointsState()
     }
 
     private fun setupChart() {
-        with(binding.chart) {
+        with(chart) {
             description.isEnabled = true
             description.text = getString(R.string.areg_chart_description)
             description.textSize = resources.getDimension(R.dimen.areg_text_size_tiny)
@@ -72,9 +79,9 @@ class GraphFragment : Fragment() {
     }
 
     private fun setupButtons() {
-        binding.buttonAddPoint.setOnClickListener {
-            val xText = binding.editTextX.text.toString()
-            val yText = binding.editTextY.text.toString()
+        buttonAddPoint.setOnClickListener {
+            val xText = editTextX.text.toString()
+            val yText = editTextY.text.toString()
 
             if (xText.isBlank() || yText.isBlank()) {
                 Toast.makeText(requireContext(), getString(R.string.areg_toast_enter_xy), Toast.LENGTH_SHORT).show()
@@ -85,19 +92,19 @@ class GraphFragment : Fragment() {
                 val x = xText.toDouble()
                 val y = yText.toDouble()
                 viewModel.addPoint(x, y)
-                binding.editTextX.text?.clear()
-                binding.editTextY.text?.clear()
+                editTextX.text?.clear()
+                editTextY.text?.clear()
             } catch (e: NumberFormatException) {
                 Toast.makeText(requireContext(), getString(R.string.areg_toast_invalid_numbers), Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.buttonClearPoints.setOnClickListener {
+        buttonClearPoints.setOnClickListener {
             viewModel.clearPoints()
             clearChart()
         }
 
-        binding.buttonDrawGraph.setOnClickListener {
+        buttonDrawGraph.setOnClickListener {
             val state = viewModel.pointsState.value
             if (state is PointsState.Success) {
                 updateChart(state.points)
@@ -124,21 +131,21 @@ class GraphFragment : Fragment() {
     }
 
     private fun showLoadingState() {
-        binding.textPointCount.text = getString(R.string.areg_chart_loading)
-        binding.textPointsList.text = ""
-        binding.buttonDrawGraph.isEnabled = false
+        textPointCount.text = getString(R.string.areg_chart_loading)
+        textPointsList.text = ""
+        buttonDrawGraph.isEnabled = false
     }
 
     private fun showEmptyState() {
-        binding.textPointCount.text = getString(R.string.areg_chart_no_points, 0)
-        binding.textPointsList.text = getString(R.string.areg_chart_empty_points)
-        binding.buttonDrawGraph.isEnabled = false
-        binding.buttonDrawGraph.text = getString(R.string.areg_chart_draw_graph)
+        textPointCount.text = getString(R.string.areg_chart_no_points, 0)
+        textPointsList.text = getString(R.string.areg_chart_empty_points)
+        buttonDrawGraph.isEnabled = false
+        buttonDrawGraph.text = getString(R.string.areg_chart_draw_graph)
         clearChart()
     }
 
     private fun showSuccessState(points: List<Point>) {
-        binding.textPointCount.text = getString(R.string.areg_chart_no_points, points.size)
+        textPointCount.text = getString(R.string.areg_chart_no_points, points.size)
 
         val maxPoints = 5
         val displayedPoints = if (points.size > maxPoints) points.takeLast(maxPoints) else points
@@ -146,14 +153,14 @@ class GraphFragment : Fragment() {
             getString(R.string.areg_chart_point_format, point.x, point.y)
         }
 
-        binding.textPointsList.text = if (points.size > maxPoints) {
+        textPointsList.text = if (points.size > maxPoints) {
             getString(R.string.areg_chart_more_points_format, points.size - maxPoints) + "\n" + pointsText
         } else {
             pointsText
         }
 
-        binding.buttonDrawGraph.isEnabled = true
-        binding.buttonDrawGraph.text = getString(R.string.areg_chart_update_graph_format, points.size)
+        buttonDrawGraph.isEnabled = true
+        buttonDrawGraph.text = getString(R.string.areg_chart_update_graph_format, points.size)
     }
 
     private fun updateChart(points: List<Point>) {
@@ -186,25 +193,20 @@ class GraphFragment : Fragment() {
             setDrawHorizontalHighlightIndicator(false)
         }
 
-        binding.chart.xAxis.valueFormatter = IndexAxisValueFormatter(xLabels)
-        binding.chart.data = LineData(dataSet)
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(xLabels)
+        chart.data = LineData(dataSet)
 
         if (entries.size > 10) {
-            binding.chart.setVisibleXRangeMaximum(10f)
-            binding.chart.moveViewToX(entries.last().x)
+            chart.setVisibleXRangeMaximum(10f)
+            chart.moveViewToX(entries.last().x)
         }
 
-        binding.chart.invalidate()
+        chart.invalidate()
     }
 
     private fun clearChart() {
-        binding.chart.clear()
-        binding.chart.description.text = getString(R.string.areg_chart_description)
-        binding.chart.invalidate()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        chart.clear()
+        chart.description.text = getString(R.string.areg_chart_description)
+        chart.invalidate()
     }
 }
