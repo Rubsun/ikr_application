@@ -13,7 +13,7 @@ import com.dyatlova.impl.domain.ObserveDestinationsUseCaseImpl
 import com.dyatlova.impl.ui.DyatlovaFragment
 import com.dyatlova.impl.ui.DyatlovaViewModel
 import com.example.injector.AbstractInitializer
-import com.example.primitivestorage.JsonPrimitiveStorageFactory
+import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -22,7 +22,6 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single { JsonPrimitiveStorageFactory(context) }
                 single { DestinationRepository(get()) }
 
                 factory<ObserveDestinationsUseCase> { ObserveDestinationsUseCaseImpl(get()) }
@@ -38,4 +37,6 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
         )
     }
 }
+
+
 

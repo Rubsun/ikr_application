@@ -6,3 +6,5 @@ interface AddDestinationUseCase {
     suspend operator fun invoke(destination: Destination)
 }
 
+
+

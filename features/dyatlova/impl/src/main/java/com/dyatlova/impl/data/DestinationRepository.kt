@@ -5,12 +5,14 @@ import com.dyatlova.impl.data.models.DestinationData
 import com.dyatlova.impl.data.models.DestinationsStorage
 import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
@@ -26,8 +28,12 @@ internal class DestinationRepository(
 
     private val destinations = MutableStateFlow<List<DestinationData>>(emptyList())
 
+    private val scope = CoroutineScope(dispatcher + SupervisorJob())
+
     init {
-        loadFromStorage()
+        scope.launch {
+            loadFromStorage()
+        }
     }
 
     fun observeDestinations(): Flow<List<DestinationData>> = destinations
@@ -101,4 +107,3 @@ internal fun Destination.toData(): DestinationData = DestinationData(
     imageUrl = imageUrl,
     tags = tags,
 )
-

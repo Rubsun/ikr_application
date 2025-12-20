@@ -14,3 +14,5 @@ internal class ObserveDestinationsUseCaseImpl(
         .map { data -> data.map { it.toDomain() } }
 }
 
+
+

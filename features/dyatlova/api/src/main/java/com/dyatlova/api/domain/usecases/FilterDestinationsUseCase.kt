@@ -6,3 +6,5 @@ interface FilterDestinationsUseCase {
     operator fun invoke(destinations: List<Destination>, query: String): List<Destination>
 }
 
+
+

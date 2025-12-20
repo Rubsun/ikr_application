@@ -7,3 +7,5 @@ internal data class DestinationsStorage(
     val destinations: List<DestinationData> = emptyList(),
 )
 
+
+

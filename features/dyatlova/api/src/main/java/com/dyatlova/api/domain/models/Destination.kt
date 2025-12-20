@@ -8,3 +8,5 @@ data class Destination(
     val tags: List<String>,
 )
 
+
+
