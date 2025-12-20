@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -43,6 +45,7 @@ kotlin {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.constraintlayout)
 
@@ -51,6 +54,10 @@ dependencies {
 
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.ktx)
 
     api(project(":features:quovadis:api"))
     implementation(project(":libs:injector"))
