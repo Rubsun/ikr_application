@@ -1,13 +1,13 @@
-package com.example.ikr_application.egorik4.ui
+package com.egorik4.impl.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.ikr_application.R
-import com.example.ikr_application.egorik4.ui.models.BookDisplayModel
+import com.egorik4.api.ui.models.BookDisplayModel
+import com.egorik4.impl.R
 
-class BookAdapter : ListAdapter<BookDisplayModel, BookViewHolder>(BookDiff()) {
+internal class BookAdapter : ListAdapter<BookDisplayModel, BookViewHolder>(BookDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -31,4 +31,3 @@ class BookAdapter : ListAdapter<BookDisplayModel, BookViewHolder>(BookDiff()) {
         ): Boolean = oldItem == newItem
     }
 }
-

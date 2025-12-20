@@ -79,6 +79,7 @@ dependencies {
     implementation(project(":features:denisova:impl"))
     implementation(project(":features:dyatlova:api"))
     implementation(project(":features:dyatlova:impl"))
+    implementation(project(":features:egorik4:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)

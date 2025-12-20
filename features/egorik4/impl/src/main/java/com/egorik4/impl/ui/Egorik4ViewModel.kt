@@ -1,8 +1,8 @@
-package com.example.ikr_application.egorik4.ui
+package com.egorik4.impl.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.ikr_application.egorik4.domain.SearchBooksUseCase
-import com.example.ikr_application.egorik4.ui.models.BookDisplayModel
+import com.egorik4.api.domain.usecases.SearchBooksUseCase
+import com.egorik4.api.ui.models.BookDisplayModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,8 +12,9 @@ import kotlinx.coroutines.flow.map
 import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(FlowPreview::class)
-class Egorik4ViewModel : ViewModel() {
-    private val searchBooksUseCase = SearchBooksUseCase()
+internal class Egorik4ViewModel(
+    private val searchBooksUseCase: SearchBooksUseCase
+) : ViewModel() {
     private val queryFlow = MutableStateFlow("")
     private val state = queryFlow
         .debounce(600.milliseconds)
@@ -48,4 +49,3 @@ class Egorik4ViewModel : ViewModel() {
         val error: Throwable? = null,
     )
 }
-

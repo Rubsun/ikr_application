@@ -1,14 +1,14 @@
-package com.example.ikr_application.egorik4.ui
+package com.egorik4.impl.ui
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import com.example.ikr_application.R
-import com.example.ikr_application.egorik4.ui.models.BookDisplayModel
+import com.egorik4.api.ui.models.BookDisplayModel
+import com.egorik4.impl.R
 
-class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+internal class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val coverView: ImageView by lazy { itemView.findViewById<ImageView>(R.id.book_cover) }
     private val titleView: TextView by lazy { itemView.findViewById<TextView>(R.id.book_title) }
@@ -42,4 +42,3 @@ class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 }
-

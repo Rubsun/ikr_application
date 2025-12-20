@@ -15,7 +15,6 @@ import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
-import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
@@ -32,6 +31,8 @@ import com.antohaot.api.Constants as AntohaotConstants
 import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
+import com.egorik4.api.Constants as Egorik4Constants
+import com.egorik4.impl.R as egorik4Res
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -59,7 +60,7 @@ enum class Screens(
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
-    EGORIK4(R.string.title_egorik4, Egorik4Fragment::class.java),
+    EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(R.string.title_areg, GraphFragment::class.java),
     EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
