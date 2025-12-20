@@ -27,6 +27,9 @@
             <option value="$PROJECT_DIR$/features/nfirex" />
             <option value="$PROJECT_DIR$/features/nfirex/api" />
             <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/features/quovadis" />
+            <option value="$PROJECT_DIR$/features/quovadis/api" />
+            <option value="$PROJECT_DIR$/features/quovadis/impl" />
             <option value="$PROJECT_DIR$/features/stupishin" />
             <option value="$PROJECT_DIR$/features/stupishin/api" />
             <option value="$PROJECT_DIR$/features/stupishin/impl" />

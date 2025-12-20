@@ -1,21 +1,24 @@
-package com.example.ikr_application.quovadis.ui
+package quo.vadis.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.quovadis.domain.GetCatUseCase
+import com.example.injector.inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import quo.vadis.api.usecases.ApiBaseUrl
+import quo.vadis.api.usecases.AssembleImageUrlUseCase
+import quo.vadis.api.usecases.GetCatNameUseCase
+import quo.vadis.impl.data.CatDto
+import kotlin.collections.plus
 
 
-class CatViewModel(
-    private val getRandomCatUseCase: GetCatUseCase
-) : ViewModel() {
+internal class CatViewModel : ViewModel() {
+    private val getRandomCatUseCase: GetCatNameUseCase by inject()
+    private val assembleImageUrlUseCase: AssembleImageUrlUseCase by inject()
 
     private val _uiState = MutableStateFlow(CatUiState())
     val uiState: StateFlow<CatUiState> = _uiState.asStateFlow()
@@ -27,12 +30,12 @@ class CatViewModel(
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
             val cat = withContext(Dispatchers.Default) {
-                getRandomCatUseCase.getRandomCat(phrase)
+                val result = getRandomCatUseCase.getRandomCat(phrase)
+                CatDto(name = result.name, phrase = result.phrase, imageUrl = null)
             }
 
             val imageUrl = withContext(Dispatchers.IO) {
-                val encoded = URLEncoder.encode(phrase ?: "Meow", StandardCharsets.UTF_8.toString())
-                "https://cataas.com/cat/says/$encoded"
+                assembleImageUrlUseCase.getImageUrl(_uiState.value.api, phrase ?: "200")
             }
 
             val catWithImage = cat.copy(imageUrl = imageUrl)
@@ -46,5 +49,9 @@ class CatViewModel(
 
     fun onFilterChanged(newFilter: String) {
         _uiState.value = _uiState.value.copy(filter = newFilter)
+    }
+
+    fun onApiChanged(newApi: ApiBaseUrl) {
+        _uiState.value = _uiState.value.copy(api = newApi)
     }
 }

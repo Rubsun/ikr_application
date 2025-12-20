@@ -15,7 +15,6 @@ import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.drain678.ui.Drain678Fragment
-import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
@@ -23,6 +22,7 @@ import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.example.ikr_application.zagora.ui.FragmentDog
 import com.example.ikr_application.dyatlova.ui.DyatlovaFragment
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
+import quo.vadis.api.Constants.QUOVADIS_SCREEN
 import com.nfirex.api.Constants
 import com.nfirex.impl.R as nfirexRes
 import com.nastyazz.api.Constants as NastyazzConstants
@@ -42,7 +42,7 @@ enum class Screens(
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, RinFragment::class.java),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
-    QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
+    QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(R.string.title_denisova, com.example.ikr_application.denisova.ui.DenisovaFragment::class.java),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
