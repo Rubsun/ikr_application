@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.primitivestorage"
+    namespace = "quo.vadis.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -23,19 +23,36 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
 }
 
 dependencies {
-    implementation(libs.androidx.datastore)
-    implementation(libs.kotlinx.serialization.json)
 
-    api(project(":libs:primitivestorage:api"))
+    implementation(libs.androidx.core.ktx)
+
+    implementation(libs.androidx.constraintlayout)
+
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
+
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    api(project(":features:quovadis:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:api"))
 }

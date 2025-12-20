@@ -15,11 +15,15 @@ import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
+import com.example.ikr_application.drain678.ui.Drain678Fragment
+import com.example.ikr_application.rubsun.ui.NumberFragment
+import com.example.ikr_application.egorik4.ui.Egorik4Fragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
+import quo.vadis.api.Constants.QUOVADIS_SCREEN
 import com.nfirex.api.Constants
 import com.denisova.api.Constants as DenisovaConstants
 import com.nfirex.impl.R as nfirexRes
@@ -48,7 +52,7 @@ enum class Screens(
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, qualifier = RinApi.SCREEN),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
-    QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
+    QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
