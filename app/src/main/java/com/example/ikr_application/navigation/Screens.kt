@@ -7,7 +7,7 @@ import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
-import com.example.ikr_application.alexcode69.ui.Alexcode69Fragment
+import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
@@ -53,7 +53,7 @@ enum class Screens(
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
     ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),
     DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
-    ALEXCODE69(R.string.title_alexcode69, Alexcode69Fragment::class.java),
+    ALEXCODE69(R.string.title_alexcode69, qualifier = Alexcode69Constants.ALEXCODE69_SCREEN),
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),

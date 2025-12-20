@@ -71,6 +71,7 @@ joda-time = { module = "joda-time:joda-time", version.ref = "joda-time" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
+koin-androidx-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel" }
 androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
 
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
