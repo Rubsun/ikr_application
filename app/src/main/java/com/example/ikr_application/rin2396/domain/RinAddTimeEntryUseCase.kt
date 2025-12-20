@@ -13,4 +13,3 @@ class RinAddTimeEntryUseCase {
         RinRepository.INSTANCE.addTimeEntry(info)
     }
 }
-
