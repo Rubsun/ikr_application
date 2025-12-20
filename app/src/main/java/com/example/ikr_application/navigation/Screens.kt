@@ -30,6 +30,7 @@ import com.nastyazz.api.Constants as NastyazzConstants
 import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
+import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
 
@@ -49,12 +50,12 @@ enum class Screens(
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
+    DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
     ANTOHAOT(R.string.title_antohaot, AntohaotFragment::class.java),
     ALEXCODE69(R.string.title_alexcode69, Alexcode69Fragment::class.java),
     KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
     RUBSUN(R.string.title_rubsun, NumberFragment::class.java),
-    DRAIN678(R.string.title_drain678, Drain678Fragment::class.java),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
