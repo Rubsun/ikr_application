@@ -8,7 +8,7 @@ import com.akiko23.api.Constants as Akiko23Constants
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
-import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
+import com.tire.api.Constants.TIRE_SCREEN
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
 import com.eremin.api.Constants as EreminConstants
@@ -43,7 +43,7 @@ enum class Screens(
     val qualifier: String? = null,
 ) {
     SAMPLE(nfirexRes.string.title_sample, qualifier = Constants.NFIREX_SCREEN),
-    TIRE(R.string.title_tire, TiReFragment::class.java),
+    TIRE(R.string.title_tire, qualifier = TIRE_SCREEN),
     STUPISHIN(stupishinRes.string.title_stupishin, qualifier = StupishinConstants.STUPISHIN_SCREEN),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
 	SPL3G(spl3gRes.string.title_spl3g, qualifier = Spl3gConstants.SPL3G_SCREEN),

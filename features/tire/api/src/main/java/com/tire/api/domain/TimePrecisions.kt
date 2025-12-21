@@ -1,4 +1,4 @@
-package com.example.ikr_application.tire.domain
+package com.tire.api.domain
 
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -13,6 +13,11 @@ enum class TimePrecisions(
     MS(1.milliseconds, "ms"),
     S(1.seconds, "s"),
     M(1.minutes, "m"),
-    H(1.hours, "h"),
-}
+    H(1.hours, "h");
 
+    companion object {
+        fun fromName(name: String): TimePrecisions? {
+            return entries.find { it.name == name }
+        }
+    }
+}

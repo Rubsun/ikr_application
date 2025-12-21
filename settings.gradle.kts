@@ -63,6 +63,8 @@ include(":features:demyanenko:api")
 
 include(":features:rubsun:api")
 include(":features:rubsun:impl")
+include(":features:tire:api")
+include(":features:tire:impl")
 include(":features:eremin:api")
 include(":features:eremin:impl")
 include(":features:akiko23:api")
