@@ -67,7 +67,7 @@
             android:text="@string/akiko23_clear"
             />
 
-        <com.example.ikr_application.akiko23.ui.DrawingView
+        <com.akiko23.impl.ui.DrawingView
             android:id="@+id/drawing_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"

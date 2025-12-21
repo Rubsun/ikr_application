@@ -1,12 +1,15 @@
-package com.example.ikr_application.akiko23.ui
+package com.akiko23.impl.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.ikr_application.R
+import com.akiko23.impl.R
 import com.google.android.material.button.MaterialButtonToggleGroup
 
-class Akiko23CanvasFragment : Fragment(R.layout.fragment_akiko23_canvas) {
+/**
+ * Фрагмент для экрана рисования akiko23.
+ */
+internal class Akiko23CanvasFragment : Fragment(R.layout.fragment_akiko23_canvas) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
