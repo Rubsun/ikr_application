@@ -4,7 +4,11 @@ import android.os.SystemClock
 import androidx.annotation.Discouraged
 import com.example.ikr_application.akiko23.data.models.DeviceInfo
 
-class DeviceRepository {
+/**
+ * Репозиторий конкретно для фичи akiko23.
+ * Не путать с учебным примером в пакете nfirex.
+ */
+class Akiko23DeviceRepository {
     fun deviceInfo(): DeviceInfo {
         return DeviceInfo(
             currentTime = System.currentTimeMillis(),
@@ -14,6 +18,6 @@ class DeviceRepository {
 
     companion object {
         @Discouraged("Only for example")
-        val INSTANCE = DeviceRepository()
+        val INSTANCE = Akiko23DeviceRepository()
     }
 }

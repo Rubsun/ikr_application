@@ -10,7 +10,7 @@
     <string name="areg_chart_empty_points">Нет точек</string>
     <string name="areg_chart_draw_graph">Нарисовать график</string>
     <string name="areg_chart_update_graph_format">Обновить (%d точек)</string>
-    <string name="areg_chart_point_format">(%.1f, %.1f)</string>
+    <string name="areg_chart_point_format">(%1$.1f, %2$.1f)</string>
     <string name="areg_chart_more_points_format">... (+%d)</string>
 
     <string name="areg_toast_enter_xy">Введите X и Y</string>

@@ -8,6 +8,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ikr_application.navigation.ScreensFragment
 import com.example.ikr_application.navigation.ScreensFragment.Companion.extractScreen
+import com.example.injector.get
+import org.koin.core.qualifier.named
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         val screen = intent.extractScreen()
         if (screen != null) {
+            val fragmentType = screen.qualifier
+                ?.let { get(named(it)) }
+                ?: screen.type!!
+
             supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     android.R.anim.slide_in_left,
@@ -39,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     android.R.anim.fade_in,
                     android.R.anim.slide_out_right
                 )
-                .replace(R.id.container, screen.type, null)
+                .replace(R.id.container, fragmentType, null)
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
         }

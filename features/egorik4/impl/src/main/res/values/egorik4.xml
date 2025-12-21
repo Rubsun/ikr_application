@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_egorik4_screen">Библиотека книг</string>
+    <string name="egorik4_search_hint">Поиск книг...</string>
+    <string name="egorik4_book_title_pattern">Название: %s</string>
+    <string name="egorik4_book_author_pattern">Автор: %s</string>
+    <string name="egorik4_book_cover_description">Обложка книги</string>
+</resources>

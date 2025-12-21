@@ -1,24 +1,23 @@
 package com.example.ikr_application.nfirex.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.ikr_application.nfirex.domain.CurrentDateUseCase
-import com.example.ikr_application.nfirex.domain.ElapsedTimeUseCase
 import com.example.ikr_application.nfirex.domain.TimePrecisions
 
 @Deprecated("Use your own classes:)")
 class MyViewModel : ViewModel() {
-    private val currentDateUseCase = CurrentDateUseCase()
-    private val elapsedTimeUseCase = ElapsedTimeUseCase()
+    init {
+        throw IllegalStateException("Removed class")
+    }
 
     fun timePrecisions(): List<TimePrecisions> {
-        return TimePrecisions.entries
+        throw IllegalStateException("Removed class")
     }
 
     fun date(): String {
-        return currentDateUseCase.date().toString()
+        throw IllegalStateException("Removed class")
     }
 
     fun elapsedTime(precision: TimePrecisions): String {
-        return "${elapsedTimeUseCase.value(precision)} ${precision.typeName}"
+        throw IllegalStateException("Removed class")
     }
 }

@@ -15,38 +15,64 @@
         android:text="Врум врум?"
         android:textStyle="bold" />
 
+    <!-- Поиск -->
     <EditText
-        android:id="@+id/phraseInput"
+        android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:hint="Вруууууууууууум (или радио пилота)..." />
+        android:hint="Поиск машины..." />
 
+    <!-- Блок добавления машины -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp"
+        android:padding="8dp"
+        android:background="@android:color/darker_gray">
+
+        <EditText
+            android:id="@+id/carNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название машины"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/carSoundEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Звук машины (опционально)"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/addCarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить машину"
+            android:textColor="#87FF00" />
+    </LinearLayout>
+
+    <!-- Индикатор загрузки -->
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- Сообщение об ошибке -->
     <TextView
-        android:id="@+id/f1carNameTv"
+        android:id="@+id/errorTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="tu tu tu du Max Verstappen" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/phraseChip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/holo_red_dark"
         android:visibility="gone"
-        tools:text="Goodbye World"
-        tools:visibility="visible" />
+        android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/loadButton"
+    <!-- RecyclerView для списка машин -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/carsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Загрузить звук"
-        android:textColor="#87FF00"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

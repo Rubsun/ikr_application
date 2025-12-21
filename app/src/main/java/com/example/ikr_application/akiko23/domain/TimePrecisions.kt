@@ -6,7 +6,10 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-enum class TimePrecisions(
+/**
+ * Набор доступных точностей времени именно для задачи akiko23.
+ */
+enum class Akiko23TimePrecision(
     val divider: Duration,
     val typeName: String,
 ) {

@@ -38,9 +38,26 @@
 - Если делаются какие-то тяжелые операции - то при помощи suspend и Dispatcher переводить эту работу в IO или Default потоки
 - Изменения в main добавлть через PullRequest!
 
+** Добавить до 20.12.2025**
+- Убрать свой пакет из app модуля
+- Добавить свои модули api и impl (по примеру модуелй nfirex)
+- В своем api модуле добавить классы, при помощи которых можно будет получить ваш тип фрагмента в app модуле (можно глянуть как сделано в модуле nfirex:api)
+- В своем модуле impl, сделать для всех классов видимость internal
+- Добавить DI для сконфигурирования своего модуля, и дать возможность app модулю получить данные по вашему фрагменту
+    - Можно использовать модуль injector
+    - Можно добавить Dagger и через него провязать
+- Добавить вариант использования персистентного хранилища
+    - Необходимо туда будет сохранить данные
+    - Необходимо будет из него считывать данные
+    - Можно воспользоваться SharedPreferences
+    - Можно использовать файловое хранилище
+    - Можно внедрить Room
+
+
 ## Полезные ссылки
 - **Presentation Domain Data Layering** - https://martinfowler.com/bliki/PresentationDomainDataLayering.html
 - **Asynchronous Flow** - https://kotlinlang.org/docs/flow.html
+- **Data and file storage overview** - https://developer.android.com/training/data-storage
 
 <div align="center"><img src="subo.gif" width="360"></div>
 <div align="center"><img src="oooo_fernando_alooooonsoo.gif" width="360"></div>
