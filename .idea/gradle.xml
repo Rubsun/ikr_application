@@ -48,9 +48,15 @@
             <option value="$PROJECT_DIR$/features/nfirex" />
             <option value="$PROJECT_DIR$/features/nfirex/api" />
             <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/features/rubsun" />
+            <option value="$PROJECT_DIR$/features/rubsun/api" />
+            <option value="$PROJECT_DIR$/features/rubsun/impl" />
             <option value="$PROJECT_DIR$/features/stupishin" />
             <option value="$PROJECT_DIR$/features/stupishin/api" />
             <option value="$PROJECT_DIR$/features/stupishin/impl" />
+            <option value="$PROJECT_DIR$/features/tire" />
+            <option value="$PROJECT_DIR$/features/tire/api" />
+            <option value="$PROJECT_DIR$/features/tire/impl" />
             <option value="$PROJECT_DIR$/features/zagora" />
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />

@@ -2,6 +2,7 @@
 activityKtx = "1.12.1"
 agp = "8.13.2"
 fragmentKtx = "1.8.9"
+koinAndroidxViewmodel = "3.5.0"
 kotlin = "2.2.20"
 coreKtx = "1.17.0"
 junit = "4.13.2"
@@ -39,6 +40,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 coil-kt-coil = { module = "io.coil-kt:coil" }
 gson = { module = "com.google.code.gson:gson" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+koin-androidx-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel", version.ref = "koinAndroidxViewmodel" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.8.1" }

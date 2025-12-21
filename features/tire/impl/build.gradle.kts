@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.example.primitivestorage"
+    namespace = "com.tire.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -33,9 +34,19 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.datastore)
-    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 
-    api(project(":libs:primitivestorage:api"))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    api(project(":features:tire:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:api"))
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
 }
