@@ -10,6 +10,7 @@ import com.spl3g.impl.domain.GetAppleFramesUseCaseImpl
 import com.spl3g.impl.ui.AppleFramesFragment
 import com.spl3g.impl.ui.AppleFramesViewModel
 import com.example.injector.AbstractInitializer
+import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
@@ -28,9 +29,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                         .build()
                         .create(AppleApi::class.java)
                 }
-                single { AppleRepository(get()) }
+                single { AppleRepository(get(), get()) }
                 factory<GetAppleFramesUseCase> { GetAppleFramesUseCaseImpl(get()) }
-                viewModel { AppleFramesViewModel(get()) }
+                viewModel { AppleFramesViewModel(get(), get()) }
                 factory<Class<out Fragment>>(named(Constants.SPL3G_SCREEN)) {
                     AppleFramesFragment::class.java
                 }

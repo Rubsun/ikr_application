@@ -46,16 +46,13 @@ class AppleFramesFragment : Fragment() {
         playPauseButton.setOnClickListener {
             Log.d("AppleFramesFragment", "Play/Pause button clicked")
             viewModel.togglePlayback()
-            val isPlaying = viewModel.uiState.value.isPlaying
-            playPauseButton.text = if (isPlaying) "Pause" else "Play"
         }
 
         // Setup speed slider
         speedSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (progress > 0) {  // Ensure we don't have 0 FPS
+                if (fromUser && progress > 0) {  // Ensure we don't have 0 FPS
                     val fps = progress
-                    speedLabel.text = "Speed: ${fps} FPS"
                     viewModel.setPlaybackSpeed(fps)
                 }
             }
@@ -79,6 +76,12 @@ class AppleFramesFragment : Fragment() {
 
                     // Update the current frame label
                     currentFrameLabel.text = "Frame: ${state.currentLogicalFrame}/${state.highestLoadedFrame}"
+                    playPauseButton.text = if (state.isPlaying) "Pause" else "Play"
+
+                    if (speedSlider.progress != state.fps) {
+                        speedSlider.progress = state.fps
+                    }
+                    speedLabel.text = "Speed: ${state.fps} FPS"
 
                     if (state.error != null) {
                         Toast.makeText(context, state.error, Toast.LENGTH_SHORT).show()

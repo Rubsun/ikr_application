@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spl3g.api.domain.GetAppleFramesUseCase
 import com.spl3g.api.domain.models.FrameResult
+import com.spl3g.impl.data.AppleRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,10 +28,14 @@ data class AppleFramesState(
     val isPlaying: Boolean = false,
     val error: String? = null,
     val isLoading: Boolean = false,
-    val playbackPosition: Int = 0  // Track the overall playback position for loading decisions
+    val playbackPosition: Int = 0,  // Track the overall playback position for loading decisions
+    val fps: Int = 10
 )
 
-class AppleFramesViewModel(private val getAppleFramesUseCase: GetAppleFramesUseCase) : ViewModel() {
+class AppleFramesViewModel(
+    private val getAppleFramesUseCase: GetAppleFramesUseCase,
+    private val appleRepository: AppleRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AppleFramesState())
     val uiState: StateFlow<AppleFramesState> = _uiState.asStateFlow()
@@ -39,6 +44,21 @@ class AppleFramesViewModel(private val getAppleFramesUseCase: GetAppleFramesUseC
     private val maxFramesInMemory = 30  // Maximum frames to keep in memory
     private var isFetching = false
     private var playJob: kotlinx.coroutines.Job? = null
+
+    init {
+        viewModelScope.launch {
+            val savedState = appleRepository.getSavedState()
+            if (savedState != null) {
+                _uiState.value = _uiState.value.copy(
+                    fps = savedState.selectedFps,
+                    playbackPosition = savedState.lastFrame,
+                    currentLogicalFrame = savedState.lastFrame
+                )
+                startIndex = savedState.lastFrame
+            }
+            loadNextPage()
+        }
+    }
 
     fun loadNextPage() {
         if (isFetching) return
@@ -284,7 +304,7 @@ class AppleFramesViewModel(private val getAppleFramesUseCase: GetAppleFramesUseC
                     loadNextPage()
                 }
 
-                val delayMs = (1000L / currentFps).toLong() // Convert FPS to milliseconds
+                val delayMs = (1000L / _uiState.value.fps).toLong() // Convert FPS to milliseconds
                 delay(delayMs)
             }
         }
@@ -294,17 +314,22 @@ class AppleFramesViewModel(private val getAppleFramesUseCase: GetAppleFramesUseC
         playJob?.cancel()
         playJob = null
         _uiState.value = _uiState.value.copy(isPlaying = false)
+        viewModelScope.launch {
+            appleRepository.saveState(_uiState.value.fps, _uiState.value.currentLogicalFrame)
+        }
     }
 
-    private var currentFps = 10 // Default to 10 FPS
-
     fun setPlaybackSpeed(fps: Int) {
-        currentFps = fps.coerceIn(1, 60) // Limit FPS between 1 and 60
+        val newFps = fps.coerceIn(1, 60)
+        _uiState.value = _uiState.value.copy(fps = newFps)
 
         // Restart playback if currently playing to apply the new speed
         if (_uiState.value.isPlaying) {
             stopPlayback()
             startPlayback()
+		}
+        viewModelScope.launch {
+            appleRepository.saveState(_uiState.value.fps, _uiState.value.currentLogicalFrame)
         }
     }
 
