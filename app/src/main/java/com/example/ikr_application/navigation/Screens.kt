@@ -15,7 +15,6 @@ import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.example.ikr_application.rubsun.ui.NumberFragment
 import com.example.ikr_application.eremin.ui.CapybaraFragment
-import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
@@ -34,6 +33,7 @@ import com.momuswinner.api.Constants as MomusWinnerConstants
 import com.momuswinner.impl.R as MomusWinnerRes
 import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
+import com.vtyapkova.api.Constants as VtyapkovaConstants
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -60,7 +60,7 @@ enum class Screens(
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
-    VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
+    VTYAPKOVA(R.string.title_viktoria, qualifier = VtyapkovaConstants.VTYAPKOVA_SCREEN),
     EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),
