@@ -57,7 +57,7 @@ dependencies {
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     api(project(":features:quovadis:api"))
     implementation(project(":libs:injector"))

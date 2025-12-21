@@ -27,12 +27,14 @@ internal class CatRepositoryImpl(
     suspend fun insertCat(
         name: String,
         phrase: String?,
-        imageUrl: String?
+        imageUrl: String?,
+        fetchedFrom: String
     ): Long {
         val cat = CatEntity(
             name = name,
             phrase = phrase,
-            imageUrl = imageUrl
+            imageUrl = imageUrl,
+            fetchedFrom = fetchedFrom
         )
         return catDao.insertCat(cat)
     }
