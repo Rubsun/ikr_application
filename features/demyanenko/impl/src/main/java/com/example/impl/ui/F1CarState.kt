@@ -1,8 +1,9 @@
-package com.example.ikr_application.demyanenko.ui
+package com.example.impl.ui
 
-import com.example.ikr_application.demyanenko.data.F1Car
+import com.example.impl.data.F1Car
 
-data class F1CarState(
+
+internal data class F1CarState(
     val cars: List<F1Car> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null,

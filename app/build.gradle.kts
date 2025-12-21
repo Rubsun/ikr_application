@@ -92,6 +92,8 @@ dependencies {
     implementation(project(":features:MomusWinner:impl"))
     implementation(project(":features:egorik4:impl"))
     implementation(project(":features:alexcode69:impl"))
+    implementation(project(":features:demyanenko:impl"))
+
     implementation(project(":features:rubsun:impl"))
     implementation(project(":features:eremin:impl"))
     implementation(project(":features:eremin:api"))
