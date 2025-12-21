@@ -1,0 +1,59 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/songTextFieldTitle" />
+
+        <EditText
+            android:id="@+id/author"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/songTextFieldAuthor" />
+
+        <EditText
+            android:id="@+id/album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/songTextFieldAlbum"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/year"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/songTextFieldYear"/>
+
+        <EditText
+            android:id="@+id/genre"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/songTextFieldGenre"/>
+
+        <Button
+            android:id="@+id/addSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kristevt_caption_add_song"/>
+
+        <Button
+            android:id="@+id/deleteSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kristevt_caption_delete_song"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

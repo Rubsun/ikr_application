@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        style="?attr/songCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            style="?attr/songCardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Master of Puppets"
+            />
+
+        <TextView
+            android:id="@+id/info"
+            style="?attr/songCardInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Metallica • 1986 • Thrash Metal"
+            />
+
+        <Button
+            android:id="@+id/getLyrics"
+            style="?attr/songCardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kristevt_caption_get_lyrics"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>
