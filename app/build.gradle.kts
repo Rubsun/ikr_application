@@ -27,12 +27,20 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    packaging {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
     }
 }
 
@@ -67,6 +75,7 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
+    implementation(project(":features:quovadis:impl"))
     implementation(project(":features:nastyazz:impel"))
     implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
