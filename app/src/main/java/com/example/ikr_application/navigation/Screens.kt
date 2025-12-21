@@ -4,14 +4,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.example.ikr_application.R
 import com.akiko23.api.Constants as Akiko23Constants
-<<<<<<< HEAD
 import com.dimmension.api.Constants as DimmensionConstants
 import com.dimmension.impl.R as dimmensionRes
-import com.example.ikr_application.spl3g.ui.AppleFramesFragment
-=======
->>>>>>> 2696b9f5ccc34920757a18d18ef530fd04d405dd
 import com.alexcode69.api.Constants as Alexcode69Constants
-import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.tire.api.Constants.TIRE_SCREEN
 import com.rubsun.api.Constants as RubsunConstants
@@ -41,6 +36,8 @@ import com.egorik4.impl.R as egorik4Res
 import com.example.api.Constants as DemyanenkoConstants
 import com.spl3g.api.Constants as Spl3gConstants
 import com.spl3g.impl.R as spl3gRes
+import com.kristevt.api.Constants as KristevtConstants
+import com.kristevt.impl.R as kristevtRes
 
 enum class Screens(
     @StringRes val title: Int,
@@ -61,7 +58,7 @@ enum class Screens(
     ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),
     DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
     ALEXCODE69(R.string.title_alexcode69, qualifier = Alexcode69Constants.ALEXCODE69_SCREEN),
-    KRISTEVT(R.string.title_kristevt, KristevtFragment::class.java),
+    KRISTEVT(kristevtRes.string.title_kristevt, qualifier = KristevtConstants.KRISTEVT_SCREEN),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
     RUBSUN(rubsunRes.string.title_rubsun, qualifier = RubsunConstants.RUBSUN_SCREEN),
     MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),

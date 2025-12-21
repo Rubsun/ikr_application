@@ -94,12 +94,12 @@ dependencies {
     implementation(project(":features:egorik4:impl"))
     implementation(project(":features:alexcode69:impl"))
     implementation(project(":features:demyanenko:impl"))
-
     implementation(project(":features:rubsun:impl"))
     implementation(project(":features:tire:impl"))
     implementation(project(":features:eremin:impl"))
     implementation(project(":features:eremin:api"))
     implementation(project(":features:akiko23:impl"))
+    implementation(project(":features:kristevt:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
