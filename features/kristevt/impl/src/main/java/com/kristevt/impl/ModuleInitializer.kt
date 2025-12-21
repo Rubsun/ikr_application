@@ -35,7 +35,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 factory<LyricsService> { createService(BASE_URL) }
 
                 single { SongsRepository(context = get())}
-                single { LyricsRepository }
+                single { LyricsRepository() }
 
                 factory<SongsListUseCase> { SongsListUseCaseImpl(get()) }
                 factory<GetLyricsUseCase> { GetLyricsUseCaseImpl(get()) }

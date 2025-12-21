@@ -37,6 +37,13 @@
             android:text="@string/kristevt_caption_get_lyrics"
             />
 
+        <Button
+            android:id="@+id/deleteSong"
+            style="?attr/songCardButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kristevt_caption_delete_song"/>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </com.google.android.material.card.MaterialCardView>

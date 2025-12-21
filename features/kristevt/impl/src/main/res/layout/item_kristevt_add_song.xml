@@ -49,11 +49,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/kristevt_caption_add_song"/>
-
-        <Button
-            android:id="@+id/deleteSong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/kristevt_caption_delete_song"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
