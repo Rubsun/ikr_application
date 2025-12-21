@@ -27,12 +27,20 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    packaging {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
     }
 }
 
@@ -67,15 +75,16 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
+    implementation(project(":features:quovadis:impl"))
     implementation(project(":features:nastyazz:impel"))
     implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
-	  implementation(project(":features:rin2396:impl"))
+    implementation(project(":features:rin2396:impl"))
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":features:artemkaa:impl"))
     implementation(project(":features:antohaot:impl"))
-	  implementation(project(":features:zagora:impl"))
+    implementation(project(":features:zagora:impl"))
     implementation(project(":features:drain678:impl"))
     implementation(project(":features:denisova:impl"))
     implementation(project(":features:dyatlova:api"))
