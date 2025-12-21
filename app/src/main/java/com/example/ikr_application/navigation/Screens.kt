@@ -13,8 +13,8 @@ import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
+import com.eremin.api.Constants as EreminConstants
 import com.rin2396.api.Constants as RinApi
-import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
@@ -65,6 +65,6 @@ enum class Screens(
     EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),
-    EREMIN(R.string.title_eremin, CapybaraFragment::class.java),
-    DYATLOVA(dyatlovaRes.string.dyatlova_title, qualifier = DyatlovaConstants.DYATLOVA_SCREEN)
+    DYATLOVA(dyatlovaRes.string.dyatlova_title, qualifier = DyatlovaConstants.DYATLOVA_SCREEN),
+    EREMIN(R.string.title_eremin, qualifier = EreminConstants.EREMIN_SCREEN)
 }

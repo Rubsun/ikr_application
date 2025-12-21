@@ -1,11 +1,11 @@
-package com.example.ikr_application.eremin.domain
+package com.eremin.impl.domain
 
-import com.example.ikr_application.eremin.data.CapybaraRepository
-import com.example.ikr_application.eremin.domain.models.Capybara
+import com.eremin.impl.data.CapybaraRepository
+import com.eremin.api.domain.models.Capybara
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetCapybarasUseCase(private val repository: CapybaraRepository) {
+internal class GetCapybarasUseCase(private val repository: CapybaraRepository) {
 
     suspend fun execute(from: Int, take: Int): Flow<List<Capybara>> = flow {
         val capybaras = repository.getCapybaras(from, take).map {

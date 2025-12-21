@@ -1,6 +1,6 @@
-package com.example.ikr_application.eremin.data
+package com.eremin.impl.data
 
-import com.example.ikr_application.eremin.data.models.CapybaraData
+import com.eremin.impl.data.models.CapybaraData
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
-class CapybaraRepository {
+internal class CapybaraRepository {
 
     private val okHttpClient = OkHttpClient.Builder()
         .readTimeout(30, TimeUnit.SECONDS)
