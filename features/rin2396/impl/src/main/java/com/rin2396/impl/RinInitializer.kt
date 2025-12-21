@@ -7,7 +7,10 @@ import com.rin2396.api.RinApi
 import com.rin2396.impl.rin2396.data.RinRepository
 import com.rin2396.impl.rin2396.data.RinStorage
 import com.rin2396.impl.rin2396.data.RinPrefsStorage
-import com.rin2396.impl.rin2396.domain.*
+import com.rin2396.impl.rin2396.domain.RinAddTimeEntryUseCase
+import com.rin2396.impl.rin2396.domain.RinCurrentDateUseCase
+import com.rin2396.impl.rin2396.domain.RinElapsedTimeUseCase
+import com.rin2396.impl.rin2396.domain.RinSearchTimeEntriesUseCase
 import com.rin2396.impl.rin2396.ui.RinFragment
 import com.rin2396.impl.rin2396.ui.RinViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

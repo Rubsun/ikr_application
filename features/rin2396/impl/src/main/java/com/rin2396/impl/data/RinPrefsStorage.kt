@@ -1,5 +1,8 @@
 package com.rin2396.impl.data
 
+import com.rin2396.impl.data.models.RinInfo
+import com.rin2396.impl.data.RinStorage
+
 internal class RinPrefsStorage(
     context: Context
 ) : RinStorage {

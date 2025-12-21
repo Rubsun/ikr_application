@@ -1,6 +1,7 @@
 package com.rin2396.impl.domain
 
 import com.rin2396.impl.data.RinRepository
+import com.rin2396.impl.domain.RinTimePrecisions
 
 internal class RinElapsedTimeUseCase {
     fun value(precision: RinTimePrecisions): Long {
