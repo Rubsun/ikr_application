@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Quovadis.TitleLarge" parent="TextAppearance.Material3.TitleLarge" />
+    <style name="TextAppearance.Quovadis.BodyMedium" parent="TextAppearance.Material3.BodyMedium" />
+    <style name="TextAppearance.Quovadis.TitleSmall" parent="TextAppearance.Material3.TitleSmall.Emphasized" />
+    <style name="TextAppearance.Quovadis.BodyLarge.Bold" parent="TextAppearance.Material3.BodyLarge.Emphasized" />
+    <style name="TextAppearance.Quovadis.BodyLarge" parent="TextAppearance.Material3.BodyLarge" />
+</resources>

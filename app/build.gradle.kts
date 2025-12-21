@@ -27,12 +27,20 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    packaging {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
     }
 }
 
@@ -67,9 +75,11 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
+    implementation(project(":features:quovadis:impl"))
     implementation(project(":features:nastyazz:impel"))
     implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
+	implementation(project(":features:rin2396:impl"))
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":features:artemkaa:impl"))
@@ -84,6 +94,10 @@ dependencies {
     implementation(project(":features:alexcode69:impl"))
     implementation(project(":features:demyanenko:impl"))
 
+    implementation(project(":features:rubsun:impl"))
+    implementation(project(":features:eremin:impl"))
+    implementation(project(":features:eremin:api"))
+    implementation(project(":features:akiko23:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
