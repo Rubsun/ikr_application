@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.rin2396.impl"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24

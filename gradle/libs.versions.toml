@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.12.1"
-agp = "8.11.1"
+agp = "8.13.2"
 fragmentKtx = "1.8.9"
 kotlin = "2.2.20"
 coreKtx = "1.17.0"
@@ -31,7 +31,7 @@ jetbrainsKotlinJvm = "2.0.21"
 coroutines = "1.8.1"
 datastore = "1.2.0"
 kotlinx-coroutines = "1.8.0"
-room = "2.6.1"
+room = "2.8.4"
 ksp = "2.2.20-2.0.4"
 
 [libraries]

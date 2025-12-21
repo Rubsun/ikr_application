@@ -6,19 +6,14 @@ import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
-import com.rin2396.api.RinApi
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
-import com.example.ikr_application.drain678.ui.Drain678Fragment
-import com.example.ikr_application.quovadis.ui.CatFragment
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
-import com.example.ikr_application.drain678.ui.Drain678Fragment
-import com.example.ikr_application.rubsun.ui.NumberFragment
-import com.example.ikr_application.egorik4.ui.Egorik4Fragment
+import com.rin2396.api.Constants as RinApi
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants

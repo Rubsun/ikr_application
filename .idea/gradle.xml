@@ -51,6 +51,12 @@
             <option value="$PROJECT_DIR$/features/quovadis" />
             <option value="$PROJECT_DIR$/features/quovadis/api" />
             <option value="$PROJECT_DIR$/features/quovadis/impl" />
+            <option value="$PROJECT_DIR$/features/rin2396" />
+            <option value="$PROJECT_DIR$/features/rin2396/api" />
+            <option value="$PROJECT_DIR$/features/rin2396/impl" />
+            <option value="$PROJECT_DIR$/features/rubsun" />
+            <option value="$PROJECT_DIR$/features/rubsun/api" />
+            <option value="$PROJECT_DIR$/features/rubsun/impl" />
             <option value="$PROJECT_DIR$/features/stupishin" />
             <option value="$PROJECT_DIR$/features/stupishin/api" />
             <option value="$PROJECT_DIR$/features/stupishin/impl" />
