@@ -4,13 +4,16 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.example.ikr_application.R
 import com.akiko23.api.Constants as Akiko23Constants
+<<<<<<< HEAD
 import com.dimmension.api.Constants as DimmensionConstants
 import com.dimmension.impl.R as dimmensionRes
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
+=======
+>>>>>>> 2696b9f5ccc34920757a18d18ef530fd04d405dd
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
-import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
+import com.tire.api.Constants.TIRE_SCREEN
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
 import com.eremin.api.Constants as EreminConstants
@@ -36,6 +39,8 @@ import com.momuswinner.impl.R as MomusWinnerRes
 import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
 import com.example.api.Constants as DemyanenkoConstants
+import com.spl3g.api.Constants as Spl3gConstants
+import com.spl3g.impl.R as spl3gRes
 
 enum class Screens(
     @StringRes val title: Int,
@@ -43,10 +48,10 @@ enum class Screens(
     val qualifier: String? = null,
 ) {
     SAMPLE(nfirexRes.string.title_sample, qualifier = Constants.NFIREX_SCREEN),
-    TIRE(R.string.title_tire, TiReFragment::class.java),
+    TIRE(R.string.title_tire, qualifier = TIRE_SCREEN),
     STUPISHIN(stupishinRes.string.title_stupishin, qualifier = StupishinConstants.STUPISHIN_SCREEN),
     NAMES(dimmensionRes.string.title_dimmension_screen, qualifier = DimmensionConstants.DIMMENSION_SCREEN),
-    SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
+	SPL3G(spl3gRes.string.title_spl3g, qualifier = Spl3gConstants.SPL3G_SCREEN),
     DEMYANENKO(R.string.title_demyanenko, qualifier = DemyanenkoConstants.DEM_SCREEN),
     RIN2396(R.string.title_rin2396, qualifier = RinApi.SCREEN),
     AKIKO23(R.string.title_akiko23, qualifier = Akiko23Constants.AKIKO23_SCREEN),

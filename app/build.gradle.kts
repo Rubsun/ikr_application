@@ -96,6 +96,7 @@ dependencies {
     implementation(project(":features:demyanenko:impl"))
 
     implementation(project(":features:rubsun:impl"))
+    implementation(project(":features:tire:impl"))
     implementation(project(":features:eremin:impl"))
     implementation(project(":features:eremin:api"))
     implementation(project(":features:akiko23:impl"))
@@ -104,4 +105,6 @@ dependencies {
     implementation(libs.koin.android)
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":features:spl3g:api"))
+    implementation(project(":features:spl3g:impl"))
 }
