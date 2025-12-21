@@ -6,20 +6,20 @@ import com.example.ikr_application.R
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.akiko23.api.Constants as Akiko23Constants
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
-import com.rin2396.api.RinApi
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
-import com.example.ikr_application.quovadis.ui.CatFragment
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
+import com.rin2396.api.Constants as RinApi
 import com.example.ikr_application.eremin.ui.CapybaraFragment
 import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
+import quo.vadis.api.Constants.QUOVADIS_SCREEN
 import com.nfirex.api.Constants
 import com.denisova.api.Constants as DenisovaConstants
 import com.nfirex.impl.R as nfirexRes
@@ -37,7 +37,7 @@ import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
 
 enum class Screens(
-    @param:StringRes val title: Int,
+    @StringRes val title: Int,
     val type: Class<out Fragment>? = null,
     val qualifier: String? = null,
 ) {
@@ -48,7 +48,7 @@ enum class Screens(
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, qualifier = RinApi.SCREEN),
     AKIKO23(R.string.title_akiko23, qualifier = Akiko23Constants.AKIKO23_SCREEN),
-    QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
+    QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),

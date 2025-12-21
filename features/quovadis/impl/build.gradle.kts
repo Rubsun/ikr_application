@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.rin2396.impl"
+    namespace = "quo.vadis.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -23,27 +25,41 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    api(project(":features:rin2396:api"))
-    implementation(libs.coil)
-    implementation(libs.androidx.fragment.ktx)
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.androidx.constraintlayout)
+
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
+
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    api(project(":features:quovadis:api"))
+    implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:api"))
 }
