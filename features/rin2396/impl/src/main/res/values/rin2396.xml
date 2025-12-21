@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rin2396_text_time_pattern">Current date: %s</string>
+    <string name="rin2396_text_time_from_reboot_pattern">Time from start: %s</string>
+    <string name="rin2396_search_hint">Search time entries...</string>
+    <string name="rin2396_add_button">Add Time Entry</string>
+    <string name="rin2396_entries_count">Entries: %d</string>
+    <style name="TextAppearance.Rin2396.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Rin2396.Body" parent="TextAppearance.Material3.BodyMedium" />
+</resources>
