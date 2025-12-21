@@ -78,6 +78,7 @@ dependencies {
     implementation(project(":features:quovadis:impl"))
     implementation(project(":features:nastyazz:impel"))
     implementation(project(":features:nfirex:impl"))
+    implementation(project(":features:dimmension:impl"))
     implementation(project(":features:grigoran:impl"))
 	implementation(project(":features:rin2396:impl"))
     implementation(project(":features:stupishin:impl"))
