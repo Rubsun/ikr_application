@@ -1,4 +1,4 @@
-package com.example.ikr_application.akiko23.domain
+package com.akiko23.api.domain.models
 
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -7,9 +7,9 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * Набор доступных точностей времени именно для задачи akiko23.
+ * Enum точности времени для API модуля akiko23.
  */
-enum class Akiko23TimePrecision(
+enum class TimePrecision(
     val divider: Duration,
     val typeName: String,
 ) {
@@ -18,3 +18,4 @@ enum class Akiko23TimePrecision(
     M(1.minutes, "m"),
     H(1.hours, "h"),
 }
+

@@ -95,6 +95,7 @@ dependencies {
     implementation(project(":features:rubsun:impl"))
     implementation(project(":features:eremin:impl"))
     implementation(project(":features:eremin:api"))
+    implementation(project(":features:akiko23:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
