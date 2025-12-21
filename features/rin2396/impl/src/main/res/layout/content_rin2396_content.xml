@@ -17,24 +17,23 @@
         />
     <TextView
         android:id="@+id/text"
+        style="@style/TextAppearance.Rin2396.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:layout_marginBottom="8dp"
         />
     <TextView
         android:id="@+id/elapsed"
+        style="@style/TextAppearance.Rin2396.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:layout_marginBottom="8dp"
         />
     <TextView
         android:id="@+id/entries_count"
+        style="@style/TextAppearance.Rin2396.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:layout_marginBottom="16dp"
         />
     <com.google.android.material.button.MaterialButtonToggleGroup

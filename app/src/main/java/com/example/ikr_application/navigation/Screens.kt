@@ -6,7 +6,7 @@ import com.example.ikr_application.R
 import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
-import com.example.ikr_application.rin2396.ui.RinFragment
+import com.rin2396.api.RinApi
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
@@ -46,7 +46,7 @@ enum class Screens(
     STUPISHIN(stupishinRes.string.title_stupishin, qualifier = StupishinConstants.STUPISHIN_SCREEN),
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
-    RIN2396(R.string.title_rin2396, RinFragment::class.java),
+    RIN2396(R.string.title_rin2396, qualifier = RinApi.SCREEN),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
