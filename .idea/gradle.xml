@@ -36,6 +36,9 @@
             <option value="$PROJECT_DIR$/features/egorik4" />
             <option value="$PROJECT_DIR$/features/egorik4/api" />
             <option value="$PROJECT_DIR$/features/egorik4/impl" />
+            <option value="$PROJECT_DIR$/features/eremin" />
+            <option value="$PROJECT_DIR$/features/eremin/api" />
+            <option value="$PROJECT_DIR$/features/eremin/impl" />
             <option value="$PROJECT_DIR$/features/grigoran" />
             <option value="$PROJECT_DIR$/features/grigoran/api" />
             <option value="$PROJECT_DIR$/features/grigoran/impl" />
@@ -48,6 +51,9 @@
             <option value="$PROJECT_DIR$/features/nfirex" />
             <option value="$PROJECT_DIR$/features/nfirex/api" />
             <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/features/rubsun" />
+            <option value="$PROJECT_DIR$/features/rubsun/api" />
+            <option value="$PROJECT_DIR$/features/rubsun/impl" />
             <option value="$PROJECT_DIR$/features/stupishin" />
             <option value="$PROJECT_DIR$/features/stupishin/api" />
             <option value="$PROJECT_DIR$/features/stupishin/impl" />

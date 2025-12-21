@@ -1,10 +1,10 @@
-package com.example.ikr_application.eremin.data
+package com.eremin.impl.data
 
-import com.example.ikr_application.eremin.data.models.CapybarasResponse
+import com.eremin.impl.data.models.CapybarasResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface CapybaraApi {
+internal interface CapybaraApi {
 
     @GET("v1/capybaras")
     suspend fun getCapybaras(

@@ -10,6 +10,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    plugins {
+        id("org.jetbrains.kotlin.plugin.compose") version "2.0.21"
+    }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -57,3 +60,5 @@ include(":features:alexcode69:api")
 include(":features:alexcode69:impl")
 include(":features:rubsun:api")
 include(":features:rubsun:impl")
+include(":features:eremin:api")
+include(":features:eremin:impl")
