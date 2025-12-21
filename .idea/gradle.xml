@@ -24,6 +24,10 @@
             <option value="$PROJECT_DIR$/features/artemkaa" />
             <option value="$PROJECT_DIR$/features/artemkaa/api" />
             <option value="$PROJECT_DIR$/features/artemkaa/impl" />
+            <option value="$PROJECT_DIR$/features/demyanenko" />
+            <option value="$PROJECT_DIR$/features/demyanenko/api" />
+            <option value="$PROJECT_DIR$/features/demyanenko/impl" />
+            <option value="$PROJECT_DIR$/features/demyanenkoLapi" />
             <option value="$PROJECT_DIR$/features/denisova" />
             <option value="$PROJECT_DIR$/features/denisova/api" />
             <option value="$PROJECT_DIR$/features/denisova/impl" />
@@ -39,6 +43,7 @@
             <option value="$PROJECT_DIR$/features/grigoran" />
             <option value="$PROJECT_DIR$/features/grigoran/api" />
             <option value="$PROJECT_DIR$/features/grigoran/impl" />
+            <option value="$PROJECT_DIR$/features/myapplication" />
             <option value="$PROJECT_DIR$/features/n0tsszzz" />
             <option value="$PROJECT_DIR$/features/n0tsszzz/api" />
             <option value="$PROJECT_DIR$/features/n0tsszzz/impl" />

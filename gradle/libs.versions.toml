@@ -31,6 +31,7 @@ jetbrainsKotlinJvm = "2.0.21"
 coroutines = "1.8.1"
 datastore = "1.2.0"
 kotlinx-coroutines = "1.8.0"
+lifecycleLivedataKtx = "2.10.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -74,6 +75,7 @@ koin-android = { module = "io.insert-koin:koin-android" }
 androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
 
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 
 [bundles]
 ui-core = ["androidx-activity-ktx", "androidx-fragment-ktx",

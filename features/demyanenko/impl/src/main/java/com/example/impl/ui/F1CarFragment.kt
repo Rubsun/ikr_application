@@ -1,4 +1,4 @@
-package com.example.ikr_application.demyanenko.ui
+package com.example.demyanenko.impl.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,12 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ikr_application.databinding.DemyanenkoF1carFragmentBinding
-import com.example.ikr_application.demyanenko.data.F1CarRepository
-import com.example.ikr_application.demyanenko.domain.GetF1CarUseCase
-import kotlinx.coroutines.launch
+import com.example.impl.databinding.DemyanenkoF1carFragmentBinding
+import com.example.impl.domain.GetF1CarUseCase
+import com.example.impl.ui.F1CarViewModel
 
-class F1CarFragment : Fragment() {
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+
+internal class F1CarFragment : Fragment() {
+
+    private val getF1CarUseCase: GetF1CarUseCase by inject()
 
     private lateinit var viewModel: F1CarViewModel
     private lateinit var binding: DemyanenkoF1carFragmentBinding
@@ -31,13 +35,8 @@ class F1CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = F1CarViewModel(getF1CarUseCase)
 
-        // Инициализация ViewModel
-        val repository = F1CarRepository()
-        val useCase = GetF1CarUseCase(repository)
-        viewModel = F1CarViewModel(useCase)
-
-        // Инициализация UI
         setupRecyclerView()
         setupSearchListener()
         setupAddCarListener()
@@ -66,7 +65,6 @@ class F1CarFragment : Fragment() {
         binding.addCarButton.setOnClickListener {
             val carName = binding.carNameEditText.text.toString().trim()
             val carSound = binding.carSoundEditText.text.toString().trim()
-
             if (carName.isNotBlank()) {
                 viewModel.addF1Car(carName, carSound.takeIf { it.isNotBlank() })
                 binding.carNameEditText.text.clear()
@@ -79,10 +77,8 @@ class F1CarFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.submitList(state.cars)
-
                 binding.loadingProgressBar.visibility =
                     if (state.isLoading) View.VISIBLE else View.GONE
-
                 if (state.error != null) {
                     binding.errorTextView.text = state.error
                     binding.errorTextView.visibility = View.VISIBLE
@@ -91,5 +87,9 @@ class F1CarFragment : Fragment() {
                 }
             }
         }
+    }
+
+    companion object {
+        fun newInstance(): F1CarFragment = F1CarFragment()
     }
 }

@@ -82,6 +82,8 @@ dependencies {
     implementation(project(":features:MomusWinner:impl"))
     implementation(project(":features:egorik4:impl"))
     implementation(project(":features:alexcode69:impl"))
+    implementation(project(":features:demyanenko:impl"))
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)

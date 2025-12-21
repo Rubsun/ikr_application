@@ -8,7 +8,6 @@ import com.example.ikr_application.dimmension.ui.NamesFragment
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.example.ikr_application.rin2396.ui.RinFragment
 import com.alexcode69.api.Constants as Alexcode69Constants
-import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
@@ -34,6 +33,7 @@ import com.momuswinner.api.Constants as MomusWinnerConstants
 import com.momuswinner.impl.R as MomusWinnerRes
 import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
+import com.example.api.Constants as DemyanenkoConstants
 
 enum class Screens(
     @param:StringRes val title: Int,
@@ -48,7 +48,7 @@ enum class Screens(
     RIN2396(R.string.title_rin2396, RinFragment::class.java),
     AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
     QUOVADIS(R.string.title_quovadis, CatFragment::class.java),
-    DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
+    DEMYANENKO(R.string.title_demyanenko, qualifier = DemyanenkoConstants.DEM_SCREEN),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
     ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),

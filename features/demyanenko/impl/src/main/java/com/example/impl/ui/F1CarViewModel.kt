@@ -1,16 +1,15 @@
-package com.example.ikr_application.demyanenko.ui
+package com.example.impl.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.demyanenko.domain.GetF1CarUseCase
+import com.example.impl.domain.GetF1CarUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import androidx.lifecycle.viewModelScope
 
-class F1CarViewModel(private val getF1CarUseCase: GetF1CarUseCase) : ViewModel() {
-
+internal class F1CarViewModel(private val getF1CarUseCase: GetF1CarUseCase) : ViewModel() {
     private val _state = MutableStateFlow(F1CarState())
     val state = _state.asStateFlow()
 
@@ -36,19 +35,9 @@ class F1CarViewModel(private val getF1CarUseCase: GetF1CarUseCase) : ViewModel()
             try {
                 _state.update { it.copy(isLoading = true) }
                 val newCar = getF1CarUseCase.addF1Car(name, sound)
-                _state.update {
-                    it.copy(
-                        cars = it.cars + newCar,
-                        isLoading = false
-                    )
-                }
+                _state.update { it.copy(cars = it.cars + newCar, isLoading = false) }
             } catch (e: Exception) {
-                _state.update {
-                    it.copy(
-                        error = e.message,
-                        isLoading = false
-                    )
-                }
+                _state.update { it.copy(error = e.message, isLoading = false) }
             }
         }
     }
