@@ -12,6 +12,7 @@ import com.example.ikr_application.demyanenko.ui.F1CarFragment
 import com.example.ikr_application.kristevt.ui.KristevtFragment
 import com.n0tsszzz.api.Constants as N0tsszzzConstants
 import com.example.ikr_application.tire.ui.MyFragment as TiReFragment
+import com.example.ikr_application.drain678.ui.Drain678Fragment
 import com.example.ikr_application.quovadis.ui.CatFragment
 import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
@@ -41,7 +42,7 @@ import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
 
 enum class Screens(
-    @param:StringRes val title: Int,
+    @StringRes val title: Int,
     val type: Class<out Fragment>? = null,
     val qualifier: String? = null,
 ) {
