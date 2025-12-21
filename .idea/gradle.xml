@@ -6,20 +6,59 @@
       <GradleProjectSettings>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="jbr-21" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/MomusWinner" />
+            <option value="$PROJECT_DIR$/features/MomusWinner/api" />
+            <option value="$PROJECT_DIR$/features/MomusWinner/impl" />
+            <option value="$PROJECT_DIR$/features/alexcode69" />
+            <option value="$PROJECT_DIR$/features/alexcode69/api" />
+            <option value="$PROJECT_DIR$/features/alexcode69/impl" />
+            <option value="$PROJECT_DIR$/features/antohaot" />
+            <option value="$PROJECT_DIR$/features/antohaot/api" />
+            <option value="$PROJECT_DIR$/features/antohaot/impl" />
+            <option value="$PROJECT_DIR$/features/artemkaa" />
+            <option value="$PROJECT_DIR$/features/artemkaa/api" />
+            <option value="$PROJECT_DIR$/features/artemkaa/impl" />
+            <option value="$PROJECT_DIR$/features/denisova" />
+            <option value="$PROJECT_DIR$/features/denisova/api" />
+            <option value="$PROJECT_DIR$/features/denisova/impl" />
+            <option value="$PROJECT_DIR$/features/drain678" />
+            <option value="$PROJECT_DIR$/features/drain678/api" />
+            <option value="$PROJECT_DIR$/features/drain678/impl" />
+            <option value="$PROJECT_DIR$/features/dyatlova" />
+            <option value="$PROJECT_DIR$/features/dyatlova/api" />
+            <option value="$PROJECT_DIR$/features/dyatlova/impl" />
+            <option value="$PROJECT_DIR$/features/egorik4" />
+            <option value="$PROJECT_DIR$/features/egorik4/api" />
+            <option value="$PROJECT_DIR$/features/egorik4/impl" />
             <option value="$PROJECT_DIR$/features/grigoran" />
             <option value="$PROJECT_DIR$/features/grigoran/api" />
             <option value="$PROJECT_DIR$/features/grigoran/impl" />
+            <option value="$PROJECT_DIR$/features/n0tsszzz" />
+            <option value="$PROJECT_DIR$/features/n0tsszzz/api" />
+            <option value="$PROJECT_DIR$/features/n0tsszzz/impl" />
+            <option value="$PROJECT_DIR$/features/nastyazz" />
+            <option value="$PROJECT_DIR$/features/nastyazz/api" />
+            <option value="$PROJECT_DIR$/features/nastyazz/impel" />
             <option value="$PROJECT_DIR$/features/nfirex" />
             <option value="$PROJECT_DIR$/features/nfirex/api" />
             <option value="$PROJECT_DIR$/features/nfirex/impl" />
+            <option value="$PROJECT_DIR$/features/stupishin" />
+            <option value="$PROJECT_DIR$/features/stupishin/api" />
+            <option value="$PROJECT_DIR$/features/stupishin/impl" />
+            <option value="$PROJECT_DIR$/features/zagora" />
+            <option value="$PROJECT_DIR$/features/zagora/api" />
+            <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/injector" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage/api" />
+            <option value="$PROJECT_DIR$/libs/primitivestorage/data" />
           </set>
         </option>
       </GradleProjectSettings>

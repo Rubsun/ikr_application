@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.random.Random
 
-data class ItemDto(var id: Int, var title: String, val price: Int)
+internal data class ItemDto(var id: Int, var title: String, val price: Int)
 
-class Repository {
+internal class Repository {
     private val itemsFlow = MutableStateFlow( List(Random.nextInt(5, 15)) { index ->
         ItemDto(
             id = index + 1,
