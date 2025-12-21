@@ -18,6 +18,9 @@ data class CatEntity(
     @ColumnInfo(name = "image_url")
     val imageUrl: String?,
 
+    @ColumnInfo(name = "fetched_from")
+    val fetchedFrom: String,
+
     @ColumnInfo(name = "created_at")
     val createdAt: Long = System.currentTimeMillis()
 )

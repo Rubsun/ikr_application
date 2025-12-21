@@ -34,7 +34,8 @@ internal class CatViewModel : ViewModel() {
                         CatDto(
                             name = entity.name,
                             phrase = entity.phrase,
-                            imageUrl = entity.imageUrl
+                            imageUrl = entity.imageUrl,
+                            fetchedFrom = ApiBaseUrl.valueOf(entity.fetchedFrom)
                         )
                     }
                 }
@@ -47,16 +48,23 @@ internal class CatViewModel : ViewModel() {
     fun loadRandomCat(phraseInput: String?) {
         val phrase = phraseInput?.takeIf { it.isNotBlank() }
 
+        if (phrase.isNullOrBlank()) return
+
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
             val cat = withContext(Dispatchers.Default) {
                 val result = getRandomCatUseCase.getRandomCat(phrase)
-                CatDto(name = result.name, phrase = result.phrase, imageUrl = null)
+                CatDto(
+                    name = result.name,
+                    phrase = result.phrase,
+                    imageUrl = null,
+                    fetchedFrom = _uiState.value.api
+                )
             }
 
             val imageUrl = withContext(Dispatchers.IO) {
-                assembleImageUrlUseCase.getImageUrl(_uiState.value.api, phrase ?: "200")
+                assembleImageUrlUseCase.getImageUrl(_uiState.value.api, phrase)
             }
 
             val catWithImage = cat.copy(imageUrl = imageUrl)
@@ -65,7 +73,8 @@ internal class CatViewModel : ViewModel() {
                 repository.insertCat(
                     name = catWithImage.name,
                     phrase = catWithImage.phrase,
-                    imageUrl = catWithImage.imageUrl
+                    imageUrl = catWithImage.imageUrl,
+                    fetchedFrom = catWithImage.fetchedFrom.name
                 )
             }
 

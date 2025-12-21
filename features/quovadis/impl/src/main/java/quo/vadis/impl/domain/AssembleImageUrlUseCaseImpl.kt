@@ -6,15 +6,13 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 internal class AssembleImageUrlUseCaseImpl : AssembleImageUrlUseCase {
-    private val baseUrlCatAaS = "https://cataas.com/cat/says/"
-    private val baseUrlHttpCats = "https://httpcats.com/"
 
-    override fun getImageUrl(baseUrl: ApiBaseUrl, query: String): String {
+    override fun getImageUrl(api: ApiBaseUrl, query: String): String {
         val encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString())
 
-        return when (baseUrl) {
-            ApiBaseUrl.CatAaS -> "$baseUrlCatAaS$encoded"
-            ApiBaseUrl.HttpCats -> "$baseUrlHttpCats$encoded.jpg"
+        return when (api) {
+            ApiBaseUrl.CatAaS -> "${api.baseUrl}$encoded"
+            ApiBaseUrl.HttpCats -> "${api.baseUrl}$encoded.jpg"
         }
     }
 }

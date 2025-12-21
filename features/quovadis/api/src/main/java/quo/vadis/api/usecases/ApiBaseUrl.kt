@@ -1,6 +1,6 @@
 package quo.vadis.api.usecases
 
-sealed class ApiBaseUrl {
-    object CatAaS : ApiBaseUrl()
-    object HttpCats : ApiBaseUrl()
+enum class ApiBaseUrl(val baseUrl: String) {
+    CatAaS("https://cataas.com/cat/says/"),
+    HttpCats("https://httpcats.com/")
 }
