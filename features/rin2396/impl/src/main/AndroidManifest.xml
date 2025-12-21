@@ -9,7 +9,7 @@
             tools:node="merge"
             >
             <meta-data
-                android:name="com.rin2396.impl.ModuleInitializer"
+                android:name="com.rin2396.impl.RinInitializer"
                 android:value="androidx.startup"
                 />
         </provider>

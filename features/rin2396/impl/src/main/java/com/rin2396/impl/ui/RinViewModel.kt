@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-data class RinUiState(
+internal class RinUiState(
     val timeEntries: List<RinInfo> = emptyList(),
     val currentDate: String = "",
     val elapsedTime: String = "",

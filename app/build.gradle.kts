@@ -76,5 +76,6 @@ dependencies {
 
 	implementation(project(":features:nfirex:impl"))
     implementation(project(":features:grigoran:impl"))
+	implementation(project(":features:rin2396:impl"))
 	implementation(project(":libs:injector"))
 }
