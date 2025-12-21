@@ -1,4 +1,4 @@
-package com.example.ikr_application.akiko23.ui
+package com.akiko23.impl.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +9,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
-class DrawingView @JvmOverloads constructor(
+/**
+ * Кастомный View для рисования на экране akiko23.
+ */
+internal class DrawingView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,

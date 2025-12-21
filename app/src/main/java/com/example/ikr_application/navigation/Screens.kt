@@ -3,8 +3,8 @@
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.example.ikr_application.R
-import com.example.ikr_application.akiko23.ui.Akiko23Fragment
 import com.example.ikr_application.dimmension.ui.NamesFragment
+import com.akiko23.api.Constants as Akiko23Constants
 import com.example.ikr_application.spl3g.ui.AppleFramesFragment
 import com.alexcode69.api.Constants as Alexcode69Constants
 import com.example.ikr_application.demyanenko.ui.F1CarFragment
@@ -47,7 +47,7 @@ enum class Screens(
     NAMES(R.string.title_dimmension_screen, NamesFragment::class.java),
     SPL3G(R.string.title_spl3g, AppleFramesFragment::class.java),
     RIN2396(R.string.title_rin2396, qualifier = RinApi.SCREEN),
-    AKIKO23(R.string.title_akiko23, Akiko23Fragment::class.java),
+    AKIKO23(R.string.title_akiko23, qualifier = Akiko23Constants.AKIKO23_SCREEN),
     QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DEMYANENKO(R.string.title_demyanenko, F1CarFragment::class.java),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),

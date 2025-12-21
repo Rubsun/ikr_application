@@ -1,4 +1,4 @@
-package com.example.ikr_application.akiko23.ui
+package com.akiko23.impl.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.ikr_application.R
-import com.example.ikr_application.akiko23.domain.Akiko23TimePrecision
+import com.akiko23.api.domain.models.TimePrecision
+import com.akiko23.impl.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -19,8 +19,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import androidx.core.view.children
 
-class Akiko23Fragment : Fragment() {
-    private val viewModel by viewModels<Akiko23TimeViewModel>()
+/**
+ * Фрагмент для экрана akiko23.
+ */
+internal class Akiko23Fragment : Fragment() {
+    private val viewModel by viewModels<Akiko23ViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +68,7 @@ class Akiko23Fragment : Fragment() {
 
     private fun setupPrecisionButtons(buttons: MaterialButtonToggleGroup) {
         if (buttons.childCount == 0) {
-            Akiko23TimePrecision.entries
+            TimePrecision.entries
                 .forEach { precision ->
                     val button = LayoutInflater.from(buttons.context)
                         .inflate(R.layout.item_akiko23_precision, buttons, false) as MaterialButton
@@ -80,13 +83,13 @@ class Akiko23Fragment : Fragment() {
             if (!isChecked) return@addOnButtonCheckedListener
 
             val button = group.findViewById<MaterialButton>(checkedId)
-            val precision = button.tag as? Akiko23TimePrecision ?: return@addOnButtonCheckedListener
+            val precision = button.tag as? TimePrecision ?: return@addOnButtonCheckedListener
             viewModel.selectPrecision(precision)
         }
     }
 
     private fun applyState(
-        state: Akiko23TimeViewModel.State,
+        state: Akiko23ViewModel.State,
         headerView: TextView,
         elapsedView: TextView,
         buttons: MaterialButtonToggleGroup,
@@ -127,8 +130,9 @@ class Akiko23Fragment : Fragment() {
                 android.R.anim.fade_in,
                 android.R.anim.slide_out_right
             )
-            .replace(R.id.container, Akiko23CanvasFragment())
+            .replace(android.R.id.content, Akiko23CanvasFragment())
             .addToBackStack(null)
             .commitAllowingStateLoss()
     }
 }
+

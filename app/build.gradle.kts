@@ -93,6 +93,7 @@ dependencies {
     implementation(project(":features:egorik4:impl"))
     implementation(project(":features:alexcode69:impl"))
     implementation(project(":features:rubsun:impl"))
+    implementation(project(":features:akiko23:impl"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
