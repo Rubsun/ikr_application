@@ -1,9 +1,9 @@
-package com.example.ikr_application.rubsun.ui
+package com.rubsun.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ikr_application.rubsun.domain.GetNumberUseCase
-import com.example.ikr_application.rubsun.domain.models.NumberDisplayModel
+import com.rubsun.api.domain.models.NumberDisplayModel
+import com.rubsun.api.domain.usecases.GetNumberUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -11,16 +11,16 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-data class UiState(
+internal data class UiState(
     val numbers: List<NumberDisplayModel>,
     val randomNumber: NumberDisplayModel?,
     val searchQuery: String,
     val isLoading: Boolean,
 )
 
-class NumberViewModel : ViewModel() {
-    private val getNumberUseCase = GetNumberUseCase()
-
+internal class NumberViewModel(
+    private val getNumberUseCase: GetNumberUseCase
+) : ViewModel() {
     private val searchQuery = MutableStateFlow("")
     private val randomNumber = MutableStateFlow<NumberDisplayModel?>(null)
     private val isLoading = MutableStateFlow(false)
@@ -76,3 +76,5 @@ class NumberViewModel : ViewModel() {
         }
     }
 }
+
+

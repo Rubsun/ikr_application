@@ -1,14 +1,15 @@
-package com.example.ikr_application.rubsun.domain
+package com.rubsun.impl.domain
 
-import com.example.ikr_application.rubsun.data.NumberRepository
-import com.example.ikr_application.rubsun.domain.models.NumberDisplayModel
+import com.rubsun.api.domain.models.NumberDisplayModel
+import com.rubsun.api.domain.usecases.GetNumberUseCase
+import com.rubsun.impl.data.NumberRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetNumberUseCase(
-    private val repository: NumberRepository = NumberRepository()
-) {
-    suspend fun getRandomNumber(): NumberDisplayModel {
+internal class GetNumberUseCaseImpl(
+    private val repository: NumberRepository
+) : GetNumberUseCase {
+    override suspend fun getRandomNumber(): NumberDisplayModel {
         val numberData = repository.getRandomNumber()
         return NumberDisplayModel(
             value = numberData.value,
@@ -17,7 +18,7 @@ class GetNumberUseCase(
         )
     }
 
-    fun getAllNumbers(): Flow<List<NumberDisplayModel>> {
+    override fun getAllNumbers(): Flow<List<NumberDisplayModel>> {
         return repository.numbers.map { numbers ->
             numbers.map { numberData ->
                 NumberDisplayModel(
@@ -29,7 +30,9 @@ class GetNumberUseCase(
         }
     }
 
-    suspend fun addNumber(value: Int, label: String) {
+    override suspend fun addNumber(value: Int, label: String) {
         repository.addNumber(value, label)
     }
 }
+
+

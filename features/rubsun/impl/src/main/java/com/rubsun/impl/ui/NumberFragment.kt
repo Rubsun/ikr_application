@@ -1,4 +1,4 @@
-package com.example.ikr_application.rubsun.ui
+package com.rubsun.impl.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,21 +8,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.ikr_application.R
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.textfield.TextInputEditText
+import com.rubsun.api.domain.models.NumberDisplayModel
+import com.rubsun.impl.R
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NumberFragment : Fragment() {
-    private val viewModel by viewModels<NumberViewModel>()
+internal class NumberFragment : Fragment() {
+    private val viewModel: NumberViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -118,7 +119,7 @@ class NumberFragment : Fragment() {
         chart.legend.isEnabled = false
     }
 
-    private fun updateChart(chart: LineChart, numbers: List<com.example.ikr_application.rubsun.domain.models.NumberDisplayModel>) {
+    private fun updateChart(chart: LineChart, numbers: List<NumberDisplayModel>) {
         val entries = numbers.mapIndexed { index, number ->
             Entry(index.toFloat(), number.squared.toFloat())
         }
@@ -137,3 +138,4 @@ class NumberFragment : Fragment() {
         }
     }
 }
+
