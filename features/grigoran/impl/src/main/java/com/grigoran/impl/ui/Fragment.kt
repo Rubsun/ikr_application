@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.injector.inject
 
 import com.grigoran.impl.databinding.FragmentGrigoranBinding
 import com.grigoran.impl.R
+import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -20,7 +22,7 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
     private var vb: FragmentGrigoranBinding? = null
 
     private val viewModel: ExampleViewModel by viewModels()
-
+    private val imageLoader: ImageLoader by inject()
 
     private lateinit var adapter: ExampleAdapter
 
@@ -34,7 +36,7 @@ class GrigoranFragment : Fragment(R.layout.fragment_grigoran) {
         val binding = FragmentGrigoranBinding.bind(view)
         vb = binding
 
-        adapter = ExampleAdapter()
+        adapter = ExampleAdapter(imageLoader)
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         binding.recycler.adapter = adapter
 
