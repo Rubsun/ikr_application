@@ -72,7 +72,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
     implementation(project(":features:quovadis:impl"))
@@ -107,4 +106,7 @@ dependencies {
     implementation(project(":libs:primitivestorage:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
+
+    debugImplementation(project(":libs:logger:timber"))
+    releaseImplementation(project(":libs:logger:stub"))
 }

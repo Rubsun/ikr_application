@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.alexcode69.impl"
-    compileSdk = 36
+    namespace = "com.example.logger.timber"
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         minSdk = 24
@@ -34,18 +35,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.timber)
 
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.android)
-
-    api(project(":features:alexcode69:api"))
+    api(project(":libs:logger:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:data"))
-    implementation(project(":libs:logger:api"))
 }
-

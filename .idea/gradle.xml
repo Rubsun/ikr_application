@@ -85,6 +85,10 @@
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/injector" />
+            <option value="$PROJECT_DIR$/libs/logger" />
+            <option value="$PROJECT_DIR$/libs/logger/api" />
+            <option value="$PROJECT_DIR$/libs/logger/stub" />
+            <option value="$PROJECT_DIR$/libs/logger/timber" />
             <option value="$PROJECT_DIR$/libs/primitivestorage" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/api" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/data" />
