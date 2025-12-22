@@ -13,9 +13,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.alexcode69.impl.R
+import com.example.logger.api.debug
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 internal class Alexcode69Fragment : Fragment() {
     private val viewModel: MyViewModel by viewModel()
@@ -31,7 +31,7 @@ internal class Alexcode69Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Timber.d("Alexcode69Fragment created")
+        "Alexcode69Fragment created".debug()
 
         val searchEditText = view.findViewById<EditText>(R.id.search_input)
         val textView = view.findViewById<TextView>(R.id.text)
@@ -51,7 +51,7 @@ internal class Alexcode69Fragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    Timber.d("UI State updated: entries=${state.timeEntries.size}, query='${state.searchQuery}'")
+                    "UI State updated: entries=${state.timeEntries.size}, query='${state.searchQuery}'".debug()
                     
                     // Update date
                     textView.text = getString(R.string.alexcode69_text_time_pattern, state.currentDate)
@@ -68,7 +68,7 @@ internal class Alexcode69Fragment : Fragment() {
                                 .apply {
                                     (this as? TextView)?.text = item.typeName
                                     setOnClickListener { 
-                                        Timber.d("Precision clicked: ${item.typeName}")
+                                        "Precision clicked: ${item.typeName}".debug()
                                     }
                                 }
                         }
