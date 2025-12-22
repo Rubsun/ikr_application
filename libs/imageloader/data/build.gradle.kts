@@ -4,9 +4,9 @@ plugins {
 }
 
 android {
-    namespace = "com.grigoran.impl"
+    namespace = "com.imageloader.data"
     compileSdk = 36
-    
+
     defaultConfig {
         minSdk = 24
 
@@ -22,9 +22,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    buildFeatures {
-        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -42,12 +39,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    api(project(":features:grigoran:api"))
     implementation(libs.coil)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.kotlinx.serialization.json)
     implementation(project(":libs:injector"))
     api(project(":libs:imageloader:api"))
-
-
 }
