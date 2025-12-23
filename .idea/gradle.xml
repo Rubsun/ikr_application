@@ -88,6 +88,11 @@
             <option value="$PROJECT_DIR$/libs/chart" />
             <option value="$PROJECT_DIR$/libs/chart/api" />
             <option value="$PROJECT_DIR$/libs/chart/data" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/api" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/impl" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1/impl" />
             <option value="$PROJECT_DIR$/libs/capybara-network" />
             <option value="$PROJECT_DIR$/libs/capybara-network/api" />
             <option value="$PROJECT_DIR$/libs/capybara-network/data" />

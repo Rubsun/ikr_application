@@ -10,19 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.impl.databinding.DemyanenkoF1carFragmentBinding
-import com.example.impl.domain.GetF1CarUseCase
 import com.example.impl.ui.F1CarViewModel
-
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 internal class F1CarFragment : Fragment() {
 
-    private val getF1CarUseCase: GetF1CarUseCase by inject()
-
-    private lateinit var viewModel: F1CarViewModel
+    private val viewModel: F1CarViewModel by inject()
     private lateinit var binding: DemyanenkoF1carFragmentBinding
-    private lateinit var adapter: F1CarAdapter
+    private lateinit var carAdapter: F1CarAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,19 +31,26 @@ internal class F1CarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = F1CarViewModel(getF1CarUseCase)
 
-        setupRecyclerView()
+        setupCarsRecyclerView()
         setupSearchListener()
         setupAddCarListener()
         observeState()
     }
 
-    private fun setupRecyclerView() {
-        adapter = F1CarAdapter()
+    private fun setupCarsRecyclerView() {
+        carAdapter = F1CarAdapter()
+
+        // ✅ Setup cars RecyclerView (vertical scrolling)
         binding.carsRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = this@F1CarFragment.adapter
+            adapter = carAdapter
+        }
+
+        // ✅ Setup drivers RecyclerView (horizontal scrolling)
+        binding.driversRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = carAdapter
         }
     }
 
@@ -76,9 +79,16 @@ internal class F1CarFragment : Fragment() {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect { state ->
-                adapter.submitList(state.cars)
+                // ✅ FIXED: Submit ALL items (drivers + cars) to the adapter
+                carAdapter.submitList(state.items)
+
+                // Control visibility
+                binding.driversRecyclerView.visibility =
+                    if (state.drivers.isNotEmpty()) View.VISIBLE else View.GONE
+
                 binding.loadingProgressBar.visibility =
                     if (state.isLoading) View.VISIBLE else View.GONE
+
                 if (state.error != null) {
                     binding.errorTextView.text = state.error
                     binding.errorTextView.visibility = View.VISIBLE
