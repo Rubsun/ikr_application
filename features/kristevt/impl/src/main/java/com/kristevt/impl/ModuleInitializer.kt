@@ -6,6 +6,7 @@ import com.example.injector.AbstractInitializer
 import com.kristevt.api.Constants
 import com.kristevt.api.domain.GetLyricsUseCase
 import com.kristevt.api.domain.SongsListUseCase
+import com.kristevt.impl.data.SongsRepository
 import com.kristevt.impl.domain.GetLyricsUseCaseImpl
 import com.kristevt.impl.domain.SongsListUseCaseImpl
 import com.kristevt.impl.ui.KristevtFragment
@@ -25,6 +26,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
         loadKoinModules(
             module {
 
+                single { SongsRepository(context = get())}
                 // UseCases
                 factory<SongsListUseCase> {
                     SongsListUseCaseImpl(get())

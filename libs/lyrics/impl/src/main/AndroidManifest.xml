@@ -9,7 +9,7 @@
             tools:node="merge"
             >
             <meta-data
-                android:name="com.kristevt.lyrics.ModuleInitializer"
+                android:name="com.kristevt.lyrics.impl.ModuleInitializer"
                 android:value="androidx.startup"
                 />
         </provider>
