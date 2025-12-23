@@ -48,6 +48,9 @@
             <meta-data
                 android:name="com.artemkaa.network.data.ModuleInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.antohaot.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

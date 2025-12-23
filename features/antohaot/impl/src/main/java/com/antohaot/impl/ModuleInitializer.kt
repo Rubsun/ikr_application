@@ -14,6 +14,7 @@ import com.antohaot.impl.domain.AntohaotElapsedTimeUseCaseImpl
 import com.antohaot.impl.domain.FilterTimeRecordsUseCaseImpl
 import com.antohaot.impl.ui.AntohaotFragment
 import com.antohaot.impl.ui.AntohaotViewModel
+import com.antohaot.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -31,7 +32,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
             // Создаем и добавляем модуль
             module {
                 // single правило - создаем инстанс один раз и всегда его отдаем
-                single { AntohaotRepository(context) }
+                single { AntohaotRepository(context, get<TimeApiClient>()) }
 
                 // жесткое проставление типа.
                 // Нужно когда все работают с интерфейсом, а нам надо вместо него поставить имплементацию

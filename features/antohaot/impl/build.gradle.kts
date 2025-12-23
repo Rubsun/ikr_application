@@ -43,4 +43,5 @@ dependencies {
 
     api(project(":features:antohaot:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:antohaot-network:api"))
 }
