@@ -1,8 +1,9 @@
 package com.denisova.impl.data
 
+import com.denisova.impl.data.models.GeocodingSearchResponseDto
 import com.denisova.impl.data.models.WeatherForecastDto
 
-internal interface WeatherApiService {
+internal interface OpenMeteoClient {
     suspend fun getForecast(
         latitude: Double,
         longitude: Double,
@@ -10,4 +11,11 @@ internal interface WeatherApiService {
         forecastDays: Int = 1,
         timezone: String = "auto",
     ): WeatherForecastDto
+
+    suspend fun searchCity(
+        name: String,
+        count: Int = 1,
+        language: String = "en",
+        format: String = "json",
+    ): GeocodingSearchResponseDto
 }
