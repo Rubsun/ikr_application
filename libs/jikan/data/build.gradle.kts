@@ -5,12 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.stupishin.impl"
+    namespace = "com.example.jikan"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -25,33 +24,20 @@ android {
         }
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.network)
 
-    implementation(libs.bundles.ui.core)
-
-    implementation(libs.androidx.recyclerview)
-
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    api(project(":features:stupishin:api"))
+    api(project(":libs:jikan:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:jikan:api"))
-    implementation(project(":libs:primitivestorage:api"))
+    implementation(project(":libs:network:data"))
 }

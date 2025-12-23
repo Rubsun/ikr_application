@@ -4,7 +4,7 @@ import com.stupishin.api.domain.models.Anime
 import com.stupishin.api.domain.usecases.SearchAnimeUseCase
 import com.stupishin.impl.data.AnimeRepository
 import com.stupishin.impl.data.StupishinStorage
-import com.stupishin.impl.data.models.AnimeDto
+import com.example.jikan.api.JikanAnime
 import kotlin.Result.Companion.success
 
 internal class SearchAnimeUseCaseImpl(
@@ -18,30 +18,26 @@ internal class SearchAnimeUseCaseImpl(
             return success(emptyList())
         }
 
-        val result = runCatching {
-            repository.searchAnime(query = query, page = 1, limit = 25).map(::mapAnime)
-        }
-
-        result.onSuccess { items ->
+        return try {
+            val items = repository.searchAnime(query = query, page = 1, limit = 25).map(::mapAnime)
             storage.saveQuery(query)
             storage.saveItems(items)
-        }
-
-        return result.recoverCatching { e ->
+            Result.success(items)
+        } catch (e: Throwable) {
             val cached = storage.readItems()
             if (cached.isNotEmpty()) {
-                cached
+                Result.success(cached)
             } else {
-                throw e
+                Result.failure(e)
             }
         }
     }
 
-    private fun mapAnime(dto: AnimeDto): Anime {
+    private fun mapAnime(dto: JikanAnime): Anime {
         return Anime(
             id = dto.id,
-            title = dto.titleEnglish?.takeIf { it.isNotBlank() } ?: dto.title,
-            imageUrl = dto.images?.jpg?.imageUrl,
+            title = dto.title,
+            imageUrl = dto.imageUrl,
         )
     }
 }
