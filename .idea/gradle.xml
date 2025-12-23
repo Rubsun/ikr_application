@@ -100,6 +100,9 @@
             <option value="$PROJECT_DIR$/libs/logger/api" />
             <option value="$PROJECT_DIR$/libs/logger/stub" />
             <option value="$PROJECT_DIR$/libs/logger/timber" />
+            <option value="$PROJECT_DIR$/libs/lyrics" />
+            <option value="$PROJECT_DIR$/libs/lyrics/api" />
+            <option value="$PROJECT_DIR$/libs/lyrics/impl" />
             <option value="$PROJECT_DIR$/libs/network" />
             <option value="$PROJECT_DIR$/libs/network/api" />
             <option value="$PROJECT_DIR$/libs/network/data" />
