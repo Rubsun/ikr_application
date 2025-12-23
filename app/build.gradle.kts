@@ -105,6 +105,8 @@ dependencies {
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
     implementation(project(":libs:imageloader:data"))
+    implementation(project(":libs:network:data"))
+    implementation(project(":libs:jikan:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
 
