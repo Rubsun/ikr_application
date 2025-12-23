@@ -1,7 +1,6 @@
 package com.n0tsszzz.impl.ui
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -32,6 +30,27 @@ import kotlinx.coroutines.launch
 import androidx.fragment.app.viewModels
 
 internal class MarkoFragment : Fragment() {
+    
+    private fun getColorFromAttr(attrResId: Int): Int {
+        val typedValue = TypedValue()
+        requireContext().theme.resolveAttribute(attrResId, typedValue, true)
+        return typedValue.data
+    }
+    
+    private fun getColorPrimary(): Int {
+        // Material Design 3 colorPrimary attribute ID
+        val typedValue = TypedValue()
+        requireContext().theme.resolveAttribute(android.R.attr.colorPrimary, typedValue, true)
+        return typedValue.data
+    }
+    
+    private fun getColorOnSurface(): Int {
+        // Material Design 3 colorOnSurface attribute ID (16842806)
+        val typedValue = TypedValue()
+        // Using colorForeground as fallback for colorOnSurface in Material 3
+        requireContext().theme.resolveAttribute(android.R.attr.colorForeground, typedValue, true)
+        return typedValue.data
+    }
     private val viewModel: MarkoViewModel by viewModels()
     private val timeRecordAdapter = TimeRecordAdapter()
     private var lastShownError: Throwable? = null
@@ -66,7 +85,7 @@ internal class MarkoFragment : Fragment() {
         }
 
         addButton.apply {
-            val buttonColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_button_color)
+            val buttonColor = getColorPrimary()
             backgroundTintList = ColorStateList.valueOf(buttonColor)
             setOnClickListener {
                 viewModel.addTimeRecord()
@@ -74,7 +93,7 @@ internal class MarkoFragment : Fragment() {
         }
 
         clearButton.apply {
-            val buttonColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_button_color)
+            val buttonColor = getColorPrimary()
             backgroundTintList = ColorStateList.valueOf(buttonColor)
             setOnClickListener {
                 viewModel.clearRecords()
@@ -88,7 +107,7 @@ internal class MarkoFragment : Fragment() {
                     .apply {
                         (this as? MaterialButton)?.apply {
                             text = item.typeName
-                            val buttonColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_button_color)
+                            val buttonColor = getColorPrimary()
                             backgroundTintList = ColorStateList.valueOf(buttonColor)
                             setOnClickListener {
                                 viewModel.selectPrecision(item)
@@ -158,7 +177,7 @@ internal class MarkoFragment : Fragment() {
 
         val xAxis = chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        val textColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_chart_text_color)
+        val textColor = getColorOnSurface()
         xAxis.textColor = textColor
         xAxis.setDrawGridLines(false)
 
@@ -181,8 +200,8 @@ internal class MarkoFragment : Fragment() {
             Entry(index.toFloat(), info.elapsedTime.toFloat())
         }
 
-        val lineColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_chart_line_color)
-        val textColor = ContextCompat.getColor(requireContext(), R.color.n0tsszzz_chart_text_color)
+        val lineColor = getColorPrimary()
+        val textColor = getColorOnSurface()
         val dataSet = LineDataSet(entries, "Elapsed Time").apply {
             color = lineColor
             valueTextColor = textColor

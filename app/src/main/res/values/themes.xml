@@ -18,4 +18,6 @@
         <item name="songSortButton">@style/Widget.SongSortButton</item>
         <item name="songLyrics">@style/Widget.SongLyrics</item>
     </style>
+
+
 </resources>

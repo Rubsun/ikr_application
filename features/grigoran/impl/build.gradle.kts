@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":libs:injector"))
+    api(project(":libs:imageloader:api"))
 
 
 }

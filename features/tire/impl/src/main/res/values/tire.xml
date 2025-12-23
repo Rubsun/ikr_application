@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tire_text_time_pattern">Текущая дата: %s</string>
+    <string name="tire_text_time_from_reboot_pattern">Время от начала: %s</string>
+    <string name="tire_search_devices">Поиск устройств</string>
+    <string name="tire_add_device">Добавить устройство</string>
+    <string name="tire_device_name">Название устройства</string>
+    <string name="tire_add">Добавить</string>
+    <string name="tire_device_list">Список устройств</string>
+    <string name="tire_image_alt">Sample image</string>
+
+    <color name="tire_color_primary">#4CAF50</color>
+    <color name="tire_color_black">#000000</color>
+</resources>
+
