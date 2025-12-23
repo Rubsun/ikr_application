@@ -43,5 +43,6 @@ dependencies {
 
     api(project(":features:artemkaa:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:artemkaa-network:api"))
 }
 

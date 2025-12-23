@@ -3,7 +3,12 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="ikr_application.feature.grigoran.impl" target="21" />
+      <module name="ikr_application.libs.chart.api" target="21" />
+      <module name="ikr_application.libs.chart.data" target="21" />
       <module name="ikr_application.libs.coil.data" target="21" />
+      <module name="ikr_application.libs.demyanenkoCoil.impl" target="21" />
+      <module name="ikr_application.libs.demyanenkoOpenF1.impl" target="21" />
+      <module name="ikr_application.libs.n0tsszzz-network.data" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>
