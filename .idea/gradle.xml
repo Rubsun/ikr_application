@@ -102,6 +102,9 @@
             <option value="$PROJECT_DIR$/libs/demyanenkoCoil/impl" />
             <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1" />
             <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1/impl" />
+            <option value="$PROJECT_DIR$/libs/drain678-network" />
+            <option value="$PROJECT_DIR$/libs/drain678-network/api" />
+            <option value="$PROJECT_DIR$/libs/drain678-network/data" />
             <option value="$PROJECT_DIR$/libs/dyatlova-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/api" />

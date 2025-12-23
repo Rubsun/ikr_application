@@ -43,5 +43,6 @@ dependencies {
 
     api(project(":features:drain678:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:drain678-network:api"))
 }
 

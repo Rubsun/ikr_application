@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.SystemClock
 import com.drain678.api.domain.models.Drain678Info
+import com.drain678.network.api.TimeApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,7 +36,8 @@ fun Drain678Info.toSerializable(): Drain678InfoSerializable {
 }
 
 internal class Drain678Repository(
-    private val context: Context
+    private val context: Context,
+    private val timeApiClient: TimeApiClient
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "drain678_prefs",
@@ -52,11 +54,24 @@ internal class Drain678Repository(
         _timeRecords.value = loadRecords()
     }
 
-    fun drain678Info(): Drain678Info {
-        return Drain678Info(
-            currentTime = System.currentTimeMillis(),
-            elapsedTime = SystemClock.elapsedRealtime(),
-        )
+    /**
+     * Получает информацию о времени из интернета с fallback на локальное время при ошибке.
+     */
+    suspend fun drain678Info(): Drain678Info = withContext(Dispatchers.IO) {
+        try {
+            // Пытаемся получить время из интернета
+            val timeDto = timeApiClient.getCurrentTime("UTC")
+            Drain678Info(
+                currentTime = timeDto.unixtime * 1000, // Конвертируем секунды в миллисекунды
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        } catch (e: Exception) {
+            // Fallback на локальное время при ошибке сети
+            Drain678Info(
+                currentTime = System.currentTimeMillis(),
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        }
     }
 
     fun addTimeRecord(info: Drain678Info) {

@@ -111,6 +111,7 @@ dependencies {
     implementation(project(":libs:n0tsszzz-network:data"))
     implementation(project(":libs:artemkaa-network:data"))
     implementation(project(":libs:antohaot-network:data"))
+    implementation(project(":libs:drain678-network:data"))
     implementation(project(":libs:chart:data"))
     implementation(project(":libs:capybara-network:data"))
     implementation(project(":features:spl3g:api"))

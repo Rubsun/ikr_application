@@ -3,8 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="ikr_application.feature.grigoran.impl" target="21" />
-      <module name="ikr_application.libs.antohaot-network.data" target="21" />
       <module name="ikr_application.libs.coil.data" target="21" />
+      <module name="ikr_application.libs.drain678-network.data" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

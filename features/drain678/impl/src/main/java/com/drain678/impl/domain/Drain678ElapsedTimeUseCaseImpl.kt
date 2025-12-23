@@ -14,7 +14,8 @@ internal class Drain678ElapsedTimeUseCaseImpl(
 ) : Drain678ElapsedTimeUseCase {
     override fun value(precision: Drain678TimePrecisions): Flow<Long> = flow {
         while (true) {
-            val elapsedTime = repository.drain678Info().elapsedTime
+            val info = repository.drain678Info()
+            val elapsedTime = info.elapsedTime
             emit(elapsedTime / precision.divider.inWholeMilliseconds)
             delay(100)
         }

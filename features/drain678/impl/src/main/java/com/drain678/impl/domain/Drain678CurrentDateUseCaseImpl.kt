@@ -14,7 +14,8 @@ internal class Drain678CurrentDateUseCaseImpl(
 ) : Drain678CurrentDateUseCase {
     override fun date(): Flow<Date> = flow {
         while (true) {
-            val timestamp = repository.drain678Info().currentTime
+            val info = repository.drain678Info()
+            val timestamp = info.currentTime
             emit(Date(timestamp))
             delay(1000)
         }
