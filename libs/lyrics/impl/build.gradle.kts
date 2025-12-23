@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kristevt.impl"
+    namespace = "com.kristevt.lyrics"
     compileSdk = 36
 
     defaultConfig {
@@ -34,15 +34,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
     implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-
-    api(project(":features:kristevt:api"))
-    implementation(project(":libs:injector"))
-    implementation(project(":libs:lyrics:api"))
-
     implementation(libs.koin.core)
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+
+    api(project(":libs:lyrics:api"))
+    implementation(project(":libs:injector"))
 }
