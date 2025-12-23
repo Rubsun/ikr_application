@@ -15,7 +15,7 @@
         android:id="@+id/errorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ff0000"
+        android:textColor="wrap_content"
         android:visibility="gone"/>
 
     <EditText
