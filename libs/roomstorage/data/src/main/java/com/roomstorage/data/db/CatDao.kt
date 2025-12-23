@@ -1,4 +1,4 @@
-package com.example.data.db
+package com.roomstorage.data.db
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -85,6 +85,9 @@
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/catLover" />
+            <option value="$PROJECT_DIR$/libs/catLover/api" />
+            <option value="$PROJECT_DIR$/libs/catLover/data" />
             <option value="$PROJECT_DIR$/libs/dyatlova-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/api" />
