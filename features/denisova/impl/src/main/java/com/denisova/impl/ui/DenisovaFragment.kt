@@ -16,11 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.core.widget.doOnTextChanged
 import com.denisova.impl.R
+import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.launch
 
 internal class DenisovaFragment : Fragment() {
     private val viewModel by viewModels<DenisovaViewModel>()
-    private val adapter by lazy { WeatherLocationAdapter() }
+    private val imageLoader: ImageLoader by inject()
+    private val adapter by lazy { WeatherLocationAdapter(imageLoader) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
