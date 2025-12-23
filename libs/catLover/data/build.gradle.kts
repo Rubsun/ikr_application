@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "quo.vadis.impl"
+    namespace = "com.example.data"
     compileSdk = 36
 
     defaultConfig {
@@ -24,11 +24,6 @@ android {
             )
         }
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -42,18 +37,11 @@ kotlin {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
 
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.bundles.ui.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.network)
 
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    api(project(":features:quovadis:api"))
-    api(project(":libs:catLover:data"))
-    api(project(":libs:imageloader:data"))
-    api(project(":libs:roomstorage:data"))
+    api(project(":libs:catLover:api"))
     implementation(project(":libs:injector"))
 }

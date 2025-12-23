@@ -1,6 +1,5 @@
 package quo.vadis.impl.data
 
-import kotlinx.coroutines.flow.Flow
 import quo.vadis.api.model.Cat
 
 internal class CatRepositoryImpl {

@@ -1,9 +1,9 @@
-package com.example.data
+package com.roomstorage.data
 
 import android.content.Context
 import androidx.room.Room
 import com.example.api.CatRoomRepository
-import com.example.data.db.CatDatabase
+import com.roomstorage.data.db.CatDatabase
 import com.example.injector.AbstractInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules

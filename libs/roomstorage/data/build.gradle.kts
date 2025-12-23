@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.roomstorage.data"
     compileSdk = 36
 
     defaultConfig {
