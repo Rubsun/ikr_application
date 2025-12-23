@@ -6,13 +6,13 @@ import com.alexcode69.api.domain.models.TimePrecisions
 import com.alexcode69.api.domain.usecases.AddTimeEntryUseCase
 import com.alexcode69.api.domain.usecases.CurrentDateUseCase
 import com.alexcode69.api.domain.usecases.SearchTimeEntriesUseCase
+import com.example.logger.api.debug
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 internal class MyViewModel(
     private val currentDateUseCase: CurrentDateUseCase,
@@ -24,7 +24,7 @@ internal class MyViewModel(
 
     val uiState: StateFlow<TimerUiState> = _searchQuery
         .flatMapLatest { query ->
-            Timber.d("Flatmap latest called with query: '$query'")
+            "Flatmap latest called with query: '$query'".debug()
             searchTimeEntriesUseCase.search(query)
         }
         .stateIn(
@@ -52,7 +52,7 @@ internal class MyViewModel(
         }
 
     fun updateSearchQuery(query: String) {
-        Timber.d("updateSearchQuery called with: '$query'")
+        "updateSearchQuery called with: '$query'".debug()
         _searchQuery.value = query
     }
 
@@ -60,7 +60,7 @@ internal class MyViewModel(
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                Timber.d("Adding time entry: '$label'")
+                "Adding time entry: '$label'".debug()
                 addTimeEntryUseCase.execute(label)
             } finally {
                 _isLoading.value = false

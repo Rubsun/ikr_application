@@ -14,13 +14,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egorik4.impl.R
+import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class Egorik4Fragment : Fragment() {
     private val viewModel: Egorik4ViewModel by viewModel()
-    private val adapter by lazy { BookAdapter() }
+    private val imageLoader: ImageLoader by inject()
+    private val adapter by lazy { BookAdapter(imageLoader) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

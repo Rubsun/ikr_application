@@ -39,7 +39,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.timber)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
@@ -47,5 +46,6 @@ dependencies {
     api(project(":features:alexcode69:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":libs:logger:api"))
 }
 

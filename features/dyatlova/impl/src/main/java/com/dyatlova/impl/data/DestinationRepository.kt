@@ -4,6 +4,8 @@ import com.dyatlova.api.domain.models.Destination
 import com.dyatlova.impl.data.models.DestinationData
 import com.dyatlova.impl.data.models.DestinationsStorage
 import com.example.primitivestorage.api.PrimitiveStorage
+import com.dyatlova.network.DestinationsRemoteSource
+import com.dyatlova.network.RemoteDestination
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +22,7 @@ private const val STORAGE_NAME = "dyatlova_destinations.json"
 
 internal class DestinationRepository(
     private val storageFactory: PrimitiveStorage.Factory,
+    private val remoteSource: DestinationsRemoteSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
     private val storage by lazy {
@@ -32,7 +35,7 @@ internal class DestinationRepository(
 
     init {
         scope.launch {
-            loadFromStorage()
+            loadFromStorageOrRemote()
         }
     }
 
@@ -45,14 +48,23 @@ internal class DestinationRepository(
         }
     }
 
-    private suspend fun loadFromStorage() {
+    private suspend fun loadFromStorageOrRemote() {
         val stored = storage.get().first()
-        if (stored != null && stored.destinations.isNotEmpty()) {
-            destinations.value = stored.destinations
-        } else {
-            destinations.value = createFakeDestinations()
-            saveToStorage()
+        val local = stored?.destinations.orEmpty()
+        if (local.isNotEmpty()) {
+            destinations.value = local
+            return
         }
+
+        val remote = runCatching { remoteSource.loadDestinations() }
+            .getOrNull()
+            .orEmpty()
+            .map(RemoteDestination::toData)
+            .takeIf { it.isNotEmpty() }
+            ?: createFakeDestinations()
+
+        destinations.value = remote
+        saveToStorage()
     }
 
     private suspend fun saveToStorage() {
@@ -101,6 +113,14 @@ internal fun DestinationData.toDomain(): Destination = Destination(
 )
 
 internal fun Destination.toData(): DestinationData = DestinationData(
+    id = id,
+    title = title,
+    country = country,
+    imageUrl = imageUrl,
+    tags = tags,
+)
+
+private fun RemoteDestination.toData(): DestinationData = DestinationData(
     id = id,
     title = title,
     country = country,

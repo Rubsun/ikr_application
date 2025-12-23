@@ -37,14 +37,13 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
+    // Используем абстракции вместо прямых зависимостей на Coil/Retrofit
+    implementation(project(":libs:imageloader:api"))
 
     api(project(":features:denisova:api"))
     implementation(project(":libs:injector"))
