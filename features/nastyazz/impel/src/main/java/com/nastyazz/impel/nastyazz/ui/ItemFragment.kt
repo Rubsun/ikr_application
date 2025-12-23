@@ -8,18 +8,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import com.nastyazz.impel.R
 import com.nastyazz.impel.databinding.FragmentNastyazzBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.getValue
 
 internal class ItemsFragment : Fragment(R.layout.fragment_nastyazz) {
     private var _binding: FragmentNastyazzBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ItemsViewModel by viewModels ()
+    private val viewModel: ItemsViewModel by inject()
+    private val imageLoader: ImageLoader by inject()
 
-    private val adapter = ItemsAdapter()
+    private val adapter = ItemsAdapter(imageLoader)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,8 +33,8 @@ internal class ItemsFragment : Fragment(R.layout.fragment_nastyazz) {
         binding.itemsRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.itemsRecycler.adapter = adapter
 
-        binding.searchEditText.doAfterTextChanged {
-            viewModel.onSearch(it.toString())
+        binding.searchEditText.doAfterTextChanged { text ->
+            viewModel.search(text.toString())
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

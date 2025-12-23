@@ -111,6 +111,8 @@ dependencies {
     implementation(project(":libs:capybara-network:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
+    implementation(project(":libs:lyrics:impl"))
+
 
     debugImplementation(project(":libs:logger:timber"))
     releaseImplementation(project(":libs:logger:stub"))

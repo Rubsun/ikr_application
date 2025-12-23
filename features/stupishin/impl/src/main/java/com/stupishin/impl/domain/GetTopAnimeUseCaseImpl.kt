@@ -4,7 +4,6 @@ import com.stupishin.api.domain.models.Anime
 import com.stupishin.api.domain.usecases.GetTopAnimeUseCase
 import com.stupishin.impl.data.AnimeRepository
 import com.stupishin.impl.data.StupishinStorage
-import com.example.jikan.api.JikanAnime
 
 internal class GetTopAnimeUseCaseImpl(
     private val repository: AnimeRepository,
@@ -13,7 +12,7 @@ internal class GetTopAnimeUseCaseImpl(
 
     override suspend fun invoke(): Result<List<Anime>> {
         return try {
-            val items = repository.topAnime(page = 1).map(::mapAnime)
+            val items = repository.topAnime(page = 1)
             storage.saveQuery("")
             storage.saveItems(items)
             Result.success(items)
@@ -25,13 +24,5 @@ internal class GetTopAnimeUseCaseImpl(
                 Result.failure(e)
             }
         }
-    }
-
-    private fun mapAnime(dto: JikanAnime): Anime {
-        return Anime(
-            id = dto.id,
-            title = dto.title,
-            imageUrl = dto.imageUrl,
-        )
     }
 }

@@ -1,18 +1,19 @@
 package com.kristevt.impl.domain
 
+import com.kristevt.lyrics.api.LyricsDataSource
 import com.kristevt.api.domain.GetLyricsUseCase
-import com.kristevt.impl.data.LyricsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class GetLyricsUseCaseImpl(
-    private val repository: LyricsRepository = LyricsRepository.INSTANCE
+    private val lyricsDataSource: LyricsDataSource
 ) : GetLyricsUseCase {
 
-    override suspend operator fun invoke(artist: String, title: String): Result<String> =
+    override suspend fun invoke(
+        artist: String,
+        title: String
+    ): Result<String> =
         withContext(Dispatchers.IO) {
-            runCatching {
-                repository.getLyrics(artist, title).lyrics
-            }
+            lyricsDataSource.getLyrics(artist, title)
         }
 }

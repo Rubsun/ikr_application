@@ -42,5 +42,7 @@ dependencies {
 
     api(project(":features:kristevt:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
+    implementation(project(":libs:lyrics:api"))
+
+    implementation(libs.koin.core)
 }

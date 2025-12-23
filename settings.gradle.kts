@@ -97,3 +97,5 @@ include(":libs:capybara-network:data")
 
 include(":libs:jikan:api")
 include(":libs:jikan:data")
+include(":libs:lyrics:api")
+include(":libs:lyrics:impl")
