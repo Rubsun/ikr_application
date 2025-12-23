@@ -1,6 +1,7 @@
-package com.example.libs.demyanenkocoil
+package com.example.libs
 
 import android.content.Context
+import com.example.demyanenkocoil.api.DemyanenkoImageLoader
 import com.example.injector.AbstractInitializer
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module

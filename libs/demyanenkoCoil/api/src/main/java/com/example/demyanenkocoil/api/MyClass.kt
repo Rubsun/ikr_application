@@ -1,4 +1,7 @@
 package com.example.demyanenkocoil.api
 
-class MyClass {
+
+
+interface DemyanenkoImageLoader {
+    fun load(imageView: Any, data: Any?)
 }

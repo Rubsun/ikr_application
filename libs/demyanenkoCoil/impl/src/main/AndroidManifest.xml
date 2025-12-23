@@ -8,7 +8,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.example.libs.demyanenkocoil.DemyanenkoImageLoaderModule"
+                android:name="com.example.libs.DemyanenkoImageLoaderModule"
                 android:value="androidx.startup" />
         </provider>
     </application>

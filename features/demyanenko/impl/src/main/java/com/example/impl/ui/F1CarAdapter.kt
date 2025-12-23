@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.impl.data.F1Car
 import com.example.impl.databinding.ItemF1carBinding
 import com.example.impl.databinding.ItemDriverBinding
-import com.example.libs.demyanenkocoil.DemyanenkoImageLoader
+import com.example.demyanenkocoil.api.DemyanenkoImageLoader
 import com.example.libs.demyanenkoopenf1.model.Driver
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
