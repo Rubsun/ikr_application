@@ -3,6 +3,8 @@ package com.nastyazz.impel.nastyazz.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.imageloader.api.ImageLoader
+
 import com.nastyazz.impel.databinding.ItemNastyazzBinding
 import com.nastyazz.api.domain.models.Item
 
@@ -22,7 +24,7 @@ internal class ItemsAdapter(private val imageLoader: ImageLoader) :
             b.itemId.text = "ID: ${item.id}"
             b.itemTitle.text = item.title
             b.itemDescription.text = item.description
-            imageLoader.load(item.imageUrl, b.image)
+            imageLoader.load(b.image, item.imageUrl)
         }
     }
 
