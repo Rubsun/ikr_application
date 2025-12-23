@@ -1,12 +1,15 @@
 package com.nastyazz.impel.nastyazz.ui
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.imageloader.api.ImageLoader
+
 import com.nastyazz.impel.databinding.ItemNastyazzBinding
-import coil3.load
 import com.nastyazz.api.domain.models.Item
 
-internal class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
+internal class ItemsAdapter(private val imageLoader: ImageLoader) :
+    RecyclerView.Adapter<ItemsAdapter.VH>() {
 
     private val data = mutableListOf<Item>()
 
@@ -21,7 +24,7 @@ internal class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
             b.itemId.text = "ID: ${item.id}"
             b.itemTitle.text = item.title
             b.itemDescription.text = item.description
-            b.image.load(item.imageUrl)
+            imageLoader.load(b.image, item.imageUrl)
         }
     }
 
@@ -30,9 +33,6 @@ internal class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.VH>() {
         return VH(binding)
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(data[position])
-    }
-
+    override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(data[position])
     override fun getItemCount() = data.size
 }
