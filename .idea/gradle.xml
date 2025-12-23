@@ -132,6 +132,9 @@
             <option value="$PROJECT_DIR$/libs/primitivestorage" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/api" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/data" />
+            <option value="$PROJECT_DIR$/libs/roomstorage" />
+            <option value="$PROJECT_DIR$/libs/roomstorage/api" />
+            <option value="$PROJECT_DIR$/libs/roomstorage/data" />
           </set>
         </option>
       </GradleProjectSettings>

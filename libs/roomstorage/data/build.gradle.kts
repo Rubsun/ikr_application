@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "quo.vadis.impl"
+    namespace = "com.example.data"
     compileSdk = 36
 
     defaultConfig {
@@ -24,11 +24,6 @@ android {
             )
         }
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -44,18 +39,11 @@ kotlin {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
-    implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    api(project(":features:quovadis:api"))
-    api(project(":libs:roomstorage:data"))
+    api(project(":libs:roomstorage:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
 }

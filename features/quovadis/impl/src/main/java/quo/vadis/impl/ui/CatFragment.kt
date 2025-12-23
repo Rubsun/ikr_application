@@ -106,7 +106,7 @@ class CatFragment : Fragment() {
             state.filter.isBlank() ||
                     cat.name.contains(state.filter, ignoreCase = true) ||
                     (cat.phrase?.contains(state.filter, ignoreCase = true) == true) ||
-                    cat.fetchedFrom.name.contains(state.api.name, ignoreCase = true)
+                    cat.fetchedFrom.contains(state.api.name, ignoreCase = true)
         }
 
         val cat = filteredCats.firstOrNull()
