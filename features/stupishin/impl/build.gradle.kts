@@ -47,11 +47,9 @@ dependencies {
 
     implementation(libs.androidx.recyclerview)
 
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
     api(project(":features:stupishin:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:imageloader:api"))
     implementation(project(":libs:jikan:api"))
     implementation(project(":libs:primitivestorage:api"))
 }
