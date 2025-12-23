@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.egorik4.impl"
+    namespace = "com.egorik4.network"
     compileSdk = 36
 
     defaultConfig {
@@ -37,16 +37,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
 
-    api(project(":features:egorik4:api"))
+    api(project(":libs:egorik4-network:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:egorik4-network:api"))
-    implementation(project(":libs:imageloader:api"))
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.android)
 }
+
