@@ -1,7 +1,7 @@
 package quo.vadis.impl.ui
 
+import com.example.api.CatDto
 import quo.vadis.api.usecases.ApiBaseUrl
-import quo.vadis.impl.data.CatDto
 
 
 internal data class CatUiState(

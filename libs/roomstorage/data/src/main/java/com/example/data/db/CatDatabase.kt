@@ -1,4 +1,4 @@
-package quo.vadis.impl.data.db
+package com.example.data.db
 
 import android.content.Context
 import androidx.room.Database

@@ -1,4 +1,4 @@
-package quo.vadis.impl.data.db
+package com.example.data.db
 
 import androidx.room.Dao
 import androidx.room.Delete
