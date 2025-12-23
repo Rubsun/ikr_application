@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -84,6 +85,13 @@
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/capybara-network" />
+            <option value="$PROJECT_DIR$/libs/capybara-network/api" />
+            <option value="$PROJECT_DIR$/libs/capybara-network/data" />
+            <option value="$PROJECT_DIR$/libs/dyatlova-network" />
+            <option value="$PROJECT_DIR$/libs/egorik4-network" />
+            <option value="$PROJECT_DIR$/libs/egorik4-network/api" />
+            <option value="$PROJECT_DIR$/libs/egorik4-network/data" />
             <option value="$PROJECT_DIR$/libs/imageloader" />
             <option value="$PROJECT_DIR$/libs/imageloader/api" />
             <option value="$PROJECT_DIR$/libs/imageloader/data" />

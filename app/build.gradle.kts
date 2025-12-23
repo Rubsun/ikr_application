@@ -40,6 +40,7 @@ android {
     packaging {
         resources {
             pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            merges += "META-INF/services/com.example.injector.AbstractInitializer"
         }
     }
 }
@@ -107,6 +108,7 @@ dependencies {
     implementation(project(":libs:imageloader:data"))
     implementation(project(":libs:jikan:data"))
     implementation(project(":libs:egorik4-network:data"))
+    implementation(project(":libs:capybara-network:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
 

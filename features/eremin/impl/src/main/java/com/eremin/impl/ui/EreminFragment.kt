@@ -15,6 +15,7 @@ import com.eremin.api.domain.models.Capybara
 import com.eremin.impl.R
 import com.eremin.impl.domain.GetCapybarasUseCase
 import com.example.primitivestorage.api.PrimitiveStorage
+import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -24,6 +25,7 @@ internal class EreminFragment : Fragment() {
 
     private val getCapybarasUseCase: GetCapybarasUseCase by inject()
     private val primitiveStorage: PrimitiveStorage<String> by inject(named("eremin_storage"))
+    private val imageLoader: ImageLoader by inject()
     private lateinit var searchEditText: EditText
     private lateinit var capybaraAdapter: CapybaraAdapter
     private var allCapybaras: List<Capybara> = emptyList()
@@ -41,7 +43,7 @@ internal class EreminFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.capybara_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        capybaraAdapter = CapybaraAdapter(emptyList())
+        capybaraAdapter = CapybaraAdapter(emptyList(), imageLoader)
         recyclerView.adapter = capybaraAdapter
 
         searchEditText = view.findViewById(R.id.search_edit_text)

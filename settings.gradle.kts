@@ -92,6 +92,8 @@ include(":libs:imageloader:api")
 include(":libs:imageloader:data")
 include(":libs:network:api")
 include(":libs:network:data")
+include(":libs:capybara-network:api")
+include(":libs:capybara-network:data")
 
 include(":libs:jikan:api")
 include(":libs:jikan:data")
