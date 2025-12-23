@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.n0tsszzz.impl"
+    namespace = "com.n0tsszzz.network"
     compileSdk = 36
 
     defaultConfig {
@@ -37,17 +37,12 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(libs.koin.bom))
     implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.serialization.json)
 
-    api(project(":features:n0tsszzz:api"))
+    implementation(libs.bundles.network)
+
+    api(project(":libs:n0tsszzz-network:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:n0tsszzz-network:api"))
-    implementation(project(":libs:chart:api"))
-    implementation(libs.bundles.koin)
 }
 

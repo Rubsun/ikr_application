@@ -14,13 +14,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import android.widget.FrameLayout
 import com.google.android.material.button.MaterialButton
+import com.n0tsszzz.chart.api.ChartView
+import com.n0tsszzz.chart.api.ChartViewFactory
+import com.n0tsszzz.chart.api.ChartData
+import com.n0tsszzz.chart.api.ChartEntry
+import com.n0tsszzz.chart.api.ChartConfig
 import com.google.android.material.textfield.TextInputEditText
+import com.example.injector.inject
 import com.n0tsszzz.api.domain.models.MarkoInfo
 import com.n0tsszzz.api.domain.models.MarkoTimePrecisions
 import com.n0tsszzz.impl.R
@@ -30,6 +32,8 @@ import kotlinx.coroutines.launch
 import androidx.fragment.app.viewModels
 
 internal class MarkoFragment : Fragment() {
+    
+    private val chartViewFactory: ChartViewFactory by inject()
     
     private fun getColorFromAttr(attrResId: Int): Int {
         val typedValue = TypedValue()
@@ -73,7 +77,16 @@ internal class MarkoFragment : Fragment() {
         val addButton = view.findViewById<Button>(R.id.add_button)
         val clearButton = view.findViewById<Button>(R.id.clear_button)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler)
-        val chart = view.findViewById<LineChart>(R.id.chart)
+        val chartContainer = view.findViewById<FrameLayout>(R.id.chart_container)
+        
+        // Создаем ChartView программно через фабрику из api модуля
+        val chartViewAsView = chartViewFactory.create(requireContext())
+        val chart = chartViewAsView as? ChartView
+            ?: throw IllegalStateException("Created view must implement ChartView")
+        chartContainer.addView(chartViewAsView, FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT
+        ))
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -130,7 +143,7 @@ internal class MarkoFragment : Fragment() {
         state: MarkoViewModel.State,
         textView: TextView,
         elapsedTextView: TextView,
-        chart: LineChart
+        chart: ChartView
     ) {
         textView.text = getString(R.string.n0tsszzz_text_time_pattern, state.currentDate)
         
@@ -168,51 +181,32 @@ internal class MarkoFragment : Fragment() {
         }
     }
 
-    private fun setupChart(chart: LineChart) {
-        chart.description.isEnabled = false
-        chart.setTouchEnabled(true)
-        chart.isDragEnabled = true
-        chart.setScaleEnabled(true)
-        chart.setPinchZoom(true)
-
-        val xAxis = chart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
+    private fun setupChart(chart: ChartView) {
         val textColor = getColorOnSurface()
-        xAxis.textColor = textColor
-        xAxis.setDrawGridLines(false)
-
-        val leftAxis = chart.axisLeft
-        leftAxis.textColor = textColor
-        leftAxis.setDrawGridLines(true)
-
-        chart.axisRight.isEnabled = false
-        chart.legend.isEnabled = false
+        chart.setup(ChartConfig(
+            textColor = textColor,
+            showGridLines = true
+        ))
     }
 
-    private fun updateChart(chart: LineChart, records: List<MarkoInfo>) {
+    private fun updateChart(chart: ChartView, records: List<MarkoInfo>) {
         if (records.isEmpty()) {
-            chart.data = null
+            chart.setData(ChartData(emptyList(), 0, 0))
             chart.invalidate()
             return
         }
 
         val entries = records.mapIndexed { index, info ->
-            Entry(index.toFloat(), info.elapsedTime.toFloat())
+            ChartEntry(index.toFloat(), info.elapsedTime.toFloat())
         }
 
         val lineColor = getColorPrimary()
         val textColor = getColorOnSurface()
-        val dataSet = LineDataSet(entries, "Elapsed Time").apply {
-            color = lineColor
-            valueTextColor = textColor
-            lineWidth = 2f
-            setCircleColor(lineColor)
-            circleRadius = 4f
-            setDrawCircleHole(false)
-        }
-
-        val lineData = LineData(dataSet)
-        chart.data = lineData
+        chart.setData(ChartData(
+            entries = entries,
+            lineColor = lineColor,
+            textColor = textColor
+        ))
         chart.invalidate()
     }
 }

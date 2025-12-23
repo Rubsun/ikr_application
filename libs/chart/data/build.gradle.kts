@@ -1,17 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.n0tsszzz.impl"
+    namespace = "com.n0tsszzz.chart.data"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -37,17 +34,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(libs.koin.bom))
     implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    api(project(":features:n0tsszzz:api"))
+    implementation(libs.mpandroidchart)
+    
+    api(project(":libs:chart:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:n0tsszzz-network:api"))
-    implementation(project(":libs:chart:api"))
-    implementation(libs.bundles.koin)
 }
 
