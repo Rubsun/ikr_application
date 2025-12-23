@@ -42,4 +42,5 @@ dependencies {
 
     api(project(":features:nfirex:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:api"))
 }

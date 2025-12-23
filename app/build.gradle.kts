@@ -27,12 +27,20 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    packaging {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
     }
 }
 
@@ -43,6 +51,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(platform(libs.koin.bom))
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.bundles.ui.core)
@@ -63,12 +72,44 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
+    implementation(project(":features:quovadis:impl"))
     implementation(project(":features:nastyazz:impel"))
-
     implementation(project(":features:nfirex:impl"))
+    implementation(project(":features:dimmension:impl"))
     implementation(project(":features:grigoran:impl"))
+	implementation(project(":features:rin2396:impl"))
+    implementation(project(":features:stupishin:impl"))
+    implementation(project(":features:n0tsszzz:impl"))
+    implementation(project(":features:artemkaa:impl"))
+    implementation(project(":features:antohaot:impl"))
+	implementation(project(":features:zagora:impl"))
+    implementation(project(":features:drain678:impl"))
+    implementation(project(":features:denisova:impl"))
+    implementation(project(":features:dyatlova:api"))
+    implementation(project(":features:dyatlova:impl"))
+    implementation(project(":features:MomusWinner:impl"))
+    implementation(project(":features:egorik4:impl"))
+    implementation(project(":features:alexcode69:impl"))
+    implementation(project(":features:demyanenko:impl"))
+    implementation(project(":features:rubsun:impl"))
+    implementation(project(":features:tire:impl"))
+    implementation(project(":features:eremin:impl"))
+    implementation(project(":features:eremin:api"))
+    implementation(project(":features:akiko23:impl"))
+    implementation(project(":features:kristevt:impl"))
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
     implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":libs:imageloader:data"))
+    implementation(project(":libs:network:data"))
+    implementation(project(":libs:jikan:data"))
+    implementation(project(":features:spl3g:api"))
+    implementation(project(":features:spl3g:impl"))
+
+    debugImplementation(project(":libs:logger:timber"))
+    releaseImplementation(project(":libs:logger:stub"))
 }

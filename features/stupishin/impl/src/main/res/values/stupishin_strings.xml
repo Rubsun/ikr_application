@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_stupishin">Stupishin Anime</string>
+    <string name="stu_anime_search_hint">Search anime…</string>
+    <string name="stu_anime_retry">Try again</string>
+    <string name="stu_anime_empty">Nothing found</string>
+    <string name="stu_anime_poster_cd">Anime poster</string>
+
+    <string name="stu_anime_vpn_note">API работает через VPN</string>
+</resources>

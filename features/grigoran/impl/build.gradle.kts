@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.grigoran.impl"
     compileSdk = 36
+    
     defaultConfig {
         minSdk = 24
 
@@ -44,5 +46,11 @@ dependencies {
     api(project(":features:grigoran:api"))
     implementation(libs.coil)
     implementation(libs.androidx.fragment.ktx)
-
+    implementation(libs.kotlinx.serialization.json)
+    implementation(project(":libs:injector"))
+    api(project(":libs:imageloader:api"))
+    implementation(project(":libs:primitivestorage:api"))
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
 }

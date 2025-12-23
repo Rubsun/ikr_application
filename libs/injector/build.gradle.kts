@@ -35,6 +35,6 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
 
-    implementation(platform(libs.koin.bom))
+    api(platform(libs.koin.bom))
     api(libs.bundles.koin)
 }
