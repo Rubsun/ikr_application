@@ -12,8 +12,8 @@ import com.dyatlova.impl.domain.FilterDestinationsUseCaseImpl
 import com.dyatlova.impl.domain.ObserveDestinationsUseCaseImpl
 import com.dyatlova.impl.ui.DyatlovaFragment
 import com.dyatlova.impl.ui.DyatlovaViewModel
+import com.dyatlova.network.DestinationsRemoteSourceFactory
 import com.example.injector.AbstractInitializer
-import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -22,7 +22,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single { DestinationRepository(get()) }
+                single { DestinationRepository(get(), get()) }
+                single { DestinationsRemoteSourceFactory.create() }
 
                 factory<ObserveDestinationsUseCase> { ObserveDestinationsUseCaseImpl(get()) }
                 factory<AddDestinationUseCase> { AddDestinationUseCaseImpl(get()) }

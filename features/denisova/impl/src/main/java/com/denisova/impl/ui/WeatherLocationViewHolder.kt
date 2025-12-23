@@ -6,10 +6,13 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.denisova.api.domain.models.WeatherLocation
 import com.denisova.impl.R
-import coil3.load
+import com.imageloader.api.ImageLoader
 import java.net.URLEncoder
 
-internal class WeatherLocationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+internal class WeatherLocationViewHolder(
+    view: View,
+    private val imageLoader: ImageLoader,
+) : RecyclerView.ViewHolder(view) {
 
     private val titleView: TextView by lazy { itemView.findViewById<TextView>(R.id.title) }
     private val subtitleView: TextView by lazy { itemView.findViewById<TextView>(R.id.subtitle) }
@@ -62,7 +65,7 @@ internal class WeatherLocationViewHolder(view: View) : RecyclerView.ViewHolder(v
 
                 val seed = URLEncoder.encode(item.name, "UTF-8")
                 val url = "https://api.dicebear.com/8.x/initials/png?seed=$seed&radius=50&size=64"
-                avatarView.load(url)
+                imageLoader.load(avatarView, url)
             }
         }
     }

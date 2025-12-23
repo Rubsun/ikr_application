@@ -38,14 +38,12 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
 
     api(project(":features:egorik4:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:api"))
-    
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
+    implementation(project(":libs:egorik4-network:api"))
+    implementation(project(":libs:imageloader:api"))
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     

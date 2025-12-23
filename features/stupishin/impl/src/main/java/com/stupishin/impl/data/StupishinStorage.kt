@@ -1,47 +1,45 @@
 package com.stupishin.impl.data
 
-import android.content.SharedPreferences
+import com.example.primitivestorage.api.PrimitiveStorage
 import com.stupishin.api.domain.models.Anime
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import kotlinx.coroutines.flow.first
 
 internal class StupishinStorage(
-    private val prefs: SharedPreferences,
-    private val json: Json,
+    private val storage: PrimitiveStorage<State>,
 ) {
-    fun saveQuery(query: String) {
-        prefs.edit().putString(KEY_QUERY, query).apply()
+    suspend fun saveQuery(query: String) {
+        storage.patch { old ->
+            (old ?: State()).copy(query = query)
+        }
     }
 
-    fun readQuery(): String {
-        return prefs.getString(KEY_QUERY, "").orEmpty()
+    suspend fun readQuery(): String {
+        return storage.get().first()?.query.orEmpty()
     }
 
-    fun saveItems(items: List<Anime>) {
+    suspend fun saveItems(items: List<Anime>) {
         val cached = items.map { CachedAnime(id = it.id, title = it.title, imageUrl = it.imageUrl) }
-        prefs.edit().putString(KEY_ITEMS, json.encodeToString(cached)).apply()
+        storage.patch { old ->
+            (old ?: State()).copy(items = cached)
+        }
     }
 
-    fun readItems(): List<Anime> {
-        val str = prefs.getString(KEY_ITEMS, null) ?: return emptyList()
-
-        return runCatching { json.decodeFromString<List<CachedAnime>>(str) }
-            .getOrNull()
-            ?.map { Anime(id = it.id, title = it.title, imageUrl = it.imageUrl) }
-            ?: emptyList()
+    suspend fun readItems(): List<Anime> {
+        val items = storage.get().first()?.items.orEmpty()
+        return items.map { Anime(id = it.id, title = it.title, imageUrl = it.imageUrl) }
     }
 
     @Serializable
-    private data class CachedAnime(
+    internal data class State(
+        val query: String = "",
+        val items: List<CachedAnime> = emptyList(),
+    )
+
+    @Serializable
+    internal data class CachedAnime(
         val id: Int,
         val title: String,
         val imageUrl: String?,
     )
-
-    private companion object {
-        const val KEY_QUERY = "query"
-        const val KEY_ITEMS = "items"
-    }
 }

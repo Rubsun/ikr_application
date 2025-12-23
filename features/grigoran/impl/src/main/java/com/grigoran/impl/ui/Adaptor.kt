@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
 import com.grigoran.impl.databinding.ItemGrigoranBinding
+import com.imageloader.api.ImageLoader
 
-class ExampleAdapter : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
+class ExampleAdapter(
+    private val imageLoader: ImageLoader
+) : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ItemGrigoranBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,7 +25,7 @@ class ExampleAdapter : ListAdapter<ItemUi, ExampleAdapter.VH>(Diff) {
         fun bind(item: ItemUi) {
             b.title.text = item.displayTitle
             b.price.text = item.displayPrice
-            b.image.load(item.imageUrt)
+            imageLoader.load(view = b.image, url=item.imageUrt)
         }
     }
 

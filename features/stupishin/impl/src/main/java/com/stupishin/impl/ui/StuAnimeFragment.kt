@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import com.stupishin.impl.R
 import com.stupishin.impl.databinding.ContentStupishinAnimeBinding
 import com.stupishin.impl.ui.adapters.StuAnimeAdapter
@@ -15,7 +17,8 @@ import kotlinx.coroutines.launch
 
 internal class StuAnimeFragment : Fragment(R.layout.content_stupishin_anime) {
     private val viewModel by viewModels<StuAnimeViewModel>()
-    private val adapter = StuAnimeAdapter()
+    private val imageLoader: ImageLoader by inject()
+    private val adapter by lazy { StuAnimeAdapter(imageLoader) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

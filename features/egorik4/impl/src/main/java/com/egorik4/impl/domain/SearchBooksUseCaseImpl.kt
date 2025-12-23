@@ -3,7 +3,7 @@ package com.egorik4.impl.domain
 import com.egorik4.api.domain.models.Book
 import com.egorik4.api.domain.usecases.SearchBooksUseCase
 import com.egorik4.impl.data.BooksRepository
-import com.egorik4.impl.data.models.BookDto
+import com.egorik4.network.api.models.BookDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.Result.Companion.success
@@ -18,7 +18,10 @@ internal class SearchBooksUseCaseImpl(
 
         runCatching {
             repository.searchBooks(query)
-                .filter { it.title != null && it.author_name != null && !it.author_name.isEmpty() }
+                .filter { 
+                    val authorName = it.author_name
+                    it.title != null && authorName != null && authorName.isNotEmpty()
+                }
                 .map(::mapBook)
         }
     }

@@ -4,11 +4,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
 import com.egorik4.api.ui.models.BookDisplayModel
 import com.egorik4.impl.R
+import com.imageloader.api.ImageLoader
 
-internal class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+internal class BookViewHolder(
+    view: View,
+    private val imageLoader: ImageLoader
+) : RecyclerView.ViewHolder(view) {
 
     private val coverView: ImageView by lazy { itemView.findViewById<ImageView>(R.id.book_cover) }
     private val titleView: TextView by lazy { itemView.findViewById<TextView>(R.id.book_title) }
@@ -24,8 +27,9 @@ internal class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 infoView.text = null
             }
             else -> {
-                if (item.coverImageUrl != null) {
-                    coverView.load(item.coverImageUrl)
+                val coverImageUrl = item.coverImageUrl
+                if (coverImageUrl != null) {
+                    imageLoader.load(coverView, coverImageUrl)
                 } else {
                     coverView.setImageDrawable(null)
                 }

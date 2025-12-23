@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
 import com.eremin.api.domain.models.Capybara
 import com.eremin.impl.R
+import com.imageloader.api.ImageLoader
 
 internal class CapybaraAdapter(
-    private var capybaras: List<Capybara>
+    private var capybaras: List<Capybara>,
+    private val imageLoader: ImageLoader
 ) : RecyclerView.Adapter<CapybaraAdapter.CapybaraViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CapybaraViewHolder {
@@ -30,12 +31,12 @@ internal class CapybaraAdapter(
         notifyDataSetChanged()
     }
 
-    internal class CapybaraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    internal inner class CapybaraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.capybara_image)
         private val altTextView: TextView = itemView.findViewById(R.id.capybara_alt)
 
         fun bind(capybara: Capybara) {
-            imageView.load(capybara.url)
+            imageLoader.load(imageView, capybara.url)
             altTextView.text = capybara.alt
         }
     }

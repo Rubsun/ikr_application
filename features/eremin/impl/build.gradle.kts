@@ -37,16 +37,11 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.serialization.json)
-
     implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-    implementation(libs.androidx.recyclerview)
 
+    implementation(project(":libs:imageloader:api"))
+    implementation(project(":libs:capybara-network:api"))
     api(project(":features:eremin:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:api"))
-
-    implementation(libs.coil)
 }

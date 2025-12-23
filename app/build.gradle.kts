@@ -40,6 +40,7 @@ android {
     packaging {
         resources {
             pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            merges += "META-INF/services/com.example.injector.AbstractInitializer"
         }
     }
 }
@@ -72,7 +73,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.timber)
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
     implementation(project(":features:quovadis:impl"))
@@ -105,6 +105,15 @@ dependencies {
     implementation(libs.koin.android)
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":libs:imageloader:data"))
+    implementation(project(":libs:jikan:data"))
+    implementation(project(":libs:egorik4-network:data"))
+    implementation(project(":libs:capybara-network:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
+    implementation(project(":libs:lyrics:impl"))
+
+
+    debugImplementation(project(":libs:logger:timber"))
+    releaseImplementation(project(":libs:logger:stub"))
 }
