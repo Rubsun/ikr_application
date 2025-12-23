@@ -5,22 +5,65 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
-import com.example.impl.R
+//import com.example.demyanenko.impl.R
 import com.example.impl.data.F1Car
 import com.example.impl.databinding.ItemF1carBinding
+import com.example.impl.databinding.ItemDriverBinding
+import com.example.libs.demyanenkocoil.DemyanenkoImageLoader
+import com.example.libs.demyanenkoopenf1.model.Driver
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-internal class F1CarAdapter : ListAdapter<F1Car, F1CarAdapter.F1CarViewHolder>(CarDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): F1CarViewHolder {
-        val binding = ItemF1carBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return F1CarViewHolder(binding)
+
+/**
+ * Sealed class for mixed items - DEFINED HERE
+ */
+internal sealed class DemyanenkoItem {
+    data class CarItem(val car: F1Car) : DemyanenkoItem()
+    data class DriverItem(val driver: Driver) : DemyanenkoItem()
+}
+
+internal class F1CarAdapter : ListAdapter<DemyanenkoItem, RecyclerView.ViewHolder>(CarDiffCallback()), KoinComponent {
+    private val imageLoader: DemyanenkoImageLoader by inject()
+
+    companion object {
+        private const val TYPE_CAR = 0
+        private const val TYPE_DRIVER = 1
     }
 
-    override fun onBindViewHolder(holder: F1CarViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is DemyanenkoItem.CarItem -> TYPE_CAR
+            is DemyanenkoItem.DriverItem -> TYPE_DRIVER
+        }
     }
 
-    internal class F1CarViewHolder(private val binding: ItemF1carBinding) : RecyclerView.ViewHolder(binding.root) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_CAR -> {
+                val binding = ItemF1carBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                F1CarViewHolder(binding, imageLoader)
+            }
+            TYPE_DRIVER -> {
+                val binding = ItemDriverBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                DriverViewHolder(binding, imageLoader)
+            }
+            else -> throw IllegalArgumentException("Unknown view type: $viewType")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (val item = getItem(position)) {
+            is DemyanenkoItem.CarItem -> (holder as F1CarViewHolder).bind(item.car)
+            is DemyanenkoItem.DriverItem -> (holder as DriverViewHolder).bind(item.driver)
+        }
+    }
+
+    // ============ Car ViewHolder ============
+    internal class F1CarViewHolder(
+        private val binding: ItemF1carBinding,
+        private val imageLoader: DemyanenkoImageLoader
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(car: F1Car) {
             binding.apply {
                 f1carNameTv.text = car.name
@@ -31,14 +74,42 @@ internal class F1CarAdapter : ListAdapter<F1Car, F1CarAdapter.F1CarViewHolder>(C
                 } else {
                     phraseChip.visibility = android.view.View.GONE
                 }
-                val imageRes = car.imageRes ?: R.drawable.f1
-                carImageView.load(imageRes)
+                if (car.imageRes != null) {
+                    imageLoader.load(carImageView, car.imageRes)
+                }
+            }
+        }
+    }
+
+    // ============ Driver ViewHolder ============
+    internal class DriverViewHolder(
+        private val binding: ItemDriverBinding,
+        private val imageLoader: DemyanenkoImageLoader
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(driver: Driver) {
+            binding.apply {
+                driverNameTextView.text = driver.broadcastName ?: driver.fullName ?: "Unknown"
+                driverNumberTextView.text = "№${driver.driverNumber}"
+                if (!driver.headshotUrl.isNullOrBlank()) {
+                    imageLoader.load(driverHeadshotImageView, driver.headshotUrl)
+                }
             }
         }
     }
 }
 
-internal class CarDiffCallback : DiffUtil.ItemCallback<F1Car>() {
-    override fun areItemsTheSame(oldItem: F1Car, newItem: F1Car) = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: F1Car, newItem: F1Car) = oldItem == newItem
+internal class CarDiffCallback : DiffUtil.ItemCallback<DemyanenkoItem>() {
+    override fun areItemsTheSame(oldItem: DemyanenkoItem, newItem: DemyanenkoItem): Boolean {
+        return when {
+            oldItem is DemyanenkoItem.CarItem && newItem is DemyanenkoItem.CarItem ->
+                oldItem.car.id == newItem.car.id
+            oldItem is DemyanenkoItem.DriverItem && newItem is DemyanenkoItem.DriverItem ->
+                oldItem.driver.driverNumber == newItem.driver.driverNumber
+            else -> false
+        }
+    }
+
+    override fun areContentsTheSame(oldItem: DemyanenkoItem, newItem: DemyanenkoItem): Boolean {
+        return oldItem == newItem
+    }
 }

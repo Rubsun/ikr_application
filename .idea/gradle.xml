@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -84,6 +85,11 @@
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/api" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/impl" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1" />
+            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1/impl" />
             <option value="$PROJECT_DIR$/libs/injector" />
             <option value="$PROJECT_DIR$/libs/primitivestorage" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/api" />

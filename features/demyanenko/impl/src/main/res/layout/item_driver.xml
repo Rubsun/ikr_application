@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_marginEnd="12dp">
+
+    <!-- Driver Headshot -->
+    <ImageView
+        android:id="@+id/driverHeadshotImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Driver headshot"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Driver Name -->
+<!--    <TextView-->
+<!--        android:id="@+id/driverNameTextView"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="12sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#87FF00"-->
+<!--        android:maxLines="2"-->
+<!--        android:ellipsize="end"-->
+<!--        tools:text="Max\nVerstappen" />-->
+
+    <!-- Driver Number -->
+    <TextView
+        android:id="@+id/driverNumberTextView"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:textColor="#CCCCCC"
+        tools:text="№1" />
+    <TextView
+        android:id="@+id/driverNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Drivers: "
+        android:textColor="#87FF00"
+        android:textSize="14sp" />
+
+</LinearLayout>
