@@ -85,6 +85,9 @@
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/chart" />
+            <option value="$PROJECT_DIR$/libs/chart/api" />
+            <option value="$PROJECT_DIR$/libs/chart/data" />
             <option value="$PROJECT_DIR$/libs/capybara-network" />
             <option value="$PROJECT_DIR$/libs/capybara-network/api" />
             <option value="$PROJECT_DIR$/libs/capybara-network/data" />
@@ -103,6 +106,9 @@
             <option value="$PROJECT_DIR$/libs/logger/api" />
             <option value="$PROJECT_DIR$/libs/logger/stub" />
             <option value="$PROJECT_DIR$/libs/logger/timber" />
+            <option value="$PROJECT_DIR$/libs/n0tsszzz-network" />
+            <option value="$PROJECT_DIR$/libs/n0tsszzz-network/api" />
+            <option value="$PROJECT_DIR$/libs/n0tsszzz-network/data" />
             <option value="$PROJECT_DIR$/libs/lyrics" />
             <option value="$PROJECT_DIR$/libs/lyrics/api" />
             <option value="$PROJECT_DIR$/libs/lyrics/impl" />

@@ -12,9 +12,10 @@ internal class MarkoCurrentDateUseCaseImpl(
     private val repository: MarkoRepository
 ) : MarkoCurrentDateUseCase {
     override fun date(): Flow<Date> = flow {
-        val timestamp = repository.deviceInfo().currentTime
-        val date = Date(timestamp)
+        // Получаем время из интернета через API
+        val info = repository.getCurrentTimeFromApi()
+        val date = Date(info.currentTime)
         emit(date)
-    }.flowOn(Dispatchers.Default)
+    }.flowOn(Dispatchers.IO)
 }
 

@@ -34,11 +34,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 single<SharedPreferences> {
                     androidContext().getSharedPreferences("n0tsszzz_prefs", Context.MODE_PRIVATE)
                 }
-                single<Json> {
-                    Json { ignoreUnknownKeys = true }
-                }
+                // Json уже зарегистрирован в network модуле, используем его через DI
                 // single правило - создаем инстанс один раз и всегда его отдаем
-                single { MarkoRepository(get(), get()) }
+                single { MarkoRepository(get(), get(), get<Json>()) }
 
                 // factory правило - все время создаем новый инстанс
                 factory<MarkoCurrentDateUseCase> { MarkoCurrentDateUseCaseImpl(get()) }
