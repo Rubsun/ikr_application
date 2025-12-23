@@ -5,13 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dyatlova.impl"
+    namespace = "com.dyatlova.network"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -24,9 +22,7 @@ android {
             )
         }
     }
-    buildFeatures {
-        viewBinding = true
-    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -37,19 +33,10 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.constraintlayout)
-
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    implementation(libs.bundles.koin)
-
-    api(project(":features:dyatlova:api"))
-    implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:dyatlova-network"))
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.okhttp.logging.interceptor)
 }
+
+
