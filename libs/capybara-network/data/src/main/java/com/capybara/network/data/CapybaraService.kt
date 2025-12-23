@@ -1,10 +1,10 @@
-package com.eremin.impl.data
+package com.capybara.network.data
 
-import com.eremin.impl.data.models.CapybarasResponse
+import com.capybara.network.api.models.CapybarasResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface CapybaraApi {
+internal interface CapybaraService {
 
     @GET("v1/capybaras")
     suspend fun getCapybaras(
