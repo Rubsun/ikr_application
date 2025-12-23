@@ -109,6 +109,7 @@ dependencies {
     implementation(project(":libs:jikan:data"))
     implementation(project(":libs:egorik4-network:data"))
     implementation(project(":libs:n0tsszzz-network:data"))
+    implementation(project(":libs:artemkaa-network:data"))
     implementation(project(":libs:chart:data"))
     implementation(project(":libs:capybara-network:data"))
     implementation(project(":features:spl3g:api"))

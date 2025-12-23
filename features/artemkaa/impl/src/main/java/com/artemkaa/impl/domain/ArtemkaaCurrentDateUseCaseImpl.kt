@@ -15,7 +15,8 @@ internal class ArtemkaaCurrentDateUseCaseImpl(
 ) : ArtemkaaCurrentDateUseCase {
     override fun date(): Flow<Date> = flow {
         while (true) {
-            val timestamp = repository.artemkaaInfo().currentTime
+            val info = repository.artemkaaInfo()
+            val timestamp = info.currentTime
             emit(Date(timestamp))
             delay(1000)
         }

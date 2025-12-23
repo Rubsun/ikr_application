@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.SystemClock
 import com.artemkaa.api.domain.models.ArtemkaaInfo
+import com.artemkaa.network.api.TimeApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,7 +36,8 @@ fun ArtemkaaInfo.toSerializable(): ArtemkaaInfoSerializable {
 }
 
 internal class ArtemkaaRepository(
-    private val context: Context
+    private val context: Context,
+    private val timeApiClient: TimeApiClient
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "artemkaa_prefs",
@@ -52,11 +54,24 @@ internal class ArtemkaaRepository(
         _timeRecords.value = loadRecords()
     }
 
-    fun artemkaaInfo(): ArtemkaaInfo {
-        return ArtemkaaInfo(
-            currentTime = System.currentTimeMillis(),
-            elapsedTime = SystemClock.elapsedRealtime(),
-        )
+    /**
+     * Получает информацию о времени из интернета с fallback на локальное время при ошибке.
+     */
+    suspend fun artemkaaInfo(): ArtemkaaInfo = withContext(Dispatchers.IO) {
+        try {
+            // Пытаемся получить время из интернета
+            val timeDto = timeApiClient.getCurrentTime("UTC")
+            ArtemkaaInfo(
+                currentTime = timeDto.unixtime * 1000, // Конвертируем секунды в миллисекунды
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        } catch (e: Exception) {
+            // Fallback на локальное время при ошибке сети
+            ArtemkaaInfo(
+                currentTime = System.currentTimeMillis(),
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        }
     }
 
     fun addTimeRecord(info: ArtemkaaInfo) {

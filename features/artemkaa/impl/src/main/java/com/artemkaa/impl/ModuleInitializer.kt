@@ -14,6 +14,7 @@ import com.artemkaa.impl.domain.ArtemkaaElapsedTimeUseCaseImpl
 import com.artemkaa.impl.domain.FilterTimeRecordsUseCaseImpl
 import com.artemkaa.impl.ui.ArtemkaaFragment
 import com.artemkaa.impl.ui.ArtemkaaViewModel
+import com.artemkaa.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -31,7 +32,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
             // Создаем и добавляем модуль
             module {
                 // single правило - создаем инстанс один раз и всегда его отдаем
-                single { ArtemkaaRepository(context) }
+                single { ArtemkaaRepository(context, get<TimeApiClient>()) }
 
                 // жесткое проставление типа.
                 // Нужно когда все работают с интерфейсом, а нам надо вместо него поставить имплементацию
