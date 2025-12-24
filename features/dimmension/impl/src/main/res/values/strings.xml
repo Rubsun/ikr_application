@@ -9,6 +9,10 @@
     <string name="hint_last_name">Фамилия</string>
     <string name="button_add_name">Добавить имя</string>
     <string name="button_refresh">Обновить</string>
+    <string name="title_fetch_from_network">Загрузить из интернета</string>
+    <string name="button_fetch_from_network">Загрузить имена из сети</string>
+    <string name="text_network_success">Загружено %1$d имён из сети</string>
+    <string name="text_network_error">Ошибка: %1$s</string>
 </resources>
 
 

@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.dimmension.impl"
+    namespace = "com.dimmension.imageloader.data"
     compileSdk = 36
 
     defaultConfig {
@@ -35,15 +34,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.serialization.json)
-
-    api(project(":features:dimmension:api"))
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:dimmension-imageloader:api"))
-    implementation(project(":libs:dimmension-network:api"))
+    api(project(":libs:dimmension-imageloader:api"))
 }
 

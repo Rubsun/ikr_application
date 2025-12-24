@@ -117,6 +117,8 @@ dependencies {
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
     implementation(project(":libs:lyrics:impl"))
+    implementation(project(":libs:dimmension-imageloader:data"))
+    implementation(project(":libs:dimmension-network:data"))
 
 
     debugImplementation(project(":libs:logger:timber"))
