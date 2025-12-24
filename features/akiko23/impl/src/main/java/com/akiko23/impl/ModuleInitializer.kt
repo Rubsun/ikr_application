@@ -31,7 +31,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 single<PrimitiveStorage<Akiko23State>> {
                     val factory: PrimitiveStorage.Factory = get()
                     factory.create(
-                        name = "akiko23_quote_state",
+                        name = "akiko23_quote_state_v2.json",
                         serializer = Akiko23State.serializer()
                     )
                 }

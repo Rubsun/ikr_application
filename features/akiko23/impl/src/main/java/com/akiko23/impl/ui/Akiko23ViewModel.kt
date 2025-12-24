@@ -61,12 +61,17 @@ internal class Akiko23ViewModel(
                 imageUrlFlow.value = wolfQuote.imageUrl
                 
                 // Сохраняем полученную цитату и картинку
-                storage.put(
-                    Akiko23State(
-                        lastQuote = wolfQuote.text,
-                        lastImageUrl = wolfQuote.imageUrl
+                try {
+                    storage.put(
+                        Akiko23State(
+                            lastQuote = wolfQuote.text,
+                            lastImageUrl = wolfQuote.imageUrl
+                        )
                     )
-                )
+                } catch (saveError: Exception) {
+                    saveError.printStackTrace()
+                    // Игнорируем ошибки сохранения, но продолжаем работу
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 // Ошибка уже обработана в репозитории, fallback цитата будет возвращена
