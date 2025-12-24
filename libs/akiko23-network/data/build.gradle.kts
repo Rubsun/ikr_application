@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.akiko23.impl"
+    namespace = "com.akiko23.network"
     compileSdk = 36
 
     defaultConfig {
@@ -37,11 +37,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
 
-    api(project(":features:akiko23:api"))
+    api(project(":libs:akiko23-network:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:coil:api"))
-    implementation(project(":libs:coil:data"))
 }
 
