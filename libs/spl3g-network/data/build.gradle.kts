@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.spl3g.impl"
+    namespace = "com.spl3g.network"
     compileSdk = 36
 
     defaultConfig {
@@ -24,14 +24,10 @@ android {
             )
         }
     }
-    buildFeatures {
-        viewBinding = true
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -39,23 +35,11 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.constraintlayout)
-	api(libs.kotlinx.coroutines.core)
-
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    implementation(libs.bundles.koin)
     implementation(libs.bundles.network)
 
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    api(project(":features:spl3g:api"))
+    api(project(":libs:spl3g-network:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-	implementation(project(":libs:spl3g-network:api"))
 }
+
