@@ -9,5 +9,8 @@
     <string name="akiko23_mode_erase">Стирать</string>
     <string name="akiko23_clear">Очистить холст</string>
     <string name="akiko23_show_cat">Показать кота</string>
+    <string name="akiko23_title">Волчьи цитаты</string>
+    <string name="akiko23_description">Приложение, которое показывает цитату и фото философа который ее сказал</string>
+    <string name="akiko23_show_quote">Показать цитату</string>
 </resources>
 
