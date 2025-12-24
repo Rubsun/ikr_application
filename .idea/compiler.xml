@@ -3,22 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="ikr_application.feature.grigoran.impl" target="21" />
-      <module name="ikr_application.libs.antohaot-network.data" target="21" />
-      <module name="ikr_application.libs.artemkaa-network.data" target="21" />
-      <module name="ikr_application.libs.capybara-network.data" target="21" />
-      <module name="ikr_application.libs.chart.api" target="21" />
-      <module name="ikr_application.libs.chart.data" target="21" />
       <module name="ikr_application.libs.coil.data" target="21" />
-      <module name="ikr_application.libs.demyanenkoCoil.impl" target="21" />
-      <module name="ikr_application.libs.demyanenkoOpenF1.impl" target="21" />
-      <module name="ikr_application.libs.dimmension-imageloader.data" target="21" />
-      <module name="ikr_application.libs.dimmension-network.data" target="21" />
-      <module name="ikr_application.libs.drain678-network.data" target="21" />
-      <module name="ikr_application.libs.dyatlova-network" target="21" />
-      <module name="ikr_application.libs.egorik4-network.data" target="21" />
-      <module name="ikr_application.libs.lyrics.impl" target="21" />
-      <module name="ikr_application.libs.n0tsszzz-network.data" target="21" />
-      <module name="ikr_application.libs.nastyazz.data" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

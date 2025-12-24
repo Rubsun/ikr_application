@@ -117,6 +117,3 @@ include(":libs:dimmension-imageloader:api")
 include(":libs:dimmension-imageloader:data")
 include(":libs:dimmension-network:api")
 include(":libs:dimmension-network:data")
-
-include(":libs:nastyazz:api")
-include(":libs:nastyazz:data")
