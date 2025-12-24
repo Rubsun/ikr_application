@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Strings -->
-    <string name="michaelnoskov_title">Michael Noskov - Разноцветный квадрат</string>
+    <string name="michaelnoskov_title">Температурный квадрат гойды</string>
     <string name="michaelnoskov_button_change_color">Сменить цвет</string>
     <string name="michaelnoskov_button_rotate">Повернуть</string>
     <string name="michaelnoskov_button_resize">Изменить размер</string>
@@ -11,7 +11,7 @@
     <string name="michaelnoskov_button_add_item">Добавить</string>
     <string name="michaelnoskov_items_count_default">Элементов: 0</string>
     <string name="michaelnoskov_title_items_list">Список элементов</string>
-    <string name="michaelnoskov_title_chart">Статистика цветов</string>
+    <string name="michaelnoskov_title_chart">История температуры</string>
     <string name="michaelnoskov_error_empty_text">Текст не может быть пустым</string>
     <string name="michaelnoskov_square_size_small">Маленький</string>
     <string name="michaelnoskov_square_size_medium">Средний</string>

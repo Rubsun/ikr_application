@@ -17,6 +17,8 @@ internal data class ColorSquareState(
     val itemsCount: Int = 0,
     val chartData: List<ChartData> = emptyList(),
     val isLoading: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val currentTemperature: Double? = null,
+    val temperatureHistory: List<com.michaelnoskov.api.domain.repository.TemperaturePoint> = emptyList()
 )
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.michaelnoskov.api.domain.model.ChartData
 import com.michaelnoskov.api.domain.repository.ColorSquareRepository
+import com.michaelnoskov.api.domain.repository.TemperaturePoint
 import com.michaelnoskov.impl.domain.usecase.AddItemUseCase
 import com.michaelnoskov.impl.domain.usecase.GetChartDataUseCase
 import com.michaelnoskov.impl.domain.usecase.GetFilteredItemsUseCase
@@ -49,27 +50,27 @@ internal class ColorSquareViewModel(
         // Подписываемся на данные
         combine(
             getSquareStateUseCase(),
-            getFilteredItemsUseCase()
-        ) { squareState, filteredItems ->
+            getFilteredItemsUseCase(),
+            repository.getTemperatureHistory()
+        ) { squareState, filteredItems, temperatureHistory ->
             ColorSquareState(
                 squareState = squareState,
                 filteredItems = filteredItems,
-                itemsCount = filteredItems.size
+                itemsCount = filteredItems.size,
+                temperatureHistory = temperatureHistory
             )
         }.onEach { newState ->
             _state.update {
                 it.copy(
                     squareState = newState.squareState,
                     filteredItems = newState.filteredItems,
-                    itemsCount = newState.itemsCount
+                    itemsCount = newState.itemsCount,
+                    temperatureHistory = newState.temperatureHistory
                 )
             }
         }.launchIn(viewModelScope)
 
-        // Загружаем данные графика (асинхронно)
-        viewModelScope.launch {
-            loadChartData()
-        }
+        // График теперь показывает историю температур, загружать chartData не нужно
     }
 
     fun onSearchQueryChanged(query: String) {
@@ -130,7 +131,20 @@ internal class ColorSquareViewModel(
             _state.update { it.copy(isLoading = true) }
 
             // Загружаем погоду и обновляем цвет квадрата
-            loadWeatherAndUpdateColor()
+            val weatherResult = repository.getWeatherTemperature()
+            weatherResult.onSuccess { temperature ->
+                val color = temperatureToColor(temperature)
+                updateSquareUseCase(color = color)
+                
+                // Сохраняем точку температуры в историю
+                repository.addTemperaturePoint(
+                    TemperaturePoint(temperature, System.currentTimeMillis())
+                )
+                
+                _state.update { it.copy(currentTemperature = temperature) }
+            }.onFailure { error ->
+                _state.update { it.copy(error = error.message ?: "Ошибка загрузки погоды") }
+            }
 
             val result = syncDataUseCase()
             result.onSuccess {
@@ -138,13 +152,18 @@ internal class ColorSquareViewModel(
                     isLoading = false,
                     error = null
                 ) }
-                // Перезагружаем данные после синхронизации
-                loadChartData()
             }.onFailure { error ->
                 _state.update { it.copy(
                     isLoading = false,
                     error = error.message ?: "Ошибка синхронизации"
                 ) }
+            }
+            
+            // Обновляем состояние загрузки после завершения всех операций
+            if (weatherResult.isFailure && result.isFailure) {
+                _state.update { it.copy(isLoading = false) }
+            } else if (weatherResult.isSuccess && result.isSuccess) {
+                _state.update { it.copy(isLoading = false, error = null) }
             }
         }
     }
@@ -175,16 +194,6 @@ internal class ColorSquareViewModel(
         )
     }
     
-    private suspend fun loadWeatherAndUpdateColor() {
-        val result = repository.getWeatherTemperature()
-        result.onSuccess { temperature ->
-            val color = temperatureToColor(temperature)
-            updateSquareUseCase(color = color)
-        }.onFailure { error ->
-            // В случае ошибки используем цвет по умолчанию
-            println("Failed to load weather: ${error.message}")
-        }
-    }
     
     /**
      * Преобразует температуру в цвет используя градиент:

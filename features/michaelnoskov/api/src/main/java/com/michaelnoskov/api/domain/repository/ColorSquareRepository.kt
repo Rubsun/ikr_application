@@ -28,5 +28,14 @@ interface ColorSquareRepository {
     
     // Погода
     suspend fun getWeatherTemperature(): Result<Double>
+    
+    // История температур
+    fun getTemperatureHistory(): Flow<List<TemperaturePoint>>
+    suspend fun addTemperaturePoint(point: TemperaturePoint)
 }
+
+data class TemperaturePoint(
+    val temperature: Double,
+    val timestamp: Long
+)
 

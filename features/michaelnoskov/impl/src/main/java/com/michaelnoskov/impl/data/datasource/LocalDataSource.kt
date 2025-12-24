@@ -19,5 +19,9 @@ internal interface LocalDataSource {
     // Preferences
     suspend fun saveLastSyncTime(timestamp: Long)
     suspend fun getLastSyncTime(): Long
+    
+    // Temperature History
+    fun getTemperatureHistory(): Flow<List<com.michaelnoskov.api.domain.repository.TemperaturePoint>>
+    suspend fun addTemperaturePoint(point: com.michaelnoskov.api.domain.repository.TemperaturePoint)
 }
 

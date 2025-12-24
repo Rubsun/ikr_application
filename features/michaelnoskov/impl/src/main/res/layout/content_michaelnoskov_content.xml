@@ -23,23 +23,40 @@
             android:layout_marginBottom="@dimen/michaelnoskov_margin_xlarge"/>
 
         <!-- Контейнер квадрата с рамкой -->
-        <FrameLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="?attr/colorSurfaceVariant"
-            android:padding="@dimen/michaelnoskov_margin_small"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_marginBottom="@dimen/michaelnoskov_margin_xlarge">
 
-            <View
-                android:id="@+id/square_view"
-                android:layout_width="@dimen/michaelnoskov_square_size_medium"
-                android:layout_height="@dimen/michaelnoskov_square_size_medium"
-                android:background="?attr/colorPrimary"
-                android:rotation="0"
-                android:elevation="@dimen/michaelnoskov_elevation_high"/>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSurfaceVariant"
+                android:padding="@dimen/michaelnoskov_margin_small">
 
-        </FrameLayout>
+                <View
+                    android:id="@+id/square_view"
+                    android:layout_width="@dimen/michaelnoskov_square_size_medium"
+                    android:layout_height="@dimen/michaelnoskov_square_size_medium"
+                    android:background="?attr/colorPrimary"
+                    android:rotation="0"
+                    android:elevation="@dimen/michaelnoskov_elevation_high"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/temperature_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/michaelnoskov_margin_large"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:text="--°C"
+                android:textColor="?attr/colorOnSurface"/>
+
+        </LinearLayout>
 
         <!-- Панель управления квадратом -->
         <LinearLayout

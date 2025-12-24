@@ -4,6 +4,7 @@ import com.michaelnoskov.api.domain.model.ChartData
 import com.michaelnoskov.api.domain.model.FilteredItem
 import com.michaelnoskov.api.domain.model.SquareData
 import com.michaelnoskov.api.domain.repository.ColorSquareRepository
+import com.michaelnoskov.api.domain.repository.TemperaturePoint
 import com.michaelnoskov.impl.data.datasource.LocalDataSource
 import com.michaelnoskov.impl.data.datasource.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
@@ -104,6 +105,14 @@ internal class ColorSquareRepositoryImpl(
 
     override suspend fun getWeatherTemperature(): Result<Double> {
         return remoteDataSource.fetchWeatherTemperature()
+    }
+
+    override fun getTemperatureHistory(): Flow<List<TemperaturePoint>> {
+        return localDataSource.getTemperatureHistory()
+    }
+
+    override suspend fun addTemperaturePoint(point: TemperaturePoint) {
+        localDataSource.addTemperaturePoint(point)
     }
 }
 

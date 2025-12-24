@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.primitivestorage.api.PrimitiveStorage
 import com.michaelnoskov.api.domain.model.FilteredItem
 import com.michaelnoskov.api.domain.model.SquareData
+import com.michaelnoskov.api.domain.repository.TemperaturePoint
 import com.michaelnoskov.impl.data.mapper.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -29,6 +30,11 @@ internal class LocalDataSourceImpl(
     // Хранилище для списка элементов
     private val itemsStorage: PrimitiveStorage<List<DataSourceFilteredItemEntity>> by lazy {
         primitiveStorageFactory.create("items_storage", ListSerializer(DataSourceFilteredItemEntity.serializer()))
+    }
+
+    // Хранилище для истории температур
+    private val temperatureHistoryStorage: PrimitiveStorage<List<DataSourceTemperaturePointEntity>> by lazy {
+        primitiveStorageFactory.create("temperature_history_storage", ListSerializer(DataSourceTemperaturePointEntity.serializer()))
     }
 
     override fun getSquareState(): Flow<SquareData> {
@@ -85,6 +91,20 @@ internal class LocalDataSourceImpl(
 
     override suspend fun getLastSyncTime(): Long {
         return preferences.getLong("last_sync_time", 0L)
+    }
+
+    override fun getTemperatureHistory(): Flow<List<TemperaturePoint>> {
+        return temperatureHistoryStorage.get().map { entities ->
+            entities?.map { TemperaturePoint(it.temperature, it.timestamp) } ?: emptyList()
+        }
+    }
+
+    override suspend fun addTemperaturePoint(point: TemperaturePoint) {
+        temperatureHistoryStorage.patch { currentEntities ->
+            val currentList = currentEntities ?: emptyList()
+            val newEntity = DataSourceTemperaturePointEntity(point.temperature, point.timestamp)
+            (currentList + newEntity).takeLast(50) // Храним последние 50 точек
+        }
     }
 
     private fun getDefaultSquareData(): SquareData {
@@ -146,5 +166,11 @@ internal data class DataSourceFilteredItemEntity(
     val timestamp: Long,
     val isVisible: Boolean = true,
     val isSynced: Boolean = false
+)
+
+@Serializable
+internal data class DataSourceTemperaturePointEntity(
+    val temperature: Double,
+    val timestamp: Long
 )
 

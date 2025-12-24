@@ -12,8 +12,11 @@ internal class RetrofitWeatherApiClient(
     override suspend fun getTemperature(latitude: Double, longitude: Double): Result<Double> {
         return try {
             val response = service.getWeather(latitude, longitude)
-            Result.success(response.current.temperature_2m)
+            val temperature = response.current.temperature_2m
+            android.util.Log.d("WeatherApi", "Получена температура: $temperature°C для координат ($latitude, $longitude)")
+            Result.success(temperature)
         } catch (e: Exception) {
+            android.util.Log.e("WeatherApi", "Ошибка получения температуры: ${e.message}", e)
             Result.failure(e)
         }
     }

@@ -47,6 +47,7 @@ internal class ColorSquareFragment : Fragment(), KoinComponent {
     private lateinit var syncButton: MaterialButton
     private lateinit var barChart: BarChartView
     private lateinit var itemsCountTextView: android.widget.TextView
+    private lateinit var temperatureTextView: android.widget.TextView
 
     private lateinit var itemsAdapter: ItemsAdapter
 
@@ -76,6 +77,7 @@ internal class ColorSquareFragment : Fragment(), KoinComponent {
         (barChartView as android.view.View).layoutParams = params
         barChartContainer?.addView(barChartView as android.view.View)
         itemsCountTextView = view.findViewById(R.id.items_count_text)
+        temperatureTextView = view.findViewById(R.id.temperature_text)
         syncButton = view.findViewById(R.id.sync_button)
 
         return view
@@ -160,8 +162,11 @@ internal class ColorSquareFragment : Fragment(), KoinComponent {
                         R.string.michaelnoskov_items_count_default
                     ).replace("0", state.itemsCount.toString())
 
-                    // Обновляем график
-                    updateChart(state.chartData)
+                    // Обновляем температуру
+                    updateTemperature(state.currentTemperature)
+                    
+                    // Обновляем график истории температур
+                    updateTemperatureChart(state.temperatureHistory)
 
                     // Показываем/скрываем загрузку
                     if (state.isLoading) {
@@ -198,19 +203,43 @@ internal class ColorSquareFragment : Fragment(), KoinComponent {
         squareView.requestLayout()
     }
 
-    private fun updateChart(data: List<ChartData>) {
-        if (data.isEmpty()) return
+    private fun updateTemperature(temperature: Double?) {
+        temperatureTextView.text = if (temperature != null) {
+            String.format("%.1f°C", temperature)
+        } else {
+            "--°C"
+        }
+    }
 
-        val entries = data.map { chartData ->
+    private fun updateTemperatureChart(history: List<com.michaelnoskov.api.domain.repository.TemperaturePoint>) {
+        if (history.isEmpty()) {
+            barChart.setData(
+                BarChartData(
+                    entries = emptyList(),
+                    barColor = Color.BLUE,
+                    textColor = Color.BLACK
+                )
+            )
+            barChart.invalidate()
+            return
+        }
+
+        val entries = history.mapIndexed { index, point ->
             BarChartEntry(
-                x = 0f, // не используется для BarChart
-                y = chartData.value,
-                label = chartData.label
+                x = index.toFloat(),
+                y = point.temperature.toFloat(),
+                label = "${index + 1}"
             )
         }
 
-        // Используем первый цвет для всех баров, или можно сделать разные цвета
-        val barColor = data.firstOrNull()?.color ?: Color.BLUE
+        // Цвет зависит от температуры - используем градиент
+        val avgTemp = history.map { it.temperature }.average()
+        val barColor = when {
+            avgTemp < 0 -> Color.BLUE
+            avgTemp < 15 -> Color.CYAN
+            avgTemp < 25 -> Color.GREEN
+            else -> Color.RED
+        }
         
         barChart.setData(
             BarChartData(
