@@ -1,4 +1,4 @@
-package quo.vadis.impl.data.db
+package com.roomstorage.data.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

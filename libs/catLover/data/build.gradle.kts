@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.example.logger.timber"
+    namespace = "com.example.data"
     compileSdk = 36
+
     defaultConfig {
         minSdk = 24
 
@@ -26,14 +28,20 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
 }
 
 dependencies {
-    implementation(libs.timber)
+    implementation(libs.androidx.core.ktx)
 
-    api(project(":libs:logger:api"))
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.network)
+
+    api(project(":libs:catLover:api"))
     implementation(project(":libs:injector"))
 }
