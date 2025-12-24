@@ -110,6 +110,8 @@ dependencies {
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
     implementation(project(":libs:lyrics:impl"))
+    implementation(project(":libs:momuswinner-network:data"))
+    implementation(project(":libs:momuswinner-chart:data"))
 
 
     debugImplementation(project(":libs:logger:timber"))
