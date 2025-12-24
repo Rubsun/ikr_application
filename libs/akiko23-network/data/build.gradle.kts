@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.akiko23.network"
+    namespace = "com.akiko23.network.data"
     compileSdk = 36
 
     defaultConfig {

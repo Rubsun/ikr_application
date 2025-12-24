@@ -23,7 +23,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
             // Создаем и добавляем модуль
             module {
                 // Repository
-                single { DeviceRepository() }
+                single { DeviceRepository(get()) }
 
                 // ViewModel для фрагмента
                 viewModel {

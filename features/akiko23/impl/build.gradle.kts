@@ -43,5 +43,7 @@ dependencies {
     implementation(project(":libs:injector"))
     implementation(project(":libs:coil:api"))
     implementation(project(":libs:coil:data"))
+    implementation(project(":libs:akiko23-network:api"))
+    implementation(project(":libs:akiko23-network:data"))
 }
 

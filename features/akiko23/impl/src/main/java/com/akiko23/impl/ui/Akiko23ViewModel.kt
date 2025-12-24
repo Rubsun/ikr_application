@@ -3,14 +3,12 @@ package com.akiko23.impl.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akiko23.impl.data.DeviceRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * ViewModel для экрана akiko23.
@@ -30,10 +28,16 @@ internal class Akiko23ViewModel(
 
     fun loadRandomWolfQuote() {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
+            try {
                 val wolfQuote = repository.getRandomWolfQuote()
                 quoteFlow.value = wolfQuote.text
                 imageUrlFlow.value = wolfQuote.imageUrl
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Ошибка уже обработана в репозитории, fallback цитата будет возвращена
+                // Но на всякий случай показываем сообщение об ошибке
+                quoteFlow.value = "Ошибка загрузки цитаты"
+                imageUrlFlow.value = null
             }
         }
     }
