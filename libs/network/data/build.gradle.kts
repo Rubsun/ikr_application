@@ -35,6 +35,7 @@ android {
 dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.bundles.network)
+    implementation(libs.converter.gson)
 
     api(project(":libs:network:api"))
     implementation(project(":libs:injector"))

@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.injector.AbstractInitializer
 import com.example.network.api.RetrofitServiceFactory
 import org.koin.core.context.loadKoinModules
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
@@ -11,6 +12,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
         loadKoinModules(
             module {
                 single<RetrofitServiceFactory> { RetrofitServiceFactoryImpl() }
+                single<RetrofitServiceFactory>(named("gson")) { RetrofitGsonServiceFactoryImpl() }
             }
         )
     }

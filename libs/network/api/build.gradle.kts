@@ -15,5 +15,6 @@ kotlin {
 }
 
 dependencies {
-    // keep API pure. If annotations or reflection helpers are added later, prefer compileOnly
+    // Retrofit annotations are needed for service interface definitions
+    api(libs.retrofit)
 }

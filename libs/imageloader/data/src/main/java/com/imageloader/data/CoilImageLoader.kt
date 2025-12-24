@@ -2,10 +2,9 @@ package com.imageloader.data
 
 import android.content.Context
 import coil3.load
-
+import coil3.request.crossfade
 import android.widget.ImageView
 import com.imageloader.api.ImageLoader
-
 
 internal class CoilImageLoader(
     private val context: Context
@@ -14,5 +13,14 @@ internal class CoilImageLoader(
     override fun load(view: Any, url: String) {
         val imageView = view as ImageView
         imageView.load(url)
+    }
+    
+    override fun loadWithCrossfade(view: Any, url: String, crossfade: Boolean) {
+        val imageView = view as ImageView
+        imageView.load(url) {
+            if (crossfade) {
+                crossfade(true)
+            }
+        }
     }
 }

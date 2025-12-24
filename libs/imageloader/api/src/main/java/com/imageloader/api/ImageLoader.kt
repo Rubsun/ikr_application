@@ -5,4 +5,10 @@ interface ImageLoader {
         view: Any,
         url: String
     )
+    
+    fun loadWithCrossfade(
+        view: Any,
+        url: String,
+        crossfade: Boolean = true
+    )
 }
