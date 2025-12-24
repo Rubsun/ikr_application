@@ -36,6 +36,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.joda.time)
 
     implementation(libs.bundles.network)
 

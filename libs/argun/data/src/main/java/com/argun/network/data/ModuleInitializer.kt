@@ -4,6 +4,7 @@ import android.content.Context
 import com.argun.network.api.AuthManager
 import com.argun.network.api.PolzovateliApiClient
 import com.argun.network.api.TimeApiClient
+import com.argun.network.api.TimeFormatter
 import com.argun.network.api.ZadachiApiClient
 import com.example.injector.AbstractInitializer
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -69,6 +70,10 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 
                 single<TimeApiClient> {
                     SimpleTimeApiClient()
+                }
+                
+                single<TimeFormatter> {
+                    JodaTimeFormatter()
                 }
             }
         )

@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.argun.api.domain.ArgunTimePrecisions
 import com.argun.impl.R
 import com.argun.impl.ui.adapters.TimeRecordAdapter
+import com.argun.network.api.TimeFormatter
+import com.example.injector.inject
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.flow.collectLatest
@@ -23,7 +25,8 @@ import kotlinx.coroutines.launch
 
 internal class ArgunFragment : Fragment() {
     private val viewModel by viewModels<ArgunViewModel>()
-    private val timeRecordAdapter = TimeRecordAdapter()
+    private val timeFormatter: TimeFormatter by inject()
+    private val timeRecordAdapter by lazy { TimeRecordAdapter(timeFormatter) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

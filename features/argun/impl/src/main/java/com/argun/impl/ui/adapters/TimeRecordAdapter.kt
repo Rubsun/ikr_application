@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.argun.api.domain.models.ArgunInfo
 import com.argun.impl.R
+import com.argun.network.api.TimeFormatter
 
-internal class TimeRecordAdapter : ListAdapter<ArgunInfo, TimeRecordViewHolder>(TimeRecordCallback()) {
+internal class TimeRecordAdapter(
+    private val timeFormatter: TimeFormatter
+) : ListAdapter<ArgunInfo, TimeRecordViewHolder>(TimeRecordCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -15,7 +18,7 @@ internal class TimeRecordAdapter : ListAdapter<ArgunInfo, TimeRecordViewHolder>(
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_argun_time_record, parent, false)
 
-        return TimeRecordViewHolder(view)
+        return TimeRecordViewHolder(view, timeFormatter)
     }
 
     override fun onBindViewHolder(

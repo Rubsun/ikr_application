@@ -35,7 +35,6 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.joda.time)
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.bundles.ui.core)
@@ -43,6 +42,6 @@ dependencies {
 
     api(project(":features:argun:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:argun:api"))
+    implementation(project(":libs:argun:data"))
 }
 

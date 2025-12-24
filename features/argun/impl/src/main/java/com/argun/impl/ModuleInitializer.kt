@@ -15,6 +15,7 @@ import com.argun.impl.domain.FilterTimeRecordsUseCaseImpl
 import com.argun.impl.ui.ArgunFragment
 import com.argun.impl.ui.ArgunViewModel
 import com.argun.network.api.TimeApiClient
+import com.argun.network.api.TimeFormatter
 import com.example.injector.AbstractInitializer
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -28,7 +29,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 single { ArgunRepository(context, get<TimeApiClient>()) }
                 factory<ArgunCurrentDateUseCase> { ArgunCurrentDateUseCaseImpl(get()) }
                 factory<ArgunElapsedTimeUseCase> { ArgunElapsedTimeUseCaseImpl(get()) }
-                factory<FilterTimeRecordsUseCase> { FilterTimeRecordsUseCaseImpl(get()) }
+                factory<FilterTimeRecordsUseCase> { FilterTimeRecordsUseCaseImpl(get(), get<TimeFormatter>()) }
                 factory<AddTimeRecordUseCase> { AddTimeRecordUseCaseImpl(get()) }
                 viewModel { ArgunViewModel() }
                 factory<Class<out Fragment>>(named(Constants.ARGUN_SCREEN)) { ArgunFragment::class.java }
