@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.recyclerview)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
