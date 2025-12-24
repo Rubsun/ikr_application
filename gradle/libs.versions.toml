@@ -39,6 +39,8 @@ activityCompose = "1.12.2"
 composeBom = "2024.09.00"
 
 [libraries]
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version = "3.3.0" }
+androidx-cardview = { module = "androidx.cardview:cardview", version = "1.0.0" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
