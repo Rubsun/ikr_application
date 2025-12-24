@@ -2,36 +2,105 @@ package com.example.ikr_application.michaelnoskov.data.datasource
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.ikr_application.michaelnoskov.data.mapper.DataMapper
 import com.example.ikr_application.michaelnoskov.domain.model.FilteredItem
 import com.example.ikr_application.michaelnoskov.domain.model.SquareData
+import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 class LocalDataSourceImpl(
-    private val context: Context
+    private val context: Context,
+    private val primitiveStorageFactory: PrimitiveStorage.Factory,
+    private val mapper: DataMapper = DataMapper()
 ) : LocalDataSource {
 
     private val preferences: SharedPreferences by lazy {
         context.getSharedPreferences("color_square_prefs", Context.MODE_PRIVATE)
     }
 
-    // Храним в памяти
-    private val _squareState = MutableStateFlow(
-        SquareData(
+    // Хранилище для квадрата
+    private val squareStorage: PrimitiveStorage<DataSourceSquareEntity> by lazy {
+        primitiveStorageFactory.create("square_storage", DataSourceSquareEntity.serializer()) // <- ИСПОЛЬЗУЕТ
+    }
+
+    // Хранилище для списка элементов
+    private val itemsStorage: PrimitiveStorage<List<DataSourceFilteredItemEntity>> by lazy {
+        primitiveStorageFactory.create("items_storage", ListSerializer(DataSourceFilteredItemEntity.serializer()))
+    }
+
+    override fun getSquareState(): Flow<SquareData> {
+        return squareStorage.get().map { entity ->
+            entity?.let { mapper.mapToSquareData(it) } ?: getDefaultSquareData()
+        }
+    }
+
+    override suspend fun saveSquareState(squareData: SquareData) {
+        val entity = mapper.mapToDataSourceSquareEntity(squareData)
+        squareStorage.put(entity)
+    }
+
+    override fun getItems(): Flow<List<FilteredItem>> {
+        return itemsStorage.get().map { entities ->
+            entities?.map { mapper.mapToFilteredItem(it) } ?: getDefaultItems()
+        }
+    }
+
+    override fun searchItems(query: String): Flow<List<FilteredItem>> {
+        return getItems().map { items ->
+            if (query.isBlank()) {
+                items
+            } else {
+                items.filter { item ->
+                    item.text.contains(query, ignoreCase = true)
+                }
+            }
+        }
+    }
+
+    override suspend fun saveItems(items: List<FilteredItem>) {
+        val entities = items.map { mapper.mapToFilteredItemEntity(it) }
+        itemsStorage.put(entities)
+    }
+
+    override suspend fun addItem(item: FilteredItem) {
+        itemsStorage.patch { currentEntities ->
+            val currentList = currentEntities ?: emptyList()
+            val newEntity = mapper.mapToFilteredItemEntity(item)
+            currentList + newEntity
+        }
+    }
+
+    override suspend fun deleteItem(id: String) {
+        itemsStorage.patch { currentEntities ->
+            currentEntities?.filter { it.id != id }
+        }
+    }
+
+    override suspend fun saveLastSyncTime(timestamp: Long) {
+        preferences.edit().putLong("last_sync_time", timestamp).apply()
+    }
+
+    override suspend fun getLastSyncTime(): Long {
+        return preferences.getLong("last_sync_time", 0L)
+    }
+
+    private fun getDefaultSquareData(): SquareData {
+        return SquareData(
             id = "default",
             color = 0xFF6200EE.toInt(),
             size = 200,
             rotation = 0f,
             alpha = 1f
         )
-    )
+    }
 
-    private val _items = MutableStateFlow<List<FilteredItem>>(emptyList())
-
-    init {
-        // Инициализируем начальными данными
-        _items.value = listOf(
+    private fun getDefaultItems(): List<FilteredItem> {
+        return listOf(
             FilteredItem(
                 id = "1",
                 text = "Красный квадрат",
@@ -59,45 +128,37 @@ class LocalDataSourceImpl(
             )
         )
     }
+}
 
-    override fun getSquareState(): Flow<SquareData> = _squareState
+// Сериализуемые сущности для хранения в DataSource пакете
+@Serializable
+data class DataSourceSquareEntity(
+    val id: String = "default",
+    val color: Int,
+    val size: Int,
+    val rotation: Float,
+    val alpha: Float,
+    val updatedAt: Long
+)
 
-    override suspend fun saveSquareState(squareData: SquareData) {
-        _squareState.value = squareData
+@Serializable
+data class DataSourceFilteredItemEntity(
+    val id: String,
+    val text: String,
+    val timestamp: Long,
+    val isVisible: Boolean = true,
+    val isSynced: Boolean = false
+)
+
+// Serializer для списка
+class ListSerializer<T>(private val elementSerializer: KSerializer<T>) : KSerializer<List<T>> {
+    override val descriptor = elementSerializer.descriptor
+
+    override fun serialize(encoder: Encoder, value: List<T>) {
+        encoder.encodeSerializableValue(elementSerializer, value as T)
     }
 
-    override fun getItems(): Flow<List<FilteredItem>> = _items
-
-    // ДОБАВИЛИ РЕАЛИЗАЦИЮ ПОИСКА
-    override fun searchItems(query: String): Flow<List<FilteredItem>> {
-        return _items.map { items ->
-            if (query.isBlank()) {
-                items
-            } else {
-                items.filter { item ->
-                    item.text.contains(query, ignoreCase = true)
-                }
-            }
-        }
-    }
-
-    override suspend fun saveItems(items: List<FilteredItem>) {
-        _items.value = items
-    }
-
-    override suspend fun addItem(item: FilteredItem) {
-        _items.value = _items.value + item
-    }
-
-    override suspend fun deleteItem(id: String) {
-        _items.value = _items.value.filter { it.id != id }
-    }
-
-    override suspend fun saveLastSyncTime(timestamp: Long) {
-        preferences.edit().putLong("last_sync_time", timestamp).apply()
-    }
-
-    override suspend fun getLastSyncTime(): Long {
-        return preferences.getLong("last_sync_time", 0L)
+    override fun deserialize(decoder: Decoder): List<T> {
+        return decoder.decodeSerializableValue(elementSerializer) as List<T>
     }
 }

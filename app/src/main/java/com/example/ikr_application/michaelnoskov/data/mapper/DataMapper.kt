@@ -1,14 +1,14 @@
 package com.example.ikr_application.michaelnoskov.data.mapper
 
-import com.example.ikr_application.michaelnoskov.data.local.FilteredItemEntity
-import com.example.ikr_application.michaelnoskov.data.local.SquareEntity
+import com.example.ikr_application.michaelnoskov.data.datasource.DataSourceFilteredItemEntity
+import com.example.ikr_application.michaelnoskov.data.datasource.DataSourceSquareEntity
 import com.example.ikr_application.michaelnoskov.domain.model.ChartData
 import com.example.ikr_application.michaelnoskov.domain.model.FilteredItem
 import com.example.ikr_application.michaelnoskov.domain.model.SquareData
 
 class DataMapper {
 
-    fun mapToSquareData(entity: SquareEntity): SquareData {
+    fun mapToSquareData(entity: DataSourceSquareEntity): SquareData {
         return SquareData(
             id = entity.id,
             color = entity.color,
@@ -18,8 +18,8 @@ class DataMapper {
         )
     }
 
-    fun mapToSquareEntity(data: SquareData): SquareEntity {
-        return SquareEntity(
+    fun mapToDataSourceSquareEntity(data: SquareData): DataSourceSquareEntity {
+        return DataSourceSquareEntity(
             id = data.id,
             color = data.color,
             size = data.size,
@@ -29,7 +29,7 @@ class DataMapper {
         )
     }
 
-    fun mapToFilteredItem(entity: FilteredItemEntity): FilteredItem {
+    fun mapToFilteredItem(entity: DataSourceFilteredItemEntity): FilteredItem {
         return FilteredItem(
             id = entity.id,
             text = entity.text,
@@ -38,8 +38,8 @@ class DataMapper {
         )
     }
 
-    fun mapToFilteredItemEntity(item: FilteredItem): FilteredItemEntity {
-        return FilteredItemEntity(
+    fun mapToFilteredItemEntity(item: FilteredItem): DataSourceFilteredItemEntity {
+        return DataSourceFilteredItemEntity(
             id = item.id,
             text = item.text,
             timestamp = item.timestamp,

@@ -6,10 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.ikr_application.michaelnoskov.data.api.MockColorSquareApi
 import com.example.ikr_application.michaelnoskov.data.datasource.LocalDataSourceImpl
 import com.example.ikr_application.michaelnoskov.data.datasource.RemoteDataSourceImpl
+import com.example.ikr_application.michaelnoskov.data.mapper.DataMapper
+import com.example.ikr_application.michaelnoskov.data.mapper.NetworkMapper
 import com.example.ikr_application.michaelnoskov.data.repository.ColorSquareRepositoryImpl
+import com.example.ikr_application.michaelnoskov.data.storage.DefaultPrimitiveStorageFactory
 import com.example.ikr_application.michaelnoskov.domain.model.ChartData
-import com.example.ikr_application.michaelnoskov.domain.model.FilteredItem
-import com.example.ikr_application.michaelnoskov.domain.model.SquareData
 import com.example.ikr_application.michaelnoskov.domain.usecase.AddItemUseCase
 import com.example.ikr_application.michaelnoskov.domain.usecase.GetChartDataUseCase
 import com.example.ikr_application.michaelnoskov.domain.usecase.GetFilteredItemsUseCase
@@ -35,7 +36,7 @@ class ColorSquareViewModel(application: Application) : AndroidViewModel(applicat
     // Создаем все зависимости вручную
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.example.com/") // Используйте моковый URL или реальный
+            .baseUrl("https://api.example.com/")
             .client(
                 OkHttpClient.Builder()
                     .connectTimeout(10, TimeUnit.SECONDS)
@@ -50,16 +51,24 @@ class ColorSquareViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     private val api: com.example.ikr_application.michaelnoskov.data.api.ColorSquareApi by lazy {
-//        retrofit.create(com.example.ikr_application.michaelnoskov.data.api.ColorSquareApi::class.java)
         MockColorSquareApi()
     }
 
+    // ✅ РЕАЛЬНАЯ РЕАЛИЗАЦИЯ PrimitiveStorage.Factory
+    private val primitiveStorageFactory: com.example.primitivestorage.api.PrimitiveStorage.Factory by lazy {
+        DefaultPrimitiveStorageFactory(application)
+    }
+
     private val localDataSource: LocalDataSourceImpl by lazy {
-        LocalDataSourceImpl(application)
+        LocalDataSourceImpl(
+            application,
+            primitiveStorageFactory, // ✅ Передаем реальную фабрику
+            DataMapper()
+        )
     }
 
     private val remoteDataSource: RemoteDataSourceImpl by lazy {
-        RemoteDataSourceImpl(api, com.example.ikr_application.michaelnoskov.data.mapper.NetworkMapper())
+        RemoteDataSourceImpl(api, NetworkMapper())
     }
 
     private val repository: ColorSquareRepositoryImpl by lazy {
@@ -138,7 +147,7 @@ class ColorSquareViewModel(application: Application) : AndroidViewModel(applicat
         val nextIndex = if (currentIndex == -1) 0 else (currentIndex + 1) % colors.size
         val nextColor = colors[nextIndex]
 
-        viewModelScope.launch {  // Оставьте launch здесь, но это отдельная строка
+        viewModelScope.launch {
             updateSquareUseCase(color = nextColor)
         }
     }

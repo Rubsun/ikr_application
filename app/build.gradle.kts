@@ -73,6 +73,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation ("androidx.room:room-runtime:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
+
     implementation(libs.mpandroidchart)
     implementation(libs.joda.time)
     implementation(project(":features:quovadis:impl"))

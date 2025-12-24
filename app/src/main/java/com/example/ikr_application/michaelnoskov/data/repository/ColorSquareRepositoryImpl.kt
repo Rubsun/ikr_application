@@ -9,7 +9,7 @@ import com.example.ikr_application.michaelnoskov.domain.repository.ColorSquareRe
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.firstOrNull
 
 class ColorSquareRepositoryImpl(
     private val localDataSource: LocalDataSource,
@@ -24,35 +24,26 @@ class ColorSquareRepositoryImpl(
 
     override suspend fun updateSquareColor(color: Int) {
         val currentState = localDataSource.getSquareState().firstOrNull()
-        val newState = currentState?.copy(color = color) ?: SquareData(
-            id = "default",
-            color = color,
-            size = 200,
-            rotation = 0f
-        )
-        localDataSource.saveSquareState(newState)
+        currentState?.let {
+            val newState = it.copy(color = color)
+            localDataSource.saveSquareState(newState)
+        }
     }
 
     override suspend fun updateSquareRotation(rotation: Float) {
         val currentState = localDataSource.getSquareState().firstOrNull()
-        val newState = currentState?.copy(rotation = rotation) ?: SquareData(
-            id = "default",
-            color = 0xFF6200EE.toInt(),
-            size = 200,
-            rotation = rotation
-        )
-        localDataSource.saveSquareState(newState)
+        currentState?.let {
+            val newState = it.copy(rotation = rotation)
+            localDataSource.saveSquareState(newState)
+        }
     }
 
     override suspend fun updateSquareSize(size: Int) {
         val currentState = localDataSource.getSquareState().firstOrNull()
-        val newState = currentState?.copy(size = size) ?: SquareData(
-            id = "default",
-            color = 0xFF6200EE.toInt(),
-            size = size,
-            rotation = 0f
-        )
-        localDataSource.saveSquareState(newState)
+        currentState?.let {
+            val newState = it.copy(size = size)
+            localDataSource.saveSquareState(newState)
+        }
     }
 
     override fun getFilteredItems(): Flow<List<FilteredItem>> {
@@ -109,15 +100,5 @@ class ColorSquareRepositoryImpl(
 
     override suspend fun getSquareSizes(): List<Int> {
         return listOf(150, 200, 250, 300)
-    }
-
-    // Helper extension для Flow
-    private suspend fun <T> Flow<T>.firstOrNull(): T? {
-        var value: T? = null
-        this.collect {
-            value = it
-            return@collect
-        }
-        return value
     }
 }
