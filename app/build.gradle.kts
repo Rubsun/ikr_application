@@ -118,6 +118,8 @@ dependencies {
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
     implementation(project(":libs:lyrics:impl"))
+    implementation(project(":libs:momuswinner-network:data"))
+    implementation(project(":libs:momuswinner-chart:data"))
     implementation(project(":libs:dimmension-imageloader:data"))
     implementation(project(":libs:dimmension-network:data"))
 

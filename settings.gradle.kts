@@ -126,3 +126,8 @@ include(":libs:akiko23-network:api")
 include(":libs:akiko23-network:data")
 include(":libs:coil:api")
 include(":libs:coil:data")
+
+include(":libs:momuswinner-network:api")
+include(":libs:momuswinner-network:data")
+include(":libs:momuswinner-chart:api")
+include(":libs:momuswinner-chart:data")

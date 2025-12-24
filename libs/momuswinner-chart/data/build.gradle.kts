@@ -1,16 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.momuswinner.impl"
+    namespace = "com.momuswinner.chart"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -24,6 +22,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,19 +34,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.mpandroidchart)
 
-
-
-    api(project(":features:MomusWinner:api"))
+    api(project(":libs:momuswinner-chart:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:momuswinner-network:api"))
-    implementation(project(":libs:momuswinner-chart:api"))
 }
+

@@ -138,6 +138,12 @@
             <option value="$PROJECT_DIR$/libs/lyrics" />
             <option value="$PROJECT_DIR$/libs/lyrics/api" />
             <option value="$PROJECT_DIR$/libs/lyrics/impl" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-chart" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-chart/api" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-chart/data" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-network" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-network/api" />
+            <option value="$PROJECT_DIR$/libs/momuswinner-network/data" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/api" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/data" />
