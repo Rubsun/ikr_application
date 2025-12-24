@@ -95,6 +95,7 @@ dependencies {
     implementation(project(":features:dyatlova:api"))
     implementation(project(":features:dyatlova:impl"))
     implementation(project(":features:MomusWinner:impl"))
+    implementation(project(":features:michaelnoskov:impl"))
     implementation(project(":features:egorik4:impl"))
     implementation(project(":features:alexcode69:impl"))
     implementation(project(":features:demyanenko:impl"))
