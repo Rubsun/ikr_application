@@ -3,10 +3,13 @@ package com.akiko23.impl.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akiko23.impl.data.DeviceRepository
+import com.akiko23.impl.data.models.Akiko23State
+import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -16,6 +19,7 @@ import kotlinx.coroutines.launch
  */
 internal class Akiko23ViewModel(
     private val repository: DeviceRepository,
+    private val storage: PrimitiveStorage<Akiko23State>,
 ) : ViewModel() {
 
     private val quoteFlow = MutableStateFlow<String?>(null)
@@ -26,12 +30,48 @@ internal class Akiko23ViewModel(
         val imageUrl: String?,
     )
 
+    init {
+        // Загружаем сохраненное состояние при инициализации
+        viewModelScope.launch {
+            try {
+                val savedState = storage.get().first()
+                savedState?.let { state ->
+                    if (state.lastQuote != null && state.lastImageUrl != null) {
+                        quoteFlow.value = state.lastQuote
+                        imageUrlFlow.value = state.lastImageUrl
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // При ошибке десериализации (старые данные) очищаем хранилище
+                try {
+                    storage.put(null)
+                } catch (clearError: Exception) {
+                    clearError.printStackTrace()
+                }
+            }
+        }
+    }
+
     fun loadRandomWolfQuote() {
         viewModelScope.launch {
             try {
                 val wolfQuote = repository.getRandomWolfQuote()
                 quoteFlow.value = wolfQuote.text
                 imageUrlFlow.value = wolfQuote.imageUrl
+                
+                // Сохраняем полученную цитату и картинку
+                try {
+                    storage.put(
+                        Akiko23State(
+                            lastQuote = wolfQuote.text,
+                            lastImageUrl = wolfQuote.imageUrl
+                        )
+                    )
+                } catch (saveError: Exception) {
+                    saveError.printStackTrace()
+                    // Игнорируем ошибки сохранения, но продолжаем работу
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 // Ошибка уже обработана в репозитории, fallback цитата будет возвращена

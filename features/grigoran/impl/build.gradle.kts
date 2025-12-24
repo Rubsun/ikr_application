@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":libs:injector"))
     api(project(":libs:imageloader:api"))
     implementation(project(":libs:primitivestorage:api"))
+    implementation(project(":libs:grigoran-network:api"))
     implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.kotlinx.serialization.converter)

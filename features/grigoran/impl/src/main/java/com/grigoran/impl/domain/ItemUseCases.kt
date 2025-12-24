@@ -5,8 +5,8 @@ import com.grigoran.api.domain.ItemSearchUseCase
 import com.grigoran.api.domain.ItemSuggestUseCase
 import com.grigoran.api.domain.SortItemUseCase
 import com.grigoran.api.models.Item
+import com.grigoran.network.api.Item as DtoItem
 import com.grigoran.api.models.ItemResult
-import com.grigoran.impl.data.ItemDto
 import com.grigoran.impl.data.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -55,7 +55,7 @@ internal class ItemSearchUseCaseImpl(
         )
     }
 
-    private fun map(dto: ItemDto): Item {
+    private fun map(dto: DtoItem): Item {
         return Item(
             id = dto.id,
             title = dto.title,

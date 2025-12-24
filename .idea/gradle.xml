@@ -124,6 +124,9 @@
             <option value="$PROJECT_DIR$/libs/egorik4-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/api" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/data" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network/api" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network/data" />
             <option value="$PROJECT_DIR$/libs/imageloader" />
             <option value="$PROJECT_DIR$/libs/imageloader/api" />
             <option value="$PROJECT_DIR$/libs/imageloader/data" />
@@ -147,6 +150,9 @@
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/api" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/data" />
+            <option value="$PROJECT_DIR$/libs/nastyazz" />
+            <option value="$PROJECT_DIR$/libs/nastyazz/api" />
+            <option value="$PROJECT_DIR$/libs/nastyazz/data" />
             <option value="$PROJECT_DIR$/libs/network" />
             <option value="$PROJECT_DIR$/libs/network/api" />
             <option value="$PROJECT_DIR$/libs/network/data" />
