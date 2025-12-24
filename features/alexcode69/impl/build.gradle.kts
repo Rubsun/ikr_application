@@ -47,5 +47,6 @@ dependencies {
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
     implementation(project(":libs:logger:api"))
+    implementation(project(":libs:network:data"))
 }
 

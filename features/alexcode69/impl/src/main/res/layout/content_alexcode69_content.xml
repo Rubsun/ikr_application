@@ -34,6 +34,23 @@
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fetch_info_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fetch Request Info"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:id="@+id/request_info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="No request info yet"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -37,6 +37,8 @@ internal class Alexcode69Fragment : Fragment() {
         val textView = view.findViewById<TextView>(R.id.text)
         val elapsed = view.findViewById<TextView>(R.id.elapsed)
         val buttons = view.findViewById<ViewGroup>(R.id.buttons)
+        val fetchInfoButton = view.findViewById<com.google.android.material.button.MaterialButton>(R.id.fetch_info_button)
+        val requestInfoText = view.findViewById<TextView>(R.id.request_info_text)
 
         // Setup search listener
         searchEditText.addTextChangedListener(object : TextWatcher {
@@ -46,6 +48,11 @@ internal class Alexcode69Fragment : Fragment() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        // Setup fetch info button
+        fetchInfoButton.setOnClickListener {
+            viewModel.fetchRequestInfo()
+        }
 
         // Collect UI state
         viewLifecycleOwner.lifecycleScope.launch {
@@ -58,6 +65,15 @@ internal class Alexcode69Fragment : Fragment() {
 
                     // Update entry list info
                     elapsed.text = "Entries found: ${state.timeEntries.size}"
+
+                    // Update request info
+                    state.requestInfo?.let { info ->
+                        requestInfoText.text = "URL: ${info.url}\nOrigin: ${info.origin}"
+                    } ?: run {
+                        if (state.requestInfo == null) {
+                            requestInfoText.text = "No request info yet"
+                        }
+                    }
 
                     // Update buttons based on precision
                     buttons.removeAllViews()
