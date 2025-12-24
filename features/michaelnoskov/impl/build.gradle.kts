@@ -49,7 +49,8 @@ dependencies {
     api(project(":features:michaelnoskov:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:chart:data"))
+    implementation(project(":libs:michaelnoskov-chart:api"))
+    implementation(project(":libs:michaelnoskov-chart:data"))
     implementation(project(":libs:michaelnoskov-network:api"))
     implementation(project(":libs:michaelnoskov-network:data"))
 }

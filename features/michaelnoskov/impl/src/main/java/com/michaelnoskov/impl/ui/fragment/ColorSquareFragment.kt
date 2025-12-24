@@ -19,11 +19,11 @@ import com.michaelnoskov.impl.R
 import com.michaelnoskov.impl.ui.adapter.ItemsAdapter
 import com.michaelnoskov.impl.ui.viewmodel.ColorSquareState
 import com.michaelnoskov.impl.ui.viewmodel.ColorSquareViewModel
-import com.n0tsszzz.chart.api.BarChartData
-import com.n0tsszzz.chart.api.BarChartEntry
-import com.n0tsszzz.chart.api.BarChartView
-import com.n0tsszzz.chart.api.BarChartViewFactory
-import com.n0tsszzz.chart.api.ChartConfig
+import com.michaelnoskov.chart.api.BarChartData
+import com.michaelnoskov.chart.api.BarChartEntry
+import com.michaelnoskov.chart.api.BarChartView
+import com.michaelnoskov.chart.api.BarChartViewFactory
+import com.michaelnoskov.chart.api.ChartConfig
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
