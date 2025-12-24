@@ -32,6 +32,8 @@ import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
 import com.momuswinner.api.Constants as MomusWinnerConstants
 import com.momuswinner.impl.R as MomusWinnerRes
+import com.michaelnoskov.api.Constants as MichaelnoskovConstants
+import com.michaelnoskov.impl.R as MichaelnoskovRes
 import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
 import com.example.api.Constants as DemyanenkoConstants
@@ -63,7 +65,7 @@ enum class Screens(
     KRISTEVT(kristevtRes.string.title_kristevt, qualifier = KristevtConstants.KRISTEVT_SCREEN),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
     RUBSUN(rubsunRes.string.title_rubsun, qualifier = RubsunConstants.RUBSUN_SCREEN),
-    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
+    MICHAELNOSKOV(MichaelnoskovRes.string.michaelnoskov_title, qualifier = MichaelnoskovConstants.MICHAELNOSKOV_SCREEN),
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
     VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
