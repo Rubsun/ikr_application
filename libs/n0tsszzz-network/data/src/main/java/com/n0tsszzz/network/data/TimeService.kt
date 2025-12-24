@@ -1,14 +1,14 @@
 package com.n0tsszzz.network.data
 
-import com.n0tsszzz.network.api.models.TimeDto
+import com.n0tsszzz.network.data.models.WorldTimeApiResponse
 import retrofit2.http.GET
 
 /**
- * Retrofit интерфейс для работы с WorldTimeAPI.
+ * Retrofit интерфейс для работы с HTTP World Clock API.
  * Внутренняя реализация, не должна использоваться напрямую в feature модулях.
  */
 internal interface TimeService {
-    @GET("api/timezone/Europe/Moscow")
-    suspend fun getCurrentTime(): TimeDto
+    @GET("utc/now")
+    suspend fun getCurrentTime(): WorldTimeApiResponse
 }
 

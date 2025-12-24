@@ -1,6 +1,7 @@
 package com.n0tsszzz.network.data
 
 import android.content.Context
+import android.util.Log
 import com.example.injector.AbstractInitializer
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.n0tsszzz.network.api.TimeApiClient
@@ -12,7 +13,8 @@ import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-private const val BASE_URL = "https://worldtimeapi.org/"
+private const val BASE_URL = "http://worldclockapi.com/api/json/"
+private const val TAG = "N0tsszzzNetwork"
 
 /**
  * Модуль для конфигурации зависимостей сетевого клиента для n0tsszzz.
@@ -20,6 +22,7 @@ private const val BASE_URL = "https://worldtimeapi.org/"
  */
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
+        Log.d(TAG, "ModuleInitializer.create() called")
         loadKoinModules(
             module {
                 single {
@@ -27,7 +30,11 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 }
 
                 single {
-                    val loggingInterceptor = HttpLoggingInterceptor().apply {
+                    val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+                        override fun log(message: String) {
+                            Log.d("OkHttp", message)
+                        }
+                    }).apply {
                         level = HttpLoggingInterceptor.Level.BODY
                     }
                     OkHttpClient.Builder()
@@ -48,10 +55,12 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 }
 
                 single<TimeApiClient> {
+                    Log.d(TAG, "Registering TimeApiClient in Koin")
                     RetrofitTimeApiClient(get())
                 }
             }
         )
+        Log.d(TAG, "ModuleInitializer.create() completed")
     }
 }
 
