@@ -1,79 +1,127 @@
 plugins {
-	alias(libs.plugins.android.application)
-	alias(libs.plugins.kotlin.android)
-	alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-	namespace = "com.example.ikr_application"
-	compileSdk = 36
+    namespace = "com.example.ikr_application"
+    compileSdk = 36
 
-	defaultConfig {
-		applicationId = "com.example.ikr_application"
-		minSdk = 24
-		targetSdk = 36
-		versionCode = 1
-		versionName = "1.0"
+    defaultConfig {
+        applicationId = "com.example.ikr_application"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
 
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 
-	packaging {
-		resources {
-			excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
-		}
-	}
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
 
-	buildTypes {
-		release {
-			isMinifyEnabled = false
-			proguardFiles(
-				getDefaultProguardFile("proguard-android-optimize.txt"),
-				"proguard-rules.pro"
-			)
-		}
-	}
+    buildFeatures {
+        viewBinding = true
+    }
 
-	buildFeatures {
-		viewBinding = true
-	}
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 
-	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_11
-		targetCompatibility = JavaVersion.VERSION_11
-	}
+    packaging {
+        resources {
+            pickFirsts += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+            merges += "META-INF/services/com.example.injector.AbstractInitializer"
+        }
+    }
 }
 
 kotlin {
-	compilerOptions {
-		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-	}
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
 }
 
 dependencies {
-	implementation(libs.androidx.core.ktx)
+    implementation(platform(libs.koin.bom))
+    implementation(libs.androidx.core.ktx)
 
-	implementation(libs.bundles.ui.core)
-	implementation(libs.bundles.network)
+    implementation(libs.bundles.ui.core)
+    implementation(libs.bundles.network)
 
-	implementation(libs.androidx.recyclerview)
-	implementation(libs.androidx.constraintlayout)
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
 
-    implementation ("androidx.room:room-runtime:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-	implementation(libs.coil)
-	implementation(libs.coil.network.okhttp)
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 
-	implementation(libs.androidx.lifecycle.viewmodel.ktx)
-	implementation(libs.androidx.lifecycle.runtime.ktx)
-	implementation(libs.kotlinx.serialization.json)
-	implementation(libs.okhttp.logging.interceptor)
-	implementation(libs.retrofit.kotlinx.serialization.converter)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-	implementation(libs.mpandroidchart)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.mpandroidchart)
+    implementation(libs.joda.time)
+    implementation(project(":features:quovadis:impl"))
+    implementation(project(":features:nastyazz:impel"))
+    implementation(project(":features:nfirex:impl"))
+    implementation(project(":features:dimmension:impl"))
+    implementation(project(":features:grigoran:impl"))
+    implementation(project(":features:rin2396:impl"))
+    implementation(project(":features:stupishin:impl"))
+    implementation(project(":features:n0tsszzz:impl"))
+    implementation(project(":features:artemkaa:impl"))
+    implementation(project(":features:antohaot:impl"))
+    implementation(project(":features:zagora:impl"))
+    implementation(project(":features:drain678:impl"))
+    implementation(project(":features:denisova:impl"))
+    implementation(project(":features:dyatlova:api"))
+    implementation(project(":features:dyatlova:impl"))
+    implementation(project(":features:MomusWinner:impl"))
+    implementation(project(":features:egorik4:impl"))
+    implementation(project(":features:alexcode69:impl"))
+    implementation(project(":features:demyanenko:impl"))
+    implementation(project(":features:rubsun:impl"))
+    implementation(project(":features:tire:impl"))
+    implementation(project(":features:eremin:impl"))
+    implementation(project(":features:eremin:api"))
+    implementation(project(":features:akiko23:impl"))
+    implementation(project(":features:kristevt:impl"))
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(project(":libs:injector"))
+    implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":libs:imageloader:data"))
+    implementation(project(":libs:jikan:data"))
+    implementation(project(":libs:egorik4-network:data"))
+    implementation(project(":libs:n0tsszzz-network:data"))
+    implementation(project(":libs:artemkaa-network:data"))
+    implementation(project(":libs:antohaot-network:data"))
+    implementation(project(":libs:drain678-network:data"))
+    implementation(project(":libs:chart:data"))
+    implementation(project(":libs:capybara-network:data"))
+    implementation(project(":libs:spl3g-network:data"))
+    implementation(project(":features:spl3g:api"))
+    implementation(project(":features:spl3g:impl"))
+    implementation(project(":libs:lyrics:impl"))
+    implementation(project(":libs:dimmension-imageloader:data"))
+    implementation(project(":libs:dimmension-network:data"))
 
 
+    debugImplementation(project(":libs:logger:timber"))
+    releaseImplementation(project(":libs:logger:stub"))
 }

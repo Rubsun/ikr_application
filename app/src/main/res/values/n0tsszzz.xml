@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="n0tsszzz_text_time_pattern">Current date: %s</string>
-    <string name="n0tsszzz_text_time_from_reboot_pattern">Time from start: %s</string>
-    <string name="n0tsszzz_add_time_record">Add Time Record</string>
-    <string name="n0tsszzz_search_records">Search records</string>
-    <string name="n0tsszzz_error_adding_record">Error adding time record</string>
-</resources>
-
