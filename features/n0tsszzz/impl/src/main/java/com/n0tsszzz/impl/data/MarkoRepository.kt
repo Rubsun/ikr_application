@@ -3,6 +3,7 @@ package com.n0tsszzz.impl.data
 import android.content.SharedPreferences
 import android.os.SystemClock
 import com.n0tsszzz.api.domain.models.MarkoInfo
+import com.n0tsszzz.network.api.TimeApiClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,6 +12,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 internal class MarkoRepository(
+    private val api: TimeApiClient,
     private val sharedPreferences: SharedPreferences,
     private val json: Json
 ) {
@@ -20,6 +22,25 @@ internal class MarkoRepository(
 
     init {
         _timeRecords.value = loadRecordsSync()
+    }
+
+    suspend fun getCurrentTimeFromApi(): MarkoInfo {
+        return try {
+            val timeDto = api.getCurrentTime()
+            MarkoInfo(
+                currentTime = timeDto.unixtime * 1000, // Convert seconds to milliseconds
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        } catch (e: java.net.UnknownHostException) {
+            // Network error - fallback to local time
+            deviceInfo()
+        } catch (e: java.io.IOException) {
+            // Network error - fallback to local time
+            deviceInfo()
+        } catch (e: Exception) {
+            // Any other error - fallback to local time
+            deviceInfo()
+        }
     }
 
     fun deviceInfo(): MarkoInfo {

@@ -1,7 +1,8 @@
 package com.spl3g.impl.data
 
 import com.example.primitivestorage.api.PrimitiveStorage
-import com.spl3g.impl.data.models.ImageData
+import com.spl3g.network.api.models.ImageData
+import com.spl3g.network.api.AppleApiClient
 import kotlinx.coroutines.flow.first
 import kotlinx.serialization.Serializable
 import java.io.IOException
@@ -15,7 +16,7 @@ data class Spl3gState(
 private const val STORAGE_NAME = "spl3g_state.json"
 
 class AppleRepository(
-    private val appleApi: AppleApi,
+    private val appleApi: AppleApiClient,
     storageFactory: PrimitiveStorage.Factory
 ) {
 
@@ -33,27 +34,6 @@ class AppleRepository(
     }
 
     suspend fun getFrame(index: Int): ImageData {
-        try {
-            // Format the index as a 4-digit number with leading zeros (e.g., 5 -> "0005")
-            val formattedIndex = String.format("%04d", index)
-
-            val response = appleApi.getFrameByIndex(formattedIndex)
-
-            if (response.isSuccessful) {
-                val bytes = response.body()?.bytes()
-                    ?: throw IOException("Empty response")
-                return ImageData.BitmapData(
-                    index = index,
-                    data = bytes  // Updated to use 'data' instead of 'bitmap'
-                )
-            } else {
-                throw IOException("Failed to fetch frame: ${response.code()}")
-            }
-        } catch (e: Exception) {
-            return ImageData.Error(
-                index = index,
-                error = e.message ?: "Unknown error"
-            )
-        }
+        return appleApi.getFrameByIndex(index)
     }
 }

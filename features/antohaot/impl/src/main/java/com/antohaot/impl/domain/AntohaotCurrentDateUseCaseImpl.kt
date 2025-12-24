@@ -15,7 +15,8 @@ internal class AntohaotCurrentDateUseCaseImpl(
 ) : AntohaotCurrentDateUseCase {
     override fun date(): Flow<Date> = flow {
         while (true) {
-            val timestamp = repository.antohaotInfo().currentTime
+            val info = repository.antohaotInfo()
+            val timestamp = info.currentTime
             emit(Date(timestamp))
             delay(1000)
         }

@@ -12,13 +12,12 @@ internal class AddTimeRecordUseCaseImpl(
 ) : AddTimeRecordUseCase {
     override suspend fun invoke(): Result<Unit> = withContext(Dispatchers.IO) {
         try {
-            val info = MarkoInfo(
-                currentTime = System.currentTimeMillis(),
-                elapsedTime = SystemClock.elapsedRealtime(),
-            )
+            // Получаем время из интернета через API (с fallback на локальное время при ошибке)
+            val info = repository.getCurrentTimeFromApi()
             repository.addTimeRecord(info)
             Result.success(Unit)
         } catch (e: Exception) {
+            // Если даже fallback не сработал, возвращаем ошибку
             Result.failure(e)
         }
     }

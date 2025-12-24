@@ -38,11 +38,10 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.bundles.ui.core)
-    implementation(libs.coil)
 
     api(project(":features:akiko23:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:primitivestorage:data"))
+    implementation(project(":libs:coil:api"))
+    implementation(project(":libs:coil:data"))
 }
 

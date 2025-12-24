@@ -12,10 +12,7 @@ internal class AddTimeRecordUseCaseImpl(
 ) : AddTimeRecordUseCase {
     override suspend fun invoke(): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
-            val info = AntohaotInfo(
-                currentTime = System.currentTimeMillis(),
-                elapsedTime = SystemClock.elapsedRealtime(),
-            )
+            val info = repository.antohaotInfo()
             repository.addTimeRecord(info)
         }
     }

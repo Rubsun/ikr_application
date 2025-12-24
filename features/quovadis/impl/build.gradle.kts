@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -45,21 +44,13 @@ kotlin {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.constraintlayout)
-
     implementation(libs.bundles.ui.core)
-    implementation(libs.bundles.network)
-
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
 
     api(project(":features:quovadis:api"))
+    api(project(":libs:catLover:data"))
+    api(project(":libs:imageloader:data"))
+    api(project(":libs:roomstorage:data"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
 }

@@ -43,11 +43,11 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.mpandroidchart)
-    implementation(libs.kotlinx.serialization.json)
 
     api(project(":features:n0tsszzz:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:n0tsszzz-network:api"))
+    implementation(project(":libs:chart:api"))
     implementation(libs.bundles.koin)
 }
 

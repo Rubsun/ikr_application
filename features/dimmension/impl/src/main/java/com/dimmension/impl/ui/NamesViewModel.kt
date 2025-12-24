@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dimmension.api.domain.models.NameDisplayModel
 import com.dimmension.api.domain.usecases.AddNameUseCase
+import com.dimmension.api.domain.usecases.FetchRandomNamesFromNetworkUseCase
 import com.dimmension.api.domain.usecases.FilterNamesUseCase
 import com.dimmension.api.domain.usecases.GetRandomNameUseCase
 import com.dimmension.api.domain.usecases.ObserveNamesUseCase
@@ -20,10 +21,13 @@ internal class NamesViewModel : ViewModel() {
     private val observeNamesUseCase: ObserveNamesUseCase by inject()
     private val addNameUseCase: AddNameUseCase by inject()
     private val filterNamesUseCase: FilterNamesUseCase by inject()
+    private val fetchRandomNamesFromNetworkUseCase: FetchRandomNamesFromNetworkUseCase by inject()
 
     private val searchQuery = MutableStateFlow("")
     private val randomName = MutableStateFlow<NameDisplayModel?>(null)
     private val isLoading = MutableStateFlow(false)
+    private val networkError = MutableStateFlow<String?>(null)
+    private val lastFetchedFromNetwork = MutableStateFlow<List<NameDisplayModel>>(emptyList())
 
     private val names: StateFlow<List<NameDisplayModel>> = observeNamesUseCase()
         .stateIn(
@@ -36,8 +40,10 @@ internal class NamesViewModel : ViewModel() {
         randomName,
         names,
         searchQuery,
-        isLoading,
-    ) { random, namesList, query, loading ->
+        combine(isLoading, networkError, lastFetchedFromNetwork) { loading, error, fetched ->
+            Triple(loading, error, fetched)
+        }
+    ) { random, namesList, query, (loading, error, fetched) ->
         val filtered = filterNamesUseCase.invoke(namesList, query)
 
         NamesUiState(
@@ -45,7 +51,9 @@ internal class NamesViewModel : ViewModel() {
             namesList = namesList,
             filteredNamesList = filtered,
             searchQuery = query,
-            isLoading = loading
+            isLoading = loading,
+            networkError = error,
+            lastFetchedFromNetwork = fetched
         )
     }.stateIn(
         scope = viewModelScope,
@@ -81,6 +89,35 @@ internal class NamesViewModel : ViewModel() {
                 isLoading.value = false
             }
         }
+    }
+
+    /**
+     * Загружает случайные имена из интернета
+     * @param count количество имён для загрузки
+     */
+    fun fetchNamesFromNetwork(count: Int = 3) {
+        viewModelScope.launch {
+            isLoading.value = true
+            networkError.value = null
+            try {
+                fetchRandomNamesFromNetworkUseCase(count)
+                    .onSuccess { names ->
+                        lastFetchedFromNetwork.value = names
+                    }
+                    .onFailure { throwable ->
+                        networkError.value = throwable.message ?: "Ошибка загрузки из сети"
+                    }
+            } finally {
+                isLoading.value = false
+            }
+        }
+    }
+
+    /**
+     * Очищает сообщение об ошибке сети
+     */
+    fun clearNetworkError() {
+        networkError.value = null
     }
 }
 

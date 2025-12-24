@@ -39,6 +39,21 @@
             <meta-data
                 android:name="com.eremin.impl.ModuleInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.n0tsszzz.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.n0tsszzz.chart.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.artemkaa.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.antohaot.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.drain678.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

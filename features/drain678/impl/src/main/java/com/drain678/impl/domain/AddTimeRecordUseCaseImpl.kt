@@ -12,10 +12,7 @@ internal class AddTimeRecordUseCaseImpl(
 ) : AddTimeRecordUseCase {
     override suspend fun invoke(): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
-            val info = Drain678Info(
-                currentTime = System.currentTimeMillis(),
-                elapsedTime = SystemClock.elapsedRealtime(),
-            )
+            val info = repository.drain678Info()
             repository.addTimeRecord(info)
         }
     }

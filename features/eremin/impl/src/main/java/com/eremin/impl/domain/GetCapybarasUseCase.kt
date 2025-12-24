@@ -8,9 +8,7 @@ import kotlinx.coroutines.flow.flow
 internal class GetCapybarasUseCase(private val repository: CapybaraRepository) {
 
     suspend fun execute(from: Int, take: Int): Flow<List<Capybara>> = flow {
-        val capybaras = repository.getCapybaras(from, take).map {
-            Capybara(it.url, it.alt)
-        }
+        val capybaras = repository.getCapybaras(from, take)
         emit(capybaras)
     }
 }

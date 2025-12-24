@@ -1,7 +1,6 @@
 package quo.vadis.impl.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import coil3.load
+import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import quo.vadis.api.usecases.ApiBaseUrl
 import quo.vadis.impl.R
 import quo.vadis.impl.databinding.RoganovCatFragmentBinding
@@ -21,6 +21,8 @@ class CatFragment : Fragment() {
 
     private var _binding: RoganovCatFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private val imageLoader: ImageLoader by inject()
 
     private val viewModel by viewModels<CatViewModel>()
 
@@ -106,7 +108,7 @@ class CatFragment : Fragment() {
             state.filter.isBlank() ||
                     cat.name.contains(state.filter, ignoreCase = true) ||
                     (cat.phrase?.contains(state.filter, ignoreCase = true) == true) ||
-                    cat.fetchedFrom.name.contains(state.api.name, ignoreCase = true)
+                    cat.fetchedFrom.contains(state.api.name, ignoreCase = true)
         }
 
         val cat = filteredCats.firstOrNull()
@@ -121,7 +123,8 @@ class CatFragment : Fragment() {
 
             if (cat.imageUrl != null) {
                 binding.catImageView.visibility = View.VISIBLE
-                binding.catImageView.load(cat.imageUrl)
+                imageLoader.load(binding.catImageView, cat.imageUrl!!)
+//                binding.catImageView.load(cat.imageUrl)
             } else {
                 binding.catImageView.visibility = View.GONE
             }

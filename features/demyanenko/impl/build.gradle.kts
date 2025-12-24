@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.impl"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -49,8 +47,11 @@ dependencies {
     implementation(libs.material)
 
     api(project(":features:demyanenko:api"))
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
+    //implementation(libs.coil)
+    //implementation(libs.coil.network.okhttp)
+    implementation(project(":libs:demyanenkoCoil:impl"))
+    implementation(project(":libs:demyanenkoOpenF1:impl"))
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)

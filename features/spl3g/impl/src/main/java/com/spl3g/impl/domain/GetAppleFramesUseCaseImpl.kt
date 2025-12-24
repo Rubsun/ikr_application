@@ -3,7 +3,7 @@ package com.spl3g.impl.domain
 import com.spl3g.api.domain.GetAppleFramesUseCase
 import com.spl3g.api.domain.models.FrameResult
 import com.spl3g.impl.data.AppleRepository
-import com.spl3g.impl.data.models.ImageData
+import com.spl3g.network.api.models.ImageData
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow

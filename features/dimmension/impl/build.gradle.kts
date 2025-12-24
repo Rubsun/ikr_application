@@ -39,11 +39,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
 
     api(project(":features:dimmension:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:api"))
+    implementation(project(":libs:dimmension-imageloader:api"))
+    implementation(project(":libs:dimmension-network:api"))
 }
 

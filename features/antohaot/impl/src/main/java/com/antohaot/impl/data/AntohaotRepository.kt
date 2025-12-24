@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.SystemClock
 import com.antohaot.api.domain.models.AntohaotInfo
+import com.antohaot.network.api.TimeApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,7 +36,8 @@ fun AntohaotInfo.toSerializable(): AntohaotInfoSerializable {
 }
 
 internal class AntohaotRepository(
-    private val context: Context
+    private val context: Context,
+    private val timeApiClient: TimeApiClient
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "antohaot_prefs",
@@ -52,11 +54,24 @@ internal class AntohaotRepository(
         _timeRecords.value = loadRecords()
     }
 
-    fun antohaotInfo(): AntohaotInfo {
-        return AntohaotInfo(
-            currentTime = System.currentTimeMillis(),
-            elapsedTime = SystemClock.elapsedRealtime(),
-        )
+    /**
+     * Получает информацию о времени из интернета с fallback на локальное время при ошибке.
+     */
+    suspend fun antohaotInfo(): AntohaotInfo = withContext(Dispatchers.IO) {
+        try {
+            // Пытаемся получить время из интернета
+            val timeDto = timeApiClient.getCurrentTime("UTC")
+            AntohaotInfo(
+                currentTime = timeDto.unixtime * 1000, // Конвертируем секунды в миллисекунды
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        } catch (e: Exception) {
+            // Fallback на локальное время при ошибке сети
+            AntohaotInfo(
+                currentTime = System.currentTimeMillis(),
+                elapsedTime = SystemClock.elapsedRealtime(),
+            )
+        }
     }
 
     fun addTimeRecord(info: AntohaotInfo) {

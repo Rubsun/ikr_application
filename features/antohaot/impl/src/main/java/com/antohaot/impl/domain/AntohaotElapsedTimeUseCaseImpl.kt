@@ -14,7 +14,8 @@ internal class AntohaotElapsedTimeUseCaseImpl(
 ) : AntohaotElapsedTimeUseCase {
     override fun value(precision: AntohaotTimePrecisions): Flow<Long> = flow {
         while (true) {
-            val elapsedTime = repository.antohaotInfo().elapsedTime
+            val info = repository.antohaotInfo()
+            val elapsedTime = info.elapsedTime
             emit(elapsedTime / precision.divider.inWholeMilliseconds)
             delay(100)
         }

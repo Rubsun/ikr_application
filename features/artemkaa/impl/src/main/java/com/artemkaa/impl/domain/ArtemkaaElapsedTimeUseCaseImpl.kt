@@ -14,7 +14,8 @@ internal class ArtemkaaElapsedTimeUseCaseImpl(
 ) : ArtemkaaElapsedTimeUseCase {
     override fun value(precision: ArtemkaaTimePrecisions): Flow<Long> = flow {
         while (true) {
-            val elapsedTime = repository.artemkaaInfo().elapsedTime
+            val info = repository.artemkaaInfo()
+            val elapsedTime = info.elapsedTime
             emit(elapsedTime / precision.divider.inWholeMilliseconds)
             delay(100)
         }

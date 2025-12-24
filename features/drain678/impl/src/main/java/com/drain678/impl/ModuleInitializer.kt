@@ -14,6 +14,7 @@ import com.drain678.impl.domain.Drain678ElapsedTimeUseCaseImpl
 import com.drain678.impl.domain.FilterTimeRecordsUseCaseImpl
 import com.drain678.impl.ui.Drain678Fragment
 import com.drain678.impl.ui.Drain678ViewModel
+import com.drain678.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -28,7 +29,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single { Drain678Repository(context) }
+                single { Drain678Repository(context, get<TimeApiClient>()) }
 
 
                 factory<Drain678CurrentDateUseCase> { Drain678CurrentDateUseCaseImpl(get()) }
