@@ -25,5 +25,8 @@ interface ColorSquareRepository {
 
     // ДОБАВЛЯЕМ НОВЫЙ МЕТОД
     suspend fun getSquareSizes(): List<Int>
+    
+    // Погода
+    suspend fun getWeatherTemperature(): Result<Double>
 }
 

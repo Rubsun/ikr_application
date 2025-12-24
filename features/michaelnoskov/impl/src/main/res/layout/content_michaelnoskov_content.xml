@@ -206,8 +206,8 @@
                     android:text="@string/michaelnoskov_title_chart"
                     android:layout_marginBottom="@dimen/michaelnoskov_margin_medium"/>
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/bar_chart"
+                <FrameLayout
+                    android:id="@+id/bar_chart_container"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/michaelnoskov_chart_height"/>
 

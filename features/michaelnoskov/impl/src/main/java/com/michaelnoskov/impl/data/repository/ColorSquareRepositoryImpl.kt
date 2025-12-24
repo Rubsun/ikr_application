@@ -101,5 +101,9 @@ internal class ColorSquareRepositoryImpl(
     override suspend fun getSquareSizes(): List<Int> {
         return listOf(150, 200, 250, 300)
     }
+
+    override suspend fun getWeatherTemperature(): Result<Double> {
+        return remoteDataSource.fetchWeatherTemperature()
+    }
 }
 

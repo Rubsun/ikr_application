@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.michaelnoskov.impl"
+    namespace = "com.michaelnoskov.network.data"
     compileSdk = 36
 
     defaultConfig {
@@ -36,21 +36,9 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.bundles.ui.core)
     implementation(libs.bundles.network)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
 
-    api(project(":features:michaelnoskov:api"))
+    api(project(":libs:michaelnoskov-network:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:chart:data"))
-    implementation(project(":libs:michaelnoskov-network:api"))
-    implementation(project(":libs:michaelnoskov-network:data"))
 }
 

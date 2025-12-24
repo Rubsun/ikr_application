@@ -1,16 +1,11 @@
 package com.michaelnoskov.impl.ui.viewmodel
 
 import android.app.Application
+import android.graphics.Color
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.michaelnoskov.api.domain.model.ChartData
-import com.michaelnoskov.impl.data.api.MockColorSquareApi
-import com.michaelnoskov.impl.data.datasource.LocalDataSourceImpl
-import com.michaelnoskov.impl.data.datasource.RemoteDataSourceImpl
-import com.michaelnoskov.impl.data.mapper.DataMapper
-import com.michaelnoskov.impl.data.mapper.NetworkMapper
-import com.michaelnoskov.impl.data.repository.ColorSquareRepositoryImpl
-import com.michaelnoskov.impl.data.storage.DefaultPrimitiveStorageFactory
+import com.michaelnoskov.api.domain.repository.ColorSquareRepository
 import com.michaelnoskov.impl.domain.usecase.AddItemUseCase
 import com.michaelnoskov.impl.domain.usecase.GetChartDataUseCase
 import com.michaelnoskov.impl.domain.usecase.GetFilteredItemsUseCase
@@ -25,55 +20,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
-internal class ColorSquareViewModel(application: Application) : AndroidViewModel(application) {
-
-    // Создаем все зависимости вручную
-    private val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://api.example.com/")
-            .client(
-                OkHttpClient.Builder()
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .addInterceptor(HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BASIC
-                    })
-                    .build()
-            )
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    private val api: com.michaelnoskov.impl.data.api.ColorSquareApi by lazy {
-        MockColorSquareApi()
-    }
-
-    // ✅ РЕАЛЬНАЯ РЕАЛИЗАЦИЯ PrimitiveStorage.Factory
-    private val primitiveStorageFactory: com.example.primitivestorage.api.PrimitiveStorage.Factory by lazy {
-        DefaultPrimitiveStorageFactory(application)
-    }
-
-    private val localDataSource: LocalDataSourceImpl by lazy {
-        LocalDataSourceImpl(
-            application,
-            primitiveStorageFactory,
-            DataMapper()
-        )
-    }
-
-    private val remoteDataSource: RemoteDataSourceImpl by lazy {
-        RemoteDataSourceImpl(api, NetworkMapper())
-    }
-
-    private val repository: ColorSquareRepositoryImpl by lazy {
-        ColorSquareRepositoryImpl(localDataSource, remoteDataSource)
-    }
+internal class ColorSquareViewModel(
+    application: Application,
+    private val repository: ColorSquareRepository
+) : AndroidViewModel(application) {
 
     // Use Cases
     private val getSquareStateUseCase = GetSquareStateUseCase(repository)
@@ -87,16 +38,12 @@ internal class ColorSquareViewModel(application: Application) : AndroidViewModel
     private val _state = MutableStateFlow(ColorSquareState())
     val state: StateFlow<ColorSquareState> = _state
 
-    private val colors = listOf(
-        0xFFE53935.toInt(), // Красный
-        0xFF43A047.toInt(), // Зеленый
-        0xFF1E88E5.toInt(), // Синий
-        0xFFFB8C00.toInt(), // Оранжевый
-        0xFF8E24AA.toInt()  // Фиолетовый
-    )
-
     private val sizes = listOf(150, 200, 250, 300)
     private var currentSizeIndex = 1
+    
+    // Диапазон температур для градиента (от -20°C до 40°C)
+    private val minTemp = -20.0
+    private val maxTemp = 40.0
 
     init {
         // Подписываемся на данные
@@ -141,8 +88,16 @@ internal class ColorSquareViewModel(application: Application) : AndroidViewModel
     }
 
     fun changeSquareColor() {
-        // Получаем текущий цвет
+        // Получаем текущий цвет и меняем на следующий из дискретного набора
         val currentColor = state.value.squareState.color
+        // Используем простой набор цветов для ручного изменения
+        val colors = listOf(
+            0xFFE53935.toInt(), // Красный
+            0xFF43A047.toInt(), // Зеленый
+            0xFF1E88E5.toInt(), // Синий
+            0xFFFB8C00.toInt(), // Оранжевый
+            0xFF8E24AA.toInt()  // Фиолетовый
+        )
         val currentIndex = colors.indexOf(currentColor)
         val nextIndex = if (currentIndex == -1) 0 else (currentIndex + 1) % colors.size
         val nextColor = colors[nextIndex]
@@ -173,6 +128,9 @@ internal class ColorSquareViewModel(application: Application) : AndroidViewModel
     fun syncData() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
+
+            // Загружаем погоду и обновляем цвет квадрата
+            loadWeatherAndUpdateColor()
 
             val result = syncDataUseCase()
             result.onSuccess {
@@ -215,6 +173,56 @@ internal class ColorSquareViewModel(application: Application) : AndroidViewModel
             ChartData("Желтый", 15f, android.graphics.Color.YELLOW),
             ChartData("Фиолетовый", 10f, android.graphics.Color.MAGENTA)
         )
+    }
+    
+    private suspend fun loadWeatherAndUpdateColor() {
+        val result = repository.getWeatherTemperature()
+        result.onSuccess { temperature ->
+            val color = temperatureToColor(temperature)
+            updateSquareUseCase(color = color)
+        }.onFailure { error ->
+            // В случае ошибки используем цвет по умолчанию
+            println("Failed to load weather: ${error.message}")
+        }
+    }
+    
+    /**
+     * Преобразует температуру в цвет используя градиент:
+     * Холодно (-20°C и ниже) -> Синий
+     * Тепло (40°C и выше) -> Красный
+     * Между ними -> плавный переход через цвета
+     */
+    private fun temperatureToColor(temperature: Double): Int {
+        // Ограничиваем температуру диапазоном
+        val clampedTemp = temperature.coerceIn(minTemp, maxTemp)
+        
+        // Нормализуем температуру в диапазон [0, 1]
+        val normalized = (clampedTemp - minTemp) / (maxTemp - minTemp)
+        
+        // Определяем цвета для градиента
+        // Холодно: синий (0, 0, 255)
+        // Средне: зеленый (0, 255, 0) 
+        // Жарко: красный (255, 0, 0)
+        
+        val red: Int
+        val green: Int
+        val blue: Int
+        
+        if (normalized < 0.5) {
+            // От синего к зеленому (0.0 -> 0.5)
+            val t = normalized * 2.0 // [0, 1]
+            red = 0
+            green = (t * 255).toInt()
+            blue = ((1 - t) * 255).toInt()
+        } else {
+            // От зеленого к красному (0.5 -> 1.0)
+            val t = (normalized - 0.5) * 2.0 // [0, 1]
+            red = (t * 255).toInt()
+            green = ((1 - t) * 255).toInt()
+            blue = 0
+        }
+        
+        return Color.rgb(red, green, blue)
     }
 }
 

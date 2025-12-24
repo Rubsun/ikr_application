@@ -19,20 +19,22 @@ import com.michaelnoskov.impl.R
 import com.michaelnoskov.impl.ui.adapter.ItemsAdapter
 import com.michaelnoskov.impl.ui.viewmodel.ColorSquareState
 import com.michaelnoskov.impl.ui.viewmodel.ColorSquareViewModel
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
+import com.n0tsszzz.chart.api.BarChartData
+import com.n0tsszzz.chart.api.BarChartEntry
+import com.n0tsszzz.chart.api.BarChartView
+import com.n0tsszzz.chart.api.BarChartViewFactory
+import com.n0tsszzz.chart.api.ChartConfig
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-internal class ColorSquareFragment : Fragment() {
+internal class ColorSquareFragment : Fragment(), KoinComponent {
 
     private val viewModel: ColorSquareViewModel by viewModel()
+    private val barChartViewFactory: BarChartViewFactory by inject()
 
     private lateinit var squareView: View
     private lateinit var itemsRecyclerView: androidx.recyclerview.widget.RecyclerView
@@ -43,7 +45,7 @@ internal class ColorSquareFragment : Fragment() {
     private lateinit var rotateButton: MaterialButton
     private lateinit var resizeButton: MaterialButton
     private lateinit var syncButton: MaterialButton
-    private lateinit var barChart: BarChart
+    private lateinit var barChart: BarChartView
     private lateinit var itemsCountTextView: android.widget.TextView
 
     private lateinit var itemsAdapter: ItemsAdapter
@@ -63,7 +65,16 @@ internal class ColorSquareFragment : Fragment() {
         changeColorButton = view.findViewById(R.id.change_color_button)
         rotateButton = view.findViewById(R.id.rotate_button)
         resizeButton = view.findViewById(R.id.resize_button)
-        barChart = view.findViewById(R.id.bar_chart)
+        // Создаем BarChartView через фабрику и добавляем в контейнер
+        val barChartContainer = view.findViewById<android.widget.FrameLayout>(R.id.bar_chart_container)
+        val barChartView = barChartViewFactory.create(requireContext()) as BarChartView
+        barChart = barChartView
+        val params = android.widget.FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        (barChartView as android.view.View).layoutParams = params
+        barChartContainer?.addView(barChartView as android.view.View)
         itemsCountTextView = view.findViewById(R.id.items_count_text)
         syncButton = view.findViewById(R.id.sync_button)
 
@@ -126,13 +137,12 @@ internal class ColorSquareFragment : Fragment() {
     }
 
     private fun setupChart() {
-        barChart.description.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        barChart.axisLeft.axisMinimum = 0f
-        barChart.axisRight.isEnabled = false
-        barChart.setTouchEnabled(false)
-        barChart.animateY(1000)
+        barChart.setup(
+            ChartConfig(
+                textColor = Color.BLACK,
+                showGridLines = false
+            )
+        )
     }
 
     private fun collectState() {
@@ -191,35 +201,25 @@ internal class ColorSquareFragment : Fragment() {
     private fun updateChart(data: List<ChartData>) {
         if (data.isEmpty()) return
 
-        val entries = data.mapIndexed { index, chartData ->
-            BarEntry(index.toFloat(), chartData.value)
+        val entries = data.map { chartData ->
+            BarChartEntry(
+                x = 0f, // не используется для BarChart
+                y = chartData.value,
+                label = chartData.label
+            )
         }
 
-        val dataSet = BarDataSet(entries, "")
-        dataSet.colors = data.map { chartData ->
-            chartData.color
-        }
-        dataSet.valueTextSize = 12f
-        dataSet.setValueTextColor(Color.BLACK)
-
-        val barData = BarData(dataSet)
-        barData.barWidth = 0.5f
-
-        barChart.data = barData
-
-        barChart.xAxis.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                val index = value.toInt()
-                return if (index in data.indices) {
-                    data[index].label
-                } else {
-                    ""
-                }
-            }
-        }
-
+        // Используем первый цвет для всех баров, или можно сделать разные цвета
+        val barColor = data.firstOrNull()?.color ?: Color.BLUE
+        
+        barChart.setData(
+            BarChartData(
+                entries = entries,
+                barColor = barColor,
+                textColor = Color.BLACK
+            )
+        )
         barChart.invalidate()
-        barChart.animateY(1000)
     }
 }
 
