@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import coil3.load
 import com.imageloader.api.ImageLoader
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
