@@ -48,9 +48,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.bundles.ui.core)
 
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
     api(project(":features:quovadis:api"))
     api(project(":libs:catLover:data"))
     api(project(":libs:imageloader:data"))
