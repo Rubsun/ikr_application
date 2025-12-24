@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.akiko23.api.Constants
 import com.akiko23.impl.data.DeviceRepository
+import com.akiko23.impl.data.models.Akiko23State
 import com.akiko23.impl.ui.Akiko23Fragment
 import com.akiko23.impl.ui.Akiko23ViewModel
 import com.example.injector.AbstractInitializer
+import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
@@ -25,10 +27,20 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 // Repository
                 single { DeviceRepository(get()) }
 
+                // Персистентное хранилище для состояния
+                single<PrimitiveStorage<Akiko23State>> {
+                    val factory: PrimitiveStorage.Factory = get()
+                    factory.create(
+                        name = "akiko23_quote_state",
+                        serializer = Akiko23State.serializer()
+                    )
+                }
+
                 // ViewModel для фрагмента
                 viewModel {
                     Akiko23ViewModel(
-                        repository = get()
+                        repository = get(),
+                        storage = get()
                     )
                 }
 
