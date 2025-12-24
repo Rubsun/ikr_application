@@ -24,6 +24,9 @@
             <option value="$PROJECT_DIR$/features/antohaot" />
             <option value="$PROJECT_DIR$/features/antohaot/api" />
             <option value="$PROJECT_DIR$/features/antohaot/impl" />
+            <option value="$PROJECT_DIR$/features/argun" />
+            <option value="$PROJECT_DIR$/features/argun/api" />
+            <option value="$PROJECT_DIR$/features/argun/impl" />
             <option value="$PROJECT_DIR$/features/artemkaa" />
             <option value="$PROJECT_DIR$/features/artemkaa/api" />
             <option value="$PROJECT_DIR$/features/artemkaa/impl" />
@@ -91,6 +94,9 @@
             <option value="$PROJECT_DIR$/libs/antohaot-network" />
             <option value="$PROJECT_DIR$/libs/antohaot-network/api" />
             <option value="$PROJECT_DIR$/libs/antohaot-network/data" />
+            <option value="$PROJECT_DIR$/libs/argun" />
+            <option value="$PROJECT_DIR$/libs/argun/api" />
+            <option value="$PROJECT_DIR$/libs/argun/data" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network/api" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network/data" />

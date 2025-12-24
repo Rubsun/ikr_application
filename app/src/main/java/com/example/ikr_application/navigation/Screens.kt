@@ -25,6 +25,7 @@ import com.nastyazz.api.Constants as NastyazzConstants
 import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
+import com.argun.api.Constants as ArgunConstants
 import com.antohaot.api.Constants as AntohaotConstants
 import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
@@ -55,6 +56,7 @@ enum class Screens(
     QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
+    ARGUN(R.string.title_argun, qualifier = ArgunConstants.ARGUN_SCREEN),
     ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),
     DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
     ALEXCODE69(R.string.title_alexcode69, qualifier = Alexcode69Constants.ALEXCODE69_SCREEN),
