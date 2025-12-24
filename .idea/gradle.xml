@@ -171,6 +171,9 @@
             <option value="$PROJECT_DIR$/libs/spl3g-network" />
             <option value="$PROJECT_DIR$/libs/spl3g-network/api" />
             <option value="$PROJECT_DIR$/libs/spl3g-network/data" />
+            <option value="$PROJECT_DIR$/libs/tire-network" />
+            <option value="$PROJECT_DIR$/libs/tire-network/api" />
+            <option value="$PROJECT_DIR$/libs/tire-network/data" />
           </set>
         </option>
       </GradleProjectSettings>

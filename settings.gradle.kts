@@ -133,6 +133,8 @@ include(":libs:akiko23-network:api")
 include(":libs:akiko23-network:data")
 include(":libs:coil:api")
 include(":libs:coil:data")
+include(":libs:tire-network:api")
+include(":libs:tire-network:data")
 
 include(":libs:momuswinner-network:api")
 include(":libs:momuswinner-network:data")
