@@ -1,81 +1,85 @@
 package com.grigoran.impl.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.injector.inject
-import com.grigoran.api.domain.AddItemUseCase
 import com.grigoran.api.domain.ItemSearchUseCase
 import com.grigoran.api.domain.ItemSuggestUseCase
 import com.grigoran.api.domain.SortItemUseCase
 import com.grigoran.api.models.Item
-
-import com.grigoran.impl.data.Repository
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
-
-internal data class ExampleUiState(
-    val items: List<ItemUi> = emptyList(),
-    val isLoading: Boolean = false,
-    val error: String? = null,
-    val minPriceFilter: Double = 0.0
-)
 
 internal class ExampleViewModel : ViewModel() {
 
-
-    private val sortedItem: SortItemUseCase by inject()
+    private val sortItemsUseCase: SortItemUseCase by inject()
     private val searchUseCase: ItemSearchUseCase by inject()
     private val suggestUseCase: ItemSuggestUseCase by inject()
 
-    private val queryFlow = MutableStateFlow<String?>(null)
-    private val _sortAscending = MutableStateFlow(true)
+    private var sortAscending = true
+    private var loadJob: Job? = null
 
-    private val state = combine(queryFlow.filterNotNull(), _sortAscending) { query, ascending ->
-        query to ascending
-    }.debounce(500.milliseconds)
-        .distinctUntilChanged()
-        .flatMapLatest { (query, ascending) ->
-            flow {
-                emit(State(query, isPending = true))
-                val result = searchUseCase(query)
-                val sortedItems = sortedItem(result.items, ascending)
-                emit(
-                    State(
-                        query = result.query,
-                        isPending = false,
-                        data = sortedItems,
-                        error = result.error
-                    )
-                )
+    private val _state = MutableStateFlow(
+        State(
+            query = "",
+            isPending = true
+        )
+    )
+    val state: StateFlow<State> = _state.asStateFlow()
+
+    init {
+        loadInitial()
+    }
+
+    fun search(query: String) {
+        loadJob?.cancel()
+        loadJob = viewModelScope.launch {
+            delay(500)
+            searchInternal(query)
+        }
+    }
+
+    fun toggleSort() {
+        sortAscending = !sortAscending
+        val currentQuery = _state.value.query
+        if (currentQuery.isNotBlank()) {
+            search(currentQuery)
+        }
+    }
+
+    private fun loadInitial() {
+        loadJob?.cancel()
+        loadJob = viewModelScope.launch {
+            val query = suggestUseCase().orEmpty()
+            _state.value = State(
+                query = query,
+                isPending = false
+            )
+            if (query.isNotBlank()) {
+                searchInternal(query)
             }
         }
-        .onStart {
-            emit(State(query = suggestUseCase() ?: "", isPending = false))
-        }
-
-    fun state(): Flow<State> = state
-    fun search(query: String) {queryFlow.value = query}
-    fun setSortAscending(ascending: Boolean) {
-        Log.d("Setsoert","Sort")
-        _sortAscending.value = ascending
     }
-    val sortAscending: Boolean get() = _sortAscending.value
 
+    private suspend fun searchInternal(query: String) {
+        _state.value = _state.value.copy(isPending = true)
 
-    data class State(
+        val result = searchUseCase(query)
+        val sortedItems = sortItemsUseCase(result.items, sortAscending)
+
+        _state.value = State(
+            query = query,
+            isPending = false,
+            data = sortedItems,
+            error = result.error
+        )
+    }
+
+    internal data class State(
         val query: String,
         val isPending: Boolean,
         val data: List<Item> = emptyList(),
