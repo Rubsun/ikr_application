@@ -40,7 +40,7 @@ dependencies {
 
     implementation(libs.bundles.network)
 
-    api(project(":libs:argun:api"))
+    api(project(":libs:argun-network:api"))
     implementation(project(":libs:injector"))
 }
 
