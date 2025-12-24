@@ -10,7 +10,6 @@ import com.michaelnoskov.impl.data.datasource.LocalDataSourceImpl
 import com.michaelnoskov.impl.data.datasource.RemoteDataSource
 import com.michaelnoskov.impl.data.datasource.RemoteDataSourceImpl
 import com.michaelnoskov.impl.data.mapper.DataMapper
-import com.michaelnoskov.impl.data.mapper.NetworkMapper
 import com.michaelnoskov.impl.data.repository.ColorSquareRepositoryImpl
 import com.michaelnoskov.impl.data.storage.DefaultPrimitiveStorageFactory
 import com.michaelnoskov.impl.ui.fragment.ColorSquareFragment
