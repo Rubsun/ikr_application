@@ -13,7 +13,8 @@ import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
 import com.eremin.api.Constants as EreminConstants
 import com.rin2396.api.Constants as RinApi
-import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
+import com.vtyapkova.api.Constants as VtyapkovaConstants
+import com.vtyapkova.impl.R as vtyapkovaRes
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
@@ -68,7 +69,7 @@ enum class Screens(
     MICHAELNOSKOV(MichaelnoskovRes.string.michaelnoskov_title, qualifier = MichaelnoskovConstants.MICHAELNOSKOV_SCREEN),
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
-    VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
+    VTYAPKOVA(vtyapkovaRes.string.title_viktoria, qualifier = VtyapkovaConstants.VTYAPKOVA_SCREEN),
     EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),

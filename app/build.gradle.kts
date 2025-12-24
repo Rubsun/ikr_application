@@ -105,6 +105,8 @@ dependencies {
     implementation(project(":features:eremin:api"))
     implementation(project(":features:akiko23:impl"))
     implementation(project(":features:kristevt:impl"))
+    implementation(project(":features:vtyapkova:impl"))
+    implementation(project(":libs:vtyapkova-network:data"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
