@@ -54,6 +54,15 @@
             <meta-data
                 android:name="com.drain678.network.data.ModuleInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.akiko23.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.grigoran.network.data.ModuleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.example.nastyazz.ModuleInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

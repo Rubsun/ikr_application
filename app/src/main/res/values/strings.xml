@@ -1,4 +1,5 @@
 ﻿<resources>
+    <string name="title_argun">Argun Screen</string>
     <string name="app_name">ikr_application</string>
     <string name="title_spl3g">spl3g\'s not so great apple</string>
     <string name="title_akiko23">Akiko23</string>
@@ -13,7 +14,7 @@
     <string name="title_nastyazz">Nastyazz Screem</string>
     <string name="title_zagora">Ann Zagora Screen</string>
     <string name="title_areg">Krdyan Areg Screen</string>
-    <string name="title_tire">Старый советский метод чтобы увеличить...</string>
+    <string name="title_tire">TiRe Screen</string>
     <string name="title_demyanenko">Demyanenko F1 Car collection</string>
     <string name="title_eremin">Eremin</string>
     <string name="capybara_outline_desc">Capybara outline</string>

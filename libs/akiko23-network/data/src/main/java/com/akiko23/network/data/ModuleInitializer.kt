@@ -1,7 +1,7 @@
 package com.akiko23.network.data
 
 import android.content.Context
-import com.akiko23.network.api.Akiko23NetworkClient
+import com.akiko23.network.api.QuoteApiClient
 import com.example.injector.AbstractInitializer
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -12,11 +12,12 @@ import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-private const val BASE_URL = "https://api.quotable.io/"
+private const val BASE_URL = "https://api.api-ninjas.com/v2/"
+private const val API_KEY = "Zt7uRiPtDQSi4bKywzViyw==dB5qYfRDMPlpNzWN"
 
 /**
  * Модуль для конфигурации зависимостей сетевого клиента для akiko23.
- * Регистрирует Akiko23NetworkClient в Koin для использования в feature модуле.
+ * Регистрирует QuoteApiClient в Koin для использования в feature модуле.
  */
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
@@ -44,8 +45,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                         .create(QuoteService::class.java)
                 }
 
-                single<Akiko23NetworkClient> {
-                    RetrofitQuoteApiClient(get())
+                single<QuoteApiClient> {
+                    RetrofitQuoteApiClient(get(), API_KEY)
                 }
             }
         )

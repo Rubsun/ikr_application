@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.alexcode69.api.domain.models.TimePrecisions
 import com.alexcode69.api.domain.usecases.AddTimeEntryUseCase
 import com.alexcode69.api.domain.usecases.CurrentDateUseCase
+import com.alexcode69.api.domain.usecases.FetchRequestInfoUseCase
 import com.alexcode69.api.domain.usecases.SearchTimeEntriesUseCase
 import com.example.logger.api.debug
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,10 +18,12 @@ import kotlinx.coroutines.launch
 internal class MyViewModel(
     private val currentDateUseCase: CurrentDateUseCase,
     private val searchTimeEntriesUseCase: SearchTimeEntriesUseCase,
-    private val addTimeEntryUseCase: AddTimeEntryUseCase
+    private val addTimeEntryUseCase: AddTimeEntryUseCase,
+    private val fetchRequestInfoUseCase: FetchRequestInfoUseCase
 ) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     private val _isLoading = MutableStateFlow(false)
+    private val _requestInfo = MutableStateFlow<com.alexcode69.api.domain.usecases.RequestInfo?>(null)
 
     val uiState: StateFlow<TimerUiState> = _searchQuery
         .flatMapLatest { query ->
@@ -35,14 +38,16 @@ internal class MyViewModel(
             combine(
                 entriesStateFlow,
                 _searchQuery,
-                _isLoading
-            ) { entries, query, isLoading ->
+                _isLoading,
+                _requestInfo
+            ) { entries, query, isLoading, requestInfo ->
                 TimerUiState(
                     timeEntries = entries,
                     currentDate = currentDateUseCase.date().toString(),
                     searchQuery = query,
                     isLoading = isLoading,
-                    error = null
+                    error = null,
+                    requestInfo = requestInfo
                 )
             }.stateIn(
                 scope = viewModelScope,
@@ -70,6 +75,20 @@ internal class MyViewModel(
 
     fun timePrecisions(): List<TimePrecisions> {
         return TimePrecisions.entries
+    }
+
+    fun fetchRequestInfo() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                val info = fetchRequestInfoUseCase.execute()
+                _requestInfo.value = info
+            } catch (e: Exception) {
+                // Handle error if needed
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }
 

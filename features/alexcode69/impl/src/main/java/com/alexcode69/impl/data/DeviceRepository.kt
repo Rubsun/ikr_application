@@ -42,7 +42,8 @@ private fun TimeEntry.toSerializable(): TimeEntrySerializable {
 }
 
 internal class DeviceRepository(
-    private val context: Context
+    private val context: Context,
+    private val apiService: Alexcode69ApiService
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "alexcode69_prefs",
@@ -117,6 +118,14 @@ internal class DeviceRepository(
         } catch (e: Exception) {
             // Ignore
         }
+    }
+
+    suspend fun fetchRequestInfo(): RequestInfoDto = withContext(Dispatchers.IO) {
+        val response = apiService.getRequestInfo()
+        RequestInfoDto(
+            url = response.url,
+            origin = response.origin
+        )
     }
 }
 

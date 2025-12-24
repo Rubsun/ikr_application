@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.recyclerview)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
@@ -47,5 +48,6 @@ dependencies {
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
     implementation(project(":libs:logger:api"))
+    implementation(project(":libs:network:data"))
 }
 
