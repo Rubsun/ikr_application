@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dimmension.impl"
+    namespace = "com.dimmension.network.data"
     compileSdk = 36
 
     defaultConfig {
@@ -35,15 +35,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
-
-    api(project(":features:dimmension:api"))
+    implementation(libs.bundles.network)
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:dimmension-imageloader:api"))
-    implementation(project(":libs:dimmension-network:api"))
+    api(project(":libs:dimmension-network:api"))
 }
 
