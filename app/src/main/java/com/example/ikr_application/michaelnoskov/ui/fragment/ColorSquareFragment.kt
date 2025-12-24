@@ -22,6 +22,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
@@ -38,6 +39,7 @@ class ColorSquareFragment : Fragment() {
     private lateinit var changeColorButton: MaterialButton
     private lateinit var rotateButton: MaterialButton
     private lateinit var resizeButton: MaterialButton
+    private lateinit var syncButton: MaterialButton // Теперь есть в XML
     private lateinit var barChart: BarChart
     private lateinit var itemsCountTextView: android.widget.TextView
 
@@ -60,6 +62,7 @@ class ColorSquareFragment : Fragment() {
         resizeButton = view.findViewById(R.id.resize_button)
         barChart = view.findViewById(R.id.bar_chart)
         itemsCountTextView = view.findViewById(R.id.items_count_text)
+        syncButton = view.findViewById(R.id.sync_button) // Теперь получаем из XML
 
         return view
     }
@@ -84,6 +87,10 @@ class ColorSquareFragment : Fragment() {
 
         resizeButton.setOnClickListener {
             viewModel.resizeSquare()
+        }
+
+        syncButton.setOnClickListener {
+            viewModel.syncData()
         }
 
         addItemButton.setOnClickListener {
@@ -142,6 +149,21 @@ class ColorSquareFragment : Fragment() {
 
                     // Обновляем график
                     updateChart(state.chartData)
+
+                    // Показываем/скрываем загрузку
+                    if (state.isLoading) {
+                        // Можно показать ProgressBar
+                        syncButton.text = "Синхронизация..."
+                        syncButton.isEnabled = false
+                    } else {
+                        syncButton.text = getString(R.string.michaelnoskov_button_sync)
+                        syncButton.isEnabled = true
+                    }
+
+                    // Показываем ошибки
+                    state.error?.let { error ->
+                        Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
@@ -151,61 +173,49 @@ class ColorSquareFragment : Fragment() {
         squareView.setBackgroundColor(state.squareState.color)
         squareView.rotation = state.squareState.rotation
 
-        // Обновляем размер с анимацией
-        squareView.layoutParams.width = state.squareState.size
-        squareView.layoutParams.height = state.squareState.size
+        // Если size уже в пикселях, используем как есть
+        // Если в dp, конвертируем в px
+        val density = resources.displayMetrics.density
+        val sizeInPx = if (state.squareState.size < 100) {
+            // Предполагаем что это dp, конвертируем в px
+            (state.squareState.size * density).toInt()
+        } else {
+            // Уже в пикселях
+            state.squareState.size
+        }
 
-        // Анимация изменения размера
-        squareView.animate()
-            .scaleX(1.05f)
-            .scaleY(1.05f)
-            .setDuration(100)
-            .withEndAction {
-                squareView.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(100)
-                    .start()
-            }
-            .start()
+        squareView.layoutParams.width = sizeInPx
+        squareView.layoutParams.height = sizeInPx
 
         squareView.requestLayout()
     }
 
-    private fun updateChart(data: List<Pair<String, Float>>) {
+    private fun updateChart(data: List<com.example.ikr_application.michaelnoskov.domain.model.ChartData>) {
         if (data.isEmpty()) return
 
-        val entries = data.mapIndexed { index, pair ->
-            BarEntry(index.toFloat(), pair.second)
+        val entries = data.mapIndexed { index, chartData ->
+            BarEntry(index.toFloat(), chartData.value)
         }
 
         val dataSet = BarDataSet(entries, "")
-        dataSet.colors = listOf(
-            Color.RED,
-            Color.GREEN,
-            Color.BLUE,
-            Color.YELLOW,
-            Color.MAGENTA
-        )
+        dataSet.colors = data.map { chartData ->
+            chartData.color
+        }
         dataSet.valueTextSize = 12f
-        dataSet.setValueTextColors(listOf(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK))
+        dataSet.setValueTextColor(Color.BLACK)
 
         val barData = BarData(dataSet)
         barData.barWidth = 0.5f
 
         barChart.data = barData
 
-        // Используем строки ресурсов для подписей
-        barChart.xAxis.valueFormatter = object : com.github.mikephil.charting.formatter.ValueFormatter() {
+        barChart.xAxis.valueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 val index = value.toInt()
-                return when (index) {
-                    0 -> getString(R.string.michaelnoskov_chart_label_red)
-                    1 -> getString(R.string.michaelnoskov_chart_label_green)
-                    2 -> getString(R.string.michaelnoskov_chart_label_blue)
-                    3 -> getString(R.string.michaelnoskov_chart_label_yellow)
-                    4 -> getString(R.string.michaelnoskov_chart_label_purple)
-                    else -> ""
+                return if (index in data.indices) {
+                    data[index].label
+                } else {
+                    ""
                 }
             }
         }

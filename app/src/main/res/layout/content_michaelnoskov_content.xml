@@ -7,6 +7,7 @@
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -42,39 +43,59 @@
 
         <!-- Панель управления квадратом -->
         <LinearLayout
+            android:id="@+id/buttons_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginBottom="@dimen/michaelnoskov_margin_xlarge"
             android:gravity="center">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/change_color_button"
-                android:layout_width="0dp"
+            <!-- Первая строка кнопок -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="@string/michaelnoskov_button_change_color"
-                android:layout_marginEnd="@dimen/michaelnoskov_margin_medium"
-                app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/michaelnoskov_margin_medium"
+                android:gravity="center">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rotate_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="@string/michaelnoskov_button_rotate"
-                android:layout_marginEnd="@dimen/michaelnoskov_margin_medium"
-                app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/change_color_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/michaelnoskov_button_change_color"
+                    android:layout_marginEnd="@dimen/michaelnoskov_margin_medium"
+                    app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rotate_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/michaelnoskov_button_rotate"
+                    android:layout_marginEnd="@dimen/michaelnoskov_margin_medium"
+                    app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/resize_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/michaelnoskov_button_resize"
+                    app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
+
+            </LinearLayout>
+
+            <!-- Вторая строка с кнопкой синхронизации -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/resize_button"
-                android:layout_width="0dp"
+                android:id="@+id/sync_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="@string/michaelnoskov_button_resize"
+                android:text="@string/michaelnoskov_button_sync"
                 app:cornerRadius="@dimen/michaelnoskov_button_corner_radius"/>
 
         </LinearLayout>
@@ -91,7 +112,8 @@
                 android:id="@+id/search_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:imeOptions="actionDone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +129,8 @@
                 android:id="@+id/add_item_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="textCapSentences|textAutoCorrect"
+            android:imeOptions="actionDone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

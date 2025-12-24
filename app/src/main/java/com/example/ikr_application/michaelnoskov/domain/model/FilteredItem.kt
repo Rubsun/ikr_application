@@ -1,7 +1,7 @@
-package com.example.ikr_application.michaelnoskov.data.models
+package com.example.ikr_application.michaelnoskov.domain.model
 
 data class FilteredItem(
-    val id: Long,
+    val id: String,
     val text: String,
     val timestamp: Long,
     val isVisible: Boolean = true
