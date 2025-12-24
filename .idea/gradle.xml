@@ -102,6 +102,12 @@
             <option value="$PROJECT_DIR$/libs/demyanenkoCoil/impl" />
             <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1" />
             <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1/impl" />
+            <option value="$PROJECT_DIR$/libs/dimmension-imageloader" />
+            <option value="$PROJECT_DIR$/libs/dimmension-imageloader/api" />
+            <option value="$PROJECT_DIR$/libs/dimmension-imageloader/data" />
+            <option value="$PROJECT_DIR$/libs/dimmension-network" />
+            <option value="$PROJECT_DIR$/libs/dimmension-network/api" />
+            <option value="$PROJECT_DIR$/libs/dimmension-network/data" />
             <option value="$PROJECT_DIR$/libs/drain678-network" />
             <option value="$PROJECT_DIR$/libs/drain678-network/api" />
             <option value="$PROJECT_DIR$/libs/drain678-network/data" />
@@ -126,6 +132,10 @@
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/api" />
             <option value="$PROJECT_DIR$/libs/n0tsszzz-network/data" />
+            <option value="$PROJECT_DIR$/libs/nastyazz" />
+            <option value="$PROJECT_DIR$/libs/nastyazz/api" />
+            <option value="$PROJECT_DIR$/libs/nastyazz/data" />
+            <option value="$PROJECT_DIR$/libs/nastyazz2" />
             <option value="$PROJECT_DIR$/libs/network" />
             <option value="$PROJECT_DIR$/libs/network/api" />
             <option value="$PROJECT_DIR$/libs/network/data" />
