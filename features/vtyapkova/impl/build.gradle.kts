@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.alexcode69.impl"
+    namespace = "com.vtyapkova.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -36,17 +35,10 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.bundles.ui.core)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.mpandroidchart)
 
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.android)
-
-    api(project(":features:alexcode69:api"))
+    api(project(":features:vtyapkova:api"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:data"))
-    implementation(project(":libs:logger:api"))
-    implementation(project(":libs:network:data"))
+    implementation(project(":libs:vtyapkova-network:api"))
 }
 

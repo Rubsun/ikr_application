@@ -124,6 +124,8 @@ dependencies {
     implementation(project(":libs:dimmension-network:data"))
     implementation(project(":features:argun:impl"))
     implementation(project(":libs:argun:data"))
+    implementation(project(":libs:grigoran-network:data"))
+    implementation(project(":libs:nastyazz:data"))
 
 
     debugImplementation(project(":libs:logger:timber"))
