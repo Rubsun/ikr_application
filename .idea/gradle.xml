@@ -109,6 +109,9 @@
             <option value="$PROJECT_DIR$/libs/egorik4-network" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/api" />
             <option value="$PROJECT_DIR$/libs/egorik4-network/data" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network/api" />
+            <option value="$PROJECT_DIR$/libs/grigoran-network/data" />
             <option value="$PROJECT_DIR$/libs/imageloader" />
             <option value="$PROJECT_DIR$/libs/imageloader/api" />
             <option value="$PROJECT_DIR$/libs/imageloader/data" />

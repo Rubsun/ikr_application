@@ -5,9 +5,9 @@ plugins {
 }
 
 android {
-    namespace = "com.grigoran.impl"
+    namespace = "com.grigoran.network.data"
     compileSdk = 36
-    
+
     defaultConfig {
         minSdk = 24
 
@@ -23,9 +23,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    buildFeatures {
-        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -43,15 +40,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    api(project(":features:grigoran:api"))
-    implementation(libs.coil)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.kotlinx.serialization.json)
+    api(project(":libs:grigoran-network:api"))
     implementation(project(":libs:injector"))
-    api(project(":libs:imageloader:api"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:grigoran-network:api"))
-    implementation(libs.retrofit)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.bundles.network)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(project(":libs:network:data"))
 }
