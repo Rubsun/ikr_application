@@ -1,4 +1,4 @@
-package com.spl3g.impl.data.models
+package com.spl3g.network.api.models
 
 sealed class ImageData {
 	data class BitmapData(

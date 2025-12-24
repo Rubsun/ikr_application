@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -85,36 +84,6 @@
             <option value="$PROJECT_DIR$/features/zagora/api" />
             <option value="$PROJECT_DIR$/features/zagora/impl" />
             <option value="$PROJECT_DIR$/libs" />
-            <option value="$PROJECT_DIR$/libs/catLover" />
-            <option value="$PROJECT_DIR$/libs/catLover/api" />
-            <option value="$PROJECT_DIR$/libs/catLover/data" />
-            <option value="$PROJECT_DIR$/libs/antohaot-network" />
-            <option value="$PROJECT_DIR$/libs/antohaot-network/api" />
-            <option value="$PROJECT_DIR$/libs/antohaot-network/data" />
-            <option value="$PROJECT_DIR$/libs/artemkaa-network" />
-            <option value="$PROJECT_DIR$/libs/artemkaa-network/api" />
-            <option value="$PROJECT_DIR$/libs/artemkaa-network/data" />
-            <option value="$PROJECT_DIR$/libs/capybara-network" />
-            <option value="$PROJECT_DIR$/libs/capybara-network/api" />
-            <option value="$PROJECT_DIR$/libs/capybara-network/data" />
-            <option value="$PROJECT_DIR$/libs/chart" />
-            <option value="$PROJECT_DIR$/libs/chart/api" />
-            <option value="$PROJECT_DIR$/libs/chart/data" />
-            <option value="$PROJECT_DIR$/libs/demyanenkoCoil" />
-            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/api" />
-            <option value="$PROJECT_DIR$/libs/demyanenkoCoil/impl" />
-            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1" />
-            <option value="$PROJECT_DIR$/libs/demyanenkoOpenF1/impl" />
-            <option value="$PROJECT_DIR$/libs/drain678-network" />
-            <option value="$PROJECT_DIR$/libs/drain678-network/api" />
-            <option value="$PROJECT_DIR$/libs/drain678-network/data" />
-            <option value="$PROJECT_DIR$/libs/catLover" />
-            <option value="$PROJECT_DIR$/libs/catLover/api" />
-            <option value="$PROJECT_DIR$/libs/catLover/data" />
-            <option value="$PROJECT_DIR$/libs/dyatlova-network" />
-            <option value="$PROJECT_DIR$/libs/egorik4-network" />
-            <option value="$PROJECT_DIR$/libs/egorik4-network/api" />
-            <option value="$PROJECT_DIR$/libs/egorik4-network/data" />
             <option value="$PROJECT_DIR$/libs/imageloader" />
             <option value="$PROJECT_DIR$/libs/imageloader/api" />
             <option value="$PROJECT_DIR$/libs/imageloader/data" />
@@ -126,21 +95,15 @@
             <option value="$PROJECT_DIR$/libs/logger/api" />
             <option value="$PROJECT_DIR$/libs/logger/stub" />
             <option value="$PROJECT_DIR$/libs/logger/timber" />
-            <option value="$PROJECT_DIR$/libs/lyrics" />
-            <option value="$PROJECT_DIR$/libs/lyrics/api" />
-            <option value="$PROJECT_DIR$/libs/lyrics/impl" />
-            <option value="$PROJECT_DIR$/libs/n0tsszzz-network" />
-            <option value="$PROJECT_DIR$/libs/n0tsszzz-network/api" />
-            <option value="$PROJECT_DIR$/libs/n0tsszzz-network/data" />
             <option value="$PROJECT_DIR$/libs/network" />
             <option value="$PROJECT_DIR$/libs/network/api" />
             <option value="$PROJECT_DIR$/libs/network/data" />
             <option value="$PROJECT_DIR$/libs/primitivestorage" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/api" />
             <option value="$PROJECT_DIR$/libs/primitivestorage/data" />
-            <option value="$PROJECT_DIR$/libs/roomstorage" />
-            <option value="$PROJECT_DIR$/libs/roomstorage/api" />
-            <option value="$PROJECT_DIR$/libs/roomstorage/data" />
+            <option value="$PROJECT_DIR$/libs/spl3g-network" />
+            <option value="$PROJECT_DIR$/libs/spl3g-network/api" />
+            <option value="$PROJECT_DIR$/libs/spl3g-network/data" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -114,6 +114,7 @@ dependencies {
     implementation(project(":libs:drain678-network:data"))
     implementation(project(":libs:chart:data"))
     implementation(project(":libs:capybara-network:data"))
+	implementation(project(":libs:spl3g-network:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
     implementation(project(":libs:lyrics:impl"))

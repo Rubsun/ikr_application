@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.spl3g.api.Constants
 import com.spl3g.api.domain.GetAppleFramesUseCase
-import com.spl3g.impl.data.AppleApi
 import com.spl3g.impl.data.AppleRepository
 import com.spl3g.impl.domain.GetAppleFramesUseCaseImpl
 import com.spl3g.impl.ui.AppleFramesFragment
@@ -22,13 +21,6 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single<AppleApi> {
-                    Retrofit.Builder()
-                        .baseUrl("https://kcu.su/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AppleApi::class.java)
-                }
                 single { AppleRepository(get(), get()) }
                 factory<GetAppleFramesUseCase> { GetAppleFramesUseCaseImpl(get()) }
                 viewModel { AppleFramesViewModel(get(), get()) }
