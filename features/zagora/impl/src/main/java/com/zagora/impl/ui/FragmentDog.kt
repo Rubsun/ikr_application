@@ -11,19 +11,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import coil3.load
-import coil3.request.crossfade
+import com.imageloader.api.ImageLoader
 import com.zagora.api.ZagoraUiState
 import com.zagora.impl.databinding.FragmentDogBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-internal class FragmentDog : Fragment() {
+internal class FragmentDog : Fragment(), KoinComponent {
 
     private var _binding: FragmentDogBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: MyViewModel by lazy { getViewModel() }
+    private val imageLoader: ImageLoader by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,9 +77,7 @@ internal class FragmentDog : Fragment() {
         binding.regenerateButton.isVisible = uiState.dogImage != null
 
         uiState.dogImage?.let {
-            binding.dogImageView.load(it.imageUrl) {
-                crossfade(true)
-            }
+            imageLoader.loadWithCrossfade(binding.dogImageView, it.imageUrl, crossfade = true)
         } ?: run {
             binding.dogImageView.setImageDrawable(null)
         }

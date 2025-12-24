@@ -2,6 +2,8 @@ package quo.vadis.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.api.CatDto
+import com.example.api.CatRoomRepository
 import com.example.injector.inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,29 +15,27 @@ import kotlinx.coroutines.withContext
 import quo.vadis.api.usecases.ApiBaseUrl
 import quo.vadis.api.usecases.AssembleImageUrlUseCase
 import quo.vadis.api.usecases.GetCatNameUseCase
-import quo.vadis.impl.data.CatDto
-import quo.vadis.impl.data.CatRepositoryImpl
 import kotlin.collections.plus
 
 
 internal class CatViewModel : ViewModel() {
     private val getRandomCatUseCase: GetCatNameUseCase by inject()
     private val assembleImageUrlUseCase: AssembleImageUrlUseCase by inject()
-    private val repository: CatRepositoryImpl by inject()
+    private val roomRepository: CatRoomRepository by inject()
 
     private val _uiState = MutableStateFlow(CatUiState())
     val uiState: StateFlow<CatUiState> = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            repository.getAllCatsFlow()
+            roomRepository.getAllCatsFlow()
                 .map { entities ->
                     entities.map { entity ->
                         CatDto(
                             name = entity.name,
                             phrase = entity.phrase,
                             imageUrl = entity.imageUrl,
-                            fetchedFrom = ApiBaseUrl.valueOf(entity.fetchedFrom)
+                            fetchedFrom = entity.fetchedFrom
                         )
                     }
                 }
@@ -59,7 +59,7 @@ internal class CatViewModel : ViewModel() {
                     name = result.name,
                     phrase = result.phrase,
                     imageUrl = null,
-                    fetchedFrom = _uiState.value.api
+                    fetchedFrom = _uiState.value.api.name
                 )
             }
 
@@ -70,11 +70,11 @@ internal class CatViewModel : ViewModel() {
             val catWithImage = cat.copy(imageUrl = imageUrl)
 
             withContext(Dispatchers.IO) {
-                repository.insertCat(
+                roomRepository.insertCat(
                     name = catWithImage.name,
                     phrase = catWithImage.phrase,
                     imageUrl = catWithImage.imageUrl,
-                    fetchedFrom = catWithImage.fetchedFrom.name
+                    fetchedFrom = catWithImage.fetchedFrom
                 )
             }
 
@@ -96,7 +96,7 @@ internal class CatViewModel : ViewModel() {
     fun deleteCat(catId: Long) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                repository.deleteCat(catId)
+                roomRepository.deleteCat(catId)
             }
         }
     }

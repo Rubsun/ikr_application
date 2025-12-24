@@ -114,9 +114,12 @@ dependencies {
     implementation(project(":libs:drain678-network:data"))
     implementation(project(":libs:chart:data"))
     implementation(project(":libs:capybara-network:data"))
+	implementation(project(":libs:spl3g-network:data"))
     implementation(project(":features:spl3g:api"))
     implementation(project(":features:spl3g:impl"))
     implementation(project(":libs:lyrics:impl"))
+    implementation(project(":libs:momuswinner-network:data"))
+    implementation(project(":libs:momuswinner-chart:data"))
     implementation(project(":libs:dimmension-imageloader:data"))
     implementation(project(":libs:dimmension-network:data"))
 

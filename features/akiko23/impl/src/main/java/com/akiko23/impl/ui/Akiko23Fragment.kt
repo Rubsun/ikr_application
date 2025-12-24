@@ -7,23 +7,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.akiko23.api.domain.models.TimePrecision
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.akiko23.impl.R
+import com.coil.api.ImageLoader
+import com.example.injector.inject
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.google.android.material.materialswitch.MaterialSwitch
-import coil3.load
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import androidx.core.view.children
 
 /**
  * Фрагмент для экрана akiko23.
  */
 internal class Akiko23Fragment : Fragment() {
-    private val viewModel by viewModels<Akiko23ViewModel>()
+    private val viewModel: Akiko23ViewModel by viewModel()
+    private val imageLoader: ImageLoader by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,103 +34,47 @@ internal class Akiko23Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val headerView = view.findViewById<TextView>(R.id.text)
-        val elapsedView = view.findViewById<TextView>(R.id.elapsed)
-        val buttons = view.findViewById<MaterialButtonToggleGroup>(R.id.buttons)
-        val imageView = view.findViewById<ImageView>(R.id.akiko23_image)
-        val catSwitch = view.findViewById<MaterialSwitch>(R.id.show_cat_switch)
+        val quoteText = view.findViewById<TextView>(R.id.quote_text)
+        val quoteCard = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.quote_card)
+        val wolfImage = view.findViewById<ImageView>(R.id.wolf_image)
+        val wolfImageCard = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.wolf_image_card)
+        val loadButton = view.findViewById<MaterialButton>(R.id.load_quote_button)
 
-        // Настроим кнопку открытия экрана с Canvas
-        view.findViewById<View>(R.id.open_canvas_button).setOnClickListener {
-            openCanvasScreen()
+        // Кнопка для загрузки волчьей цитаты
+        loadButton.setOnClickListener {
+            viewModel.loadRandomWolfQuote()
         }
-
-        // Настроим управление выбором точности через ToggleGroup
-        setupPrecisionButtons(buttons)
-
-        // Триггер для отображения кота
-        catSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.toggleCat(isChecked)
-        }
-
-        // Загрузка картинки при помощи внешней библиотеки Coil
-        imageView.load("https://http.cat/images/200.jpg")
 
         // Подписываемся на Flow<State> из ViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state().collectLatest { state ->
-                applyState(state, headerView, elapsedView, buttons, imageView, catSwitch)
+                applyState(state, quoteText, quoteCard, wolfImage, wolfImageCard)
             }
-        }
-    }
-
-    private fun setupPrecisionButtons(buttons: MaterialButtonToggleGroup) {
-        if (buttons.childCount == 0) {
-            TimePrecision.entries
-                .forEach { precision ->
-                    val button = LayoutInflater.from(buttons.context)
-                        .inflate(R.layout.item_akiko23_precision, buttons, false) as MaterialButton
-                    button.text = precision.typeName
-                    button.tag = precision
-                    button.id = View.generateViewId()
-                    buttons.addView(button)
-                }
-        }
-
-        buttons.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            if (!isChecked) return@addOnButtonCheckedListener
-
-            val button = group.findViewById<MaterialButton>(checkedId)
-            val precision = button.tag as? TimePrecision ?: return@addOnButtonCheckedListener
-            viewModel.selectPrecision(precision)
         }
     }
 
     private fun applyState(
         state: Akiko23ViewModel.State,
-        headerView: TextView,
-        elapsedView: TextView,
-        buttons: MaterialButtonToggleGroup,
-        imageView: ImageView,
-        catSwitch: MaterialSwitch,
+        quoteText: TextView,
+        quoteCard: com.google.android.material.card.MaterialCardView,
+        wolfImage: ImageView,
+        wolfImageCard: com.google.android.material.card.MaterialCardView,
     ) {
-        headerView.text = getString(R.string.akiko23_text_time_pattern, state.headerText)
-        elapsedView.text = getString(
-            R.string.akiko23_text_time_from_reboot_pattern,
-            state.elapsedText,
-        )
-
-        if (catSwitch.isChecked != state.showCat) {
-            catSwitch.isChecked = state.showCat
+        // Отображение цитаты
+        if (state.quoteText != null) {
+            quoteText.text = "\"${state.quoteText}\""
+            quoteCard.visibility = View.VISIBLE
+        } else {
+            quoteCard.visibility = View.GONE
         }
 
-        imageView.visibility = if (state.showCat) View.VISIBLE else View.GONE
-        if (state.showCat && imageView.drawable == null) {
-            imageView.load("https://http.cat/images/200.jpg")
+        // Отображение картинки волка
+        if (state.imageUrl != null) {
+            imageLoader.load(wolfImage, state.imageUrl)
+            wolfImageCard.visibility = View.VISIBLE
+        } else {
+            wolfImageCard.visibility = View.GONE
         }
-
-        // Подсветка активной точности
-        val targetButton = buttons.children
-            .filterIsInstance<MaterialButton>()
-            .firstOrNull { it.tag == state.selectedPrecision }
-
-        val targetId = targetButton?.id ?: View.NO_ID
-        if (targetId != View.NO_ID && buttons.checkedButtonId != targetId) {
-            buttons.check(targetId)
-        }
-    }
-
-    private fun openCanvasScreen() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                android.R.anim.slide_in_left,
-                android.R.anim.fade_out,
-                android.R.anim.fade_in,
-                android.R.anim.slide_out_right
-            )
-            .replace(android.R.id.content, Akiko23CanvasFragment())
-            .addToBackStack(null)
-            .commitAllowingStateLoss()
     }
 }
 

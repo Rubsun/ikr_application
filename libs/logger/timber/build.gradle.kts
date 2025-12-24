@@ -5,10 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.logger.timber"
-    compileSdk {
-        version = release(36)
-    }
-
+    compileSdk = 36
     defaultConfig {
         minSdk = 24
 
