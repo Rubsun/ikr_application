@@ -41,14 +41,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     api(project(":features:zagora:api"))
-    implementation(libs.coil)
+    implementation(project(":libs:imageloader:data"))
     implementation(libs.androidx.fragment.ktx)
     implementation(project(":libs:injector"))
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
+    implementation(project(":libs:network:data"))
 }
