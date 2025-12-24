@@ -94,9 +94,9 @@
             <option value="$PROJECT_DIR$/libs/antohaot-network" />
             <option value="$PROJECT_DIR$/libs/antohaot-network/api" />
             <option value="$PROJECT_DIR$/libs/antohaot-network/data" />
-            <option value="$PROJECT_DIR$/libs/argun" />
-            <option value="$PROJECT_DIR$/libs/argun/api" />
-            <option value="$PROJECT_DIR$/libs/argun/data" />
+            <option value="$PROJECT_DIR$/libs/argun-network" />
+            <option value="$PROJECT_DIR$/libs/argun-network/api" />
+            <option value="$PROJECT_DIR$/libs/argun-network/data" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network/api" />
             <option value="$PROJECT_DIR$/libs/artemkaa-network/data" />
