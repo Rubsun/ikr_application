@@ -9,22 +9,28 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.github.mikephil.charting.charts.LineChart
 import com.momuswinner.api.domain.models.Point
 import com.momuswinner.api.domain.models.PointsState
+import com.momuswinner.api.domain.models.QuoteState
+import com.momuswinner.chart.api.ChartConfig
+import com.momuswinner.chart.api.ChartData
+import com.momuswinner.chart.api.ChartEntry
+import com.momuswinner.chart.api.LineChartFactory
+import com.momuswinner.chart.api.LineChartView
+import com.momuswinner.chart.api.LineMode
+import com.momuswinner.chart.api.XAxisPosition
 import com.momuswinner.impl.R
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
+internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph), KoinComponent {
     private val viewModel: PointsViewModel by viewModel()
-    private lateinit var chart: LineChart
+    private val chartFactory: LineChartFactory by inject()
+    private lateinit var chartWrapper: LineChartViewWrapper
+    private lateinit var chart: LineChartView
     private lateinit var textPointCount: TextView
     private lateinit var textPointsList: TextView
     private lateinit var buttonDrawGraph: Button
@@ -32,11 +38,15 @@ internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
     private lateinit var editTextY: EditText
     private lateinit var buttonAddPoint: Button
     private lateinit var buttonClearPoints: Button
+    private lateinit var textVpnWarning: TextView
+    private lateinit var textQuoteDisplay: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        chart = view.findViewById(R.id.chart)
+        chartWrapper = view.findViewById(R.id.chart)
+        chart = chartFactory.create(requireContext())
+        chartWrapper.setChartView(chart)
         textPointCount = view.findViewById(R.id.textPointCount)
         textPointsList = view.findViewById(R.id.textPointsList)
         buttonDrawGraph = view.findViewById(R.id.buttonDrawGraph)
@@ -44,38 +54,37 @@ internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
         editTextY = view.findViewById(R.id.editTextY)
         buttonAddPoint = view.findViewById(R.id.buttonAddPoint)
         buttonClearPoints = view.findViewById(R.id.buttonClearPoints)
-        
+        textVpnWarning = view.findViewById(R.id.textVpnWarning)
+        textQuoteDisplay = view.findViewById(R.id.textQuoteDisplay)
+
+        viewModel.getQuote()
         setupChart()
         setupButtons()
+        setupVpnWarning()
         observePointsState()
+        observeQuoteState()
     }
 
     private fun setupChart() {
-        with(chart) {
-            description.isEnabled = true
-            description.text = getString(R.string.areg_chart_description)
-            description.textSize = resources.getDimension(R.dimen.areg_text_size_tiny)
-
-            setTouchEnabled(true)
-            setPinchZoom(true)
-            isDragEnabled = true
-
-            xAxis.position = XAxis.XAxisPosition.BOTTOM
-            xAxis.setDrawGridLines(true)
-            xAxis.gridColor = ContextCompat.getColor(requireContext(), R.color.areg_color_grid)
-            xAxis.gridLineWidth = resources.getDimension(R.dimen.areg_chart_grid_width)
-            xAxis.textSize = resources.getDimension(R.dimen.areg_text_size_tiny)
-
-            axisLeft.setDrawGridLines(true)
-            axisLeft.gridColor = ContextCompat.getColor(requireContext(), R.color.areg_color_grid)
-            axisLeft.gridLineWidth = resources.getDimension(R.dimen.areg_chart_grid_width)
-            axisLeft.textSize = resources.getDimension(R.dimen.areg_text_size_tiny)
-            axisRight.isEnabled = false
-
-            legend.isEnabled = false
-
-            animateXY(1000, 1000)
-        }
+        val config = ChartConfig(
+            description = getString(R.string.areg_chart_description),
+            descriptionTextSize = resources.getDimension(R.dimen.areg_text_size_tiny),
+            touchEnabled = true,
+            pinchZoomEnabled = true,
+            dragEnabled = true,
+            xAxisPosition = XAxisPosition.BOTTOM,
+            drawXGridLines = true,
+            xGridColor = ContextCompat.getColor(requireContext(), R.color.areg_color_grid),
+            xGridLineWidth = resources.getDimension(R.dimen.areg_chart_grid_width),
+            xTextSize = resources.getDimension(R.dimen.areg_text_size_tiny),
+            drawLeftGridLines = true,
+            leftGridColor = ContextCompat.getColor(requireContext(), R.color.areg_color_grid),
+            leftGridLineWidth = resources.getDimension(R.dimen.areg_chart_grid_width),
+            leftTextSize = resources.getDimension(R.dimen.areg_text_size_tiny),
+            rightAxisEnabled = false,
+            legendEnabled = false
+        )
+        chart.setupChart(config)
     }
 
     private fun setupButtons() {
@@ -115,6 +124,11 @@ internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
         }
     }
 
+    private fun setupVpnWarning() {
+        textVpnWarning.text = getString(R.string.areg_vpn_warning)
+        textVpnWarning.visibility = View.VISIBLE
+    }
+
     private fun observePointsState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.pointsState.collectLatest { state ->
@@ -124,6 +138,33 @@ internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
                     is PointsState.Success -> {
                         showSuccessState(state.points)
                         updateChart(state.points)
+                    }
+                }
+            }
+        }
+    }
+    private fun observeQuoteState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.quoteState.collectLatest { state ->
+                when (state) {
+                    is QuoteState.Idle -> {
+                    }
+                    is QuoteState.Loading -> {
+                        textQuoteDisplay.text = getString(R.string.areg_quote_loading)
+                        textQuoteDisplay.setTextColor(ContextCompat.getColor(requireContext(), R.color.areg_color_loading))
+                    }
+                    is QuoteState.Success -> {
+                        val quoteText = getString(R.string.areg_quote_format, state.quote.quote, state.quote.author)
+                        textQuoteDisplay.text = quoteText
+                        textQuoteDisplay.setTextColor(ContextCompat.getColor(requireContext(), R.color.areg_color_text))
+
+                        textVpnWarning.visibility = View.GONE
+                    }
+                    is QuoteState.Error -> {
+                        textQuoteDisplay.text = getString(R.string.areg_quote_error, state.message)
+                        textQuoteDisplay.setTextColor(ContextCompat.getColor(requireContext(), R.color.areg_color_error))
+
+                        textVpnWarning.visibility = View.VISIBLE
                     }
                 }
             }
@@ -169,44 +210,35 @@ internal class GraphFragment : Fragment(R.layout.momus_winner_fragment_graph) {
             return
         }
 
-        val entries = mutableListOf<Entry>()
+        val entries = mutableListOf<ChartEntry>()
         val xLabels = mutableListOf<String>()
 
         points.forEachIndexed { index, point ->
-            entries.add(Entry(index.toFloat(), point.y.toFloat()))
+            entries.add(ChartEntry(index.toFloat(), point.y.toFloat()))
             xLabels.add(String.format("%.1f", point.x))
         }
 
-        val dataSet = LineDataSet(entries, getString(R.string.areg_chart_points_label)).apply {
-            color = ContextCompat.getColor(requireContext(), R.color.areg_color_primary)
-            valueTextColor = ContextCompat.getColor(requireContext(), R.color.areg_color_text)
-            lineWidth = resources.getDimension(R.dimen.areg_chart_line_width)
+        val chartData = ChartData(
+            entries = entries,
+            xLabels = xLabels,
+            label = getString(R.string.areg_chart_points_label),
+            lineColor = ContextCompat.getColor(requireContext(), R.color.areg_color_primary),
+            valueTextColor = ContextCompat.getColor(requireContext(), R.color.areg_color_text),
+            lineWidth = resources.getDimension(R.dimen.areg_chart_line_width),
+            circleColor = ContextCompat.getColor(requireContext(), R.color.areg_color_accent),
+            circleRadius = resources.getDimension(R.dimen.areg_chart_point_size),
+            drawCircleHole = false,
+            drawValues = false,
+            mode = LineMode.LINEAR,
+            highlightColor = ContextCompat.getColor(requireContext(), R.color.areg_color_highlight),
+            drawHorizontalHighlightIndicator = false,
+            visibleXRangeMaximum = if (entries.size > 10) 10f else null
+        )
 
-            setCircleColor(ContextCompat.getColor(requireContext(), R.color.areg_color_accent))
-            circleRadius = resources.getDimension(R.dimen.areg_chart_point_size)
-            setDrawCircleHole(false)
-
-            setDrawValues(false)
-            mode = LineDataSet.Mode.LINEAR
-
-            highLightColor = ContextCompat.getColor(requireContext(), R.color.areg_color_highlight)
-            setDrawHorizontalHighlightIndicator(false)
-        }
-
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(xLabels)
-        chart.data = LineData(dataSet)
-
-        if (entries.size > 10) {
-            chart.setVisibleXRangeMaximum(10f)
-            chart.moveViewToX(entries.last().x)
-        }
-
-        chart.invalidate()
+        chart.updateChart(chartData)
     }
 
     private fun clearChart() {
-        chart.clear()
-        chart.description.text = getString(R.string.areg_chart_description)
-        chart.invalidate()
+        chart.clearChart()
     }
 }

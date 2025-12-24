@@ -20,12 +20,14 @@ internal class JsonSerializer<T>(
         }
 
         try {
-            return Json.decodeFromString(
+            return Json { ignoreUnknownKeys = true }.decodeFromString(
                 serializer,
                 bytes.decodeToString(),
             )
         } catch (serialization: SerializationException) {
-            throw CorruptionException("Unable to read Settings", serialization)
+            // При ошибке десериализации возвращаем null вместо выбрасывания исключения
+            // Это позволит DataStore автоматически использовать defaultValue
+            return null
         }
     }
 

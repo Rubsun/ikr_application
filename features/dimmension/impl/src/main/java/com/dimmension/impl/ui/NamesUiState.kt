@@ -8,6 +8,8 @@ internal data class NamesUiState(
     val filteredNamesList: List<NameDisplayModel> = emptyList(),
     val searchQuery: String = "",
     val isLoading: Boolean = false,
+    val networkError: String? = null,
+    val lastFetchedFromNetwork: List<NameDisplayModel> = emptyList(),
 )
 
 

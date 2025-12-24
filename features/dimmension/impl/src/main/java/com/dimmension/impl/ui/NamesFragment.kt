@@ -13,14 +13,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import coil3.load
+import com.dimmension.imageloader.api.DimmensionImageLoader
 import com.dimmension.impl.R
+import com.example.injector.inject
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
 internal class NamesFragment : Fragment() {
     private val viewModel by viewModels<NamesViewModel>()
+    private val imageLoader: DimmensionImageLoader by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +42,8 @@ internal class NamesFragment : Fragment() {
         val lastNameInput = view.findViewById<TextInputEditText>(R.id.last_name_input)
         val addNameButton = view.findViewById<MaterialButton>(R.id.add_name_button)
         val refreshButton = view.findViewById<MaterialButton>(R.id.refresh_button)
+        val fetchFromNetworkButton = view.findViewById<MaterialButton>(R.id.fetch_from_network_button)
+        val networkStatusView = view.findViewById<TextView>(R.id.network_status)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -69,12 +73,40 @@ internal class NamesFragment : Fragment() {
                             nameModel.shortName,
                         )
 
-                        avatarImage.load(nameModel.avatarUrl)
+                        imageLoader.load(avatarImage, nameModel.avatarUrl)
                         namesListContainer.addView(nameView)
                     }
 
                     addNameButton?.isEnabled = !state.isLoading
                     refreshButton?.isEnabled = !state.isLoading
+                    fetchFromNetworkButton?.isEnabled = !state.isLoading
+
+                    // Обновляем статус сети
+                    when {
+                        state.networkError != null -> {
+                            networkStatusView?.visibility = View.VISIBLE
+                            networkStatusView?.text = getString(
+                                R.string.text_network_error,
+                                state.networkError
+                            )
+                            networkStatusView?.setTextColor(
+                                resources.getColor(android.R.color.holo_red_dark, null)
+                            )
+                        }
+                        state.lastFetchedFromNetwork.isNotEmpty() -> {
+                            networkStatusView?.visibility = View.VISIBLE
+                            networkStatusView?.text = getString(
+                                R.string.text_network_success,
+                                state.lastFetchedFromNetwork.size
+                            )
+                            networkStatusView?.setTextColor(
+                                resources.getColor(android.R.color.holo_green_dark, null)
+                            )
+                        }
+                        else -> {
+                            networkStatusView?.visibility = View.GONE
+                        }
+                    }
                 }
             }
         }
@@ -100,6 +132,10 @@ internal class NamesFragment : Fragment() {
 
         refreshButton?.setOnClickListener {
             viewModel.refreshRandomName()
+        }
+
+        fetchFromNetworkButton?.setOnClickListener {
+            viewModel.fetchNamesFromNetwork()
         }
     }
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="areg_title">MomusWinner</string>
+
+    <string name="areg_vpn_warning">⚠️ Для получения цитат включите VPN</string>
+    <string name="areg_quote_loading">Загрузка цитаты…</string>
+    <string name="areg_quote_format">"%s"\n\n— %s</string>
+    <string name="areg_quote_error">Ошибка получения цитаты: %s</string>
+
     <string name="areg_text_time_pattern">Current date: %s</string>
     <string name="areg_text_time_from_reboot_pattern">Time from start: %s</string>
 

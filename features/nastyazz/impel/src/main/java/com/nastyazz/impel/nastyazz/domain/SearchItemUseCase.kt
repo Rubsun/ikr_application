@@ -1,4 +1,5 @@
 package com.nastyazz.impel.nastyazz.domain
+import com.example.nastyazz.api.NastyItem
 import com.nastyazz.api.domain.usecases.ItemSearchUseCase
 import com.nastyazz.impel.nastyazz.data.ItemRepository
 import com.nastyazz.api.domain.models.Item

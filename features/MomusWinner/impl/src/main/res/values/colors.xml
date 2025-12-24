@@ -6,4 +6,6 @@
     <color name="areg_color_text">#FF000000</color>
     <color name="areg_color_grid">#FFCCCCCC</color>
     <color name="areg_color_highlight">#FFFF0000</color>
+    <color name="areg_color_loading">#FFA500</color>
+    <color name="areg_color_error">#FF0000</color>
 </resources>

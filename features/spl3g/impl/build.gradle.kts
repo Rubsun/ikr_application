@@ -57,4 +57,5 @@ dependencies {
     api(project(":features:spl3g:api"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:api"))
+	implementation(project(":libs:spl3g-network:api"))
 }
