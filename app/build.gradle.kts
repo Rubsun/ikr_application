@@ -81,6 +81,7 @@ dependencies {
     implementation(project(":features:dimmension:impl"))
     implementation(project(":features:grigoran:impl"))
 	implementation(project(":features:rin2396:impl"))
+    implementation(project(":features:rin2396:api"))
     implementation(project(":features:stupishin:impl"))
     implementation(project(":features:n0tsszzz:impl"))
     implementation(project(":features:artemkaa:impl"))

@@ -5,10 +5,12 @@ plugins {
 
 android {
     namespace = "com.rin2396.impl"
-    compileSdk = 36
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -36,14 +38,18 @@ android {
 }
 
 dependencies {
+    api(project(":features:rin2396:api"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    api(project(":features:rin2396:api"))
-    implementation(libs.coil)
     implementation(libs.androidx.fragment.ktx)
-
+    implementation(libs.material)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.viewmodel)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.timber)
+    implementation(project(":libs:injector"))
+    testImplementation(libs.junit)
 }
