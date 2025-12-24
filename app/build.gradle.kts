@@ -114,6 +114,7 @@ dependencies {
     implementation(project(":libs:jikan:data"))
     implementation(project(":libs:egorik4-network:data"))
     implementation(project(":libs:n0tsszzz-network:data"))
+    implementation(project(":libs:alexcode69-network:data"))
     implementation(project(":libs:artemkaa-network:data"))
     implementation(project(":libs:antohaot-network:data"))
     implementation(project(":libs:drain678-network:data"))
