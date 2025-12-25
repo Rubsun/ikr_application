@@ -27,6 +27,11 @@ internal class ArgunFragment : Fragment() {
     private val viewModel by viewModels<ArgunViewModel>()
     private val timeFormatter: TimeFormatter by inject()
     private val timeRecordAdapter by lazy { TimeRecordAdapter(timeFormatter) }
+    private val zadachaAdapter by lazy { com.argun.impl.ui.adapters.ZadachaAdapter() }
+    
+    private var zadachiRecyclerView: RecyclerView? = null
+    private var zadachiTitle: TextView? = null
+    private var loadZadachiButton: Button? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,11 +49,19 @@ internal class ArgunFragment : Fragment() {
         val buttonsGroup = view.findViewById<ViewGroup>(R.id.buttons)
         val searchEditText = view.findViewById<TextInputEditText>(R.id.search)
         val addButton = view.findViewById<Button>(R.id.add_button)
+        loadZadachiButton = view.findViewById<Button>(R.id.load_zadachi_button)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler)
+        zadachiRecyclerView = view.findViewById<RecyclerView>(R.id.zadachi_recycler)
+        zadachiTitle = view.findViewById<TextView>(R.id.zadachi_title)
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = timeRecordAdapter
+        }
+
+        zadachiRecyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = zadachaAdapter
         }
 
         searchEditText.addTextChangedListener { editable ->
@@ -57,6 +70,10 @@ internal class ArgunFragment : Fragment() {
 
         addButton.setOnClickListener {
             viewModel.addTimeRecord()
+        }
+
+        loadZadachiButton?.setOnClickListener {
+            viewModel.loadZadachi()
         }
 
         viewModel.timePrecisions()
@@ -97,10 +114,24 @@ internal class ArgunFragment : Fragment() {
 
         timeRecordAdapter.submitList(state.records)
 
-        state.error?.let { _ ->
+        if (state.zadachi.isNotEmpty()) {
+            zadachaAdapter.submitList(state.zadachi)
+            zadachiRecyclerView?.visibility = View.VISIBLE
+            zadachiTitle?.visibility = View.VISIBLE
+        }
+
+        if (state.isLoadingZadachi) {
+            loadZadachiButton?.isEnabled = false
+            loadZadachiButton?.text = "Loading..."
+        } else {
+            loadZadachiButton?.isEnabled = true
+            loadZadachiButton?.text = "Load Tasks from API"
+        }
+
+        state.error?.let { error ->
             Toast.makeText(
                 requireContext(),
-                "Error adding record",
+                "Error: ${error.message ?: "Unknown error"}",
                 Toast.LENGTH_SHORT
             ).show()
         }

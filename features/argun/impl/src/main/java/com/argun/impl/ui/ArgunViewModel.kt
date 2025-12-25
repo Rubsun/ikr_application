@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.argun.api.domain.ArgunTimePrecisions
 import com.argun.api.domain.models.ArgunInfo
+import com.argun.api.domain.models.Zadacha
 import com.argun.api.domain.usecases.AddTimeRecordUseCase
 import com.argun.api.domain.usecases.ArgunCurrentDateUseCase
 import com.argun.api.domain.usecases.ArgunElapsedTimeUseCase
 import com.argun.api.domain.usecases.FilterTimeRecordsUseCase
+import com.argun.api.domain.usecases.GetZadachiUseCase
 import com.example.injector.inject
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -26,10 +28,13 @@ internal class ArgunViewModel : ViewModel() {
     private val elapsedTimeUseCase: ArgunElapsedTimeUseCase by inject()
     private val filterTimeRecordsUseCase: FilterTimeRecordsUseCase by inject()
     private val addTimeRecordUseCase: AddTimeRecordUseCase by inject()
+    private val getZadachiUseCase: GetZadachiUseCase by inject()
 
     private val queryFlow = MutableStateFlow("")
     private val selectedPrecisionFlow = MutableStateFlow<ArgunTimePrecisions?>(null)
     private val errorFlow = MutableStateFlow<Throwable?>(null)
+    private val zadachiFlow = MutableStateFlow<List<Zadacha>>(emptyList())
+    private val isLoadingZadachiFlow = MutableStateFlow(false)
 
     private val dateState = currentDateUseCase.date()
         .map { it.toString() }
@@ -53,16 +58,22 @@ internal class ArgunViewModel : ViewModel() {
         dateState,
         elapsedTimeState,
         recordsState,
-        errorFlow
-    ) { date, elapsedTime, records, error ->
-        State(
-            currentDate = date,
-            elapsedTime = elapsedTime,
-            records = records,
-            selectedPrecision = selectedPrecisionFlow.value,
-            error = error
-        )
+        zadachiFlow,
+        isLoadingZadachiFlow
+    ) { date, elapsedTime, records, zadachi, isLoadingZadachi ->
+        combine(errorFlow) { errorArray ->
+            State(
+                currentDate = date,
+                elapsedTime = elapsedTime,
+                records = records,
+                zadachi = zadachi,
+                isLoadingZadachi = isLoadingZadachi,
+                selectedPrecision = selectedPrecisionFlow.value,
+                error = errorArray[0] as? Throwable
+            )
+        }
     }
+        .flatMapLatest { it }
         .distinctUntilChanged()
 
     fun state(): Flow<State> {
@@ -91,10 +102,27 @@ internal class ArgunViewModel : ViewModel() {
         }
     }
 
+    fun loadZadachi() {
+        viewModelScope.launch {
+            errorFlow.value = null
+            isLoadingZadachiFlow.value = true
+            getZadachiUseCase.invoke()
+                .onSuccess { zadachi ->
+                    zadachiFlow.value = zadachi
+                }
+                .onFailure { error ->
+                    errorFlow.value = error
+                }
+            isLoadingZadachiFlow.value = false
+        }
+    }
+
     data class State(
         val currentDate: String = "",
         val elapsedTime: String = "",
         val records: List<ArgunInfo> = emptyList(),
+        val zadachi: List<Zadacha> = emptyList(),
+        val isLoadingZadachi: Boolean = false,
         val selectedPrecision: ArgunTimePrecisions? = null,
         val error: Throwable? = null,
     )
