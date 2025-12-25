@@ -1,4 +1,4 @@
-package com.rubsun.impl.data.database
+package com.rubsun.storage.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,22 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [NumberEntity::class],
+    entities = [RoomNumberEntity::class],
     version = 1,
     exportSchema = false
 )
-internal abstract class NumberDatabase : RoomDatabase() {
-    abstract fun numberDao(): NumberDao
+internal abstract class RoomNumberDatabase : RoomDatabase() {
+    abstract fun numberDao(): RoomNumberDao
 
     companion object {
         @Volatile
-        private var INSTANCE: NumberDatabase? = null
+        private var INSTANCE: RoomNumberDatabase? = null
 
-        fun getDatabase(context: Context): NumberDatabase {
+        fun getDatabase(context: Context): RoomNumberDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    NumberDatabase::class.java,
+                    RoomNumberDatabase::class.java,
                     "number_database"
                 ).build()
                 INSTANCE = instance

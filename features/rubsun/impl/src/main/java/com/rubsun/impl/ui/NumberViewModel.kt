@@ -75,6 +75,22 @@ internal class NumberViewModel(
             isLoading.value = false
         }
     }
+
+    fun addNumberWithFactFromApi(value: Int) {
+        viewModelScope.launch {
+            isLoading.value = true
+            getNumberUseCase.addNumberWithFactFromApi(value)
+            isLoading.value = false
+        }
+    }
+
+    fun clearAllNumbers() {
+        viewModelScope.launch {
+            isLoading.value = true
+            getNumberUseCase.clearAllNumbers()
+            isLoading.value = false
+        }
+    }
 }
 
 
