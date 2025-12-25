@@ -9,5 +9,5 @@ data class Pokemon(
     val imageUrl: String,
     val types: List<PokemonType>,
     val rarity: PokemonRarity,
-    val isOwned: Boolean = false,
+    val ownedCount: Int,
 )

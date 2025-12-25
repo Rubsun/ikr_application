@@ -3,8 +3,6 @@ package com.tire.impl.data.repository
 import com.tire.api.domain.models.Pokemon
 import com.tire.api.domain.models.PokemonCase
 import com.tire.impl.data.config.CaseConfigLoader
-import com.tire.impl.data.local.dao.PokemonDao
-import com.tire.impl.domain.mappers.EntityMapper
 import com.tire.impl.domain.mappers.PokemonMapper
 import com.tire.impl.domain.utils.RarityCalculator
 import kotlinx.coroutines.Dispatchers
@@ -14,12 +12,13 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import com.tire.network.api.PokeRemoteDataSource
+import com.tire.storage.api.PokemonLocalDataSource
 
 
 internal class PokemonRepositoryImpl(
     private val caseConfigLoader: CaseConfigLoader,
     private val pokeApiClient: PokeRemoteDataSource,
-    private val pokemonDao: PokemonDao
+    private val local: PokemonLocalDataSource
 ) : PokemonRepository {
 
     override suspend fun getAllCases(): List<PokemonCase> {
@@ -36,23 +35,23 @@ internal class PokemonRepositoryImpl(
 
     override suspend fun getPokemonById(id: Int): Pokemon {
         return withContext(Dispatchers.IO) {
-            val cachedEntity = pokemonDao.getPokemonById(id)
-            if (cachedEntity != null) {
-                return@withContext EntityMapper.toDomain(cachedEntity)
+            val cachedRecord = local.getPokemonById(id)
+            if (cachedRecord != null) {
+                return@withContext PokemonMapper.fromRecord(cachedRecord)
             }
             val dto = pokeApiClient.getPokemonById(id)
             val rarity = RarityCalculator.calculateRarity(id)
             val pokemon = PokemonMapper.toDomain(dto, rarity)
-            val entity = EntityMapper.toEntity(pokemon)
-            pokemonDao.insertPokemon(entity)
+            val record = PokemonMapper.toRecord(pokemon)
+            local.insertPokemon(record)
             pokemon
         }
     }
 
     override suspend fun getPokemonsByIds(ids: List<Int>): List<Pokemon> {
         return withContext(Dispatchers.IO) {
-            val cachedEntities = pokemonDao.getPokemonsByIds(ids)
-            val cachedIds = cachedEntities.map { it.id }
+            val cachedRecords = local.getPokemonsByIds(ids)
+            val cachedIds = cachedRecords.map { it.id }
             val missingIds = ids.filterNot { it in cachedIds }
             val newPokemons = if (missingIds.isNotEmpty()) {
                 val dtos = pokeApiClient.getPokemonsByIds(missingIds)
@@ -64,20 +63,20 @@ internal class PokemonRepositoryImpl(
                 emptyList()
             }
             if (newPokemons.isNotEmpty()) {
-                val entities = EntityMapper.toEntity(newPokemons)
-                pokemonDao.insertPokemons(entities)
+                val records = PokemonMapper.toRecords(newPokemons)
+                local.insertPokemons(records)
             }
-            val allPokemons = EntityMapper.toDomain(cachedEntities) + newPokemons
+            val allPokemons = PokemonMapper.fromRecords(cachedRecords) + newPokemons
             ids.mapNotNull { id -> allPokemons.find { it.id == id } }
         }
     }
 
     override fun getAllPokemons(limit: Int): Flow<List<Pokemon>> {
-        return pokemonDao.getAllPokemons().map { entities ->
-            if (entities.isEmpty()) {
+        return local.getAllPokemons().map { records ->
+            if (records.isEmpty()) {
                 loadPokemonsFromApi(limit)
             }
-            EntityMapper.toDomain(entities)
+            PokemonMapper.fromRecords(records)
         }
     }
 
@@ -94,8 +93,8 @@ internal class PokemonRepositoryImpl(
                         }
                     }.awaitAll()
                 }
-                val entities = EntityMapper.toEntity(pokemons)
-                pokemonDao.insertPokemons(entities)
+                val records = PokemonMapper.toRecords(pokemons)
+                local.insertPokemons(records)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -105,49 +104,48 @@ internal class PokemonRepositoryImpl(
 
     override suspend fun savePokemonToCollection(pokemon: Pokemon) {
         withContext(Dispatchers.IO) {
-            val existing = pokemonDao.getPokemonById(pokemon.id)
+            val existing = local.getPokemonById(pokemon.id)
             if (existing != null) {
-                pokemonDao.addToCollection(
-                    pokemonId = pokemon.id,
-                    timestamp = System.currentTimeMillis()
+                local.addToCollection(
+                    id = pokemon.id,
+                    timestamp = System.currentTimeMillis(),
                 )
             } else {
-                val entity = EntityMapper.toEntity(
-                    pokemon = pokemon.copy(isOwned = true),
-                    duplicateCount = 1,
+                val record = PokemonMapper.toRecord(
+                    pokemon = pokemon.copy(ownedCount = 1),
                     firstObtainedAt = System.currentTimeMillis()
                 )
-                pokemonDao.insertPokemon(entity)
+                local.insertPokemon(record)
             }
         }
     }
 
     override fun getMyCollection(): Flow<List<Pokemon>> {
-        return pokemonDao.getMyCollection().map { entities ->
-            EntityMapper.toDomain(entities)
+        return local.getMyCollection().map { records ->
+            PokemonMapper.fromRecords(records)
         }
     }
 
     override suspend fun isPokemonOwned(pokemonId: Int): Boolean {
         return withContext(Dispatchers.IO) {
-            pokemonDao.isPokemonOwned(pokemonId) ?: false
+            local.isPokemonOwned(pokemonId)
         }
     }
 
     override suspend fun getPokemonDuplicateCount(pokemonId: Int): Int {
         return withContext(Dispatchers.IO) {
-            pokemonDao.getDuplicateCount(pokemonId) ?: 0
+            local.getDuplicateCount(pokemonId)
         }
     }
 
     override fun searchPokemons(query: String): Flow<List<Pokemon>> {
-        return pokemonDao.searchPokemons(query).map { entities ->
-            EntityMapper.toDomain(entities)
+        return local.searchPokemons(query).map { records ->
+            PokemonMapper.fromRecords(records)
         }
     }
 
     override suspend fun getAllPokemonList(offset: Int, limit: Int): List<Pokemon> = withContext(Dispatchers.IO) {
-        val cachedPage = pokemonDao.getAllPokemonPage(offset, limit)
+        val cachedPage = local.getAllPokemonPage(offset, limit)
         val cachedById = cachedPage.associateBy { it.id }
         val listResponse = pokeApiClient.getPokemonList(limit, offset)  // только «summary»
         val ids = listResponse.results.mapNotNull { result ->
@@ -167,10 +165,10 @@ internal class PokemonRepositoryImpl(
                 }
             } else emptyList()
         if (newPokemons.isNotEmpty()) {
-            val entities = EntityMapper.toEntity(newPokemons)
-            pokemonDao.insertPokemons(entities)
+            val entities = PokemonMapper.toRecords(newPokemons)
+            local.insertPokemons(entities)
         }
-        val finalPage = pokemonDao.getAllPokemonPage(offset, limit)
-        EntityMapper.toDomain(finalPage)
+        val finalPage = local.getAllPokemonPage(offset, limit)
+        PokemonMapper.fromRecords(finalPage)
     }
 }

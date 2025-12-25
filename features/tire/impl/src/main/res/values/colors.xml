@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tire_pokemon_rarity_common">#9E9E9E</color>
+    <color name="tire_pokemon_rarity_rare">#2196F3</color>
+    <color name="tire_pokemon_rarity_epic">#9C27B0</color>
+    <color name="tire_pokemon_rarity_legendary">#FF9800</color>
+</resources>

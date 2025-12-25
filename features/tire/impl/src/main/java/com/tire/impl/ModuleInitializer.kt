@@ -3,11 +3,8 @@ package com.tire.impl
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
-import com.tire.impl.data.local.PokeBase
-import com.tire.impl.data.local.dao.PokemonDao
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
-import androidx.room.Room
 import com.tire.api.Constants
 import com.tire.api.domain.usecases.GetAllCasesUseCase
 import com.tire.api.domain.usecases.GetAllPokemonsUseCase
@@ -38,21 +35,12 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single {
-                    Room.databaseBuilder(
-                        context,
-                        PokeBase::class.java,
-                        PokeBase.DATABASE_NAME
-                    ).fallbackToDestructiveMigration(true)  // TODO: delete
-                        .build()
-                }
-                single<PokemonDao> { get< PokeBase>().pokemonDao() }
                 single { CaseConfigLoader(context) }
                 single<PokemonRepository> {
                     PokemonRepositoryImpl(
                         caseConfigLoader = get(),
                         pokeApiClient = get(),
-                        pokemonDao = get()
+                        local = get()
                     )
                 }
                 factory<GetAllCasesUseCase> { GetAllCasesUseCaseImpl(get()) }

@@ -39,11 +39,18 @@ internal class CollectionAdapter : RecyclerView.Adapter<CollectionAdapter.Pokemo
         private val imagePokemon: ImageView = view.findViewById(R.id.imagePokemon)
         private val textName: TextView = view.findViewById(R.id.textName)
         private val textRarity: TextView = view.findViewById(R.id.textRarity)
+        private val badgeCount: TextView = view.findViewById(R.id.badgeCount)
 
         fun bind(item: Pokemon) {
             textName.text = item.name
             textRarity.text = item.rarity.name
             imageLoader.load(imagePokemon, item.imageUrl)
+            if (item.ownedCount > 1) {
+                badgeCount.visibility = View.VISIBLE
+                badgeCount.text = "x${item.ownedCount}"
+            } else {
+                badgeCount.visibility = View.GONE
+            }
         }
     }
 }

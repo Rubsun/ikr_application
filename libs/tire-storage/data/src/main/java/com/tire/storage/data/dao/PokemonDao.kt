@@ -1,7 +1,7 @@
-package com.tire.impl.data.local.dao
+package com.tire.storage.data.dao
 
 import androidx.room.*
-import com.tire.impl.data.local.entities.PokemonEntity
+import com.tire.storage.data.entities.PokemonEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,19 +20,15 @@ internal interface PokemonDao {
     suspend fun getPokemonsByIds(ids: List<Int>): List<PokemonEntity>
 
     // Получить коллекцию пользователя (только owned покемоны)
-    @Query("SELECT * FROM pokemons WHERE isOwned = 1 ORDER BY firstObtainedAt DESC")
+    @Query("SELECT * FROM pokemons WHERE ownedCount > 0 ORDER BY firstObtainedAt DESC")
     fun getMyCollection(): Flow<List<PokemonEntity>>
 
     // Поиск покемонов по имени
     @Query("SELECT * FROM pokemons WHERE name LIKE '%' || :query || '%' ORDER BY name ASC")
     fun searchPokemons(query: String): Flow<List<PokemonEntity>>
 
-    // Проверить, есть ли покемон в коллекции
-    @Query("SELECT isOwned FROM pokemons WHERE id = :pokemonId")
-    suspend fun isPokemonOwned(pokemonId: Int): Boolean?
-
-    // Получить количество дубликатов покемона
-    @Query("SELECT duplicateCount FROM pokemons WHERE id = :pokemonId")
+    // Получить количество owned покемона
+    @Query("SELECT ownedCount FROM pokemons WHERE id = :pokemonId")
     suspend fun getDuplicateCount(pokemonId: Int): Int?
 
     // Вставить покемона (заменить если уже есть)
@@ -50,8 +46,7 @@ internal interface PokemonDao {
     // Добавить покемона в коллекцию (увеличить счетчик дубликатов)
     @Query("""
         UPDATE pokemons 
-        SET isOwned = 1, 
-            duplicateCount = duplicateCount + 1,
+        SET ownedCount = ownedCount + 1,
             firstObtainedAt = CASE 
                 WHEN firstObtainedAt IS NULL THEN :timestamp 
                 ELSE firstObtainedAt 

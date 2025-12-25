@@ -1,4 +1,4 @@
-package com.tire.impl.data.local.converters
+package com.tire.storage.data.converters
 
 import androidx.room.TypeConverter
 import com.tire.api.domain.PokemonType
@@ -18,7 +18,7 @@ internal class PokemonTypeListConverter {
         return try {
             val typeNames = json.decodeFromString<List<String>>(typesString)
             typeNames.map { PokemonType.valueOf(it) }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             emptyList()
         }
     }
