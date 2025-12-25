@@ -45,12 +45,37 @@
         android:layout_marginTop="16dp"
         android:text="Add Time Record"
         />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/load_zadachi_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Load Tasks from API"
+        />
+    <TextView
+        android:id="@+id/zadachi_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tasks from API:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="16dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/zadachi_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

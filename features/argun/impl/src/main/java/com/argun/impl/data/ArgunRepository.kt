@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.SystemClock
 import com.argun.api.domain.models.ArgunInfo
+import com.argun.api.domain.models.Zadacha
 import com.argun.network.api.TimeApiClient
+import com.argun.network.api.ZadachiApiClient
+import com.argun.network.api.models.ZadachaDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,7 +40,8 @@ fun ArgunInfo.toSerializable(): ArgunInfoSerializable {
 
 internal class ArgunRepository(
     private val context: Context,
-    private val timeApiClient: TimeApiClient
+    private val timeApiClient: TimeApiClient,
+    private val zadachiApiClient: ZadachiApiClient
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "argun_prefs",
@@ -98,6 +102,33 @@ internal class ArgunRepository(
         } catch (e: Exception) {
             emptyList()
         }
+    }
+
+    suspend fun getAllZadachi(): List<Zadacha> = withContext(Dispatchers.IO) {
+        try {
+            val zadachiDto = zadachiApiClient.vseZadachi()
+            zadachiDto.map { it.toDomain() }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    suspend fun getZadachaById(id: Int): Zadacha? = withContext(Dispatchers.IO) {
+        try {
+            val zadachaDto = zadachiApiClient.zadachaPoId(id)
+            zadachaDto.toDomain()
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun ZadachaDto.toDomain(): Zadacha {
+        return Zadacha(
+            id = id,
+            title = title,
+            completed = completed,
+            userId = userId
+        )
     }
 }
 
