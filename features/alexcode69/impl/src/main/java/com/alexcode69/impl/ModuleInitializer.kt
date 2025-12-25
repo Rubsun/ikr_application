@@ -9,9 +9,7 @@ import com.alexcode69.api.domain.usecases.CurrentDateUseCase
 import com.alexcode69.api.domain.usecases.ElapsedTimeUseCase
 import com.alexcode69.api.domain.usecases.FetchRequestInfoUseCase
 import com.alexcode69.api.domain.usecases.SearchTimeEntriesUseCase
-import com.alexcode69.impl.data.Alexcode69ApiService
 import com.alexcode69.impl.data.DeviceRepository
-import com.example.network.api.RetrofitServiceFactory
 import com.alexcode69.impl.domain.AddTimeEntryUseCaseImpl
 import com.alexcode69.impl.domain.CurrentDateUseCaseImpl
 import com.alexcode69.impl.domain.ElapsedTimeUseCaseImpl
@@ -39,16 +37,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 single<SharedPreferences> {
                     androidContext().getSharedPreferences("alexcode69_prefs", Context.MODE_PRIVATE)
                 }
-
-                single<Alexcode69ApiService> {
-                    get<RetrofitServiceFactory>().create(
-                        "https://httpbin.org/",
-                        Alexcode69ApiService::class.java
-                    )
-                }
                 
                 // single правило - создаем инстанс один раз и всегда его отдаем
-                single { DeviceRepository(androidContext(), get()) }
+                single { DeviceRepository(androidContext(), get<com.alexcode69.network.api.Alexcode69ApiClient>()) }
 
                 // factory правило - все время создаем новый инстанс
                 // жесткое проставление типа.
