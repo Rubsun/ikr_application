@@ -3,6 +3,7 @@ package com.tire.impl.ui.cases
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.injector.inject
+import com.tire.api.domain.models.CaseOpenResult
 import com.tire.impl.ui.states.CasesUiState
 import com.tire.api.domain.usecases.GetAllCasesUseCase
 import com.tire.api.domain.usecases.OpenCaseUseCase

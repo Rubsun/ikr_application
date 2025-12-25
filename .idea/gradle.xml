@@ -168,6 +168,9 @@
             <option value="$PROJECT_DIR$/libs/tire-network" />
             <option value="$PROJECT_DIR$/libs/tire-network/api" />
             <option value="$PROJECT_DIR$/libs/tire-network/data" />
+            <option value="$PROJECT_DIR$/libs/tire-storage" />
+            <option value="$PROJECT_DIR$/libs/tire-storage/api" />
+            <option value="$PROJECT_DIR$/libs/tire-storage/data" />
           </set>
         </option>
       </GradleProjectSettings>

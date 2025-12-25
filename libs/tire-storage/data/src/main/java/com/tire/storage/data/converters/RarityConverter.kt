@@ -1,4 +1,4 @@
-package com.tire.impl.data.local.converters
+package com.tire.storage.data.converters
 
 import androidx.room.TypeConverter
 import com.tire.api.domain.PokemonRarity

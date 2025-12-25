@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.tire.impl"
+    namespace = "com.tire.storage.data"
     compileSdk = 36
 
     defaultConfig {
@@ -36,29 +35,18 @@ android {
 
 dependencies {
     api(project(":features:tire:api"))
-    implementation(project(":libs:injector"))
-    implementation(project(":libs:primitivestorage:api"))
-    implementation(project(":libs:imageloader:api"))
-    implementation(project(":libs:tire-network:api"))
-    implementation(project(":libs:tire-network:data"))
+    implementation(libs.kotlinx.serialization.json)
     implementation(project(":libs:tire-storage:api"))
-    implementation(project(":libs:tire-storage:data"))
+    implementation(project(":libs:injector"))
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.recyclerview)
-
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.kotlinx.coroutines.core)
-
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.androidx.cardview)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
