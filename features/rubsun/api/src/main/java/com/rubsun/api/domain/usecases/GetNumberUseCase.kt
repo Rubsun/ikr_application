@@ -7,6 +7,8 @@ interface GetNumberUseCase {
     suspend fun getRandomNumber(): NumberDisplayModel
     fun getAllNumbers(): Flow<List<NumberDisplayModel>>
     suspend fun addNumber(value: Int, label: String)
+    suspend fun addNumberWithFactFromApi(value: Int)
+    suspend fun clearAllNumbers()
 }
 
 

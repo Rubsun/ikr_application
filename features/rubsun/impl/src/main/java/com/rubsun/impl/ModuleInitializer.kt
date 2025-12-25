@@ -6,7 +6,6 @@ import com.example.injector.AbstractInitializer
 import com.rubsun.api.Constants
 import com.rubsun.api.domain.usecases.GetNumberUseCase
 import com.rubsun.impl.data.NumberRepository
-import com.rubsun.impl.data.database.NumberDatabase
 import com.rubsun.impl.domain.GetNumberUseCaseImpl
 import com.rubsun.impl.ui.NumberFragment
 import com.rubsun.impl.ui.NumberViewModel
@@ -22,11 +21,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                single { NumberDatabase.getDatabase(context) }
-                single { get<NumberDatabase>().numberDao() }
-
                 single { 
-                    val repo = NumberRepository(get())
+                    val repo = NumberRepository(get<com.rubsun.storage.api.NumberStorage>(), get<com.rubsun.network.api.NumberApiClient>())
                     val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
                     scope.launch {
                         repo.initializeDefaultNumbers()

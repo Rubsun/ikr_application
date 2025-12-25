@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            android:multiprocess="true">
+            <meta-data
+                android:name="com.rubsun.storage.data.ModuleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+</manifest>
+
+
