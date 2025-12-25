@@ -12,13 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alexcode69.impl.R
+import com.alexcode69.impl.ui.adapters.TimeEntryAdapter
 import com.example.logger.api.debug
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class Alexcode69Fragment : Fragment() {
     private val viewModel: MyViewModel by viewModel()
+    private lateinit var adapter: TimeEntryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +41,16 @@ internal class Alexcode69Fragment : Fragment() {
         val textView = view.findViewById<TextView>(R.id.text)
         val elapsed = view.findViewById<TextView>(R.id.elapsed)
         val buttons = view.findViewById<ViewGroup>(R.id.buttons)
+        val fetchInfoButton = view.findViewById<com.google.android.material.button.MaterialButton>(R.id.fetch_info_button)
+        val requestInfoText = view.findViewById<TextView>(R.id.request_info_text)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.entries_recycler)
+        val addEntryInput = view.findViewById<EditText>(R.id.add_entry_input)
+        val addEntryButton = view.findViewById<com.google.android.material.button.MaterialButton>(R.id.add_entry_button)
+
+        // Setup RecyclerView
+        adapter = TimeEntryAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
 
         // Setup search listener
         searchEditText.addTextChangedListener(object : TextWatcher {
@@ -46,6 +60,20 @@ internal class Alexcode69Fragment : Fragment() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        // Setup fetch info button
+        fetchInfoButton.setOnClickListener {
+            viewModel.fetchRequestInfo()
+        }
+
+        // Setup add entry button
+        addEntryButton.setOnClickListener {
+            val label = addEntryInput.text.toString().trim()
+            if (label.isNotEmpty()) {
+                viewModel.addTimeEntry(label)
+                addEntryInput.text.clear()
+            }
+        }
 
         // Collect UI state
         viewLifecycleOwner.lifecycleScope.launch {
@@ -58,6 +86,18 @@ internal class Alexcode69Fragment : Fragment() {
 
                     // Update entry list info
                     elapsed.text = "Entries found: ${state.timeEntries.size}"
+
+                    // Update RecyclerView
+                    adapter.submitList(state.timeEntries)
+
+                    // Update request info
+                    state.requestInfo?.let { info ->
+                        requestInfoText.text = "URL: ${info.url}\nOrigin: ${info.origin}"
+                    } ?: run {
+                        if (state.requestInfo == null) {
+                            requestInfoText.text = "No request info yet"
+                        }
+                    }
 
                     // Update buttons based on precision
                     buttons.removeAllViews()

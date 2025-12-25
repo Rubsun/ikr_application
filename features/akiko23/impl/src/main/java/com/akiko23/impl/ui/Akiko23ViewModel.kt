@@ -2,11 +2,8 @@ package com.akiko23.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.akiko23.api.domain.models.TimePrecision
-import com.akiko23.api.domain.usecases.CurrentDateUseCase
-import com.akiko23.api.domain.usecases.ElapsedTimeUseCase
+import com.akiko23.impl.data.DeviceRepository
 import com.akiko23.impl.data.models.Akiko23State
-import com.example.injector.inject
 import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,75 +15,90 @@ import kotlinx.coroutines.launch
 
 /**
  * ViewModel для экрана akiko23.
- * Использует Flow и персистентное хранилище для сохранения состояния.
+ * Показывает случайные волчьи цитаты и картинки.
  */
-internal class Akiko23ViewModel : ViewModel() {
-    private val currentDateUseCase: CurrentDateUseCase by inject()
-    private val elapsedTimeUseCase: ElapsedTimeUseCase by inject()
-    private val storage: PrimitiveStorage<Akiko23State> by inject()
+internal class Akiko23ViewModel(
+    private val repository: DeviceRepository,
+    private val storage: PrimitiveStorage<Akiko23State>,
+) : ViewModel() {
 
-    private val precisionFlow = MutableStateFlow<TimePrecision>(TimePrecision.S)
-    private val showCatFlow = MutableStateFlow(false)
+    private val quoteFlow = MutableStateFlow<String?>(null)
+    private val imageUrlFlow = MutableStateFlow<String?>(null)
 
     data class State(
-        val headerText: String,
-        val elapsedText: String,
-        val selectedPrecision: TimePrecision,
-        val availablePrecisions: List<TimePrecision>,
-        val showCat: Boolean,
+        val quoteText: String?,
+        val imageUrl: String?,
     )
 
     init {
-        // Загружаем состояние из хранилища
+        // Загружаем сохраненное состояние при инициализации
         viewModelScope.launch {
-            storage.get().first()?.let { state ->
-                precisionFlow.value = state.toPrecision()
-                showCatFlow.value = state.showCat
+            try {
+                val savedState = storage.get().first()
+                savedState?.let { state ->
+                    if (state.lastQuote != null && state.lastImageUrl != null) {
+                        quoteFlow.value = state.lastQuote
+                        imageUrlFlow.value = state.lastImageUrl
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // При ошибке десериализации (старые данные) очищаем хранилище
+                try {
+                    storage.put(null)
+                } catch (clearError: Exception) {
+                    clearError.printStackTrace()
+                }
+            }
+        }
+    }
+
+    fun loadRandomWolfQuote() {
+        viewModelScope.launch {
+            try {
+                val wolfQuote = repository.getRandomWolfQuote()
+                quoteFlow.value = wolfQuote.text
+                imageUrlFlow.value = wolfQuote.imageUrl
+                
+                // Сохраняем полученную цитату и картинку
+                try {
+                    storage.put(
+                        Akiko23State(
+                            lastQuote = wolfQuote.text,
+                            lastImageUrl = wolfQuote.imageUrl
+                        )
+                    )
+                } catch (saveError: Exception) {
+                    saveError.printStackTrace()
+                    // Игнорируем ошибки сохранения, но продолжаем работу
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Ошибка уже обработана в репозитории, fallback цитата будет возвращена
+                // Но на всякий случай показываем сообщение об ошибке
+                quoteFlow.value = "Ошибка загрузки цитаты"
+                imageUrlFlow.value = null
             }
         }
     }
 
     private val stateInternal: StateFlow<State> = combine(
-        precisionFlow,
-        showCatFlow,
-    ) { precision, showCat ->
-        val rawDate = currentDateUseCase.date().toString()
-        val elapsed = "${elapsedTimeUseCase.value(precision)} ${precision.typeName}"
-
-        // Сохраняем состояние в хранилище
-        viewModelScope.launch {
-            storage.put(
-                Akiko23State.fromPrecision(precision, showCat)
-            )
-        }
-
+        quoteFlow,
+        imageUrlFlow,
+    ) { quote, imageUrl ->
         State(
-            headerText = rawDate,
-            elapsedText = elapsed,
-            selectedPrecision = precision,
-            availablePrecisions = TimePrecision.entries,
-            showCat = showCat,
+            quoteText = quote,
+            imageUrl = imageUrl,
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Eagerly,
+        started = SharingStarted.WhileSubscribed(5000),
         initialValue = State(
-            headerText = "",
-            elapsedText = "",
-            selectedPrecision = TimePrecision.S,
-            availablePrecisions = TimePrecision.entries,
-            showCat = false,
+            quoteText = null,
+            imageUrl = null,
         ),
     )
 
     fun state(): StateFlow<State> = stateInternal
-
-    fun selectPrecision(precision: TimePrecision) {
-        precisionFlow.value = precision
-    }
-
-    fun toggleCat(show: Boolean) {
-        showCatFlow.value = show
-    }
 }
 

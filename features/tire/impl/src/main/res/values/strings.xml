@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tire_open_case">Открыть</string>
+    <string name="tire_case_image">Case image</string>
+    <string name="tire_pokemon_image">Pokemon image</string>
+    <string name="tire_collection">Коллекция</string>
+    <string name="tire_cases">Кейсы</string>
+    <string name="tire_case_preview_title">Case preview</string>
+    <string name="tire_back">Назад</string>
+    <string name="tire_all_pokemons">Все покемоны</string>
+    <string name="case_preview">Содержимое кейса</string>
+    <string name="tire_ok">OK</string>
+    <string name="tire_pokemon_got">Получен покемон!</string>
+    <string name="tire_new_pokemon_badge">НОВЫЙ!</string>
+</resources>

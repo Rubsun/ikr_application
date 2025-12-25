@@ -13,7 +13,8 @@ import com.rubsun.api.Constants as RubsunConstants
 import com.rubsun.impl.R as rubsunRes
 import com.eremin.api.Constants as EreminConstants
 import com.rin2396.api.Constants as RinApi
-import com.example.ikr_application.vtyapkova.ui.ViktoriaFragment
+import com.vtyapkova.api.Constants as VtyapkovaConstants
+import com.vtyapkova.impl.R as vtyapkovaRes
 import com.dyatlova.api.Constants as DyatlovaConstants
 import com.dyatlova.impl.R as dyatlovaRes
 import com.grigoran.api.Constants.GRIGORAN_SCREEN
@@ -25,12 +26,15 @@ import com.nastyazz.api.Constants as NastyazzConstants
 import com.stupishin.api.Constants as StupishinConstants
 import com.stupishin.impl.R as stupishinRes
 import com.artemkaa.api.Constants as ArtemkaaConstants
+import com.argun.api.Constants as ArgunConstants
 import com.antohaot.api.Constants as AntohaotConstants
 import com.drain678.api.Constants as Drain678Constants
 import com.denisova.impl.R as denisovaRes
 import com.zagora.api.Constants as ZagoraConstants
 import com.momuswinner.api.Constants as MomusWinnerConstants
 import com.momuswinner.impl.R as MomusWinnerRes
+import com.michaelnoskov.api.Constants as MichaelnoskovConstants
+import com.michaelnoskov.impl.R as MichaelnoskovRes
 import com.egorik4.api.Constants as Egorik4Constants
 import com.egorik4.impl.R as egorik4Res
 import com.example.api.Constants as DemyanenkoConstants
@@ -55,16 +59,17 @@ enum class Screens(
     QUOVADIS(R.string.title_quovadis, qualifier = QUOVADIS_SCREEN),
     DENISOVA(denisovaRes.string.title_denisova, qualifier = DenisovaConstants.DENISOVA_SCREEN),
     ARTEMKAA(R.string.title_artemkaa, qualifier = ArtemkaaConstants.ARTEMKAA_SCREEN),
+    ARGUN(R.string.title_argun, qualifier = ArgunConstants.ARGUN_SCREEN),
     ANTOHAOT(R.string.title_antohaot, qualifier = AntohaotConstants.ANTOHAOT_SCREEN),
     DRAIN678(R.string.title_drain678, qualifier = Drain678Constants.DRAIN678_SCREEN),
     ALEXCODE69(R.string.title_alexcode69, qualifier = Alexcode69Constants.ALEXCODE69_SCREEN),
     KRISTEVT(kristevtRes.string.title_kristevt, qualifier = KristevtConstants.KRISTEVT_SCREEN),
     N0TSSZZZ(R.string.title_n0tsSzzz, qualifier = N0tsszzzConstants.N0TSSZZZ_SCREEN),
     RUBSUN(rubsunRes.string.title_rubsun, qualifier = RubsunConstants.RUBSUN_SCREEN),
-    MICHAELNOSKOV(R.string.title_michaelnoskov, com.example.ikr_application.michaelnoskov.ui.fragment.ColorSquareFragment::class.java),
+    MICHAELNOSKOV(MichaelnoskovRes.string.michaelnoskov_title, qualifier = MichaelnoskovConstants.MICHAELNOSKOV_SCREEN),
     NASTYAZZ(R.string.title_nastyazz, qualifier = NastyazzConstants.NASTYAZZ_SCREEN),
     GRIGORAN(R.string.title_grigoran, qualifier = GRIGORAN_SCREEN),
-    VTYAPKOVA(R.string.title_viktoria, ViktoriaFragment::class.java),
+    VTYAPKOVA(vtyapkovaRes.string.title_viktoria, qualifier = VtyapkovaConstants.VTYAPKOVA_SCREEN),
     EGORIK4(egorik4Res.string.title_egorik4_screen, qualifier = Egorik4Constants.EGORIK4_SCREEN),
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),

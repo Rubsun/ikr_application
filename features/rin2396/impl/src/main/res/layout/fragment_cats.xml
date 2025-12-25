@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cats_collection"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/search_by_tag"
+        android:inputType="text"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/search_background"
+        android:textColorHint="@color/text_secondary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <EditText
+            android:id="@+id/tagInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:hint="@string/enter_tag"
+            android:inputType="text"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/search_background"
+            android:textColorHint="@color/text_secondary" />
+
+        <Button
+            android:id="@+id/addCatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/add_cat"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/error_color"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/emptyStateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_cats_found"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/text_secondary"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/catsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

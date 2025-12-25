@@ -42,7 +42,8 @@ private fun TimeEntry.toSerializable(): TimeEntrySerializable {
 }
 
 internal class DeviceRepository(
-    private val context: Context
+    private val context: Context,
+    private val apiClient: com.alexcode69.network.api.Alexcode69ApiClient
 ) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         "alexcode69_prefs",
@@ -117,6 +118,10 @@ internal class DeviceRepository(
         } catch (e: Exception) {
             // Ignore
         }
+    }
+
+    suspend fun fetchRequestInfo(): com.alexcode69.network.api.models.RequestInfoDto = withContext(Dispatchers.IO) {
+        apiClient.getRequestInfo()
     }
 }
 

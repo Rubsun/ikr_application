@@ -1,0 +1,21 @@
+package com.tire.storage.data.converters
+
+import androidx.room.TypeConverter
+import com.tire.api.domain.PokemonRarity
+
+internal class RarityConverter {
+
+    @TypeConverter
+    fun fromRarity(rarity: PokemonRarity): String {
+        return rarity.name
+    }
+
+    @TypeConverter
+    fun toRarity(rarityString: String): PokemonRarity {
+        return try {
+            PokemonRarity.valueOf(rarityString)
+        } catch (_: Exception) {
+            PokemonRarity.COMMON
+        }
+    }
+}
