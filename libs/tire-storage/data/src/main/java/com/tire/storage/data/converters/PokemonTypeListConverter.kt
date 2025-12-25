@@ -18,7 +18,7 @@ internal class PokemonTypeListConverter {
         return try {
             val typeNames = json.decodeFromString<List<String>>(typesString)
             typeNames.map { PokemonType.valueOf(it) }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             emptyList()
         }
     }

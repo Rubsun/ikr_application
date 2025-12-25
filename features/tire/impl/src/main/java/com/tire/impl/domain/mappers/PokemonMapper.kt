@@ -93,7 +93,7 @@ internal object PokemonMapper {
         return try {
             val typeNames = json.decodeFromString<List<String>>(this)
             typeNames.map { PokemonType.valueOf(it) }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             emptyList()
         }
     }
@@ -108,7 +108,7 @@ internal object PokemonMapper {
     private fun String.toRarity(): PokemonRarity {
         return try {
             PokemonRarity.valueOf(this)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             PokemonRarity.COMMON
         }
     }

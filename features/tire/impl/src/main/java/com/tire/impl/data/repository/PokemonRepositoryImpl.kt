@@ -128,13 +128,13 @@ internal class PokemonRepositoryImpl(
 
     override suspend fun isPokemonOwned(pokemonId: Int): Boolean {
         return withContext(Dispatchers.IO) {
-            local.isPokemonOwned(pokemonId) ?: false
+            local.isPokemonOwned(pokemonId)
         }
     }
 
     override suspend fun getPokemonDuplicateCount(pokemonId: Int): Int {
         return withContext(Dispatchers.IO) {
-            local.getDuplicateCount(pokemonId) ?: 0
+            local.getDuplicateCount(pokemonId)
         }
     }
 

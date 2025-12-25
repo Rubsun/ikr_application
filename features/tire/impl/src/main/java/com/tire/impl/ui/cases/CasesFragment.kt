@@ -125,7 +125,6 @@ internal class CasesFragment : Fragment() {
         dialog.show()
     }
 
-
     private fun getRarityColorRes(rarity: String): Int = when (rarity) {
         "COMMON" -> R.color.tire_pokemon_rarity_common
         "RARE" -> R.color.tire_pokemon_rarity_rare
@@ -133,24 +132,4 @@ internal class CasesFragment : Fragment() {
         "LEGENDARY" -> R.color.tire_pokemon_rarity_legendary
         else -> R.color.tire_pokemon_rarity_common
     }
-
-    private fun getGlowDrawable(color: Int): GradientDrawable {
-        fun withAlpha(alpha: Int) = (alpha shl 24) or (color and 0x00FFFFFF)
-
-        return GradientDrawable().apply {
-            gradientType = GradientDrawable.RADIAL_GRADIENT
-            cornerRadius = 12f
-            colors = intArrayOf(
-                withAlpha(0xCC), // центр – 80% opacity
-                withAlpha(0x33), // середина
-                withAlpha(0x11)  // край прозрачный
-            )
-            gradientRadius = 140f
-        }
-    }
-
-
-
-
-
 }

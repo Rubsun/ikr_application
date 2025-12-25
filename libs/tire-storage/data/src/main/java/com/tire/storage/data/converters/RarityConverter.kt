@@ -14,7 +14,7 @@ internal class RarityConverter {
     fun toRarity(rarityString: String): PokemonRarity {
         return try {
             PokemonRarity.valueOf(rarityString)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             PokemonRarity.COMMON
         }
     }
