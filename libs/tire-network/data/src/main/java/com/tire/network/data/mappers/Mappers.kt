@@ -15,7 +15,7 @@ internal fun PokemonDto.toApiModel(): PokemonShort =
     PokemonShort(
         id = id,
         name = name,
-        imageUrl = null
+        imageUrl = url
     )
 
 internal fun PokemonDetailDto.toApiModel(): PokemonDetail =
