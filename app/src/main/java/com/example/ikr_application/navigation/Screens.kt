@@ -42,6 +42,8 @@ import com.spl3g.api.Constants as Spl3gConstants
 import com.spl3g.impl.R as spl3gRes
 import com.kristevt.api.Constants as KristevtConstants
 import com.kristevt.impl.R as kristevtRes
+import com.fomin.api.Constants as FominConstants
+import com.fomin.impl.R as fominRes
 
 enum class Screens(
     @StringRes val title: Int,
@@ -74,5 +76,6 @@ enum class Screens(
     ZAGORA(R.string.title_zagora, qualifier = ZagoraConstants.ZAGORA_SCREEN),
     AREG(MomusWinnerRes.string.areg_title, qualifier = MomusWinnerConstants.MOMUS_WINNER_SCREEN),
     DYATLOVA(dyatlovaRes.string.dyatlova_title, qualifier = DyatlovaConstants.DYATLOVA_SCREEN),
-    EREMIN(R.string.title_eremin, qualifier = EreminConstants.EREMIN_SCREEN)
+    EREMIN(R.string.title_eremin, qualifier = EreminConstants.EREMIN_SCREEN),
+    FOMIN(fominRes.string.title_fomin, qualifier = FominConstants.FOMIN_SCREEN)
 }
