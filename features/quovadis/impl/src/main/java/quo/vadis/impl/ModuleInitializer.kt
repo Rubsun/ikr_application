@@ -1,11 +1,9 @@
 package quo.vadis.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
 import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import quo.vadis.api.Constants
 import quo.vadis.api.usecases.AssembleImageUrlUseCase

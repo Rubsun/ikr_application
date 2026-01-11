@@ -1,7 +1,6 @@
 package com.stupishin.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
 import com.example.jikan.api.JikanClient
 import com.example.libs.arch.ScreenFragmentRouter
@@ -17,7 +16,6 @@ import com.stupishin.impl.domain.GetTopAnimeUseCaseImpl
 import com.stupishin.impl.domain.SearchAnimeUseCaseImpl
 import com.stupishin.impl.ui.StuAnimeFragment
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {

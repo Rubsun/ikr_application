@@ -1,7 +1,6 @@
 package com.rubsun.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
 import com.example.libs.arch.ScreenFragmentRouter
 import com.rubsun.api.Constants
@@ -15,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {

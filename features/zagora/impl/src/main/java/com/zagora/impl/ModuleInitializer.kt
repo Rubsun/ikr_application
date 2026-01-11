@@ -1,7 +1,6 @@
 package com.zagora.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
 import com.example.libs.arch.ScreenFragmentRouter
 import com.example.network.api.RetrofitServiceFactory
