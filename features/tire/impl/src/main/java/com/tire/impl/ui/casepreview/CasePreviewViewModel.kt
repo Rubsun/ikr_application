@@ -3,8 +3,8 @@ package com.tire.impl.ui.casepreview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.injector.inject
-import com.tire.impl.ui.states.CasePreviewUiState
 import com.tire.api.domain.usecases.GetCasePreviewUseCase
+import com.tire.impl.ui.states.CasePreviewUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,6 +1,5 @@
 package com.vtyapkova.impl.data.storage
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.vtyapkova.impl.data.models.ViktoriaData
@@ -8,8 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 internal class ViktoriaStorage(

@@ -10,11 +10,11 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tire.impl.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import androidx.recyclerview.widget.LinearLayoutManager
 
 internal class AllPokemonsFragment : Fragment() {
 

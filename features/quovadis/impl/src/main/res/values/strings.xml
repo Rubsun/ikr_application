@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quovadis_title">quovadis</string>
     <string name="load_cat">Загрузить кота</string>
     <string name="cat_picture">Картинка кота</string>
     <string name="cat_says">Кот говорит…</string>

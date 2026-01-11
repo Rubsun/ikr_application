@@ -13,8 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.imageloader.api.ImageLoader
 import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import com.tire.impl.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

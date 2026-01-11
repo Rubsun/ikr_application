@@ -1,19 +1,15 @@
 package com.grigoran.impl.domain
 
-import com.grigoran.api.domain.AddItemUseCase
 import com.grigoran.api.domain.ItemSearchUseCase
 import com.grigoran.api.domain.ItemSuggestUseCase
 import com.grigoran.api.domain.SortItemUseCase
 import com.grigoran.api.models.Item
-import com.grigoran.network.api.Item as DtoItem
 import com.grigoran.api.models.ItemResult
 import com.grigoran.impl.data.Repository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.runCatching
+import com.grigoran.network.api.Item as DtoItem
 
 class SortItemsUseCaseImpl: SortItemUseCase {
     override fun invoke(items: List<Item>, ascending: Boolean): List<Item> {

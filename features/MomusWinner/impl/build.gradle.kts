@@ -47,6 +47,7 @@ dependencies {
 
     api(project(":features:MomusWinner:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:momuswinner-network:api"))
     implementation(project(":libs:momuswinner-chart:api"))

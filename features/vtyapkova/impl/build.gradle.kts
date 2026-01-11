@@ -39,6 +39,7 @@ dependencies {
 
     api(project(":features:vtyapkova:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:vtyapkova-network:api"))
 }
 

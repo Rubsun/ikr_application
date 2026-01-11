@@ -45,6 +45,7 @@ dependencies {
 
     api(project(":features:rubsun:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:rubsun-chart:api"))
     implementation(project(":libs:rubsun-network:api"))
     implementation(project(":libs:rubsun-storage:api"))

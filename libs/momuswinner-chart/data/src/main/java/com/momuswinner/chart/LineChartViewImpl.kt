@@ -10,7 +10,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.momuswinner.chart.api.ChartConfig
 import com.momuswinner.chart.api.ChartData
-import com.momuswinner.chart.api.ChartEntry
 import com.momuswinner.chart.api.LineChartView
 import com.momuswinner.chart.api.XAxisPosition
 

@@ -42,6 +42,7 @@ dependencies {
 
     api(project(":features:kristevt:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:lyrics:api"))
 
     implementation(libs.koin.core)

@@ -1,6 +1,5 @@
 package com.argun.impl.domain
 
-import com.argun.api.domain.models.ArgunInfo
 import com.argun.api.domain.usecases.ArgunCurrentDateUseCase
 import com.argun.impl.data.ArgunRepository
 import kotlinx.coroutines.Dispatchers

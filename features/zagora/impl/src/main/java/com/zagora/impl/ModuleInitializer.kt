@@ -3,6 +3,7 @@ package com.zagora.impl
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.example.network.api.RetrofitServiceFactory
 import com.zagora.api.Constants
 import com.zagora.impl.data.DogApiService
@@ -21,8 +22,8 @@ class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
         loadKoinModules(
             module {
-                factory<Class<out Fragment>>(named(Constants.ZAGORA_SCREEN)) {
-                    FragmentDog::class.java
+                intoSetFactory(Constants.ZAGORA_SCREEN) {
+                    ScreenFragmentRouter(R.string.zagora_title, FragmentDog::class)
                 }
                 single<DogApiService> {
                     get<RetrofitServiceFactory>(named("gson"))

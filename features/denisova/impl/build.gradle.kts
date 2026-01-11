@@ -47,4 +47,5 @@ dependencies {
 
     api(project(":features:denisova:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
 }

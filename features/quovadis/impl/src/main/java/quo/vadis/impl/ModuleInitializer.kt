@@ -3,6 +3,7 @@ package quo.vadis.impl
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.core.context.loadKoinModules
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -24,8 +25,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     AssembleImageUrlUseCaseImpl()
                 }
 
-                factory<Class<out Fragment>>(named(Constants.QUOVADIS_SCREEN)) {
-                    CatFragment::class.java
+                intoSetFactory(Constants.QUOVADIS_SCREEN) {
+                    ScreenFragmentRouter(R.string.quovadis_title, CatFragment::class)
                 }
             }
         )

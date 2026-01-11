@@ -1,7 +1,7 @@
 package com.stupishin.impl.data
 
-import com.example.jikan.api.JikanClient
 import com.example.jikan.api.JikanAnime
+import com.example.jikan.api.JikanClient
 import com.stupishin.api.domain.models.Anime
 
 internal interface AnimeService {

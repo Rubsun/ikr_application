@@ -50,6 +50,7 @@ dependencies {
 
     api(project(":features:dyatlova:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:dyatlova-network"))
 }

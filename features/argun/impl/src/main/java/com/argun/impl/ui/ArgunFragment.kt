@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.argun.api.domain.ArgunTimePrecisions
 import com.argun.impl.R
 import com.argun.impl.ui.adapters.TimeRecordAdapter
 import com.argun.network.api.TimeFormatter

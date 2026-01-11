@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.injector.inject
-import com.fomin.api.domain.models.CatBreed
 import com.fomin.impl.R
 import com.fomin.impl.databinding.ContentFominBinding
 import com.fomin.impl.ui.adapters.CatBreedAdapter
@@ -71,9 +70,8 @@ internal class FominFragment : Fragment(R.layout.content_fomin) {
 
     private fun navigateToDetail(breedId: String) {
         val detailFragment = BreedDetailFragment.newInstance(breedId)
-        val containerId = requireContext().resources.getIdentifier("container", "id", requireContext().packageName)
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(containerId, detailFragment)
+            .replace(com.example.libs.arch.R.id.fragment_container, detailFragment)
             .addToBackStack(null)
             .commit()
     }

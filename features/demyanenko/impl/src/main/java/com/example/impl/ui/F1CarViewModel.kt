@@ -1,6 +1,7 @@
 package com.example.impl.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.demyanenko.impl.ui.DemyanenkoItem
 import com.example.impl.domain.GetF1CarUseCase
 import com.example.libs.demyanenkoopenf1.DemyanenkoOpenF1Repository
@@ -9,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import androidx.lifecycle.viewModelScope
 
 internal class F1CarViewModel(
     private val getF1CarUseCase: GetF1CarUseCase,

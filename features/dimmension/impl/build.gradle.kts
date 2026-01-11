@@ -42,6 +42,7 @@ dependencies {
 
     api(project(":features:dimmension:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:dimmension-imageloader:api"))
     implementation(project(":libs:dimmension-network:api"))

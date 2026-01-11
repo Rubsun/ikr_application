@@ -1,9 +1,9 @@
 package com.imageloader.data
 
 import android.content.Context
+import android.widget.ImageView
 import coil3.load
 import coil3.request.crossfade
-import android.widget.ImageView
 import com.imageloader.api.ImageLoader
 
 internal class CoilImageLoader(

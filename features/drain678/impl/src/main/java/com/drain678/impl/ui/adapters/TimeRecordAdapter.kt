@@ -3,7 +3,6 @@ package com.drain678.impl.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.drain678.api.domain.models.Drain678Info
 import com.drain678.impl.R
 

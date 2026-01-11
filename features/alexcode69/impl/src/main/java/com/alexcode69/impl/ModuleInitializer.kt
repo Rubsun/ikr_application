@@ -2,7 +2,6 @@ package com.alexcode69.impl
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.fragment.app.Fragment
 import com.alexcode69.api.Constants
 import com.alexcode69.api.domain.usecases.AddTimeEntryUseCase
 import com.alexcode69.api.domain.usecases.CurrentDateUseCase
@@ -18,10 +17,10 @@ import com.alexcode69.impl.domain.SearchTimeEntriesUseCaseImpl
 import com.alexcode69.impl.ui.Alexcode69Fragment
 import com.alexcode69.impl.ui.MyViewModel
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -54,8 +53,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 // named - квалифаер зависимости
                 // Если у нас есть много поставщиков одного типа, и мы хотим их как-то разделить
-                factory<Class<out Fragment>>(named(Constants.ALEXCODE69_SCREEN)) {
-                    Alexcode69Fragment::class.java
+                intoSetFactory(Constants.ALEXCODE69_SCREEN) {
+                    ScreenFragmentRouter(R.string.alexcode69_title, Alexcode69Fragment::class)
                 }
             }
         )

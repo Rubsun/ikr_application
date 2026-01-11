@@ -43,5 +43,6 @@ dependencies {
     implementation(project(":libs:capybara-network:api"))
     api(project(":features:eremin:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
 }

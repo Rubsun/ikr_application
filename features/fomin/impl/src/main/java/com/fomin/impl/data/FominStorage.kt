@@ -4,9 +4,7 @@ import android.util.Log
 import com.example.primitivestorage.api.PrimitiveStorage
 import com.fomin.api.domain.models.CatBreed
 import com.fomin.api.domain.models.CatWeight
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
 
 private const val TAG = "FominStorage"

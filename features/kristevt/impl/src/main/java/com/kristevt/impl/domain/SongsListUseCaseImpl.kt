@@ -1,9 +1,9 @@
 package com.kristevt.impl.domain
 
 import com.kristevt.api.domain.SongsListUseCase
+import com.kristevt.api.domain.models.Song
 import com.kristevt.impl.data.SongsRepository
 import com.kristevt.impl.data.models.SongDto
-import com.kristevt.api.domain.models.Song
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

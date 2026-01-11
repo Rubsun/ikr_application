@@ -1,7 +1,6 @@
 package com.denisova.impl.data
 
 import com.denisova.impl.data.models.GeocodingSearchResponseDto
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.net.HttpURLConnection
 import java.net.URL

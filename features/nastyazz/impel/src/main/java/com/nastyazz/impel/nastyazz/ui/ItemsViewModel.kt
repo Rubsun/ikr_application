@@ -1,14 +1,14 @@
 package com.nastyazz.impel.nastyazz.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.injector.inject
-import com.nastyazz.api.domain.usecases.AddItemUseCase
 import com.nastyazz.api.domain.usecases.ItemSearchUseCase
 import com.nastyazz.api.domain.usecases.ItemSuggestUseCase
-import com.nastyazz.api.domain.usecases.ObserveItemsUseCase
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onStart
 
 internal class ItemsViewModel(
     private val searchUseCase: ItemSearchUseCase,

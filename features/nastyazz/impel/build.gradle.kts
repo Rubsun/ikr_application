@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":libs:primitivestorage:api"))
     api(project(":libs:imageloader:api"))

@@ -9,7 +9,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.rubsun.chart.api.ChartConfig
 import com.rubsun.chart.api.ChartData
-import com.rubsun.chart.api.ChartEntry
 import com.rubsun.chart.api.ChartView
 
 class LineChartView @JvmOverloads constructor(

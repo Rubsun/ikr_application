@@ -3,9 +3,9 @@ package com.dyatlova.impl.data
 import com.dyatlova.api.domain.models.Destination
 import com.dyatlova.impl.data.models.DestinationData
 import com.dyatlova.impl.data.models.DestinationsStorage
-import com.example.primitivestorage.api.PrimitiveStorage
 import com.dyatlova.network.DestinationsRemoteSource
 import com.dyatlova.network.RemoteDestination
+import com.example.primitivestorage.api.PrimitiveStorage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

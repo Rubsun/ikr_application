@@ -1,7 +1,6 @@
 package com.egorik4.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.egorik4.api.Constants
 import com.egorik4.api.domain.usecases.SearchBooksUseCase
 import com.egorik4.impl.data.BooksRepository
@@ -12,10 +11,10 @@ import com.egorik4.impl.ui.Egorik4Fragment
 import com.egorik4.impl.ui.Egorik4ViewModel
 import com.egorik4.network.api.BooksApiClient
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 private const val STORAGE_NAME = "egorik4_storage"
@@ -49,8 +48,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     Egorik4ViewModel(get())
                 }
 
-                factory<Class<out Fragment>>(named(Constants.EGORIK4_SCREEN)) {
-                    Egorik4Fragment::class.java
+                intoSetFactory(Constants.EGORIK4_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_egorik4_screen, Egorik4Fragment::class)
                 }
             }
         )

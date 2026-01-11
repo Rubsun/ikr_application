@@ -47,14 +47,10 @@ dependencies {
     implementation(libs.material)
 
     api(project(":features:demyanenko:api"))
-    //implementation(libs.coil)
-    //implementation(libs.coil.network.okhttp)
     implementation(project(":libs:demyanenkoCoil:impl"))
     implementation(project(":libs:demyanenkoOpenF1:impl"))
 
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
 
 }

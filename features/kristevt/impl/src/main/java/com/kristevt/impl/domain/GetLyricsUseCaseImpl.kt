@@ -1,7 +1,7 @@
 package com.kristevt.impl.domain
 
-import com.kristevt.lyrics.api.LyricsDataSource
 import com.kristevt.api.domain.GetLyricsUseCase
+import com.kristevt.lyrics.api.LyricsDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

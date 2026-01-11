@@ -1,7 +1,6 @@
 package com.drain678.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.drain678.api.Constants
 import com.drain678.api.domain.usecases.AddTimeRecordUseCase
 import com.drain678.api.domain.usecases.Drain678CurrentDateUseCase
@@ -16,9 +15,9 @@ import com.drain678.impl.ui.Drain678Fragment
 import com.drain678.impl.ui.Drain678ViewModel
 import com.drain678.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -39,7 +38,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 viewModel { Drain678ViewModel() }
 
-                factory<Class<out Fragment>>(named(Constants.DRAIN678_SCREEN)) { Drain678Fragment::class.java }
+                intoSetFactory(Constants.DRAIN678_SCREEN) {
+                    ScreenFragmentRouter(R.string.drain678_title, Drain678Fragment::class)
+                }
             }
         )
     }

@@ -3,7 +3,6 @@ package com.denisova.impl.data.storage
 import android.content.SharedPreferences
 import com.denisova.impl.data.models.WeatherLocationDto
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 internal class DenisovaStorage(

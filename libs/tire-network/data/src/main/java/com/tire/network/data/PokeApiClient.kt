@@ -5,7 +5,7 @@ import com.tire.network.api.PokeRemoteDataSource
 import com.tire.network.api.models.PokemonDetail
 import com.tire.network.api.models.PokemonListResponse
 import com.tire.network.data.api.PokeApiService
-import com.tire.network.data.mappers.*
+import com.tire.network.data.mappers.toApiModel
 
 internal class PokeApiClient(
     retrofitServiceFactory: RetrofitServiceFactory

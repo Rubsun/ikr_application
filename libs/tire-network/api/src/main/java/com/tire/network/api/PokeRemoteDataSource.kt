@@ -1,7 +1,7 @@
 package com.tire.network.api
 
-import com.tire.network.api.models.PokemonListResponse
 import com.tire.network.api.models.PokemonDetail
+import com.tire.network.api.models.PokemonListResponse
 
 interface PokeRemoteDataSource {
     suspend fun getPokemonList(limit: Int, offset: Int): PokemonListResponse

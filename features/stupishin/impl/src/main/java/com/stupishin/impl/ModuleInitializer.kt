@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
 import com.example.jikan.api.JikanClient
+import com.example.libs.arch.ScreenFragmentRouter
 import com.example.primitivestorage.api.PrimitiveStorage
 import com.stupishin.api.Constants
 import com.stupishin.api.domain.usecases.GetTopAnimeUseCase
@@ -47,8 +48,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     SearchAnimeUseCaseImpl(get(), get())
                 }
 
-                factory<Class<out Fragment>>(named(Constants.STUPISHIN_SCREEN)) {
-                    StuAnimeFragment::class.java
+                intoSetFactory(Constants.STUPISHIN_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_stupishin, StuAnimeFragment::class)
                 }
             }
         )

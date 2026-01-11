@@ -1,8 +1,7 @@
 package com.nastyazz.impel.nastyazz.domain
-import com.example.nastyazz.api.NastyItem
+import com.nastyazz.api.domain.models.Item
 import com.nastyazz.api.domain.usecases.ItemSearchUseCase
 import com.nastyazz.impel.nastyazz.data.ItemRepository
-import com.nastyazz.api.domain.models.Item
 
 internal class ItemSearchUseCaseImpl(
     private val repository: ItemRepository

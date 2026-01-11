@@ -1,7 +1,6 @@
 package com.antohaot.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.antohaot.api.Constants
 import com.antohaot.api.domain.usecases.AddTimeRecordUseCase
 import com.antohaot.api.domain.usecases.AntohaotCurrentDateUseCase
@@ -16,9 +15,9 @@ import com.antohaot.impl.ui.AntohaotFragment
 import com.antohaot.impl.ui.AntohaotViewModel
 import com.antohaot.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -46,7 +45,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 // named - квалифаер зависимости
                 // Если у нас есть много поставщиков одного типа, и мы хотим их как-то разделить
-                factory<Class<out Fragment>>(named(Constants.ANTOHAOT_SCREEN)) { AntohaotFragment::class.java }
+                intoSetFactory(Constants.ANTOHAOT_SCREEN) {
+                    ScreenFragmentRouter(R.string.antohaot_title, AntohaotFragment::class)
+                }
             }
         )
     }

@@ -1,6 +1,5 @@
 package com.denisova.impl.data
 
-import com.denisova.impl.data.models.GeocodingSearchResponseDto
 import com.denisova.impl.data.models.WeatherForecastDto
 import com.denisova.impl.data.models.WeatherLocationDto
 import com.denisova.impl.data.storage.DenisovaStorage

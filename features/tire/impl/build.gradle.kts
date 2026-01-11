@@ -37,6 +37,7 @@ android {
 dependencies {
     api(project(":features:tire:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:imageloader:api"))
     implementation(project(":libs:tire-network:api"))

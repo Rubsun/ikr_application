@@ -5,9 +5,9 @@ import com.tire.api.domain.PokemonType
 import com.tire.api.domain.models.Pokemon
 import com.tire.network.api.models.PokemonDetail
 import com.tire.storage.api.models.PokemonRecord
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.json.Json
 
 internal object PokemonMapper {
 

@@ -1,17 +1,16 @@
 package com.akiko23.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.akiko23.api.Constants
 import com.akiko23.impl.data.DeviceRepository
 import com.akiko23.impl.data.models.Akiko23State
 import com.akiko23.impl.ui.Akiko23Fragment
 import com.akiko23.impl.ui.Akiko23ViewModel
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.example.primitivestorage.api.PrimitiveStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -44,9 +43,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     )
                 }
 
-                // Fragment для навигации
-                factory<Class<out Fragment>>(named(Constants.AKIKO23_SCREEN)) {
-                    Akiko23Fragment::class.java
+                intoSetFactory(Constants.AKIKO23_SCREEN) {
+                    ScreenFragmentRouter(R.string.akiko23_title, Akiko23Fragment::class)
                 }
             }
         )

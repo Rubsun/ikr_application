@@ -2,9 +2,9 @@ package com.akiko23.impl.data
 
 import com.akiko23.impl.data.models.WolfQuote
 import com.akiko23.network.api.QuoteApiClient
-import kotlin.random.Random
-import java.net.UnknownHostException
 import java.io.IOException
+import java.net.UnknownHostException
+import kotlin.random.Random
 
 /**
  * Репозиторий для получения цитат и картинок.

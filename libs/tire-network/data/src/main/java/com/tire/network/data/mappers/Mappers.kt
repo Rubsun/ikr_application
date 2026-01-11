@@ -1,7 +1,11 @@
 package com.tire.network.data.mappers
 
-import com.tire.network.api.models.*
-import com.tire.network.data.dto.*
+import com.tire.network.api.models.PokemonDetail
+import com.tire.network.api.models.PokemonListResponse
+import com.tire.network.api.models.PokemonShort
+import com.tire.network.data.dto.PokemonDetailDto
+import com.tire.network.data.dto.PokemonDto
+import com.tire.network.data.dto.PokemonListResponseDto
 
 internal fun PokemonListResponseDto.toApiModel(): PokemonListResponse =
     PokemonListResponse(

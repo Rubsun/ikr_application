@@ -4,8 +4,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.kristevt.impl.R
 import com.kristevt.api.domain.models.Song
+import com.kristevt.impl.R
 
 internal class SongViewHolder(
     view: View,

@@ -1,13 +1,9 @@
 package com.coil.data
 
 import android.content.Context
+import android.widget.ImageView
 import coil3.load
 import com.coil.api.ImageLoader
-
-import android.widget.ImageView
-
-
-
 
 
 internal class CoilImageLoader(
