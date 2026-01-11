@@ -1,8 +1,8 @@
 package com.rubsun.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.rubsun.api.Constants
 import com.rubsun.api.domain.usecases.GetNumberUseCase
 import com.rubsun.impl.data.NumberRepository
@@ -14,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
@@ -34,8 +33,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 factory { NumberViewModel(get()) }
 
-                factory<Class<out Fragment>>(named(Constants.RUBSUN_SCREEN)) {
-                    NumberFragment::class.java
+                intoSetFactory(Constants.RUBSUN_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_rubsun, NumberFragment::class)
                 }
             }
         )

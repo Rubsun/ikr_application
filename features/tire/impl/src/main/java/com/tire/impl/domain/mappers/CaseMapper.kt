@@ -1,8 +1,8 @@
 package com.tire.impl.domain.mappers
 
+import com.tire.api.domain.PokemonRarity
 import com.tire.api.domain.models.LootEntry
 import com.tire.api.domain.models.PokemonCase
-import com.tire.api.domain.PokemonRarity
 import com.tire.impl.data.config.dto.LootEntryDto
 import com.tire.impl.data.config.dto.PokemonCaseDto
 

@@ -2,8 +2,8 @@ package com.n0tsszzz.impl
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.n0tsszzz.api.Constants
 import com.n0tsszzz.api.domain.usecases.AddTimeRecordUseCase
 import com.n0tsszzz.api.domain.usecases.GetTimeRecordsUseCase
@@ -18,7 +18,6 @@ import com.n0tsszzz.impl.ui.MarkoFragment
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -46,8 +45,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 // named - квалифаер зависимости
                 // Если у нас есть много поставщиков одного типа, и мы хотим их как-то разделить
-                factory<Class<out Fragment>>(named(Constants.N0TSSZZZ_SCREEN)) {
-                    MarkoFragment::class.java
+                intoSetFactory(Constants.N0TSSZZZ_SCREEN) {
+                    ScreenFragmentRouter(R.string.n0tsszzz_title, MarkoFragment::class)
                 }
             }
         )

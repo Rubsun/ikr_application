@@ -1,8 +1,8 @@
 package com.denisova.impl.ui
 
 import android.view.View
-import android.widget.TextView
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.denisova.api.domain.models.WeatherLocation
 import com.denisova.impl.R

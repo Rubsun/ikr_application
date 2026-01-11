@@ -1,7 +1,5 @@
 package com.n0tsszzz.impl.domain
 
-import android.os.SystemClock
-import com.n0tsszzz.api.domain.models.MarkoInfo
 import com.n0tsszzz.api.domain.usecases.AddTimeRecordUseCase
 import com.n0tsszzz.impl.data.MarkoRepository
 import kotlinx.coroutines.Dispatchers

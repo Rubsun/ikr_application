@@ -1,7 +1,6 @@
 package com.dyatlova.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.dyatlova.api.Constants
 import com.dyatlova.api.domain.usecases.AddDestinationUseCase
 import com.dyatlova.api.domain.usecases.FilterDestinationsUseCase
@@ -14,8 +13,8 @@ import com.dyatlova.impl.ui.DyatlovaFragment
 import com.dyatlova.impl.ui.DyatlovaViewModel
 import com.dyatlova.network.DestinationsRemoteSourceFactory
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
@@ -31,8 +30,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 factory { DyatlovaViewModel(get(), get(), get()) }
 
-                factory<Class<out Fragment>>(named(Constants.DYATLOVA_SCREEN)) {
-                    DyatlovaFragment::class.java
+                intoSetFactory(Constants.DYATLOVA_SCREEN) {
+                    ScreenFragmentRouter(R.string.dyatlova_title, DyatlovaFragment::class)
                 }
             }
         )

@@ -9,7 +9,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.n0tsszzz.chart.api.ChartConfig
 import com.n0tsszzz.chart.api.ChartData
-import com.n0tsszzz.chart.api.ChartEntry
 import com.n0tsszzz.chart.api.ChartView
 
 /**

@@ -1,6 +1,5 @@
 package com.example.primitivestorage
 
-import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException

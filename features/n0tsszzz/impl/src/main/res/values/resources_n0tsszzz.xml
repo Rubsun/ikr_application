@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="n0tsszzz_title">n0tsszzz</string>
     <string name="n0tsszzz_text_time_pattern">Current date: %s</string>
     <string name="n0tsszzz_text_time_from_reboot_pattern">Time from start: %s</string>
     <string name="n0tsszzz_add_time_record">Add Time Record</string>

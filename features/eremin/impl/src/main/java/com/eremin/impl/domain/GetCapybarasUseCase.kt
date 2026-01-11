@@ -1,7 +1,7 @@
 package com.eremin.impl.domain
 
-import com.eremin.impl.data.CapybaraRepository
 import com.eremin.api.domain.models.Capybara
+import com.eremin.impl.data.CapybaraRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

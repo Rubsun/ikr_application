@@ -7,29 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.FrameLayout
+import com.example.injector.inject
 import com.google.android.material.button.MaterialButton
-import com.n0tsszzz.chart.api.ChartView
-import com.n0tsszzz.chart.api.ChartViewFactory
+import com.google.android.material.textfield.TextInputEditText
+import com.n0tsszzz.api.domain.models.MarkoInfo
+import com.n0tsszzz.chart.api.ChartConfig
 import com.n0tsszzz.chart.api.ChartData
 import com.n0tsszzz.chart.api.ChartEntry
-import com.n0tsszzz.chart.api.ChartConfig
-import com.google.android.material.textfield.TextInputEditText
-import com.example.injector.inject
-import com.n0tsszzz.api.domain.models.MarkoInfo
-import com.n0tsszzz.api.domain.models.MarkoTimePrecisions
+import com.n0tsszzz.chart.api.ChartView
+import com.n0tsszzz.chart.api.ChartViewFactory
 import com.n0tsszzz.impl.R
 import com.n0tsszzz.impl.ui.adapters.TimeRecordAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import androidx.fragment.app.viewModels
 
 internal class MarkoFragment : Fragment() {
     

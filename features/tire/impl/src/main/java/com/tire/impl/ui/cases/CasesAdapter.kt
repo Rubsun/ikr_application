@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.imageloader.api.ImageLoader
 import com.example.injector.inject
+import com.imageloader.api.ImageLoader
 import com.tire.api.domain.models.PokemonCase
 import com.tire.impl.R
 

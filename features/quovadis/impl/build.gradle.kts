@@ -49,8 +49,9 @@ dependencies {
     implementation(libs.bundles.ui.core)
 
     api(project(":features:quovadis:api"))
-    api(project(":libs:catLover:data"))
-    api(project(":libs:imageloader:data"))
-    api(project(":libs:roomstorage:data"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
+    implementation(project(":libs:roomstorage:api"))
+    implementation(project(":libs:catLover:api"))
+    implementation(project(":libs:imageloader:api"))
 }

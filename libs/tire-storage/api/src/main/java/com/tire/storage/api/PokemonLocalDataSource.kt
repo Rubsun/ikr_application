@@ -1,7 +1,7 @@
 package com.tire.storage.api
 
-import kotlinx.coroutines.flow.Flow
 import com.tire.storage.api.models.PokemonRecord
+import kotlinx.coroutines.flow.Flow
 
 interface PokemonLocalDataSource {
     fun getAllPokemons(): Flow<List<PokemonRecord>>

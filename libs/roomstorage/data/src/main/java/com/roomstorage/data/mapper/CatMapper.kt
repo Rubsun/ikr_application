@@ -1,7 +1,7 @@
 package com.roomstorage.data.mapper
 
-import com.roomstorage.data.db.CatEntity
 import com.example.api.CatDto
+import com.roomstorage.data.db.CatEntity
 
 fun CatEntity.toDto() : CatDto {
     return CatDto(

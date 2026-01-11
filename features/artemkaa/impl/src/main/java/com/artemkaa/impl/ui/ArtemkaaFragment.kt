@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.artemkaa.api.domain.ArtemkaaTimePrecisions
 import com.artemkaa.impl.R
 import com.artemkaa.impl.ui.adapters.TimeRecordAdapter
 import com.google.android.material.button.MaterialButton

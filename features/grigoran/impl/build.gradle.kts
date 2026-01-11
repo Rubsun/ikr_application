@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     api(project(":libs:imageloader:api"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:grigoran-network:api"))

@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.imageloader.api.ImageLoader
-
-import com.nastyazz.impel.databinding.ItemNastyazzBinding
 import com.nastyazz.api.domain.models.Item
+import com.nastyazz.impel.databinding.ItemNastyazzBinding
 
 internal class ItemsAdapter(private val imageLoader: ImageLoader) :
     RecyclerView.Adapter<ItemsAdapter.VH>() {

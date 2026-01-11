@@ -15,7 +15,6 @@ import kotlinx.coroutines.withContext
 import quo.vadis.api.usecases.ApiBaseUrl
 import quo.vadis.api.usecases.AssembleImageUrlUseCase
 import quo.vadis.api.usecases.GetCatNameUseCase
-import kotlin.collections.plus
 
 
 internal class CatViewModel : ViewModel() {

@@ -1,7 +1,6 @@
 package com.dimmension.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.dimmension.api.Constants
 import com.dimmension.api.domain.usecases.AddNameUseCase
 import com.dimmension.api.domain.usecases.FetchRandomNamesFromNetworkUseCase
@@ -19,8 +18,8 @@ import com.dimmension.impl.domain.GetRandomNameUseCaseImpl
 import com.dimmension.impl.domain.ObserveNamesUseCaseImpl
 import com.dimmension.impl.ui.NamesFragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
@@ -39,8 +38,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     FetchRandomNamesFromNetworkUseCaseImpl(get(), get()) 
                 }
 
-                factory<Class<out Fragment>>(named(Constants.DIMMENSION_SCREEN)) {
-                    NamesFragment::class.java
+                intoSetFactory(Constants.DIMMENSION_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_dimmension_screen, NamesFragment::class)
                 }
             }
         )

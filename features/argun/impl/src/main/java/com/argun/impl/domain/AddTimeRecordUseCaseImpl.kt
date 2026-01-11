@@ -1,7 +1,5 @@
 package com.argun.impl.domain
 
-import android.os.SystemClock
-import com.argun.api.domain.models.ArgunInfo
 import com.argun.api.domain.usecases.AddTimeRecordUseCase
 import com.argun.impl.data.ArgunRepository
 import kotlinx.coroutines.Dispatchers

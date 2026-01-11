@@ -9,7 +9,6 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.michaelnoskov.chart.api.BarChartData
-import com.michaelnoskov.chart.api.BarChartEntry
 import com.michaelnoskov.chart.api.BarChartView
 import com.michaelnoskov.chart.api.ChartConfig
 

@@ -1,15 +1,15 @@
 package com.example.demyanenko.impl.ui
 
+//import com.example.demyanenko.impl.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.demyanenko.impl.R
-import com.example.impl.data.F1Car
-import com.example.impl.databinding.ItemF1carBinding
-import com.example.impl.databinding.ItemDriverBinding
 import com.example.demyanenkocoil.api.DemyanenkoImageLoader
+import com.example.impl.data.F1Car
+import com.example.impl.databinding.ItemDriverBinding
+import com.example.impl.databinding.ItemF1carBinding
 import com.example.libs.demyanenkoopenf1.model.Driver
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

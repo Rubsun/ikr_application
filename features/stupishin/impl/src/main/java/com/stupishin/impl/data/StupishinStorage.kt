@@ -2,8 +2,8 @@ package com.stupishin.impl.data
 
 import com.example.primitivestorage.api.PrimitiveStorage
 import com.stupishin.api.domain.models.Anime
-import kotlinx.serialization.Serializable
 import kotlinx.coroutines.flow.first
+import kotlinx.serialization.Serializable
 
 internal class StupishinStorage(
     private val storage: PrimitiveStorage<State>,

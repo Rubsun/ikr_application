@@ -41,6 +41,7 @@ dependencies {
 
     api(project(":features:egorik4:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:primitivestorage:api"))
     implementation(project(":libs:egorik4-network:api"))
     implementation(project(":libs:imageloader:api"))

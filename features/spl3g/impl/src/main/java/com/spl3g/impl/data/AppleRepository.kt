@@ -1,11 +1,10 @@
 package com.spl3g.impl.data
 
 import com.example.primitivestorage.api.PrimitiveStorage
-import com.spl3g.network.api.models.ImageData
 import com.spl3g.network.api.AppleApiClient
+import com.spl3g.network.api.models.ImageData
 import kotlinx.coroutines.flow.first
 import kotlinx.serialization.Serializable
-import java.io.IOException
 
 @Serializable
 data class Spl3gState(

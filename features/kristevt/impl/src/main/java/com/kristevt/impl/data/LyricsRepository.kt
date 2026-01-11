@@ -1,7 +1,7 @@
 package com.kristevt.impl.data
 
-import com.kristevt.impl.data.models.LyricsDto
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.kristevt.impl.data.models.LyricsDto
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

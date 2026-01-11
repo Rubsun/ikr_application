@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.koin.android)
 
     api(project(":features:alexcode69:api"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:injector"))
     implementation(project(":libs:primitivestorage:data"))
     implementation(project(":libs:logger:api"))

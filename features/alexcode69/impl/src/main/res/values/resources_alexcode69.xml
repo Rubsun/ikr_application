@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="alexcode69_title">alexcode69</string>
     <string name="alexcode69_text_time_pattern">Current date: %s</string>
 </resources>
 

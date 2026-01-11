@@ -1,7 +1,6 @@
 package com.artemkaa.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.artemkaa.api.Constants
 import com.artemkaa.api.domain.usecases.AddTimeRecordUseCase
 import com.artemkaa.api.domain.usecases.ArtemkaaCurrentDateUseCase
@@ -16,9 +15,9 @@ import com.artemkaa.impl.ui.ArtemkaaFragment
 import com.artemkaa.impl.ui.ArtemkaaViewModel
 import com.artemkaa.network.api.TimeApiClient
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -46,7 +45,9 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
 
                 // named - квалифаер зависимости
                 // Если у нас есть много поставщиков одного типа, и мы хотим их как-то разделить
-                factory<Class<out Fragment>>(named(Constants.ARTEMKAA_SCREEN)) { ArtemkaaFragment::class.java }
+                intoSetFactory(Constants.ARTEMKAA_SCREEN) {
+                    ScreenFragmentRouter(R.string.artemkaa_title, ArtemkaaFragment::class)
+                }
             }
         )
     }

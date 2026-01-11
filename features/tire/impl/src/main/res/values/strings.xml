@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="tire_title">tire</string>
     <string name="tire_open_case">Открыть</string>
     <string name="tire_case_image">Case image</string>
     <string name="tire_pokemon_image">Pokemon image</string>

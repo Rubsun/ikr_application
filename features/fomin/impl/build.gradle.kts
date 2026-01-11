@@ -49,6 +49,7 @@ dependencies {
 
     api(project(":features:fomin:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:imageloader:api"))
     implementation(project(":libs:fomin-network:api"))
     implementation(project(":libs:primitivestorage:api"))

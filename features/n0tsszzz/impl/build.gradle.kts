@@ -46,6 +46,7 @@ dependencies {
 
     api(project(":features:n0tsszzz:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:n0tsszzz-network:api"))
     implementation(project(":libs:chart:api"))
     implementation(libs.bundles.koin)

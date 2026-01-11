@@ -1,8 +1,8 @@
 package com.vtyapkova.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import com.vtyapkova.api.Constants
 import com.vtyapkova.api.domain.usecases.AddViktoriaFromApiUseCase
 import com.vtyapkova.api.domain.usecases.AddViktoriaUseCase
@@ -19,7 +19,6 @@ import com.vtyapkova.impl.ui.ViktoriaViewModel
 import com.vtyapkova.network.api.RandomUserApiClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 private const val PREFS_NAME = "vtyapkova_prefs"
@@ -80,8 +79,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 }
 
                 // Fragment для навигации
-                factory<Class<out Fragment>>(named(Constants.VTYAPKOVA_SCREEN)) {
-                    ViktoriaFragment::class.java
+                intoSetFactory(Constants.VTYAPKOVA_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_viktoria, ViktoriaFragment::class)
                 }
             }
         )

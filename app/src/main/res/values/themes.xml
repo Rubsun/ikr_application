@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Ikr_application" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,11 +6,6 @@
     </style>
 
     <style name="Theme.Ikr_application" parent="Base.Theme.Ikr_application">
-        <item name="emojiSearch">@style/Widget.EmojiSearch</item>
-        <item name="emojiCard">@style/Widget.EmojiCard</item>
-        <item name="emojiCardName">@style/Widget.EmojiCard.Name</item>
-        <item name="emojiCardValue">@style/Widget.EmojiCard.Value</item>
-
         <item name="songCard">@style/Widget.SongCard</item>
         <item name="songCardTitle">@style/Widget.SongCard.Title</item>
         <item name="songCardInfo">@style/Widget.SongCard.Info</item>

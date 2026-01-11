@@ -42,6 +42,7 @@ dependencies {
 
     api(project(":features:argun:api"))
     implementation(project(":libs:injector"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:argun-network:data"))
 }
 

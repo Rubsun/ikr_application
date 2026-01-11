@@ -41,9 +41,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    api(project(":features:zagora:api"))
-    implementation(project(":libs:imageloader:data"))
     implementation(libs.androidx.fragment.ktx)
+
+    api(project(":features:zagora:api"))
+    implementation(project(":libs:arch"))
     implementation(project(":libs:injector"))
-    implementation(project(":libs:network:data"))
+    implementation(project(":libs:imageloader:api"))
+    implementation(project(":libs:network:api"))
 }

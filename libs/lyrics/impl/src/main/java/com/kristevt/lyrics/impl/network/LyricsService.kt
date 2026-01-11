@@ -1,6 +1,5 @@
 package com.kristevt.lyrics.impl.network
 
-import com.kristevt.lyrics.impl.network.LyricsDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

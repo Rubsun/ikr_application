@@ -1,7 +1,7 @@
 package quo.vadis.impl.domain
 
-import quo.vadis.api.usecases.AssembleImageUrlUseCase
 import quo.vadis.api.usecases.ApiBaseUrl
+import quo.vadis.api.usecases.AssembleImageUrlUseCase
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 

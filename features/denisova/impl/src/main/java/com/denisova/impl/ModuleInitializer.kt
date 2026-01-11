@@ -1,25 +1,24 @@
 package com.denisova.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.denisova.api.Constants
 import com.denisova.api.domain.usecases.AddWeatherLocationUseCase
 import com.denisova.api.domain.usecases.GetWeatherLocationsUseCase
 import com.denisova.api.domain.usecases.RefreshWeatherUseCase
 import com.denisova.impl.data.GeocodingApiService
+import com.denisova.impl.data.HttpGeocodingApiService
+import com.denisova.impl.data.HttpWeatherApiService
 import com.denisova.impl.data.WeatherApiService
 import com.denisova.impl.data.WeatherRepository
 import com.denisova.impl.data.storage.DenisovaStorage
-import com.denisova.impl.data.HttpWeatherApiService
-import com.denisova.impl.data.HttpGeocodingApiService
 import com.denisova.impl.domain.AddWeatherLocationUseCaseImpl
 import com.denisova.impl.domain.GetWeatherLocationsUseCaseImpl
 import com.denisova.impl.domain.RefreshWeatherUseCaseImpl
 import com.denisova.impl.ui.DenisovaFragment
 import com.example.injector.AbstractInitializer
+import com.example.libs.arch.ScreenFragmentRouter
 import kotlinx.serialization.json.Json
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 private const val FORECAST_BASE_URL = "https://api.open-meteo.com/"
@@ -46,8 +45,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 factory<AddWeatherLocationUseCase> { AddWeatherLocationUseCaseImpl(get()) }
                 factory<RefreshWeatherUseCase> { RefreshWeatherUseCaseImpl(get()) }
 
-                factory<Class<out Fragment>>(named(Constants.DENISOVA_SCREEN)) {
-                    DenisovaFragment::class.java
+                intoSetFactory(Constants.DENISOVA_SCREEN) {
+                    ScreenFragmentRouter(R.string.title_denisova, DenisovaFragment::class)
                 }
             }
         )

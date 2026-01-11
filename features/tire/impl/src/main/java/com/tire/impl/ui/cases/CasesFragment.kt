@@ -3,16 +3,18 @@ package com.tire.impl.ui.cases
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import androidx.core.content.ContextCompat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ProgressBar
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,9 +27,6 @@ import com.tire.impl.ui.allpokemons.AllPokemonsFragment
 import com.tire.impl.ui.casepreview.CasePreviewFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.getValue
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.graphics.toColorInt
 
 internal class CasesFragment : Fragment() {
 

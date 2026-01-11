@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.antohaot.api.domain.AntohaotTimePrecisions
 import com.antohaot.impl.R
 import com.antohaot.impl.ui.adapters.TimeRecordAdapter
 import com.google.android.material.button.MaterialButton

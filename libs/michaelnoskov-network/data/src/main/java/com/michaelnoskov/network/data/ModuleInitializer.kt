@@ -2,9 +2,8 @@ package com.michaelnoskov.network.data
 
 import android.content.Context
 import com.example.injector.AbstractInitializer
-import com.michaelnoskov.network.api.WeatherApiClient
-import com.michaelnoskov.network.api.ColorSquareApiClient
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.michaelnoskov.network.api.WeatherApiClient
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

@@ -1,6 +1,5 @@
 package com.antohaot.impl.domain
 
-import com.antohaot.api.domain.models.AntohaotInfo
 import com.antohaot.api.domain.usecases.AntohaotCurrentDateUseCase
 import com.antohaot.impl.data.AntohaotRepository
 import kotlinx.coroutines.Dispatchers

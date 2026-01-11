@@ -1,9 +1,9 @@
 package com.alexcode69.network.data
 
 import android.content.Context
+import com.alexcode69.network.api.Alexcode69ApiClient
 import com.example.injector.AbstractInitializer
 import com.example.network.api.RetrofitServiceFactory
-import com.alexcode69.network.api.Alexcode69ApiClient
 import kotlinx.serialization.json.Json
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module

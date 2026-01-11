@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.akiko23.impl.R
 import com.coil.api.ImageLoader
 import com.example.injector.inject
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Фрагмент для экрана akiko23.

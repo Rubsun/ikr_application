@@ -1,10 +1,8 @@
 package com.tire.impl
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.example.injector.AbstractInitializer
-import org.koin.core.context.loadKoinModules
-import org.koin.dsl.module
+import com.example.libs.arch.ScreenFragmentRouter
 import com.tire.api.Constants
 import com.tire.api.domain.usecases.GetAllCasesUseCase
 import com.tire.api.domain.usecases.GetAllPokemonsUseCase
@@ -29,7 +27,8 @@ import com.tire.impl.ui.cases.CasesViewModel
 import com.tire.impl.ui.collection.CollectionViewModel
 import com.tire.impl.ui.root.RootFragment
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 
 internal class ModuleInitializer : AbstractInitializer<Unit>() {
     override fun create(context: Context) {
@@ -56,8 +55,8 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                 viewModel { CollectionViewModel() }
                 viewModel { AllPokemonsViewModel() }
 
-                factory<Class<out Fragment>>(named(Constants.TIRE_SCREEN)) {
-                    RootFragment::class.java
+                intoSetFactory(Constants.TIRE_SCREEN) {
+                    ScreenFragmentRouter(R.string.tire_title, RootFragment::class)
                 }
             }
         )
