@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="title_telegin_screen">Погода</string>
-    <string name="telegin_city_hint">Введите название города...</string>
-    <string name="telegin_weather_icon_description">Иконка погоды</string>
-</resources>
-

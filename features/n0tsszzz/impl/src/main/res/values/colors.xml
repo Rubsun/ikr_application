@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="n0tsszzz_button_color">?attr/colorPrimary</color>
-    <color name="n0tsszzz_chart_line_color">?attr/colorPrimary</color>
-    <color name="n0tsszzz_chart_text_color">?attr/colorOnSurface</color>
-</resources>
-
