@@ -29,6 +29,10 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     primitiveStorage = get(named("eremin_storage"))
                 )
             }
+            
+            intoSetFactory(Constants.EREMIN_SCREEN) {
+                ScreenFragmentRouter(R.string.eremin_title, EreminFragment::class)
+            }
         }
         loadKoinModules(ereminModule)
     }
