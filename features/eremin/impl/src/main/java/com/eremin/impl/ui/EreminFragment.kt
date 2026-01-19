@@ -11,24 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.eremin.api.domain.models.Capybara
 import com.eremin.impl.R
-import com.eremin.impl.domain.GetCapybarasUseCase
-import com.example.primitivestorage.api.PrimitiveStorage
 import com.imageloader.api.ImageLoader
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import org.koin.core.qualifier.named
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class EreminFragment : Fragment() {
 
-    private val getCapybarasUseCase: GetCapybarasUseCase by inject()
-    private val primitiveStorage: PrimitiveStorage<String> by inject(named("eremin_storage"))
+    private val viewModel: EreminViewModel by viewModel()
     private val imageLoader: ImageLoader by inject()
     private lateinit var searchEditText: EditText
     private lateinit var capybaraAdapter: CapybaraAdapter
-    private var allCapybaras: List<Capybara> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,38 +43,30 @@ internal class EreminFragment : Fragment() {
         recyclerView.adapter = capybaraAdapter
 
         searchEditText = view.findViewById(R.id.search_edit_text)
-        viewLifecycleOwner.lifecycleScope.launch {
-            searchEditText.setText(primitiveStorage.get().first() ?: "")
-        }
 
+        var isUpdatingFromViewModel = false
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filterCapybaras(s.toString())
-            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    primitiveStorage.put(s.toString())
+                if (!isUpdatingFromViewModel) {
+                    viewModel.updateSearchQuery(s?.toString() ?: "")
                 }
             }
         })
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            getCapybarasUseCase.execute(0, 100).collect { capybaras ->
-                allCapybaras = capybaras
-                filterCapybaras(searchEditText.text.toString())
+        viewModel.uiState
+            .onEach { state ->
+                if (searchEditText.text.toString() != state.searchQuery) {
+                    isUpdatingFromViewModel = true
+                    searchEditText.setText(state.searchQuery)
+                    searchEditText.setSelection(state.searchQuery.length)
+                    isUpdatingFromViewModel = false
+                }
+                capybaraAdapter.updateCapybaras(state.capybaras)
             }
-        }
-    }
-
-    private fun filterCapybaras(query: String) {
-        val filteredList = if (query.isEmpty()) {
-            allCapybaras
-        } else {
-            allCapybaras.filter { it.alt.contains(query, ignoreCase = true) }
-        }
-        capybaraAdapter.updateCapybaras(filteredList)
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }
