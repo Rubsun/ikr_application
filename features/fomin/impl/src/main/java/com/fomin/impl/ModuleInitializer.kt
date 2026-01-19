@@ -18,6 +18,7 @@ import com.fomin.impl.ui.FominFragment
 import com.fomin.impl.ui.FominViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 private const val STORAGE_NAME = "fomin_storage"
@@ -28,7 +29,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
             module {
                 single { CatRepository(get()) }
 
-                single<PrimitiveStorage<FominStorage.State>> {
+                single<PrimitiveStorage<FominStorage.State>>(named(STORAGE_NAME)) {
                     val factory: PrimitiveStorage.Factory = get()
                     factory.create(
                         name = STORAGE_NAME,
@@ -36,7 +37,7 @@ internal class ModuleInitializer : AbstractInitializer<Unit>() {
                     )
                 }
 
-                single { FominStorage(get()) }
+                single { FominStorage(get(named(STORAGE_NAME))) }
 
                 factory<GetBreedsUseCase> { GetBreedsUseCaseImpl(get()) }
                 factory<GetBreedDetailsUseCase> { GetBreedDetailsUseCaseImpl(get(), get()) }

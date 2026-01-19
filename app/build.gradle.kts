@@ -89,6 +89,8 @@ dependencies {
     implementation(project(":libs:michaelnoskov-network:data"))
     implementation(project(":libs:catLover:data"))
     implementation(project(":libs:roomstorage:data"))
+    implementation(project(":libs:telegin-network:data"))
+    implementation(project(":libs:telegin-storage:data"))
 
     debugImplementation(project(":libs:logger:timber"))
     releaseImplementation(project(":libs:logger:stub"))
@@ -122,6 +124,7 @@ dependencies {
     implementation(project(":features:spl3g:impl"))
     implementation(project(":features:argun:impl"))
     implementation(project(":features:fomin:impl"))
+    implementation(project(":features:telegin:impl"))
 
 // very strange module:)
 //    implementation(project(":features:rin2396:impl"))
